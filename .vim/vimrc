@@ -1,0 +1,53 @@
+" vimrc by Jonathan Dahan <jonathan@jedahan.com>
+" to install:
+" mkdir -p ~/.vim/bundle
+" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" ln -s ~/.vim/vimrc ~/.vimrc
+
+" vundle is a package manager for vim scripts
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'JSON.vim'
+Bundle 'ervandew/supertab'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'joseluisdgz/TaskVim'
+Bundle 'altercation/vim-colors-solarized'
+
+" use git for backups
+set noswapfile
+set nobackup
+
+" number lines
+set nocompatible
+set number
+
+" colors
+filetype plugin indent on
+syntax on
+set background=dark
+colorscheme solarized
+
+" soft and hard tabs at 2 spaces
+set vb t_vb=
+set ts=2 sts=2 sw=2 expandtab
+
+" search immediately, ignoring case most of the time
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" ignore dumb files
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+" tweaks
+set title
+set visualbell
+set noerrorbells
+
+" show trailing whitespace
+set list
+set listchars=tab:>.,trail:.,extends:#,nbsp:.
