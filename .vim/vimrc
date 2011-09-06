@@ -8,13 +8,21 @@
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
+Bundle 'Command-T'
+let g:CommandTMatchWindowAtTop=1 " show window at top
+Bundle 'mattn/gist-vim'
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+Bundle 'SuperTab'
+Bundle 'jQuery'
 Bundle 'JSON.vim'
-Bundle 'ervandew/supertab'
-Bundle 'plasticboy/vim-markdown'
+Bundle 'juvenn/mustache.vim'
+Bundle 'surround.vim'
 Bundle 'joseluisdgz/TaskVim'
+Bundle 'vim-coffee-script'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'plasticboy/vim-markdown'
 
 " use git for backups
 set noswapfile
