@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="philips"
-plugins=(brew gem git git-flow history-substring-search npm node osx ruby rvm zsh-syntax-highlighting)
+plugins=(brew gem git history-substring-search npm node osx zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 export CLICOLORS=1
