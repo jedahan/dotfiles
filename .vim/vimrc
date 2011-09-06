@@ -55,6 +55,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class
 set title
 set visualbell
 set noerrorbells
+set mouse=a
 
 " show trailing whitespace
 set list
