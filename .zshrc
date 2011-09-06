@@ -4,5 +4,8 @@ plugins=(brew gem git history-substring-search npm node osx zsh-syntax-highlight
 source $ZSH/oh-my-zsh.sh
 
 alias of="open ."
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
-[[ -s "/Users/jedahan/.rvm/scripts/rvm" ]] && source "/Users/jedahan/.rvm/scripts/rvm"
+source "/Volumes/jedahan/.nvm/nvm.sh"
+
+function swarm() {
+  python $HOME/code/buglabs/bugswarm-tools/$1.py $*[2,$#-1]
+}
