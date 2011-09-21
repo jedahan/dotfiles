@@ -17,6 +17,7 @@ Bundle 'SuperTab'
 Bundle 'jQuery'
 Bundle 'JSON.vim'
 Bundle 'juvenn/mustache.vim'
+Bundle 'groenewege/vim-less'
 Bundle 'surround.vim'
 Bundle 'joseluisdgz/TaskVim'
 Bundle 'vim-coffee-script'
@@ -64,3 +65,5 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 " faster searching
 map <space> /
 map <c-space> ?
+
+autocmd BufNewFile,BufRead *.json set ft=json
