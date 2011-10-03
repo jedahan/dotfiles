@@ -7,7 +7,9 @@ source $ZSH/oh-my-zsh.sh
 alias of="open ."
 
 function swarm() {
-  python $HOME/code/buglabs/bugswarm-tools/$1.py $*[2,$#-1]
+  cd "$HOME/code/buglabs/bugswarm-tools"
+  [ "$1" = "" ] && ls *py | cut -d'.' -f1 || python $1.py $*[2,$#-1]
+  cd -
 }
 
 export PATH=/usr/local/bin:$PATH
