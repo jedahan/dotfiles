@@ -1,7 +1,7 @@
 export ZSH=$HOME/.oh-my-zsh
 # themes: miloshadzic, lukerandall, lambda, fwalch, daveverwer, cloud, arrow
 export ZSH_THEME="cloud"
-plugins=(autojump git hub history-substring-search osx zsh-syntax-highlighting)
+plugins=(git hub history-substring-search osx zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 alias of="open ."
