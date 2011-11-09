@@ -5,6 +5,7 @@ plugins=(git hub history-substring-search osx zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 alias of="open ."
+alias ctags="`brew --prefix`/bin/ctags"
 
 function swarm() {
   cd "$HOME/code/buglabs/bugswarm-tools"

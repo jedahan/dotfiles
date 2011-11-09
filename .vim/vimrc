@@ -20,6 +20,7 @@ Bundle 'juvenn/mustache.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'surround.vim'
 Bundle 'joseluisdgz/TaskVim'
+Bundle 'ctags.vim'
 Bundle 'vim-coffee-script'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'digitaltoad/vim-jade'
@@ -67,3 +68,18 @@ map <space> /
 map <c-space> ?
 
 autocmd BufNewFile,BufRead *.json set ft=json
+
+" coffeetags --vim-conf --include-vars
+ let g:tagbar_type_coffee = {
+  \ 'kinds' : [
+  \   'f:functions',
+  \   'o:object'
+  \ ],
+  \ 'kind2scope' : {
+  \  'f' : 'object',
+  \   'o' : 'object'
+  \},
+  \ 'sro' : ".",
+  \ 'ctagsbin' : 'coffeetags',
+  \ 'ctagsargs' : '--include-vars ',
+  \}
