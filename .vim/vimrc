@@ -24,6 +24,9 @@ Bundle 'vim-coffee-script'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'tclem/vim-arduino'
+Bundle 'scrooloose/syntastic'
+Bundle 'Tagbar'
 
 " use git for backups
 set noswapfile
