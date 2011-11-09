@@ -16,7 +16,6 @@ let g:gist_detect_filetype = 1
 Bundle 'SuperTab'
 Bundle 'jQuery'
 Bundle 'JSON.vim'
-Bundle 'juvenn/mustache.vim'
 Bundle 'groenewege/vim-less'
 Bundle 'surround.vim'
 Bundle 'joseluisdgz/TaskVim'
