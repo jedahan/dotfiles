@@ -27,6 +27,7 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'tclem/vim-arduino'
 Bundle 'scrooloose/syntastic'
 Bundle 'Tagbar'
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
 " use git for backups
 set noswapfile
