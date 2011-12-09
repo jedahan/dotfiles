@@ -4,44 +4,44 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " ln -s ~/.vim/vimrc ~/.vimrc
 
+set nocompatible
+filetype off
+
 " vundle is a package manager for vim scripts
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 Bundle 'Command-T'
 let g:CommandTMatchWindowAtTop=1 " show window at top
-Bundle 'mattn/gist-vim'
-let g:gist_clip_command = 'pbcopy'
-let g:gist_detect_filetype = 1
 Bundle 'SuperTab'
-Bundle 'jQuery'
-Bundle 'JSON.vim'
+Bundle 'Tagbar'
 Bundle 'groenewege/vim-less'
 Bundle 'surround.vim'
-Bundle 'joseluisdgz/TaskVim'
 Bundle 'ctags.vim'
-Bundle 'vim-coffee-script'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'tclem/vim-arduino'
-Bundle 'scrooloose/syntastic'
-Bundle 'Tagbar'
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'scrooloose/syntastic'
+
+Bundle 'jQuery'
+Bundle 'JSON.vim'
+Bundle 'jade.vim'
+Bundle 'joseluisdgz/TaskVim'
+Bundle 'vim-coffee-script'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'tclem/vim-arduino'
+Bundle 'plasticboy/vim-markdown'
 
 " use git for backups
 set noswapfile
 set nobackup
 
 " number lines
-set nocompatible
 set number
 
 " colors
-filetype plugin indent on
 syntax on
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 " soft and hard tabs at 2 spaces
 set vb t_vb=
@@ -86,3 +86,5 @@ autocmd BufNewFile,BufRead *.json set ft=json
   \ 'ctagsbin' : 'coffeetags',
   \ 'ctagsargs' : '--include-vars ',
   \}
+
+set guifont=Inconsolata:h24
