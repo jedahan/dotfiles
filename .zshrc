@@ -1,4 +1,5 @@
 plugins=(brew git hub history-substring-search osx zsh-syntax-highlighting)
+export DISABLE_UPDATE_PROMPT=true # autoupdate
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_THEME="cloud" # themes: miloshadzic, lukerandall, lambda, fwalch, daveverwer, cloud, arrow
 source $ZSH/oh-my-zsh.sh
