@@ -10,9 +10,3 @@ export PATH=/usr/local/sbin:$PATH
 alias of="open ."
 alias cat='lolcat'
 alias ctags="`brew --prefix`/bin/ctags"
-
-function swarm() {
-  cd "$HOME/code/buglabs/bugswarm-tools"
-  [ "$1" = "" ] && ls *py | cut -d'.' -f1 || python $1.py $*[2,$#-1]
-  cd -
-}
