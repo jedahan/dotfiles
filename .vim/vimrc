@@ -4,23 +4,35 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " ln -s ~/.vim/vimrc ~/.vimrc
 
+
 set nocompatible
-filetype off
+syntax enable
+set encoding=utf-8
+set showcmd                     " display incomplete commands
+filetype plugin indent on       " load file type plugins + indentation
+
+"" Whitespace
+set nowrap                      " don't wrap lines
+set tabstop=2 shiftwidth=2      " a tab is two spaces (change this to your linking)
+set expandtab                   " use spaces, not tabs (remove this if you mostly use tabs)
+set backspace=indent,eol,start  " backspace through everything in insert mode
+
+"" Searching
+set hlsearch                    " highlight matches
+set incsearch                   " incremental searching
+set ignorecase                  " searches are case insensitive...
+set smartcase                   " ... unless they contain at least one capital letter
 
 " vundle is a package manager for vim scripts
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
+Bundle 'vundle'
 Bundle 'Command-T'
 let g:CommandTMatchWindowAtTop=1 " show window at top
-Bundle 'SuperTab'
-Bundle 'Tagbar'
-Bundle 'groenewege/vim-less'
-Bundle 'surround.vim'
 Bundle 'ctags.vim'
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/syntastic'
 
 Bundle 'jQuery'
 Bundle 'JSON.vim'
@@ -39,19 +51,7 @@ set nobackup
 set number
 
 " colors
-syntax on
 set background=dark
-"colorscheme solarized
-
-" soft and hard tabs at 2 spaces
-set vb t_vb=
-set ts=2 sts=2 sw=2 expandtab
-
-" search immediately, ignoring case most of the time
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
 
 " ignore dumb files
 set wildignore=*.swp,*.bak,*.pyc,*.class
