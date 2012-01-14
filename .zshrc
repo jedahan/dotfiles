@@ -10,3 +10,7 @@ export PATH=/usr/local/sbin:$PATH
 alias of="open ."
 alias cat='lolcat'
 alias ctags="`brew --prefix`/bin/ctags"
+
+export TODO=~/Documents/todo
+function todo() { if [ $# == "0" ]; then cat $TODO; else echo "• $@" >> $TODO; fi }
+function todone() { sed -i -e "/$*/d" $TODO; }
