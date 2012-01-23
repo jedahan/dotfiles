@@ -41,12 +41,11 @@ Bundle 'altercation/vim-colors-solarized'
 
 Bundle 'jQuery'
 Bundle 'JSON.vim'
-Bundle 'jade.vim'
-Bundle 'joseluisdgz/TaskVim'
 Bundle 'vim-coffee-script'
-Bundle 'digitaltoad/vim-jade'
 Bundle 'tclem/vim-arduino'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'ctrlp.vim'
+Bundle 'sickill/vim-pasta'
 
 " use git for backups
 set noswapfile
