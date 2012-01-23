@@ -4,7 +4,12 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " ln -s ~/.vim/vimrc ~/.vimrc
 
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
+
+set autoread
 set nocompatible
 syntax enable
 set encoding=utf-8
