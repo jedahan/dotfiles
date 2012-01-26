@@ -1,26 +1,32 @@
-plugins=(brew git hub history-substring-search osx zsh-syntax-highlighting)
-export DISABLE_UPDATE_PROMPT=true # autoupdate
-export ZSH=$HOME/.oh-my-zsh
-export ZSH_THEME="cloud" # miloshadzic, lukerandall, lambda, fwalch, daveverwer, cloud, arrow, norm, wedisagree
-source $ZSH/oh-my-zsh.sh
+# Set the key mapping style to 'emacs' or 'vi'.
+zstyle ':omz:editor' keymap 'emacs'
 
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
+# Auto convert .... to ../..
+zstyle ':omz:editor' dot-expansion 'no'
 
-alias of="open ."
+# Set case-sensitivity for completion, history lookup, etc.
+zstyle ':omz:*:*' case-sensitive 'no'
+
+# Color output (auto set to 'no' on dumb terminals).
+zstyle ':omz:*:*' color 'yes'
+
+# Auto set the tab and window titles.
+zstyle ':omz:terminal' auto-title 'yes'
+
+# Set the plugins to load (see $OMZ/plugins/).
+zstyle ':omz:load' plugin 'archive' 'git' 'history-substring-search' 'osx' 'upgrade' 'zsh-syntax-highlighting'
+
+# Setting it to 'random' loads a random theme.
+# Auto set to 'off' on dumb terminals.
+zstyle ':omz:prompt' theme 'sorin'
+
+# Auto-upgrade from origin every so often
+zstyle ':omz:plugin:upgrade' auto-commit 'yes'
+zstyle ':omz:plugin:upgrade' auto-upgrade 'yes'
+
+# This will make you shout: OH MY ZSHELL!
+source "$HOME/.oh-my-zsh/init.zsh"
+
+# Customize to your needs...
+alias of='open .'
 alias cat='lolcat'
-alias ctags="`brew --prefix`/bin/ctags"
-
-export TODO=~/Documents/todo
-function todo() { if [ $# == "0" ]; then cat $TODO; else echo "• $@" >> $TODO; fi }
-function todone() { sed -i -e "/$*/d" $TODO; }
-
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-
-source ~/code/f/f.sh
