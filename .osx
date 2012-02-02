@@ -6,3 +6,6 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
+
+# MacVim non-lion fullscreen
+defaults write org.vim.MacVim MMNativeFullScreen 0
