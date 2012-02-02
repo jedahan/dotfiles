@@ -4,20 +4,20 @@
 " git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 " ln -s ~/.vim/vimrc ~/.vimrc
 
-set scrolloff=8         "Start scrolling when we're 8 lines away from margins
-set sidescrolloff=15
-set sidescroll=1
+" general behaviour
+set nocompatible        "Allow all sorts of advanced features
+set autoread              " Reload files that have been updated outside of vim
+set encoding=utf-8        " Force utf-8 encoding
+set showcmd               " display incomplete commands
+syntax enable             " Enable syntax highlighting
+filetype plugin indent on " load file type plugins + indentation
 
+" scrolling behaviour
+set scrolloff=8         "Scroll when 8 lines away from margins
+set sidescrolloff=15    "Scroll when 15 characters away from an edge
+set sidescroll=1        "Enable sidescrolling
 
-set autoread
-set nocompatible
-syntax enable
-set encoding=utf-8
-set showcmd                     " display incomplete commands
-filetype plugin indent on       " load file type plugins + indentation
-
-"" Whitespace
-set nowrap                      " don't wrap lines
+" whitespace
 set tabstop=2 shiftwidth=2      " a tab is two spaces (change this to your linking)
 set expandtab                   " use spaces, not tabs (remove this if you mostly use tabs)
 set backspace=indent,eol,start  " backspace through everything in insert mode
@@ -31,21 +31,23 @@ set smartcase                   " ... unless they contain at least one capital l
 " vundle is a package manager for vim scripts
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 Bundle 'vundle'
-Bundle 'Command-T'
-let g:CommandTMatchWindowAtTop=1 " show window at top
-Bundle 'ctags.vim'
-let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+
+" themes
 Bundle 'altercation/vim-colors-solarized'
 
-Bundle 'jQuery'
+" languages
 Bundle 'JSON.vim'
 Bundle 'vim-coffee-script'
 Bundle 'tclem/vim-arduino'
 Bundle 'plasticboy/vim-markdown'
+
+" extensions
 Bundle 'ctrlp.vim'
 Bundle 'sickill/vim-pasta'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Command-T'
+let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " use git for backups
 set noswapfile
@@ -74,21 +76,8 @@ set listchars=tab:>.,trail:.,extends:#,nbsp:.
 map <space> /
 map <c-space> ?
 
+" enable json as a filetype
 autocmd BufNewFile,BufRead *.json set ft=json
 
-" coffeetags --vim-conf --include-vars
- let g:tagbar_type_coffee = {
-  \ 'kinds' : [
-  \   'f:functions',
-  \   'o:object'
-  \ ],
-  \ 'kind2scope' : {
-  \  'f' : 'object',
-  \   'o' : 'object'
-  \},
-  \ 'sro' : ".",
-  \ 'ctagsbin' : 'coffeetags',
-  \ 'ctagsargs' : '--include-vars ',
-  \}
-
+" font
 set guifont=Inconsolata:h24
