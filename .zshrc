@@ -14,15 +14,18 @@ zstyle ':omz:*:*' color 'yes'
 zstyle ':omz:terminal' auto-title 'yes'
 
 # Set the plugins to load (see $OMZ/plugins/).
-zstyle ':omz:load' plugin 'archive' 'git' 'history-substring-search' 'osx' 'upgrade' 'zsh-syntax-highlighting'
+zstyle ':omz:load' plugin 'archive' 'git' 'history-substring-search' 'osx' 'zsh-syntax-highlighting'
 
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
+#zstyle ':omz:prompt' theme 'jedahan'
 zstyle ':omz:prompt' theme 'sorin'
 
-# Auto-upgrade from origin every so often
-zstyle ':omz:plugin:upgrade' auto-commit 'yes'
-zstyle ':omz:plugin:upgrade' auto-upgrade 'yes'
+# Auto update to the latest version.
+zstyle ':omz:updater:auto' update 'yes'
+
+# Auto commit updated files without review.
+zstyle ':omz:updater:auto' commit 'yes'
 
 # This will make you shout: OH MY ZSHELL!
 source "$HOME/.oh-my-zsh/init.zsh"
