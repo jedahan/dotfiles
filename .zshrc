@@ -1,35 +1,15 @@
-# Set the key mapping style to 'emacs' or 'vi'.
-zstyle ':omz:editor' keymap 'emacs'
+export OMZ="$HOME/.oh-my-zsh"
 
-# Auto convert .... to ../..
-zstyle ':omz:editor' dot-expansion 'no'
-
-# Set case-sensitivity for completion, history lookup, etc.
+zstyle ':omz:module:editor' keymap 'emacs'
+zstyle ':omz:module:editor' dot-expansion 'no'
 zstyle ':omz:*:*' case-sensitive 'no'
-
-# Color output (auto set to 'no' on dumb terminals).
 zstyle ':omz:*:*' color 'yes'
+zstyle ':omz:module:terminal' auto-title 'yes'
+zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' 'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' \
+  'archive' 'git' 'history-substring-search' 'osx' 'syntax-highlighting' 'z'
+zstyle ':omz:module:prompt' theme 'sorin'
 
-# Auto set the tab and window titles.
-zstyle ':omz:terminal' auto-title 'yes'
+source "$OMZ/init.zsh"
 
-# Set the plugins to load (see $OMZ/plugins/).
-zstyle ':omz:load' plugin 'archive' 'git' 'history-substring-search' 'osx' 'zsh-syntax-highlighting'
-
-# Setting it to 'random' loads a random theme.
-# Auto set to 'off' on dumb terminals.
-#zstyle ':omz:prompt' theme 'jedahan'
-zstyle ':omz:prompt' theme 'sorin'
-
-# Auto update to the latest version.
-zstyle ':omz:updater:auto' update 'yes'
-
-# Auto commit updated files without review.
-zstyle ':omz:updater:auto' commit 'yes'
-
-# This will make you shout: OH MY ZSHELL!
-source "$HOME/.oh-my-zsh/init.zsh"
-
-# Customize to your needs...
 alias of='open .'
 alias cat='lolcat'
