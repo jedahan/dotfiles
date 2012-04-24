@@ -1,1 +1,0 @@
-/Volumes/jedahan/.vim/vimrc
