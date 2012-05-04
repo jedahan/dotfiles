@@ -1,8 +1,4 @@
 " vimrc by Jonathan Dahan <jonathan@jedahan.com>
-" to install:
-" mkdir -p ~/.vim/bundle
-" git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-" ln -s ~/.vim/vimrc ~/.vimrc
 
 " general behaviour
 set nocompatible        "Allow all sorts of advanced features
@@ -27,27 +23,6 @@ set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter
-
-" vundle is a package manager for vim scripts
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'vundle'
-
-" themes
-Bundle 'altercation/vim-colors-solarized'
-
-" languages
-Bundle 'JSON.vim'
-Bundle 'vim-coffee-script'
-Bundle 'tclem/vim-arduino'
-Bundle 'plasticboy/vim-markdown'
-
-" extensions
-Bundle 'ctrlp.vim'
-Bundle 'sickill/vim-pasta'
-Bundle 'tpope/vim-fugitive'
-Bundle 'Command-T'
-let g:CommandTMatchWindowAtTop=1 " show window at top
 
 " use git for backups
 set noswapfile
