@@ -5,7 +5,7 @@ zstyle ':omz:module:editor' dot-expansion 'no'
 zstyle ':omz:*:*' case-sensitive 'no'
 zstyle ':omz:*:*' color 'yes'
 zstyle ':omz:module:terminal' auto-title 'yes'
-zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'completion' 'history' 'directory' 'spectrum' 'alias' 'utility' 'prompt' \
+zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'history' 'directory' 'spectrum' 'alias' 'completion' 'utility' 'prompt' \
   'archive' 'git' 'history-substring-search' 'osx' 'syntax-highlighting' 'z'
 zstyle ':omz:module:prompt' theme 'sorin'
 
