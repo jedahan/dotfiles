@@ -1,2 +1,3 @@
 export TERM=xterm-256color
-./.osx
+export PATH=/usr/local/bin:$PATH
+$HOME/.osx
