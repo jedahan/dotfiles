@@ -1,5 +1,3 @@
-export OMZ="$HOME/.oh-my-zsh"
-
 zstyle ':omz:module:editor' keymap 'emacs'
 zstyle ':omz:module:editor' dot-expansion 'no'
 zstyle ':omz:*:*' case-sensitive 'no'
