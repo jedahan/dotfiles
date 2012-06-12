@@ -11,6 +11,9 @@ source "$OMZ/init.zsh"
 
 alias of='open .'
 alias cat='lolcat'
+alias c='lolcat'
 alias ,='clear && ls .'
 alias ,.='cd .. && ,'
 alias ,-='cd - && ,'
+alias duhh='duh | head'
+alias dfh='df -h | ack -v "map|devfs"'
