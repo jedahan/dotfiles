@@ -12,6 +12,7 @@ source "$OMZ/init.zsh"
 alias of='open .'
 alias cat='lolcat'
 alias c='lolcat'
+alias h='head'
 alias ,='clear && ls .'
 alias ,.='cd .. && ,'
 alias ,-='cd - && ,'
