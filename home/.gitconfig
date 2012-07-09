@@ -2,8 +2,8 @@
   name = Jonathan Dahan
   email = jonathan@jedahan.com
 [alias]
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
-  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lol = log --graph --decorate --oneline
+  lola = log --graph --decorate --oneline --all
 [color]
   branch = auto
   diff = auto
