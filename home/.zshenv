@@ -56,7 +56,7 @@ fi
 
 # Editors
 export EDITOR='subl'
-export VISUAL='subl'
+export VISUAL='vim'
 export PAGER='less'
 
 # Browser (Default)
