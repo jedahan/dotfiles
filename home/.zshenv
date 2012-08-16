@@ -6,7 +6,7 @@
 #
 
 # Set the path to Oh My Zsh.
-export OMZ="$HOME/.oh-my-zsh"
+export OMZ="$HOME/.zsh.d"
 
 # Paths
 typeset -gU cdpath fpath mailpath manpath path
@@ -56,7 +56,7 @@ fi
 
 # Editors
 export EDITOR='subl'
-export VISUAL='subl'
+export VISUAL='vim'
 export PAGER='less'
 
 # Browser (Default)
