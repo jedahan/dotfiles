@@ -19,3 +19,5 @@ alias ,-='cd - && ,'
 alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
+
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
