@@ -1,13 +1,16 @@
-zstyle ':omz:module:editor' keymap 'emacs'
-zstyle ':omz:module:editor' dot-expansion 'no'
-zstyle ':omz:*:*' case-sensitive 'no'
-zstyle ':omz:*:*' color 'yes'
-zstyle ':omz:module:terminal' auto-title 'yes'
-zstyle ':omz:load' omodule 'environment' 'terminal' 'editor' 'history' 'directory' 'spectrum' 'utility' 'completion' 'prompt' \
-  'archive' 'git' 'history-substring-search' 'osx' 'syntax-highlighting' 'z'
-zstyle ':omz:module:prompt' theme 'sorin'
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
 
-source "$OMZ/init.zsh"
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+# Customize to your needs...
 
 alias of='open .'
 alias cat='lolcat'
@@ -19,5 +22,3 @@ alias ,-='cd - && ,'
 alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
-
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
