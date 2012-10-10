@@ -23,4 +23,4 @@ alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
 
-export PATH=$PATH:/usr/local/share/npm/bin
+export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/share/python
