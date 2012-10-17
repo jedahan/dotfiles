@@ -26,10 +26,3 @@ if (( $+commands[fortune] )); then
   fortune -a
   print
 fi
-
-# Run the users .osx file, if necessary
-if [[ "$OSTYPE" == darwin* ]]; then
-  if [[ -x $HOME/.osx ]]; then
-    $HOME/.osx
-  fi
-fi
