@@ -1,21 +1,22 @@
 " vimrc by Jonathan Dahan <jonathan@jedahan.com>
 
 " general behaviour
-set nocompatible        "Allow all sorts of advanced features
-set autoread              " Reload files that have been updated outside of vim
-set encoding=utf-8        " Force utf-8 encoding
+set nocompatible          " allow all sorts of advanced features
+set autoread              " reload files that have been updated outside of vim
+set encoding=utf-8        " force utf-8 encoding
 set showcmd               " display incomplete commands
-syntax enable             " Enable syntax highlighting
-filetype plugin indent on " load file type plugins + indentation
+syntax enable             " enable syntax highlighting
+filetype plugin indent on " load filetype plugins and indentation
 
 " scrolling behaviour
-set scrolloff=8         "Scroll when 8 lines away from margins
-set sidescrolloff=15    "Scroll when 15 characters away from an edge
-set sidescroll=1        "Enable sidescrolling
+set scrolloff=4         " scroll when 4 lines away from a marigin
+set sidescroll=1        " enable sidescrolling
+set sidescrolloff=10    " sidescroll when 10 characters away from an edge
+
 
 " whitespace
-set tabstop=2 shiftwidth=2      " a tab is two spaces (change this to your linking)
-set expandtab                   " use spaces, not tabs (remove this if you mostly use tabs)
+set tabstop=2 shiftwidth=2      " a tab is two spaces
+set expandtab                   " use spaces instead of tabs
 set backspace=indent,eol,start  " backspace through everything in insert mode
 
 "" Searching
