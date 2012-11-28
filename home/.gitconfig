@@ -4,6 +4,7 @@
 [alias]
   lol = log --graph --decorate --oneline
   lola = log --graph --decorate --oneline --all
+	g = grep --break --heading --line-number
 [color]
   branch = auto
   diff = auto
@@ -11,3 +12,6 @@
   status = auto
 [push]
   default = simple
+[grep]
+	extendRegexp = true
+	lineNumber = true
