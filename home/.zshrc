@@ -23,4 +23,4 @@ alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
 
-export PATH="/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH=$PATH:/usr/local/share/npm/bin:/usr/local/share/python:/usr/local/Cellar/ruby/1.9.3-p327/bin
