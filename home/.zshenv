@@ -77,3 +77,10 @@ if (( $+commands[lesspipe.sh] )); then
 fi
 
 export TERM='xterm-256color'
+export GEM_HOME="${HOME}/.gems"
+export GEM_PATH="${HOME}/.gems"
+export PATH="${GEM_HOME}/bin:$PATH"
+export PATH="$HOME/.deliver/bin:$PATH"
+export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/usr/local/share/python:$PATH"
+export PATH="/usr/local/bin:$PATH"
