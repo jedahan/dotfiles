@@ -22,5 +22,4 @@ alias ,-='cd - && ,'
 alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
-
-chruby_use /usr/local/Cellar/ruby/1.9.3*
+alias rm='nocorrect trash'
