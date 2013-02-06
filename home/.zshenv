@@ -78,9 +78,9 @@ fi
 
 export TERM='xterm-256color'
 export GEM_HOME="${HOME}/.gems"
-export GEM_PATH="${HOME}/.gems"
-export PATH="${GEM_HOME}/bin:$PATH"
-export PATH="$HOME/.deliver/bin:$PATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
-export PATH="/usr/local/share/python:$PATH"
-export PATH="/usr/local/bin:$PATH"
+export GEM_PATH="${GEM_HOME}"
+PATH=`npm -g bin 2> /dev/null`:$PATH
+PATH=`gem env GEM_PATH`/bin:$PATH
+PATH=`brew --prefix`/share/python:$PATH
+PATH=$HOME/.deliver/bin:$PATH
+export PATH
