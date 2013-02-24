@@ -13,7 +13,6 @@ fi
 # Customize to your needs...
 
 alias of='open .'
-alias cat='lolcat'
 alias c='lolcat'
 alias h='head'
 alias ,='clear && ls .'
