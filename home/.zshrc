@@ -22,3 +22,4 @@ alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
 alias rm='nocorrect trash'
+m() { man $* || $* -h; }
