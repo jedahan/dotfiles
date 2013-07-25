@@ -17,3 +17,5 @@
   lineNumber = true
 [pull]
   rebase = true
+[diff]
+  algorithm = patience
