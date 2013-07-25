@@ -55,7 +55,7 @@ if [[ -z "$LANG" ]]; then
 fi
 
 # Editors
-export EDITOR='subl -w'
+export EDITOR='vim'
 export VISUAL='vim'
 export PAGER='less'
 

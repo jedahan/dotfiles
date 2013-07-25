@@ -5,14 +5,13 @@ set nocompatible          " allow all sorts of advanced features
 set autoread              " reload files that have been updated outside of vim
 set encoding=utf-8        " force utf-8 encoding
 set showcmd               " display incomplete commands
-syntax enable             " enable syntax highlighting
+syntax on                 " enable syntax highlighting
 filetype plugin indent on " load filetype plugins and indentation
 
 " scrolling behaviour
 set scrolloff=4         " scroll when 4 lines away from a marigin
 set sidescroll=1        " enable sidescrolling
 set sidescrolloff=10    " sidescroll when 10 characters away from an edge
-
 
 " whitespace
 set tabstop=2 shiftwidth=2      " a tab is two spaces
