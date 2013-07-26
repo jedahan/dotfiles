@@ -22,6 +22,8 @@ alias duth='dut | head'
 alias dfh='df -hl'
 alias s='subl'
 alias rm='nocorrect trash'
+alias deploy='gp && deliver'
+alias dp='deploy'
 m() { man $* || $* -h; }
 up() {
   brew update
