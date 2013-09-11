@@ -54,3 +54,5 @@ up() {
 
 export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
+
+alias ascii='asciiio -y'
