@@ -24,6 +24,8 @@ alias s='subl'
 alias rm='nocorrect trash'
 alias deploy='gp && deliver'
 alias dp='deploy'
+alias ascii='asciiio -y'
+alias git='hub'
 
 export MARKPATH=$HOME/.marks
 function jump {
