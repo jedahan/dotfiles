@@ -46,7 +46,7 @@ alias u='unmark'
 alias M='marks'
 alias j='jump'
 
-up() {
+function up {
   brew update
   brew upgrade
   brew cleanup
