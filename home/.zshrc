@@ -57,4 +57,9 @@ function up {
 export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
 
-alias ascii='asciiio -y'
+autoload -U predict-on
+zle -N predict-on
+zle -N predict-off
+bindkey '^X^Z' predict-on
+bindkey '^X^A' predict-off
+zstyle ':predict' verbose 'yes'
