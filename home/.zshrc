@@ -54,9 +54,13 @@ function up {
 }
 
 # open sublime in a given location, or this directory if no location was specified
-function s() {
-  [[ $# -eq 0 ]] && subl . || subl "$@"
-}
+function s() { [[ $# -eq 0 ]] && subl . || subl "$@" }
+
+# open sublime in a given location, or this directory if no location was specified
+function v() { [[ $# -eq 0 ]] && vim . || vim "$@" }
+
+# open a given location, or this directory if no location was specified
+function o() { [[ $# -eq 0 ]] && open . || open "$@" }
 
 export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
