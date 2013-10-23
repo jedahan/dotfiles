@@ -20,7 +20,6 @@ alias ,.='cd .. && ,'
 alias ,-='cd - && ,'
 alias duth='dut | head'
 alias dfh='df -hl'
-alias s='subl'
 alias rm='nocorrect trash'
 alias deploy='gp && deliver'
 alias dp='deploy'
@@ -52,6 +51,11 @@ function up {
   brew cleanup
   ls -l /usr/local/Library/Formula | grep phinze-cask | awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Library/Formula/$evil_symlink; done
   brew doctor
+}
+
+# open sublime in a given location, or this directory if no location was specified
+function s() {
+  [[ $# -eq 0 ]] && subl . || subl "$@"
 }
 
 export GEM_HOME="${HOME}/.gems"
