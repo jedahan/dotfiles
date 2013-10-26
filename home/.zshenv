@@ -81,3 +81,4 @@ PATH=`gem env GEM_PATH`/bin:$PATH
 PATH=`npm -g bin 2> /dev/null`:$PATH
 PATH=$HOME/.deliver/bin:$PATH
 export PATH
+export URBIT_HOME=~/Dropbox/code/urbit/urb
