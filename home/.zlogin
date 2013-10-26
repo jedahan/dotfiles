@@ -8,16 +8,9 @@
 # Execute code that does not affect the current session in the background.
 {
   # Compile the completion dump to increase startup speed.
-  dump_file="$HOME/.zcompdump"
-  if [[ "$dump_file" -nt "${dump_file}.zwc" || ! -s "${dump_file}.zwc" ]]; then
-    zcompile "$dump_file"
-  fi
-
-  # Set environment variables for launchd processes.
-  if [[ "$OSTYPE" == darwin* ]]; then
-    for env_var in PATH MANPATH; do
-      launchctl setenv "$env_var" "${(P)env_var}"
-    done
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
   fi
 } &!
 
@@ -26,3 +19,4 @@ if (( $+commands[fortune] )); then
   fortune -a
   print
 fi
+

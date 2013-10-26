@@ -5,66 +5,53 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-# Set the path to Oh My Zsh.
-export OMZ="$HOME/.zsh.d"
+#
+# Browser
+#
 
+if [[ "$OSTYPE" == darwin* ]]; then
+  export BROWSER='open'
+fi
+
+#
+# Editors
+#
+
+export EDITOR='nano'
+export VISUAL='nano'
+export PAGER='less'
+
+#
+# Language
+#
+
+if [[ -z "$LANG" ]]; then
+  export LANG='en_US.UTF-8'
+fi
+
+#
 # Paths
-typeset -gU cdpath fpath mailpath manpath path
-typeset -gUT INFOPATH infopath
+#
+
+typeset -gU cdpath fpath mailpath path
 
 # Set the the list of directories that cd searches.
 # cdpath=(
 #   $cdpath
 # )
 
-# Set the list of directories that info searches for manuals.
-infopath=(
-  /usr/local/share/info
-  /usr/share/info
-  $infopath
-)
-
-# Set the list of directories that man searches for manuals.
-manpath=(
-  /usr/local/share/man
-  /usr/share/man
-  $manpath
-)
-
-for path_file in /etc/manpaths.d/*(.N); do
-  manpath+=($(<$path_file))
-done
-unset path_file
-
 # Set the list of directories that Zsh searches for programs.
 path=(
   /usr/local/{bin,sbin}
-  /usr/{bin,sbin}
-  /{bin,sbin}
+  `gem env GEM_PATH`/bin
+  `npm -g bin 2> /dev/null`
+  ${HOME}/.deliver/bin
   $path
 )
 
-for path_file in /etc/paths.d/*(.N); do
-  path+=($(<$path_file))
-done
-unset path_file
-
-# Language
-if [[ -z "$LANG" ]]; then
-  eval "$(locale)"
-fi
-
-# Editors
-export EDITOR='vim'
-export VISUAL='vim'
-export PAGER='less'
-
-# Browser (Default)
-if [[ "$OSTYPE" == darwin* ]]; then
-  export BROWSER='open'
-fi
-
+#
 # Less
+#
 
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
@@ -76,9 +63,18 @@ if (( $+commands[lesspipe.sh] )); then
   export LESSOPEN='| /usr/bin/env lesspipe.sh %s 2>&-'
 fi
 
-export TERM='xterm-256color'
-PATH=`gem env GEM_PATH`/bin:$PATH
-PATH=`npm -g bin 2> /dev/null`:$PATH
-PATH=$HOME/.deliver/bin:$PATH
-export PATH
+#
+# Temporary Files
+#
+
+if [[ ! -d "$TMPDIR" ]]; then
+  export TMPDIR="/tmp/$USER"
+  mkdir -p -m 700 "$TMPDIR"
+fi
+
+TMPPREFIX="${TMPDIR%/}/zsh"
+if [[ ! -d "$TMPPREFIX" ]]; then
+  mkdir -p "$TMPPREFIX"
+fi
+
 export URBIT_HOME=~/Dropbox/code/urbit/urb
