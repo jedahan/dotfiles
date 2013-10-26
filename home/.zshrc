@@ -25,6 +25,7 @@ alias deploy='gp && deliver'
 alias dp='deploy'
 alias ascii='asciiio -y'
 function git {  hub "$@" } # must be a function for completions to work
+function cd, { cd "$@" && clear && ls }
 
 export MARKPATH=$HOME/.marks
 function jump {
