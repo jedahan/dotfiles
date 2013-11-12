@@ -42,10 +42,11 @@ typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+  /usr/local/arm-linux/bin
   /usr/local/{bin,sbin}
-  `gem env GEM_PATH`/bin
-  `npm -g bin 2> /dev/null`
+  ${HOME}/.gems/bin
   ${HOME}/.deliver/bin
+  `npm -g bin 2> /dev/null`
   $path
 )
 
