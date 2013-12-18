@@ -79,3 +79,4 @@ if [[ ! -d "$TMPPREFIX" ]]; then
 fi
 
 export URBIT_HOME=~/Dropbox/code/urbit/urb
+export PYTHONPATH=/usr/local/Cellar/opencv/2.4.6.1/lib/python2.7/site-packages:$PYTHONPATH
