@@ -12,6 +12,7 @@ fi
 
 # Customize to your needs...
 
+alias gist='gist -c'
 alias of='open .'
 alias c='lolcat'
 alias h='head'
