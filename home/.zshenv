@@ -46,7 +46,7 @@ path=(
   /usr/local/{bin,sbin}
   ${HOME}/.gems/bin
   ${HOME}/.deliver/bin
-  `npm -g bin 2> /dev/null`
+  `/usr/local/bin/npm -g bin 2> /dev/null`
   $path
 )
 
