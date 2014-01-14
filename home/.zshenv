@@ -78,5 +78,6 @@ if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
 
-export URBIT_HOME=~/Dropbox/code/urbit/urb
+export URBIT_HOME=~/Dropbox/code/urbit/urbit/urb
 export PYTHONPATH=/usr/local/Cellar/opencv/2.4.6.1/lib/python2.7/site-packages:$PYTHONPATH
+source "`brew --prefix`/etc/grc.bashrc"
