@@ -25,6 +25,7 @@ alias rm='nocorrect trash'
 alias deploy='gp && deliver'
 alias dp='deploy'
 alias ascii='asciiio -y'
+alias gpum='git push upstream master'
 function git {  hub "$@" } # must be a function for completions to work
 function cd, { cd "$@" && clear && ls }
 
