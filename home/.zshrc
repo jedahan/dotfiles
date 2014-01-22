@@ -29,6 +29,20 @@ alias gpum='git push upstream master'
 function git {  hub "$@" } # must be a function for completions to work
 function cd, { cd "$@" && clear && ls }
 
+function b { brew "$@" }
+function bl { brew list "$@" }
+function bi { brew info "$@" }
+function bh { brew home"$@" }
+function bs { brew search "$@" }
+function bI { brew install "$@" }
+
+function B { brew cask "$@" }
+function Bl { brew cask list "$@" }
+function Bi { brew cask info "$@" }
+function Bh { brew cask home "$@" }
+function Bs { brew cask search "$@" }
+function BI { brew cask install "$@" }
+
 export MARKPATH=$HOME/.marks
 function jump {
   cd -P $MARKPATH/$1 2>/dev/null || echo "No such mark: $1"
