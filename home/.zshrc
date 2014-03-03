@@ -89,5 +89,3 @@ zle -N predict-off
 bindkey '^X^Z' predict-on
 bindkey '^X^A' predict-off
 zstyle ':predict' verbose 'yes'
-
-function man() { bro "$@" || man "$@" }
