@@ -52,10 +52,10 @@ function up {
   brew doctor
 }
 
-# open sublime in a given location, or this directory if no location was specified
-function s() { [[ $# -eq 0 ]] && subl . || subl "$@" }
+# open atom in a given location, or this directory if no location was specified
+function a() { [[ $# -eq 0 ]] && atom . || atom "$@" }
 
-# open sublime in a given location, or this directory if no location was specified
+# open vim in a given location, or this directory if no location was specified
 function v() { [[ $# -eq 0 ]] && vim . || vim "$@" }
 
 # open a given location, or this directory if no location was specified
