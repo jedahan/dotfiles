@@ -48,7 +48,7 @@ path=(
   /usr/local/{bin,sbin}
   $HOME/.gems/bin
   $HOME/.deliver/bin
-  $GOPATH/libexec/bin
+  $GOPATH/bin
   $path
 )
 
