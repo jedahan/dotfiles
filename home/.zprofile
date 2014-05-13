@@ -79,3 +79,5 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 if [[ ! -d "$TMPPREFIX" ]]; then
   mkdir -p "$TMPPREFIX"
 fi
+
+export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest"
