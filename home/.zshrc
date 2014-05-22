@@ -23,6 +23,8 @@ jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources
 [[ -s $jscbin ]] && alias jsc=$jscbin
 unset jscbin
 
+function f() { find . -name "$1" }
+
 function git {  hub "$@" } # must be a function for completions to work
 function cd, { cd "$@" && clear && ls }
 
