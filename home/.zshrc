@@ -20,7 +20,7 @@ alias gpum='git push upstream master'
 alias localip='ipconfig getifaddr en0'
 # JavaScriptCore REPL
 jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
-[ -e "${jscbin}" ] && alias jsc="${jscbin}"
+[[ -s $jscbin ]] && alias jsc=$jscbin
 unset jscbin
 
 function git {  hub "$@" } # must be a function for completions to work
