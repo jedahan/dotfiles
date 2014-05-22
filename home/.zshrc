@@ -50,13 +50,13 @@ function up {
 }
 
 # open atom in a given location, or this directory if no location was specified
-function a() { [[ $# -eq 0 ]] && atom . || atom "$@" }
+function a() {  atom ${@:-'.'} }
 
 # open vim in a given location, or this directory if no location was specified
-function v() { [[ $# -eq 0 ]] && vim . || vim "$@" }
+function v() {  vim ${@:-'.'} }
 
 # open a given location, or this directory if no location was specified
-function o() { [[ $# -eq 0 ]] && open . || open "$@" }
+function o() {  open ${@:-'.'} }
 
 export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
