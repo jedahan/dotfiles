@@ -60,10 +60,3 @@ function o() {  open ${@:-'.'} }
 
 export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
-
-autoload -U predict-on
-zle -N predict-on
-zle -N predict-off
-bindkey '^X^Z' predict-on
-bindkey '^X^A' predict-off
-zstyle ':predict' verbose 'yes'
