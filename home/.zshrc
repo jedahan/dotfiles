@@ -1,16 +1,7 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-# Customize to your needs...
+local preztoinit="${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+[[ -s $preztoinit ]] && source $preztoinit
+unset preztoinit
 
 alias gist='gist -c'
 alias of='open .'
