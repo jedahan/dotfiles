@@ -28,6 +28,8 @@ function f() { find . -name "$1" }
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
+function yell { figlet -f slant "$@" | sed "s/\(.\+\)/    \1/g"}
+
 function git {  hub "$@" } # must be a function for completions to work
 function cd, { cd "$@" && clear && ls }
 
