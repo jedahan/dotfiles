@@ -53,8 +53,34 @@ function up {
   brew upgrade
   brew cleanup
   brew prune
-  ls -l /usr/local/Library/Formula | grep phinze-cask | awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Library/Formula/$evil_symlink; done
+
+  cask-up()
+  brew cask cleanup
+  ls -l /usr/local/Library/Formula | grep homebrew-cask | awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Library/Formula/$evil_symlink; done
+
   brew doctor
+}
+
+function cask-up() {
+  CASKROOM = '/opt/homebrew-cask/Caskroom/'
+  for cask_location in ${CASKROOM}*; do
+    # get the latest version for each cask
+    cask_name = $(basename $cask_location)
+    latest_version = $(brew cask info ${cask_name} | grep ${cask_name}: | cut -d':' -f2 | tr -d ' ')
+
+    # uninstall all casks that are not the latest version
+    for installed_version in ${cask_location}/*; do
+      if [ $(basename $installed_version) != $latest_version ]; then
+        mv ${cask_location}+'/'+${installed_version} ~/.Trash
+      fi
+    done
+
+    # if there are no installed version, install the latest version
+    if [ -z "$(ls -A $cask_location)" ]; then
+      brew cask uninstall ${cask_name}
+      brew cask install ${cask_name}
+    fi
+  done
 }
 
 # open atom in a given location, or this directory if no location was specified
