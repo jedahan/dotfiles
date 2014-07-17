@@ -23,6 +23,7 @@ jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources
 [[ -s $jscbin ]] && alias jsc=$jscbin
 unset jscbin
 
+function m() { cheat "$@" }
 function f() { find . -name "$1" }
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
