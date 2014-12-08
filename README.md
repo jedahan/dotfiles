@@ -1,4 +1,5 @@
-[Jonathan Dahan](http://jonathan.is)'s dotfiles
+[Jonathan Dahan](http://jonathan.is)'s dotfiles for OSX
+Check out the linux branch if you want
 
 ### Installation
 
