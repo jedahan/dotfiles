@@ -1,10 +1,6 @@
 [user]
-  name = Jonathan Dahan
-  email = jonathan@jedahan.com
-[alias]
-  lol = log --graph --decorate --oneline
-  lola = log --graph --decorate --oneline --all
-  g = grep --break --heading --line-number
+	name = Jonathan Dahan
+	email = jonathan@jonathan.is
 [color]
   branch = auto
   diff = auto
@@ -20,6 +16,6 @@
 [diff]
   algorithm = patience
 [branch]
-	autosetuprebase = always
+  autosetuprebase = always
 [core]
-	editor = atom --wait
+  editor = atom --wait
