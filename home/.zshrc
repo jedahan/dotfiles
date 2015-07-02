@@ -81,3 +81,4 @@ export GEM_HOME="${HOME}/.gems"
 export GEM_PATH=$GEM_HOME
 
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias x='exit'
