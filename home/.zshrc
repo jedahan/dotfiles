@@ -82,3 +82,7 @@ export GEM_PATH=$GEM_HOME
 
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias x='exit'
+
+HOMEBREW_PREFIX="/Users/jedahan/.homebrew"
+export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+export PATH="$HOMEBREW_PREFIX/bin:$PATH"
