@@ -1,1 +1,1 @@
-/Users/micro/.zprezto/runcoms/zshenv
+/Users/jedahan/.zprezto/runcoms/zshenv

@@ -1,1 +1,1 @@
-/Users/micro/.zprezto/runcoms/zlogin
+/Users/jedahan/.zprezto/runcoms/zlogin
