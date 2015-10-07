@@ -63,7 +63,7 @@ function up {
   brew prune
 
   brew cask cleanup
-  ls -l /usr/local/Library/Formula | grep homebrew-cask | awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Library/Formula/$evil_symlink; done
+  ls -l /Users/jedahan/.homebrew/Library/Formula | grep homebrew-cask | awk '{print $9}' | for evil_symlink in $(cat -); do rm -v /usr/local/Library/Formula/$evil_symlink; done
 
   brew doctor
 }
