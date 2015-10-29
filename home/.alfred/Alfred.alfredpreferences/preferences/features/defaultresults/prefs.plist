@@ -4,5 +4,7 @@
 <dict>
 	<key>showDocuments</key>
 	<true/>
+	<key>showFolders</key>
+	<true/>
 </dict>
 </plist>
