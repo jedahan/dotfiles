@@ -21,11 +21,11 @@ call plug#begin('~/.nvim/plugged')
   Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'scrooloose/syntastic'
-  Plug 'Valloric/YouCompleteMe'
   Plug 'vim-scripts/a.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'sotte/presenting.vim'
   Plug 'jtratner/vim-flavored-markdown'
+  Plug 'kien/ctrlp.vim'
   Plug 'chriskempson/base16-vim'
 call plug#end()
 
