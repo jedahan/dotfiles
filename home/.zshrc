@@ -5,8 +5,6 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
-fpath=(${HOME}/.homebrew/share/zsh/site-functions $fpath)
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -79,16 +77,8 @@ function v() {  vim ${@:-'.'} }
 # open a given location, or this directory if no location was specified
 function o() {  open ${@:-'.'} }
 
-export GEM_HOME="${HOME}/.gems"
-export GEM_PATH=$GEM_HOME
-
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias x='exit'
-
-HOMEBREW_PREFIX="/Users/jedahan/.homebrew"
-export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-export HOMEBREW_CASK_OPTS="--binarydir=$HOMEBREW_PREFIX/bin"
 
 function play {
     # Skip DASH manifest for speed purposes. This might actually disable
