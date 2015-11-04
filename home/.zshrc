@@ -37,12 +37,7 @@ alias dp='deploy'
 alias ascii='asciiio -y'
 alias gpum='git push upstream master'
 alias localip='ipconfig getifaddr en0'
-# JavaScriptCore REPL
-jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
-[[ -s $jscbin ]] && alias jsc=$jscbin
-unset jscbin
 
-function m() { cheat "$@" }
 function f() { find . -name "$1" }
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
