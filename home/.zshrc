@@ -1,9 +1,9 @@
 # Clone zgen if not found
-INIT="${ZDOTDIR:-$HOME}/.zgen/init.zsh"
-ZGEN="${INIT/init/zgen}"
+ZGEN="${ZDOTDIR:-$HOME}/.zgen/zgen.zsh"
 
-[[ -s $ZGEN ]] && . $ZGEN || git clone git@github.com:tarjoilija/zgen.git $(dirname $ZGEN)
-[[ -s $INIT ]] && . $INIT || {
+ZGEN_RESET_ON_CHANGE=(${HOME}/.zshrc)
+source $ZGEN || git clone git@github.com:tarjoilija/zgen.git $(dirname $ZGEN)
+if ! zgen saved; then
   zgen prezto
   zgen prezto 'homebrew'
   zgen prezto 'git'
@@ -21,7 +21,8 @@ ZGEN="${INIT/init/zgen}"
   zgen load sindresorhus/pure
 
   zgen save
-}
+fi
+zgen init
 
 alias gist='gist -c'
 alias of='open .'
