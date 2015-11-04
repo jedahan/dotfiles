@@ -28,13 +28,15 @@ zstyle ':prezto:load' pmodule \
   'terminal' \
   'editor' \
   'history' \
-  'history-substring-search' \
   'directory' \
   'spectrum' \
   'utility' \
   'homebrew' \
   'completion' \
   'git' \
+  'alias-tips' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'prompt'
 
 #
@@ -158,3 +160,6 @@ zstyle ':prezto:module:prompt' theme 'pure'
 
 # Integrate with iTerm2.
 # zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+#
+
+zstyle ':prezto:module:alias-tips' text '💡 '
