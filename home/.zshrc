@@ -7,10 +7,11 @@ if ! zgen saved; then
   zgen prezto
   zgen prezto 'homebrew'
   zgen prezto 'git'
-  zgen prezto 'syntax-highlighting'
   zgen prezto 'history-substring-search'
   zgen load djui/alias-tips
   zgen load rimraf/k
+  zgen load jimmijj/zsh-syntax-highlighting
+  zgen load tarruda/zsh-autosuggestions
 
   zgen prezto editor key-bindings 'emacs'
   # Auto convert .... to ../..
@@ -100,3 +101,8 @@ function mp3 {
 }
 
 alias vim='nvim'
+
+zle-line-init() {
+  zle autosuggest-start
+}
+zle -N zle-line-init
