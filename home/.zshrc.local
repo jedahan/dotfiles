@@ -1,3 +1,4 @@
+alias please='sudo $(fc -ln -1)'
 alias gist='gist -c'
 alias of='open .'
 alias c='lolcat'
