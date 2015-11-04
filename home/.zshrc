@@ -100,6 +100,7 @@ function mp3 {
 
 alias vim='nvim'
 
+export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
 zle-line-init() {
   zle autosuggest-start
 }
