@@ -14,11 +14,9 @@ if ! zgen saved; then
   zgen load tarruda/zsh-autosuggestions
 
   zgen prezto editor key-bindings 'emacs'
-  # Auto convert .... to ../..
-  zgen prezto editor dot-expansion 'yes'
+  zgen prezto editor dot-expansion 'yes' # convert .... to ../..
 
-  # required for pure
-  zgen load mafredri/zsh-async
+  zgen load mafredri/zsh-async # required for pure
   zgen load sindresorhus/pure
 
   zgen save
