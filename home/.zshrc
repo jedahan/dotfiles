@@ -1,16 +1,27 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+# Clone zgen if not found
+INIT="${ZDOTDIR:-$HOME}/.zgen/init.zsh"
+ZGEN="${INIT/init/zgen}"
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+[[ -s $ZGEN ]] && . $ZGEN || git clone git@github.com:tarjoilija/zgen.git $(dirname $ZGEN)
+[[ -s $INIT ]] && . $INIT || {
+  zgen prezto
+  zgen prezto 'homebrew'
+  zgen prezto 'git'
+  zgen prezto 'syntax-highlighting'
+  zgen prezto 'history-substring-search'
+  zgen load djui/alias-tips
 
-# Customize to your needs...
+  zgen prezto editor key-bindings 'emacs'
+  # Auto convert .... to ../..
+  zgen prezto editor dot-expansion 'yes'
+
+  # required for pure
+  zgen load mafredri/zsh-async
+  zgen load sindresorhus/pure
+
+  zgen save
+}
+
 alias gist='gist -c'
 alias of='open .'
 alias c='lolcat'
