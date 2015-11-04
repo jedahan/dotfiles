@@ -10,6 +10,7 @@ ZGEN="${INIT/init/zgen}"
   zgen prezto 'syntax-highlighting'
   zgen prezto 'history-substring-search'
   zgen load djui/alias-tips
+  zgen load rimraf/k
 
   zgen prezto editor key-bindings 'emacs'
   # Auto convert .... to ../..
