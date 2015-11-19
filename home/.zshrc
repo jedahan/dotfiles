@@ -14,6 +14,7 @@ else
   zgen load jimmijj/zsh-syntax-highlighting
   zgen load zsh-users/zsh-history-substring-search
   zgen load sorin-ionescu/prezto modules/git/alias.zsh
+  zgen load unixorn/autoupdate-zgen
 
   # local
   zgen load $HOME/.zshrc.local
