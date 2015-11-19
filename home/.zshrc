@@ -5,27 +5,18 @@ ZGEN_RESET_ON_CHANGE=($HOME/.zshrc $HOME/.zshrc.local)
 if zgen saved; then
   zgen init
 else
-  # prezto
-  zgen prezto
-
-  # prezto options
-  zgen prezto editor dot-expansion 'yes' # convert .... to ../..
-
-  # prezto plugins
-  zgen prezto git
-  zgen prezto history-substring-search
-  zgen prezto homebrew
-  zgen prezto osx
-
   # zsh plugins
   zgen load rimraf/k
   zgen load djui/alias-tips
-  zgen load b4b4r07/enhancd
+  #zgen load b4b4r07/enhancd
+  zgen load joshuarubin/zsh-homebrew
   zgen load tarruda/zsh-autosuggestions
   zgen load jimmijj/zsh-syntax-highlighting
+  zgen load zsh-users/zsh-history-substring-search
+  zgen load sorin-ionescu/prezto modules/git/alias.zsh
 
   # local
-  zgen load .zshrc.local
+  zgen load $HOME/.zshrc.local
 
   # prompt
   zgen load mafredri/zsh-async # required for pure
