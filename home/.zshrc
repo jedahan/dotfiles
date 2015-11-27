@@ -8,7 +8,6 @@ else
   # zsh plugins
   zgen load rimraf/k
   zgen load djui/alias-tips
-  #zgen load b4b4r07/enhancd
   zgen load joshuarubin/zsh-homebrew
   zgen load tarruda/zsh-autosuggestions
   zgen load jimmijj/zsh-syntax-highlighting
