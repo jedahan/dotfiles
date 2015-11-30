@@ -1,26 +1,29 @@
 # Clone zgen if not found
-source $HOME/.zgen/zgen.zsh || git clone git@github.com:tarjoilija/zgen.git $HOME/.zgen
-ZGEN_RESET_ON_CHANGE=($HOME/.zshrc $HOME/.zshrc.local)
+source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
 
-if zgen saved; then
-  zgen init
-else
-  # zsh plugins
-  zgen load rimraf/k
-  zgen load djui/alias-tips
-  zgen load joshuarubin/zsh-homebrew
-  zgen load tarruda/zsh-autosuggestions
-  zgen load jimmijj/zsh-syntax-highlighting
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load sorin-ionescu/prezto modules/git/alias.zsh
-  zgen load unixorn/autoupdate-zgen
+source ~/.zshrc.local
 
-  # local
-  zgen load $HOME/.zshrc.local
+# zsh plugins
+zplug "rimraf/k"
+zplug "djui/alias-tips"
+zplug "b4b4r07/enhancd", of:enhancd.sh
+zplug "b4b4r07/emoji-cli", of:emoji-cli.zsh
+zplug "joshuarubin/zsh-homebrew"
+zplug "junegunn/fzf", of:shell/key-bindings.zsh
+zplug "jimmijj/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
+zplug "mrowa44/emojify", as:command, of:emojify
 
-  # prompt
-  zgen load mafredri/zsh-async # required for pure
-  zgen load sindresorhus/pure
+# prompt
+zplug "sindresorhus/pure"
 
-  zgen save
-fi
+# install any uninstalled plugins
+zplug check || zplug install
+
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
+export EMOJI_CLI_KEYBIND='^ '
+
+zplug load
+
+[[ $SHLVL != "2" ]] && tmux new

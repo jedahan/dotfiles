@@ -103,12 +103,6 @@ function mp3 {
 
 alias vim='nvim'
 
-export AUTOSUGGESTION_ACCEPT_RIGHT_ARROW=1
-zle-line-init() {
-  zle autosuggest-start
-}
-zle -N zle-line-init
-
 man() {
       env \
           LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -122,4 +116,14 @@ man() {
     _NROFF_U=1 \
     PATH=${HOME}/bin:${PATH} \
              man "$@"
+}
+
+# fshow - git commit browser
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
+      --bind "ctrl-m:execute:
+                echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R'"
 }

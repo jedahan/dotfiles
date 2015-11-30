@@ -44,3 +44,5 @@ augroup END
 au FileType ghmarkdown let b:presenting_slide_separator = '\v(^|\n)\-{2,}'
 colorscheme base16-eighties
 set background=dark
+
+set rtp+=/Users/jedahan/.homebrew/opt/fzf
