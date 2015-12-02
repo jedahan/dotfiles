@@ -30,9 +30,6 @@ alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r 
 alias -s html=firefox
 alias -s log="less -MN"
 
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$PATH
-
 alias please='sudo $(fc -ln -1)'
 alias gist='gist -c'
 alias of='open .'
@@ -77,7 +74,6 @@ function v() {  vim ${@:-'.'} }
 # open a given location, or this directory if no location was specified
 function o() {  open ${@:-'.'} }
 
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 alias x='exit'
 
 function play {
@@ -122,8 +118,9 @@ man() {
              man "$@"
 }
 
-# fshow - git commit browser
-fshow() {
+# gl - git commit browser
+unalias gl
+gl() {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \

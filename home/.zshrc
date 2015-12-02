@@ -1,8 +1,6 @@
 # Clone zgen if not found
 source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
 
-source ~/.zshrc.local
-
 # zsh plugins
 zplug "rimraf/k"
 zplug "djui/alias-tips"
@@ -25,5 +23,7 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
 
 zplug load
+
+source ~/.zshrc.local
 
 [[ $SHLVL != "2" ]] && tmux new
