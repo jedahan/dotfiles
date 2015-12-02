@@ -1,1 +1,0 @@
-/Users/jedahan/.zprezto/runcoms/zlogin
