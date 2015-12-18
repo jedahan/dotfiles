@@ -4,6 +4,7 @@ source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug &
 # zsh plugins
 zplug "rimraf/k"
 zplug "djui/alias-tips"
+zplug "b4b4r07/zplug"
 zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "b4b4r07/emoji-cli", of:emoji-cli.zsh
 zplug "joshuarubin/zsh-homebrew"
@@ -14,10 +15,8 @@ zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "mrowa44/emojify", as:command, of:emojify
 
 # prompt
+zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
-
-# install any uninstalled plugins
-zplug check || zplug install
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
