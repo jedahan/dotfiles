@@ -21,15 +21,13 @@ setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
 setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
 setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
 
-# Completion
-setopt MENU_COMPLETE
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-
 # Lists the ten most used commands.
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 alias -s html=firefox
 alias -s log="less -MN"
 
+alias x='exit'
+alias vim='nvim'
 alias please='sudo $(fc -ln -1)'
 alias gist='gist -c'
 alias of='open .'
@@ -43,8 +41,8 @@ alias dp='deploy'
 alias ascii='asciiio -y'
 alias gpum='git push upstream master'
 alias localip='ipconfig getifaddr en0'
+alias f='find . -name "$1"'
 
-function f() { find . -name "$1" }
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
@@ -66,15 +64,13 @@ function up {
 }
 
 # open atom in a given location, or this directory if no location was specified
-function a() {  atom ${@:-'.'} }
+function a {  atom ${@:-'.'} }
 
 # open vim in a given location, or this directory if no location was specified
-function v() {  vim ${@:-'.'} }
+function v {  vim ${@:-'.'} }
 
 # open a given location, or this directory if no location was specified
-function o() {  open ${@:-'.'} }
-
-alias x='exit'
+function o {  open ${@:-'.'} }
 
 function play {
     # Skip DASH manifest for speed purposes. This might actually disable
@@ -90,9 +86,8 @@ function play {
                --exec=afplay "$*"
 }
 
+# download the first mp3 from youtube
 function mp3 {
-    # Get the best audio, convert it to MP3, and save it to the current
-    # directory.
     youtube-dl --default-search=ytsearch: \
                --restrict-filenames \
                --format=bestaudio \
@@ -101,9 +96,8 @@ function mp3 {
                --audio-quality=1 "$*"
 }
 
-alias vim='nvim'
-
-man() {
+# more readable manpages
+function man {
       env \
           LESS_TERMCAP_mb=$(printf "\e[1;31m") \
     LESS_TERMCAP_md=$(printf "\e[1;31m") \
@@ -119,8 +113,7 @@ man() {
 }
 
 # gl - git commit browser
-unalias gl
-gl() {
+function gl {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
