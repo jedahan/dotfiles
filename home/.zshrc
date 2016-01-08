@@ -16,7 +16,7 @@ zplug "mrowa44/emojify", as:command, of:emojify
 
 # prompt
 zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure"
+zplug "sindresorhus/pure", of:"*.plugin.zsh"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
