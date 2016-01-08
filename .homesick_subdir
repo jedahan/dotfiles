@@ -2,3 +2,4 @@
 .ssh
 .alfred/Alfred.alfredpreferences/preferences/appearance/options
 .config/mpv
+.config/nvim

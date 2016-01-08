@@ -1,0 +1,1 @@
+/Users/jdehan/.homesick/repos/dotfiles/home/.nvimrc
