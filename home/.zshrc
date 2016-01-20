@@ -1,3 +1,5 @@
+[[ $SHLVL != "2" ]] && tmux new
+
 # Clone zgen if not found
 source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
 
@@ -24,5 +26,3 @@ export EMOJI_CLI_KEYBIND='^ '
 zplug load
 
 source ~/.zshrc.local
-
-[[ $SHLVL != "2" ]] && tmux new
