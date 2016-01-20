@@ -1,48 +1,48 @@
-syntax on
+" UNDO
+set undofile                            " Save undo's after file closes
+set undodir=$HOME/local/share/nvim/undo " where to save undo histories
+set undolevels=1000                     " How many undos
+set undoreload=10000                    " number of lines to save for
 
+" WHITESPACE
+set tabstop=2 shiftwidth=2 expandtab
+set list listchars=tab:→\ ,trail:·
+
+" PLUG
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
-set undofile                 " Save undo's after file closes
-set undodir=$HOME/.nvim/undo " where to save undo histories
-set undolevels=1000          " How many undos
-set undoreload=10000         " number of lines to save for
-
-set tabstop=2 shiftwidth=2 expandtab
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-call plug#begin('~/.nvim/plugged')
+" PLUGINS
+call plug#begin('~/.config/nvim/plugged')
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'spf13/PIV'
   Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'scrooloose/syntastic'
   Plug 'vim-scripts/a.vim'
   Plug 'tikhomirov/vim-glsl'
   Plug 'sotte/presenting.vim'
-  Plug 'jtratner/vim-flavored-markdown'
-  Plug 'kien/ctrlp.vim'
+  Plug 'plasticboy/vim-markdown'
   Plug 'chriskempson/base16-vim'
 call plug#end()
 
-let g:syntastic_cpp_compiler_options = '-std=c++11'
+" SYNTAX HIGHLIGHTING
 let g:syntastic_check_on_open = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-let g:ycm_confirm_extra_conf = 0
+let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 
-set backspace=indent,eol,start
-set list listchars=tab:→\ ,trail:·
-augroup markdown
-    au!
-    au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-augroup END
+" FOLDING
+let g:DisableAutoPHPFolding = 1
 
-au FileType ghmarkdown let b:presenting_slide_separator = '\v(^|\n)\-{2,}'
+" COLORS
+syntax on
 colorscheme base16-eighties
 set background=dark
-
-set rtp+=/Users/jedahan/.homebrew/opt/fzf
