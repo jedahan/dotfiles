@@ -1,4 +1,6 @@
 # Clone zgen if not found
+source ~/.zshenv
+
 source ~/.zplug/zplug || { curl -fLo ~/.zplug/zplug --create-dirs git.io/zplug && source ~/.zplug/zplug }
 
 # zsh plugins
@@ -13,6 +15,7 @@ zplug "jimmijj/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "mrowa44/emojify", as:command, of:emojify
+zplug "ericfreese/zsh-autosuggest", at:rewrite
 
 # prompt
 zplug "mafredri/zsh-async"
@@ -24,5 +27,3 @@ export EMOJI_CLI_KEYBIND='^ '
 zplug load
 
 source ~/.zshrc.local
-
-[[ $SHLVL != "2" ]] && tmux new
