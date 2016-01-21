@@ -13,6 +13,7 @@ zplug "b4b4r07/enhancd", of:enhancd.sh
 zplug "b4b4r07/emoji-cli", of:emoji-cli.zsh
 zplug "joshuarubin/zsh-homebrew"
 zplug "junegunn/fzf", of:shell/key-bindings.zsh
+zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "jimmijj/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
