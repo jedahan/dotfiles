@@ -1,3 +1,5 @@
+[[ $SHLVL != "2" ]] && tmux new
+
 # Clone zgen if not found
 source ~/.zshenv
 

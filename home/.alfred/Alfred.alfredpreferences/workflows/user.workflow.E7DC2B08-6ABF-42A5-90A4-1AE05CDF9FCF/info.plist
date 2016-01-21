@@ -10,7 +10,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>47CB62D4-D704-489C-A306-56CD76A1F208</string>
+				<string>9AA418D1-F374-473E-9CE9-FF192CAADAB8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -21,7 +21,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>47CB62D4-D704-489C-A306-56CD76A1F208</string>
+				<string>9AA418D1-F374-473E-9CE9-FF192CAADAB8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -32,13 +32,15 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>47CB62D4-D704-489C-A306-56CD76A1F208</string>
+				<string>9AA418D1-F374-473E-9CE9-FF192CAADAB8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 			</dict>
 		</array>
+		<key>9AA418D1-F374-473E-9CE9-FF192CAADAB8</key>
+		<array/>
 		<key>AC42EC64-23A5-4819-855C-5B744E106CF3</key>
 		<array>
 			<dict>
@@ -63,13 +65,13 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>Christoph Friegel</string>
+	<string>Christoph Friegel, Jonathan Dahan</string>
 	<key>description</key>
 	<string>Check who is Streaming on twitch.tv and watch your favorite Stream via LiveStreamer on VLC.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>TwitchStreamer v1.7</string>
+	<string>TwitchStreamerSimple v1.71</string>
 	<key>objects</key>
 	<array>
 		<dict>
@@ -207,21 +209,19 @@ echo $w-&gt;toxml();</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<true/>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
-				<string>if [ `which livestreamer` ]; then
-  nohup livestreamer {query} high &amp;
-elif [ `which mpv` ]; then
-  nohup mpv {query} &amp;
-fi
-[[ $SHELL==*zsh ]] &amp;&amp; disown
-exit 0</string>
+				<string>nohup /Users/jedahan/.homebrew/bin/mpv {query}</string>
+				<key>type</key>
+				<integer>0</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.terminalcommand</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>47CB62D4-D704-489C-A306-56CD76A1F208</string>
+			<string>9AA418D1-F374-473E-9CE9-FF192CAADAB8</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -378,31 +378,6 @@ echo $w-&gt;toxml();</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>output</key>
-				<integer>0</integer>
-				<key>removeextension</key>
-				<false/>
-				<key>sticky</key>
-				<false/>
-				<key>text</key>
-				<string>Downloaded game covers.</string>
-				<key>title</key>
-				<string>TwitchStreamer</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>30D65DA2-C051-4A58-A336-24538354E4D0</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
 				<integer>2</integer>
 				<key>escaping</key>
@@ -462,6 +437,31 @@ echo $w-&gt;toxml();</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>Downloaded game covers.</string>
+				<key>title</key>
+				<string>TwitchStreamer</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>30D65DA2-C051-4A58-A336-24538354E4D0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>command</key>
 				<integer>0</integer>
 				<key>confirm</key>
@@ -505,11 +505,6 @@ examples:
 			<key>ypos</key>
 			<real>450</real>
 		</dict>
-		<key>47CB62D4-D704-489C-A306-56CD76A1F208</key>
-		<dict>
-			<key>ypos</key>
-			<real>130</real>
-		</dict>
 		<key>693753AB-8D7D-49B8-B1AE-EF6FE32AFD92</key>
 		<dict>
 			<key>ypos</key>
@@ -529,6 +524,11 @@ examples:
 		<dict>
 			<key>ypos</key>
 			<real>340</real>
+		</dict>
+		<key>9AA418D1-F374-473E-9CE9-FF192CAADAB8</key>
+		<dict>
+			<key>ypos</key>
+			<real>120</real>
 		</dict>
 		<key>AC42EC64-23A5-4819-855C-5B744E106CF3</key>
 		<dict>
