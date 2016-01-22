@@ -127,4 +127,8 @@ function gk {
                 xargs -I % sh -c 'git show --color=always % | less -R'"
 }
 
+function fk {
+  ps aux | fzf | yank | xargs kill
+}
+
 alias vm='ssh vm'
