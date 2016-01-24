@@ -1,23 +1,24 @@
-# Clone zgen if not found
+bindkey -e # for ^A ^E
+
 source ~/.zshenv
 
 source ~/.zplug/zplug.zsh || { git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && source ~/.zplug/zplug.zsh }
 
-# zsh plugins
+# plugins
 zplug "rimraf/k"
 zplug "djui/alias-tips"
 zplug "b4b4r07/zplug"
 zplug "b4b4r07/enhancd", of:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
-zplug "junegunn/fzf", of:shell/key-bindings.zsh
-zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, of:emojify
 zplug "ericfreese/zsh-autosuggest", at:rewrite
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
+zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
+zplug "junegunn/fzf", of:shell/key-bindings.zsh, nice: 10
 
 # prompt
 zplug "mafredri/zsh-async"
@@ -27,8 +28,6 @@ export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
 
 zplug load
-
-bindkey -e
 
 setopt autocd
 setopt autopushd
