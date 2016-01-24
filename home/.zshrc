@@ -105,4 +105,13 @@ function gl {
                 xargs -I % sh -c 'git show --color=always % | less -R'"
 }
 
+function fkill {
+  pid=$(ps -ef | sed 1d | fzf -m -e | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+    kill -${1:-9} $pid
+  fi
+}
+
 test -f ~/.zshrc.local && source ~/.zshrc.local
