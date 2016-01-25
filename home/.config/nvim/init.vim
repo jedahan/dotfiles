@@ -28,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'sotte/presenting.vim'
   Plug 'plasticboy/vim-markdown'
   Plug 'chriskempson/base16-vim'
+  Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
