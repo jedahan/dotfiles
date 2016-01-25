@@ -27,6 +27,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' '+l:|=* r:|=*'
 # Lists the ten most used commands.
 alias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
 alias -s html=firefox
+alias -s php=nvim
 alias -s log="less -MN"
 
 alias x='exit'
