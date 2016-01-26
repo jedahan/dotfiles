@@ -113,4 +113,12 @@ function fkill {
   fi
 }
 
+function ssh {
+    tmp_fifo=$(mktemp -u -t=ssh_fifo_)
+    mkfifo "$tmp_fifo"
+    cat ~/.ssh/config* >"$tmp_fifo" 2>/dev/null &
+    /usr/bin/ssh -F "$tmp_fifo" "$@"
+    rm "$tmp_fifo"
+}
+
 test -f ~/.zshrc.local && source ~/.zshrc.local
