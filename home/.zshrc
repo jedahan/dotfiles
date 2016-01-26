@@ -20,8 +20,7 @@ zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf", of:shell/key-bindings.zsh, nice: 10
 
 # prompt
-zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure"
+zplug "sindresorhus/pure", of:"{async,pure}.zsh"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
