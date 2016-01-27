@@ -17,5 +17,3 @@
   algorithm = patience
 [branch]
   autosetuprebase = always
-[core]
-  editor = atom --wait
