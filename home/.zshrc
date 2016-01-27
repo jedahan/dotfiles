@@ -17,7 +17,7 @@ zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, of:emojify
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
-zplug "junegunn/fzf", as:command, of:fzf
+zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
 zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
 zplug "junegunn/fzf", of:shell/key-bindings.zsh, nice: 10
 
