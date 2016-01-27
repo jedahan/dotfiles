@@ -11,6 +11,7 @@ zplug "b4b4r07/zplug"
 zplug "b4b4r07/enhancd", of:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
+zplug "tarruda/zsh-autosuggestions", at:v0.1.x
 zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
@@ -123,3 +124,7 @@ function ssh {
 }
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
+
+# autosuggestions
+zle-line-init() { autosuggest_start }
+zle -N zle-line-init
