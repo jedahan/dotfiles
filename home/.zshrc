@@ -125,17 +125,17 @@ function ssh {
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
 
-$commands[pbcopy] || {
+if (( ! $+commands[pbcopy] )); then
   function pbcopy() {
     ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
   }
-}
+fi
 
-$commands[pbpaste] || {
+if (( ! $+commands[pbpaste] )); then
   function pbpaste() {
     ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
   }
-}
+fi
 
 # autosuggestions
 zle-line-init() { autosuggest_start }
