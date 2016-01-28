@@ -116,7 +116,7 @@ function fkill {
 }
 
 function ssh {
-    tmp_fifo=$(mktemp -u -t=ssh_fifo_)
+    tmp_fifo=$(mktemp -u -t=ssh_fifo_ || mktemp -u --suffix=_ssh_fifo)
     mkfifo "$tmp_fifo"
     cat ~/.ssh/config* >"$tmp_fifo" 2>/dev/null &
     /usr/bin/ssh -F "$tmp_fifo" "$@"
