@@ -125,6 +125,18 @@ function ssh {
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
 
+$commands[pbcopy] || {
+  function pbcopy() {
+    ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
+  }
+}
+
+$commands[pbpaste] || {
+  function pbpaste() {
+    ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
+  }
+}
+
 # autosuggestions
 zle-line-init() { autosuggest_start }
 zle -N zle-line-init
