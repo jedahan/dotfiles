@@ -128,7 +128,7 @@ fi
 
 if (( ! $+commands[notify] )); then
   function notify {
-    ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'try' -message 'success';
+    ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3;
   }
 fi
 
