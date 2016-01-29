@@ -11,7 +11,6 @@ zplug "b4b4r07/zplug"
 zplug "b4b4r07/enhancd", of:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
-zplug "tarruda/zsh-autosuggestions", at:v0.1.x
 zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
@@ -132,9 +131,5 @@ if (( ! $+commands[notify] )); then
     ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'try' -message 'success';
   }
 fi
-
-# autosuggestions
-#zle-line-init() { autosuggest_start }
-#zle -N zle-line-init
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
