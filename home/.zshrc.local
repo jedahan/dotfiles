@@ -1,6 +1,14 @@
+homesick pull
+
 clear
 
 echo '
 http://go/howtodeploy
 man hier
+
+pbcopy, pbpaste, notify, try
 '
+
+function try {
+  \try -P "$@" && notify success || notify failure
+}
