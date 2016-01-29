@@ -115,28 +115,26 @@ function fkill {
   fi
 }
 
-function ssh {
-    tmp_fifo=$(mktemp -u -t=ssh_fifo_ || mktemp -u --suffix=_ssh_fifo)
-    mkfifo "$tmp_fifo"
-    cat ~/.ssh/config* >"$tmp_fifo" 2>/dev/null &
-    /usr/bin/ssh -F "$tmp_fifo" "$@"
-    rm "$tmp_fifo"
-}
-
-test -f ~/.zshrc.local && source ~/.zshrc.local
-
 if (( ! $+commands[pbcopy] )); then
-  function pbcopy() {
-    ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
+  function pbcopy {
+    ssh `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
   }
 fi
 
 if (( ! $+commands[pbpaste] )); then
-  function pbpaste() {
-    ssh -i ~/.ssh/pbcopy `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
+  function pbpaste {
+    ssh `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
+  }
+fi
+
+if (( ! $+commands[notify] )); then
+  function notify {
+    ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title 'try' -message 'success';
   }
 fi
 
 # autosuggestions
-zle-line-init() { autosuggest_start }
-zle -N zle-line-init
+#zle-line-init() { autosuggest_start }
+#zle -N zle-line-init
+
+test -f ~/.zshrc.local && source ~/.zshrc.local
