@@ -1,11 +1,4 @@
 clear
-cd ~/development/Etsyweb && \
-current_branch=$(git rev-parse --abbrev-ref HEAD) && \
-git checkout master && \
-git rpull && \
-git checkout $current_branch && \
-git rebase master
-clear
 
 echo '
 http://go/howtodeploy
