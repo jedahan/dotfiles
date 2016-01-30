@@ -132,4 +132,8 @@ if (( ! $+commands[notify] )); then
   }
 fi
 
+function twitch {
+  mpv http://twitch.tv/$@
+}
+
 test -f ~/.zshrc.local && source ~/.zshrc.local
