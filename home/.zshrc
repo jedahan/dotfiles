@@ -34,8 +34,8 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 
 function a { atom ${@:-'.'} }
-function v { nvim ${@:-'.'} }
-function n { nvim ${@:-'.'} }
+alias v='nvim'
+alias n='nvim'
 function o { open ${@:-'.'} }
 function x { exit }
 function c { lolcat $@ }

@@ -29,6 +29,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'plasticboy/vim-markdown'
   Plug 'chriskempson/base16-vim'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'mhinz/vim-startify'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
@@ -47,3 +50,4 @@ let g:DisableAutoPHPFolding = 1
 syntax on
 colorscheme base16-eighties
 set background=dark
+let g:airline_powerline_fonts = 1
