@@ -49,6 +49,14 @@ let g:DisableAutoPHPFolding = 1
 
 " COLORS
 syntax on
-colorscheme base16-eighties
 set background=dark
+colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
+" fzf!
+nnoremap <silent> <leader>o :FZF<CR>
+
+" buffers
+nnoremap <C-h> :bp<CR>
+nnoremap <C-l> :bn<CR>
