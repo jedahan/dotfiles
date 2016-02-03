@@ -44,6 +44,7 @@ let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standar
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 " FOLDING
+set nofoldenable
 let g:DisableAutoPHPFolding = 1
 
 " COLORS
