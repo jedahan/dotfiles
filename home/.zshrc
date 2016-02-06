@@ -52,9 +52,16 @@ alias ip='ipconfig getifaddr en0'
 function git {  hub "$@" }
 
 # update system
+function upgrade_head {
+  brew info --json=v1 --installed \
+  | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
+  | sift '"(.*?)"' --replace='$1' \
+  | xargs brew reinstall
+}
 function up {
   brew update
   brew upgrade
+  brew_upgrade_head
   brew cleanup
   brew cask cleanup
   brew doctor
