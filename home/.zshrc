@@ -2,7 +2,7 @@ bindkey -e # for ^A ^E
 
 source ~/.zshenv
 
-source ~/.zplug/zplug.zsh || { git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && source ~/.zplug/zplug.zsh }
+source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && source ~/.zplug/init.zsh }
 
 # plugins
 zplug "rimraf/k"
