@@ -2,24 +2,39 @@ bindkey -e # for ^A ^E
 
 source ~/.zshenv
 
+<<<<<<< 68c233b74689b3c12869ec172c26ae249ef89e09
 source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && source ~/.zplug/init.zsh }
+=======
+source ~/.zplug/init.zsh || {
+  git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && \
+  source ~/.zplug/init.zsh && \
+  zplug install && \
+  source ~/.zshrc
+}
+>>>>>>> zsh: switch to zplug2
 
 # plugins
 zplug "rimraf/k"
 zplug "djui/alias-tips"
 zplug "b4b4r07/zplug"
-zplug "b4b4r07/enhancd", of:"zsh/enhancd.zsh"
+zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
 zplug "zsh-users/zsh-history-substring-search"
+<<<<<<< 68c233b74689b3c12869ec172c26ae249ef89e09
 zplug "tarruda/zsh-autosuggestions", of:autosuggestions.zsh, at:v0.1.x
 zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, of:emojify
+=======
+zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
+zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
+zplug "mrowa44/emojify", as:command, use:emojify
+>>>>>>> zsh: switch to zplug2
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
-zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
-zplug "junegunn/fzf", as:command, of:bin/fzf-tmux
-zplug "junegunn/fzf", of:shell/key-bindings.zsh, nice: 10
+zplug "junegunn/fzf-bin", as:command, from:gh-r, rename_to:fzf
+zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
+zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
 
 # prompt
 zplug "sindresorhus/pure", of:"{async,pure}.zsh"
