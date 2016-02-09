@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ekalinin/Dockerfile.vim'
   Plug 'scrooloose/syntastic'
   Plug 'vim-scripts/a.vim'
+  Plug 'joonty/vdebug'
   Plug 'tikhomirov/vim-glsl'
   Plug 'sotte/presenting.vim'
   Plug 'plasticboy/vim-markdown'
@@ -32,13 +33,14 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'mhinz/vim-startify'
+  Plug 'urthbound/hound.vim'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
 let g:syntastic_check_on_open = 1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
 let g:syntastic_cpp_compiler_options = '-std=c++11'
