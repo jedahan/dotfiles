@@ -34,6 +34,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'mhinz/vim-startify'
   Plug 'urthbound/hound.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
@@ -65,3 +67,7 @@ nnoremap <C-l> :bn<CR>
 
 " hound
 let g:hound_base_url = "hound.etsycorp.com"
+
+" TREE
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
