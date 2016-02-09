@@ -62,3 +62,6 @@ nnoremap <silent> <leader>o :FZF<CR>
 " buffers
 nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
+
+" hound
+let g:hound_base_url = "hound.etsycorp.com"
