@@ -11,6 +11,14 @@ man hier
 pbcopy, pbpaste, notify, try
 '
 
-function try {
-  \try -P "$@" && notify success || notify failure
+function ptry {
+  local log=$(mktemp)
+  try -P "$@" | tee -a $log
+  local message=$(tail -n1 $log | awk '{print $2}')
+  local url=$(tail -n1 $log | awk '{print $4}' | cut -d'(' -f2 | cut -d')' -f1)
+  notify "try" $message $url
+}
+
+function php-xdebug {
+  XDEBUG_CONFIG="idekey=xdebug" /usr/bin/php "$@"
 }
