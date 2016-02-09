@@ -150,9 +150,15 @@ if (( ! $+commands[pbpaste] )); then
 fi
 
 if (( ! $+commands[notify] )); then
-  function notify {
-    ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3;
-  }
+  if [ -z ${SSH_CLIENT+x} ]; then
+    function notify {
+      /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3
+    }
+  else
+    function notify {
+      ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3;
+    }
+  fi
 fi
 
 function twitch {
