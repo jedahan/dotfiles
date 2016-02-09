@@ -2,16 +2,12 @@ bindkey -e # for ^A ^E
 
 source ~/.zshenv
 
-<<<<<<< 68c233b74689b3c12869ec172c26ae249ef89e09
-source ~/.zplug/init.zsh || { git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && source ~/.zplug/init.zsh }
-=======
 source ~/.zplug/init.zsh || {
   git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && \
   source ~/.zplug/init.zsh && \
   zplug install && \
   source ~/.zshrc
 }
->>>>>>> zsh: switch to zplug2
 
 # plugins
 zplug "rimraf/k"
@@ -21,23 +17,18 @@ zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
 zplug "zsh-users/zsh-history-substring-search"
-<<<<<<< 68c233b74689b3c12869ec172c26ae249ef89e09
-zplug "tarruda/zsh-autosuggestions", of:autosuggestions.zsh, at:v0.1.x
-zplug "sorin-ionescu/prezto", of:modules/git/alias.zsh
-zplug "sorin-ionescu/prezto", of:modules/history/init.zsh
-zplug "mrowa44/emojify", as:command, of:emojify
-=======
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, use:emojify
->>>>>>> zsh: switch to zplug2
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename_to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
 
 # prompt
-zplug "sindresorhus/pure", of:"{async,pure}.zsh"
+#zplug "sindresorhus/pure", use:pure.zsh, on:mafredi/zsh-async
+zplug "mafredi/zsh-async"
+zplug "sindresorhus/pure"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
 export EMOJI_CLI_KEYBIND='^ '
@@ -164,10 +155,6 @@ fi
 function twitch {
   mpv http://twitch.tv/$@
 }
-
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
-autosuggest_start
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
 
