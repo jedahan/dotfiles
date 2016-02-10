@@ -16,10 +16,11 @@ zplug "b4b4r07/zplug"
 zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "b4b4r07/emoji-cli"
 zplug "joshuarubin/zsh-homebrew"
-zplug "zsh-users/zsh-history-substring-search"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, use:emojify
+zplug "tarruda/zsh-autosuggestions", at:v0.2.x
+zplug "zsh-users/zsh-history-substring-search"
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename_to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
@@ -154,6 +155,9 @@ fi
 function twitch {
   mpv http://twitch.tv/$@
 }
+
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
 
