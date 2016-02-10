@@ -108,7 +108,7 @@ function man {
       man "$@"
 }
 
-unalias gl
+alias gl >/dev/null && unalias gl
 # gl - git commit browser
 function gl {
   git log --graph --color=always \
