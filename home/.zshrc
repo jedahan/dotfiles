@@ -26,8 +26,7 @@ zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
 
 # prompt
-#zplug "sindresorhus/pure", use:pure.zsh, on:mafredi/zsh-async
-zplug "mafredi/zsh-async"
+zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡 '
