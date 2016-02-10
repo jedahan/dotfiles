@@ -46,7 +46,7 @@ alias n='nvim'
 function o { open ${@:-'.'} }
 function x { exit }
 function c { lolcat $@ }
-function s { sift --group $@ }
+function s { sift --git --group $@ }
 function , { clear && k }
 
 alias please='sudo $(fc -ln -1)'
