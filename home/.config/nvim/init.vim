@@ -36,6 +36,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'urthbound/hound.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'mustache/vim-mustache-handlebars'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'mhinz/vim-signify'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
@@ -62,8 +66,8 @@ let g:airline#extensions#tabline#enabled = 1
 nnoremap <silent> <leader>o :FZF<CR>
 
 " buffers
-nnoremap <C-h> :bp<CR>
-nnoremap <C-l> :bn<CR>
+nnoremap <C-h> :bprevious<CR>
+nnoremap <C-l> :bnext<CR>
 
 " hound
 let g:hound_base_url = "hound.etsycorp.com"
