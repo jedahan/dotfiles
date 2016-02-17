@@ -39,6 +39,7 @@ setopt autocd
 setopt autopushd
 setopt pushd_ignore_dups
 setopt pushd_to_home
+setopt interactivecomments
 
 function a { atom ${@:-'.'} }
 alias v='nvim'
