@@ -19,7 +19,6 @@ zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
 zplug "mrowa44/emojify", as:command, use:emojify
-zplug "tarruda/zsh-autosuggestions", at:v0.2.x
 zplug "zsh-users/zsh-history-substring-search"
 zplug "jimmijj/zsh-syntax-highlighting", nice:10
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename_to:fzf
@@ -156,9 +155,6 @@ fi
 function twitch {
   mpv http://twitch.tv/$@
 }
-
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS=("${(@)ZSH_AUTOSUGGEST_CLEAR_WIDGETS:#(up|down)-line-or-history}")
-ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(history-substring-search-up history-substring-search-down)
 
 test -f ~/.zshrc.local && source ~/.zshrc.local
 

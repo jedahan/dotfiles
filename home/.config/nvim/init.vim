@@ -40,6 +40,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
+  Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
