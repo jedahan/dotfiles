@@ -78,4 +78,14 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " fzf.vim bindings
-map <C-s> :Ag 
+map <C-a> :Ag 
+
+function! s:with_git_root()
+  let root = systemlist('git rev-parse --show-toplevel')[0]
+  return v:shell_error ? {} : {'dir': root}
+endfunction
+
+command! -nargs=* SearchGitRoot
+  \ call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
+
+map <C-s> :SearchGitRoot 
