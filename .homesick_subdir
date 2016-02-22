@@ -3,3 +3,5 @@
 .alfred/Alfred.alfredpreferences/preferences/appearance/options
 .config/mpv
 .config/nvim
+.config
+.config/iterm3
