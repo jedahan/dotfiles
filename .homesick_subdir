@@ -5,3 +5,4 @@
 .config/nvim
 .config
 .config/iterm3
+.ssh/assh.d
