@@ -45,10 +45,6 @@ call plug#end()
 
 " SYNTAX HIGHLIGHTING
 let g:syntastic_check_on_open = 1
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
 let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
