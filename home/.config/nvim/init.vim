@@ -44,7 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
