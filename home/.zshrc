@@ -42,33 +42,39 @@ function , { clear && k }
 function please { sudo $(fc -ln -1) }
 
 # upgrade everything
-function up {
-  brew update
-  brew upgrade
-  () { # brew upgrade --head
-    brew info --json=v1 --installed \
-    | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
-    | sift '"(.*?)"' --replace='$1' \
-    | xargs brew reinstall
+(( $+commands[brew] )) && {
+  function up {
+    brew update
+    brew upgrade
+    () { # brew upgrade --head
+      brew info --json=v1 --installed \
+      | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
+      | sift '"(.*?)"' --replace='$1' \
+      | xargs brew reinstall
+    }
+    brew cleanup
+    brew cask cleanup
+    brew doctor
   }
-  brew cleanup
-  brew cask cleanup
-  brew doctor
 }
 
 # more readable manpages
-function man {
-  env \
-    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-    LESS_TERMCAP_md=$(printf "\e[1;31m") \
-    LESS_TERMCAP_me=$(printf "\e[0m") \
-    LESS_TERMCAP_se=$(printf "\e[0m") \
-    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-    LESS_TERMCAP_ue=$(printf "\e[0m") \
-    LESS_TERMCAP_us=$(printf "\e[1;32m") \
-    PAGER=/usr/bin/less \
-    _NROFF_U=1 \
-      man "$@"
+(( $+commands[man] )) && {
+  function help {
+    env \
+      LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+      LESS_TERMCAP_md=$(printf "\e[1;31m") \
+      LESS_TERMCAP_me=$(printf "\e[0m") \
+      LESS_TERMCAP_se=$(printf "\e[0m") \
+      LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+      LESS_TERMCAP_ue=$(printf "\e[0m") \
+      LESS_TERMCAP_us=$(printf "\e[1;32m") \
+      PAGER=/usr/bin/less \
+      _NROFF_U=1 \
+        man "$@"
+  }
+
+  alias h='help'
 }
 
 # fzf-enhanced functions
@@ -96,21 +102,21 @@ function man {
 }
 
 # remote pbcopy for linux machines!
-if (( ! $+commands[pbcopy] )); then
+(( ! $+commands[pbcopy] )) && {
   function pbcopy {
     ssh `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
   }
-fi
+}
 
 # remote pbpaste!
-if (( ! $+commands[pbpaste] )); then
+(( ! $+commands[pbpaste] )) && {
   function pbpaste {
     ssh `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
   }
-fi
+}
 
 # remote and local notify
-if (( ! $+commands[notify] )); then
+(( ! $+commands[notify] )) && {
   if [ -z ${SSH_CLIENT+x} ]; then
     function notify {
       /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3
@@ -120,6 +126,19 @@ if (( ! $+commands[notify] )); then
       ssh `echo $SSH_CLIENT | awk '{print $1}'` /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title $1 -message $2 -open $3;
     }
   fi
-fi
+}
+
+(( $+commands[mpv] )) && {
+  function twitch {
+    mpv http://twitch.tv/$@
+  }
+}
+
+[[ $TERM_PROGRAM = iTerm.app ]] && {
+  function badge {
+    printf "\e]1337;SetBadgeFormat=%s\a" \
+      $(echo -n "$@" | base64)
+  }
+}
 
 test -f ~/.zshrc.local && source $_
