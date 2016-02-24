@@ -85,3 +85,8 @@ command! -nargs=* SearchGitRoot
   \ call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
 
 map <C-s> :SearchGitRoot 
+
+nmap <silent> <a-k> :wincmd k<CR>
+nmap <silent> <a-j> :wincmd j<CR>
+nmap <silent> <a-h> :wincmd h<CR>
+nmap <silent> <a-l> :wincmd l<CR>
