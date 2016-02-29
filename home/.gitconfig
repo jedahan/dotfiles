@@ -17,3 +17,5 @@
   algorithm = patience
 [branch]
   autosetuprebase = always
+[rebase]
+  autostash = true
