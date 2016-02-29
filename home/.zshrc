@@ -13,12 +13,12 @@ zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "jimmijj/zsh-syntax-highlighting"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename_to:fzf
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
 
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 export EMOJI_CLI_KEYBIND='^ '
