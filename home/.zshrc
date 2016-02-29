@@ -41,6 +41,9 @@ function , { clear && k }
 
 function please { sudo $(fc -ln -1) }
 
+function help { man $@ }
+alias h='help'
+
 # upgrade everything
 (( $+commands[brew] )) && {
   function up {
@@ -56,25 +59,6 @@ function please { sudo $(fc -ln -1) }
     brew cask cleanup
     brew doctor
   }
-}
-
-# more readable manpages
-(( $+commands[man] )) && {
-  function help {
-    env \
-      LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-      LESS_TERMCAP_md=$(printf "\e[1;31m") \
-      LESS_TERMCAP_me=$(printf "\e[0m") \
-      LESS_TERMCAP_se=$(printf "\e[0m") \
-      LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-      LESS_TERMCAP_ue=$(printf "\e[0m") \
-      LESS_TERMCAP_us=$(printf "\e[1;32m") \
-      PAGER=/usr/bin/less \
-      _NROFF_U=1 \
-        man "$@"
-  }
-
-  alias h='help'
 }
 
 # fzf-enhanced functions
