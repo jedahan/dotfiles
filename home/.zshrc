@@ -112,12 +112,14 @@ alias h='help'
   fi
 }
 
+# shorthand for watching twitch on mpv
 (( $+commands[mpv] )) && {
   function twitch {
     mpv http://twitch.tv/$@
   }
 }
 
+# iterm3 supports badges, background notes
 [[ $TERM_PROGRAM = iTerm.app ]] && {
   function badge {
     printf "\e]1337;SetBadgeFormat=%s\a" \
