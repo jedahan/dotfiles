@@ -49,11 +49,15 @@ alias h='help'
   function up {
     brew update
     brew upgrade
-    () { # brew upgrade --head
-      brew info --json=v1 --installed \
-      | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
-      | sift '"(.*?)"' --replace='$1' \
-      | xargs brew reinstall
+    () { # brew upgrade --head --weekly
+      local last_upgrade=$(brew --prefix)/.last-head-upgrade
+      [[ -f ${last_upgrade}(.mh+168) ]] && {
+        brew info --json=v1 --installed \
+        | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
+        | sift '"(.*?)"' --replace='$1' \
+        | xargs brew reinstall
+        touch $last_upgrade
+      }
     }
     brew cleanup
     brew cask cleanup
