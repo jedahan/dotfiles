@@ -9,6 +9,7 @@ zplug "rimraf/k"
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
 zplug "djui/alias-tips"
+zplug "andsens/homeshick", use:"homeshick.sh"
 zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
