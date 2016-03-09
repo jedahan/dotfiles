@@ -134,3 +134,8 @@ alias h='help'
 
 test -f ~/.zshrc.local && source $_
 clear && test -f ~/todo.md && c $_
+function todo {
+  test -z "$@" && c ~/todo.md
+  test -n "$@" && echo "$@" >> ~/todo.md
+}
+alias t='todo'
