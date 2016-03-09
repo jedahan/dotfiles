@@ -133,3 +133,4 @@ alias h='help'
 }
 
 test -f ~/.zshrc.local && source $_
+clear && test -f ~/todo.md && c $_
