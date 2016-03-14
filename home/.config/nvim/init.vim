@@ -1,14 +1,14 @@
 " UNDO
-set undofile                            " Save undo's after file closes
+set undofile                             " save undo history after file closes
 set undodir=$HOME/.local/share/nvim/undo " where to save undo histories
-set undolevels=1000                     " How many undos
-set undoreload=10000                    " number of lines to save for
+set undolevels=1000                      " how many undos
+set undoreload=10000                     " number of lines to save for
 
 " WHITESPACE
-set tabstop=2 shiftwidth=2 expandtab
-set list listchars=tab:→\ ,trail:·
+set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
+set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
 
-" PLUG
+" Install vim-plug as a plugin manager, if it isn't already installed
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -17,30 +17,33 @@ endif
 
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'spf13/PIV'
-  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-  Plug 'ekalinin/Dockerfile.vim'
-  Plug 'scrooloose/syntastic'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+  Plug 'junegunn/fzf.vim' " use to search for files, on search in files
+  " Syntax highlighting
+  Plug 'scrooloose/syntastic'   " show syntax and precompiler errors on the sidebar
+  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } " coffee-script
+  Plug 'ekalinin/Dockerfile.vim'                       " Dockerfile
+  Plug 'tikhomirov/vim-glsl'                           " opengl shader language
+  Plug 'plasticboy/vim-markdown'                       " markdown
+  " Theming
+  Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
+  Plug 'ryanoasis/vim-devicons'            " icons for filetypes
+  Plug 'vim-airline/vim-airline'           " bottom and top gutters
+  Plug 'vim-airline/vim-airline-themes'    " more themes for airline
+  Plug 'airblade/vim-gitgutter'            " show git information in the gutter
+  " Other
   Plug 'vim-scripts/a.vim'
   Plug 'joonty/vdebug'
-  Plug 'tikhomirov/vim-glsl'
   Plug 'sotte/presenting.vim'
-  Plug 'plasticboy/vim-markdown'
-  Plug 'chriskempson/base16-vim'
-  Plug 'ryanoasis/vim-devicons'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'mhinz/vim-startify'
+  Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'urthbound/hound.vim'
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'terryma/vim-multiple-cursors'
+  Plug 'scrooloose/nerdtree'               " file browser sidebar
+  Plug 'Xuyuanp/nerdtree-git-plugin'       " ...with icons for git stuff
+  Plug 'terryma/vim-multiple-cursors'      " like sublime/atom command-D
   Plug 'mustache/vim-mustache-handlebars'
-  Plug 'airblade/vim-gitgutter'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
+  Plug 'spf13/PIV'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
