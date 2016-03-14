@@ -7,6 +7,7 @@ source ~/.zplug/init.zsh || {
 
 zplug "rimraf/k"
 zplug "mafredri/zsh-async"
+zplug 'nvbn/thefuck'
 zplug "sindresorhus/pure"
 zplug "djui/alias-tips"
 zplug "andsens/homeshick", use:"homeshick.sh"
@@ -40,7 +41,7 @@ function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
 
-function please { sudo $(fc -ln -1) }
+alias please='fuck'
 
 function help { man $@ }
 alias h='help'
