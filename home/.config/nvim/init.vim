@@ -93,3 +93,5 @@ nmap <silent> <a-l> :wincmd l<CR>
 
 nmap <silent> <a-w> :bdelete<CR>
 nmap <silent> <c-w> :bdelete<CR>
+
+au BufReadPost * if getfsize(bufname("%")) > 100*1024 | set syntax= | endif
