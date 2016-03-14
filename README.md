@@ -1,16 +1,19 @@
-[Jonathan Dahan](http://jonathan.is)'s dotfiles for OSX
-Check out the linux branch if you want
+[Jonathan Dahan](http://jonathan.is)'s dotfiles for OSX and linux
 
+### Software
+
+  * [zsh](https://zsh.org)
+  * [neovim](https://neovim.io)
+  * [advanced-ssh-config](https://github.com/moul/advanced-ssh-config)
+  * [iTerm3](https://iterm2.com/version3.html)
+  * [alfred](https://alfredapp.com)
+  
 ### Installation
 
-Install homesick
+Install homeshick
 
-    gem install homesick
+    git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick && source ${_}/homeshick.sh
+    
+Clone and link the castle
 
-Clone the castle
-
-    homesick clone jedahan/dotfiles
-
-Symlink the castle contents to your home dir
-
-    homesick symlink jedahan/dotfiles
+    homeshick --force clone jedahan/dotfiles
