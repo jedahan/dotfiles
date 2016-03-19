@@ -85,26 +85,11 @@ alias h='help'
   }
 }
 
-# remote pbcopy and pbpaste!
-for command in pb{copy,paste}; do
-  (( ! $+commands[$command] )) && {
-    function $command {
-      ssh `echo $SSH_CLIENT | awk '{print $1}'` $command;
-    }
-  }
-done
-
-# remote and local notify
+# cli notifications
 (( ! $+commands[notify] )) && {
-  if [ -z ${SSH_CLIENT+x} ]; then
-    function notify {
-      osascript -e "display notification \"$2\" with title \"$1\""
-    }
-  else
-    function notify {
-      ssh `echo $SSH_CLIENT | awk '{print $1}'` osascript -e "display notification $2 with title $1"
-    }
-  fi
+  function notify {
+    osascript -e "display notification \"$2\" with title \"$1\""
+  }
 }
 
 # shorthand for watching twitch on mpv
@@ -120,6 +105,17 @@ done
     printf "\e]1337;SetBadgeFormat=%s\a" \
       $(echo -n "$@" | base64)
   }
+}
+
+# remote pbcopy, pbpaste, notify
+test -z ${SSH_CLIENT} && {
+  for command in pb{copy,paste} notify; do
+    (( ! $+commands[$command] )) && {
+      function $command {
+        ssh `echo $SSH_CLIENT | awk '{print $1}'` $command;
+      }
+    }
+  done
 }
 
 test -f ~/.zshrc.local && source $_
