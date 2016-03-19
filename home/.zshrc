@@ -1,5 +1,4 @@
 bindkey -e
-source ~/.zshenv
 source ~/.zplug/init.zsh || {
   git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && \
   source ~/.zplug/init.zsh
@@ -31,7 +30,6 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt interactivecomments
 
-clear && test -f ~/todo.md && c $_ # show todo on new shell
 function t { (( $# )) && echo $* >> ~/todo.md || c ~/todo.md } # t: add or display todo items
 
 function x { exit }
@@ -130,3 +128,4 @@ alias h='help'
 }
 
 test -f ~/.zshrc.local && source $_
+clear && test -f ~/todo.md && c $_ # show todo on new shell
