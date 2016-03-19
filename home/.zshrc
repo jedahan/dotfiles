@@ -86,7 +86,7 @@ alias h='help'
 }
 
 # cli notifications
-(( ! $+commands[notify] )) && {
+(( ! $+commands[notify] )) && (( $+commands[osascript] )) && {
   function notify {
     osascript -e "display notification \"$2\" with title \"$1\""
   }
