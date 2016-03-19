@@ -31,6 +31,9 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt interactivecomments
 
+clear && test -f ~/todo.md && c $_ # show todo on new shell
+function t { (( $# )) && echo $* >> ~/todo.md || c ~/todo.md } # t: add or display todo items
+
 function x { exit }
 function s { sift --git --group $@ }
 function o { open "${@:-'.'}" }
@@ -131,5 +134,3 @@ alias h='help'
 }
 
 test -f ~/.zshrc.local && source $_
-clear && test -f ~/todo.md && c $_
-function t { (( $# )) && echo $* >> ~/todo.md || c ~/todo.md }
