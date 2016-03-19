@@ -108,7 +108,7 @@ alias h='help'
 }
 
 # remote pbcopy, pbpaste, notify
-test -z ${SSH_CLIENT} && {
+test ${SSH_CLIENT} && {
   for command in pb{copy,paste} notify; do
     (( ! $+commands[$command] )) && {
       function $command {
