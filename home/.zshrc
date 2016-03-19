@@ -85,19 +85,14 @@ alias h='help'
   }
 }
 
-# remote pbcopy for linux machines!
-(( ! $+commands[pbcopy] )) && {
-  function pbcopy {
-    ssh `echo $SSH_CLIENT | awk '{print $1}'` pbcopy;
+# remote pbcopy and pbpaste!
+for command in pb{copy,paste}; do
+  (( ! $+commands[$command] )) && {
+    function $command {
+      ssh `echo $SSH_CLIENT | awk '{print $1}'` $command;
+    }
   }
-}
-
-# remote pbpaste!
-(( ! $+commands[pbpaste] )) && {
-  function pbpaste {
-    ssh `echo $SSH_CLIENT | awk '{print $1}'` pbpaste;
-  }
-}
+done
 
 # remote and local notify
 (( ! $+commands[notify] )) && {
