@@ -112,7 +112,7 @@ test ${SSH_CLIENT} && {
   for command in pb{copy,paste} notify; do
     (( ! $+commands[$command] )) && {
       function $command {
-        ssh `echo $SSH_CLIENT | awk '{print $1}'` $command "$@";
+        ssh `echo $SSH_CLIENT | awk '{print $1}'` "$command \"$@\"";
       }
     }
   done
