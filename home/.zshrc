@@ -81,7 +81,7 @@ alias h='help'
   # easy to kill
   function fkill {
     pid=$(ps -ef | sed 1d | fzf -m -e | awk '{print $2}')
-    test -z "$pid" && kill -${1:-9} $pid
+    test $pid && kill -${1:-9} $_
   }
 }
 
