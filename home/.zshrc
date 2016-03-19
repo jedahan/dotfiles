@@ -68,7 +68,7 @@ alias h='help'
 # fzf-enhanced functions
 (( $+commands[fzf] )) && {
   # gl - git commit browser
-  alias gl >/dev/null && unalias gl
+  (( $+aliases[gl] )) && unalias gl
   function gl {
     git log --graph --color=always \
         --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
