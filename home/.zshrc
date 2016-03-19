@@ -121,7 +121,7 @@ alias h='help'
   }
 }
 
-# iterm3 supports badges, background notes
+# iterm3 supports badges which is a note in the background
 [[ $TERM_PROGRAM = iTerm.app ]] && {
   function badge {
     printf "\e]1337;SetBadgeFormat=%s\a" \
