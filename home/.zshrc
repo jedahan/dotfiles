@@ -95,7 +95,7 @@ alias h='help'
 # shorthand for watching twitch on mpv
 (( $+commands[mpv] )) && {
   function twitch {
-    mpv http://twitch.tv/$@
+    livestreamer --player-passthrough hls --player mpv twitch.tv/$@ source
   }
 }
 
