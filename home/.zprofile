@@ -3,17 +3,23 @@ export LC_ALL="en_US.UTF-8"
 export EDITOR=nvim
 export VISUAL=nvim
 
-export GOPATH=$HOME/.go
-export PATH=$GOPATH/bin:$PATH
+(( $+commands[go] )) && {
+  export GOPATH=$HOME/.go
+  export PATH=$GOPATH/bin:$PATH
+}
 
-export GEM_HOME="$HOME/.gems"
-export GEM_PATH=$GEM_HOME
-export PATH=$GEM_PATH/bin:$PATH
+(( $+commands[gem] )) && {
+  export GEM_HOME="$HOME/.gems"
+  export GEM_PATH=$GEM_HOME
+  export PATH=$GEM_PATH/bin:$PATH
+}
 
-export HOMEBREW_PREFIX="$HOME/.homebrew"
-export HOMEBREW_CASK_OPTS="--binarydir=$HOMEBREW_PREFIX/bin"
-export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
-export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+(( $+commands[brew] )) && {
+  export HOMEBREW_PREFIX="$HOME/.homebrew"
+  export HOMEBREW_CASK_OPTS="--binarydir=$HOMEBREW_PREFIX/bin"
+  export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
+  export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+}
 
 # Colored manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'      # Begins blinking.
