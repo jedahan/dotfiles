@@ -1,6 +1,6 @@
 bindkey -e
 source ~/.zplug/init.zsh || {
-  git clone https://github.com/b4b4r07/zplug2.git ~/.zplug && \
+  git clone -b v2 --single-branch https://github.com/b4b4r07/zplug.git ~/.zplug && \
   source ~/.zplug/init.zsh
 }
 
