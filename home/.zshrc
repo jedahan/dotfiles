@@ -1,8 +1,7 @@
 bindkey -e
-source ~/.zplug/init.zsh || {
-  git clone -b v2 --single-branch https://github.com/b4b4r07/zplug.git ~/.zplug && \
-  source ~/.zplug/init.zsh
-}
+
+test -f ~/.zplug/init.zsh || git clone -b v2 --single-branch https://github.com/b4b4r07/zplug.git ~/.zplug
+source ~/.zplug/init.zsh
 
 zplug "rimraf/k"
 zplug "mafredri/zsh-async"
@@ -13,7 +12,7 @@ zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf
+zplug 'junegunn/fzf', as:command, use:'bin/fzf', rename-to:'fzf', if:'(( $+commands[go] ))'
 zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
 zplug "zsh-users/zsh-autosuggestions"
