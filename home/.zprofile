@@ -9,9 +9,9 @@ export VISUAL=nvim
 }
 
 (( $+commands[gem] )) && {
-  export GEM_HOME="$HOME/.gems"
-  export GEM_PATH=$GEM_HOME
-  export PATH=$GEM_PATH/bin:$PATH
+  export GEM_HOME=$HOME/.gems
+  export PATH=$PATH:$GEM_HOME/bin
+  export GEM_PATH=$(gem environment gempath):$GEM_HOME
 }
 
 (( $+commands[brew] )) && {
