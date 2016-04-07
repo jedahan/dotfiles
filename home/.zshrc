@@ -39,6 +39,7 @@ function v { nvim $@ }
 function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
+function gcA { git commit --amend -C HEAD }
 
 function help { man $@ }
 alias h='help'
