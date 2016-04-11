@@ -1,12 +1,18 @@
 bindkey -e
 
+setopt autocd
+setopt autopushd
+setopt pushd_ignore_dups
+setopt pushd_to_home
+setopt interactivecomments
+
 test -f ~/.zplug/init.zsh || git clone -b v2 --single-branch https://github.com/b4b4r07/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
 zplug "rimraf/k"
 zplug "mafredri/zsh-async"
 zplug "sindresorhus/pure"
-zplug "djui/alias-tips"
+zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '"
 zplug "andsens/homeshick", use:"homeshick.sh"
 zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "joshuarubin/zsh-homebrew"
@@ -19,8 +25,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
 
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
-export EMOJI_CLI_KEYBIND='^ '
 zplug load
 
 setopt autocd
