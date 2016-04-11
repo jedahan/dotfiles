@@ -101,12 +101,9 @@ alias h='help'
   }
 }
 
-# iterm3 supports badges which is a note in the background
+# iterm3 supports shell integration - like right click scp!
 [[ $TERM_PROGRAM = iTerm.app ]] && {
-  function badge {
-    printf "\e]1337;SetBadgeFormat=%s\a" \
-      $(echo -n "$@" | base64)
-  }
+  test -f ~/.iterm2_shell_integration.zsh && source $_
 }
 
 # remote pbcopy, pbpaste, notify
