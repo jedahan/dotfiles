@@ -39,8 +39,8 @@ function _ { sudo $@ }
 function , { clear && k }
 function gcA { git commit --amend -C HEAD }
 
-alias curl='noglob curl'
-alias http='noglob http'
+(( $+commands[curl] )) && alias curl='noglob curl'
+(( $+commands[http] )) && alias http='noglob http'
 
 function help { man $@ }
 alias h='help'
