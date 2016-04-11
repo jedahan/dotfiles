@@ -29,7 +29,7 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt interactivecomments
 
-function t { (( $# )) && echo -E - "$*" >> ~/todo.md || c ~/todo.md } # t: add or display todo items
+function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } # t: add or display todo items
 
 function x { exit }
 function s { sift --git --group $@ }
