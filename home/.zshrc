@@ -114,4 +114,4 @@ test ${SSH_CLIENT} && {
 }
 
 test -f ~/.zshrc.local && source $_
-clear && test -f ~/todo.md && c $_ # show todo on new shell
+(( $+commands[t] )) && t # show todo on new shell
