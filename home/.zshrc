@@ -41,26 +41,28 @@ function _ { sudo $@ }
 function , { clear && k }
 function gcA { git commit --amend -C HEAD }
 
+alias curl='noglob curl'
+alias http='noglob http'
+
 function help { man $@ }
 alias h='help'
 
 # upgrade everything
 (( $+commands[brew] )) && {
   function up {
-    brew update
-    brew upgrade
+    brew update && \
+    brew upgrade && \
     () { # brew upgrade --head --weekly
       local last_upgrade=$(brew --prefix)/.last-head-upgrade
-      [[ -f ${last_upgrade}(.mh+168) ]] && {
+      test -f ${last_upgrade}(.mh+168) && {
         brew info --json=v1 --installed \
-        | jq 'map(select(.installed[0].version == "HEAD") | .name)' \
-        | sift '"(.*?)"' --replace='$1' \
+        | jq 'map(select(.installed[0].version == "HEAD") | .name)[]' \
         | xargs brew reinstall
         touch $last_upgrade
       }
     }
-    brew cleanup
-    brew cask cleanup
+    brew cleanup && \
+    brew cask cleanup && \
     brew doctor
   }
 }
