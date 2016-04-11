@@ -29,6 +29,7 @@ zplug load
 
 function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } # t: add or display todo items
 
+function h help { man $@ }
 function x { exit }
 function s { sift --git --group $@ }
 function o { open "${@:-'.'}" }
@@ -41,9 +42,6 @@ function gcA { git commit --amend -C HEAD }
 
 (( $+commands[curl] )) && alias curl='noglob curl'
 (( $+commands[http] )) && alias http='noglob http'
-
-function help { man $@ }
-alias h='help'
 
 # upgrade everything
 (( $+commands[brew] )) && {
