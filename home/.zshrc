@@ -27,7 +27,7 @@ zplug "zsh-users/zsh-syntax-highlighting"
 
 zplug load
 
-function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } # t: add or display todo items
+function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } } # t: add or display todo items
 
 function h help { man $@ }
 function x { exit }
