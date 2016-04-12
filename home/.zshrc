@@ -19,8 +19,8 @@ zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
 zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
 zplug 'junegunn/fzf', as:command, use:'bin/fzf', rename-to:'fzf', if:'(( $+commands[go] ))'
-zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-zplug "junegunn/fzf", use:shell/key-bindings.zsh, nice:10
+zplug "junegunn/fzf", as:command, use:'bin/fzf-tmux', if:'(( $+commands[fzf] ))'
+zplug "junegunn/fzf", use:'shell/key-bindings.zsh', if:'(( $+commands[fzf] ))'
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
