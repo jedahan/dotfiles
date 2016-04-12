@@ -22,10 +22,14 @@ zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf, use:"*${$(uname)
 zplug "junegunn/fzf", as:command, use:'bin/fzf-tmux', if:'(( $+commands[fzf] ))'
 zplug "junegunn/fzf", use:'shell/key-bindings.zsh', if:'(( $+commands[fzf] ))'
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-syntax-highlighting"
+# 25ms for all the above plugins
+zplug "zsh-users/zsh-syntax-highlighting" # 40ms? # load before substring search
+zplug "zsh-users/zsh-history-substring-search" # 30ms?
+zmodload zsh/terminfo # for substring search
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
 
-zplug load
+zplug load # 80ms alone!
 
 function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } } # t: add or display todo items
 
