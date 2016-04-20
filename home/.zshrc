@@ -10,8 +10,7 @@ test -f ~/.zplug/init.zsh || git clone -b v2 --single-branch https://github.com/
 source ~/.zplug/init.zsh
 
 zplug "rimraf/k"
-zplug "mafredri/zsh-async"
-zplug "sindresorhus/pure"
+zplug "sindresorhus/pure", use:"{async,pure}.zsh"
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '"
 zplug "andsens/homeshick", use:"homeshick.sh"
 zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
