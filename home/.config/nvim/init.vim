@@ -7,6 +7,8 @@ set undoreload=10000                     " number of lines to save for
 " WHITESPACE
 set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
 set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
+autocmd FileType php setlocal tabstop=4
+autocmd FileType php setlocal shiftwidth=4
 
 " Install vim-plug as a plugin manager, if it isn't already installed
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
