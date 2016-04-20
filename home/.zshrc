@@ -15,11 +15,11 @@ zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplug "andsens/homeshick", use:"homeshick.sh"
 zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
 zplug "joshuarubin/zsh-homebrew"
-zplug "sorin-ionescu/prezto", use:modules/git/alias.zsh
-zplug "sorin-ionescu/prezto", use:modules/history/init.zsh
-zplug 'junegunn/fzf-bin', as:command, from:gh-r, rename-to:fzf, use:"*${$(uname):l}*amd64*"
-zplug "junegunn/fzf", as:command, use:'bin/fzf-tmux', if:'(( $+commands[fzf] ))'
-zplug "junegunn/fzf", use:'shell/key-bindings.zsh', if:'(( $+commands[fzf] ))'
+zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
+zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"
+zplug 'junegunn/fzf-bin', as:command, from:"gh-r", rename-to:"fzf", use:"*${$(uname):l}*amd64*"
+zplug "junegunn/fzf", as:command, use:"bin/fzf-tmux", if:"(( $+commands[fzf] ))"
+zplug "junegunn/fzf", use:'shell/key-bindings.zsh', if:"(( $+commands[fzf] ))"
 zplug "zsh-users/zsh-autosuggestions"
 # 25ms for all the above plugins
 zplug "zsh-users/zsh-syntax-highlighting" # 40ms? # load before substring search
