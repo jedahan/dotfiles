@@ -14,6 +14,7 @@ export VISUAL=nvim
 }
 
 (( $+commands[brew] )) && {
+  export HOMEBREW_NO_ANALYTICS=1
   export HOMEBREW_PREFIX="$HOME/.homebrew"
   export HOMEBREW_CASK_OPTS="--binarydir=$HOMEBREW_PREFIX/bin"
   export PATH="$HOMEBREW_PREFIX/sbin:$PATH"
