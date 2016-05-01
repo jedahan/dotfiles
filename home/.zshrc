@@ -55,6 +55,7 @@ function gcA { git commit --amend -C HEAD }
     brew upgrade && \
     () { # brew upgrade --head --weekly
       local last_upgrade=$(brew --prefix)/.last-head-upgrade
+      test -f $last_upgrade || touch $_
       test -f ${last_upgrade}(.mh+168) && {
         brew info --json=v1 --installed \
         | jq 'map(select(.installed[0].version == "HEAD") | .name)[]' \
