@@ -6,7 +6,7 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt interactivecomments
 
-test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/b4b4r07/zplug.git ~/.zplug
+test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
 zplug "rimraf/k"
