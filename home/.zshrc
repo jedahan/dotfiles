@@ -54,14 +54,14 @@ function gcA { git commit --amend -C HEAD }
     brew update && \
     brew upgrade && \
     () { # brew upgrade --head --weekly
-      local last_upgrade=$(brew --prefix)/.last-head-upgrade
-      test -f $last_upgrade || touch $_
-      test -f ${last_upgrade}(.mh+168) && {
-        brew info --json=v1 --installed \
-        | jq 'map(select(.installed[0].version == "HEAD") | .name)[]' \
-        | xargs brew reinstall
-        touch $last_upgrade
-      }
+      last_week=`date -v -7d +%s`
+      for pkg in `brew ls`; do
+        install_date=`brew info $pkg | sift "source on ([\-\d+]+)" --replace '$1'`
+        if (( $install_date )); then
+          install_date=`date -j -f %Y-%m-%d $install_date +%s`
+          (( $last_week > $install_date )) && brew reinstall $pkg
+        fi
+      done
     }
     brew cleanup && \
     brew cask cleanup && \
