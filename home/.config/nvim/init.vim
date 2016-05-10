@@ -19,6 +19,7 @@ endif
 
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'fatih/vim-go'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
   Plug 'junegunn/fzf.vim' " use to search for files, on search in files
   " Syntax highlighting
