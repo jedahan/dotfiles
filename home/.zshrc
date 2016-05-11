@@ -9,6 +9,7 @@ setopt interactivecomments
 test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
+zplugs=()
 zplug "rimraf/k"
 zplug "sindresorhus/pure", use:"{async,pure}.zsh"
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '"
