@@ -98,7 +98,7 @@ function up {
 }
 
 # shorthand for watching twitch on mpv
-(( $+commands[mpv] )) && twitch() { livestreamer --player-passthrough hls --player mpv twitch.tv/$@ source }
+(( $+commands[livestreamer] )) && twitch() { livestreamer twitch.tv/$@ best }
 
 # remote pbcopy, pbpaste, notify
 test ${SSH_CLIENT} && {

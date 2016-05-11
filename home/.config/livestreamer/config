@@ -1,0 +1,2 @@
+player-passthrough=hls
+player=mpv --cache 8192
