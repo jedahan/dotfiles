@@ -104,11 +104,6 @@ function up {
   }
 }
 
-# iterm3 supports shell integration - like right click scp!
-[[ $TERM_PROGRAM = iTerm.app ]] && {
-  test -f ~/.iterm2_shell_integration.zsh && source $_
-}
-
 # remote pbcopy, pbpaste, notify
 test ${SSH_CLIENT} && {
   for command in pb{copy,paste} notify; do
@@ -120,5 +115,6 @@ test ${SSH_CLIENT} && {
   done
 }
 
+[[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 test -f ~/.zshrc.local && source $_
 (( $+commands[t] )) && t # show todo on new shell
