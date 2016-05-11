@@ -49,8 +49,10 @@ function gcA { git commit --amend -C HEAD }
 (( $+commands[http] )) && alias http='noglob http'
 
 # upgrade everything
-(( $+commands[brew] )) && {
-  function up {
+function up {
+  (( $+commands[homeshick] )) && homeshick pull
+  (( $+commands[zplug] )) && zplug update
+  (( $+commands[brew] )) && {
     brew update && \
     brew upgrade && \
     () { # brew upgrade --head --weekly
