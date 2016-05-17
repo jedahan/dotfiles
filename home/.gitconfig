@@ -19,3 +19,6 @@
   autosetuprebase = always
 [rebase]
   autostash = true
+[github]
+  username = jdehan
+  oauth-token = 3eec47759671da73c77a70bef1d03af0ca54de68

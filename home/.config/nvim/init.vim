@@ -19,7 +19,9 @@ endif
 
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'fatih/vim-go'
+  Plug 'shougo/deoplete.nvim'
+  Plug 'Shougo/vimproc', { 'do': 'make' }
+  Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
   Plug 'junegunn/fzf.vim' " use to search for files, on search in files
   " Syntax highlighting
@@ -27,6 +29,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } " coffee-script
   Plug 'ekalinin/Dockerfile.vim'                       " Dockerfile
   Plug 'tikhomirov/vim-glsl'                           " opengl shader language
+  Plug 'fatih/vim-go'
   Plug 'plasticboy/vim-markdown'                       " markdown
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
@@ -37,16 +40,16 @@ call plug#begin('~/.config/nvim/plugged')
   " Other
   Plug 'vim-scripts/a.vim'
   Plug 'joonty/vdebug'
-  Plug 'sotte/presenting.vim'
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
-  Plug 'urthbound/hound.vim'
   Plug 'scrooloose/nerdtree'               " file browser sidebar
   Plug 'Xuyuanp/nerdtree-git-plugin'       " ...with icons for git stuff
   Plug 'terryma/vim-multiple-cursors'      " like sublime/atom command-D
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
-  Plug 'spf13/PIV'
+  Plug 'majutsushi/tagbar'
+  " Php
+  Plug 'm2mdas/phpcomplete-extended'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
@@ -63,6 +66,7 @@ syntax on
 set background=dark
 colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#formatter = 'rodeoicons'
 let g:airline#extensions#tabline#enabled = 1
 
 " fzf!
@@ -104,3 +108,19 @@ let g:syntastic_javascript_checkers = ['standard']
 autocmd bufwritepost *.js silent !standard-format -w %
 set autoread
 au BufReadPost * if getfsize(bufname("%")) > 100*1024 | set syntax= | endif
+
+nmap <F8> :TagbarToggle<CR>
+
+" Override phpdoc highlighting
+function! PhpSyntaxOverride()
+  hi! def link phpDocTags  phpDefine
+  hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'

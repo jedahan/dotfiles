@@ -114,3 +114,5 @@ test ${SSH_CLIENT} && {
 [[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 test -f ~/.zshrc.local && source $_
 (( $+commands[t] )) && t # show todo on new shell
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
