@@ -123,4 +123,13 @@ augroup phpSyntaxOverride
 augroup END
 
 let g:deoplete#enable_at_startup = 1
+"let g:deoplete#delimeters = ['/', '.', '::', ':', '#', '->']
+let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+
+function g:Multiple_cursors_before()
+  let g:deoplete#disable_auto_complete = 1
+endfunction
+function g:Multiple_cursors_after()
+  let g:deoplete#disable_auto_complete = 0
+endfunction
