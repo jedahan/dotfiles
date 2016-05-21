@@ -88,15 +88,13 @@ function up { # upgrade everything
   }
 }
 
-# cli notifications
 (( ! $+commands[notify] && $+commands[osascript] )) && {
-  function notify {
+  function notify { # commandline notifications
     osascript -e "display notification \"$2\" with title \"$1\""
   }
 }
 
-# remote pbcopy, pbpaste, notify
-test ${SSH_CLIENT} && {
+test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   for command in pb{copy,paste} notify; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
@@ -108,5 +106,3 @@ test ${SSH_CLIENT} && {
 [[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 test -f ~/.zshrc.local && source $_
 (( $+commands[t] )) && t # show todo on new shell
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

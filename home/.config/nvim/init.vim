@@ -17,11 +17,17 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall
 endif
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
   Plug 'shougo/deoplete.nvim'
   Plug 'Shougo/vimproc', { 'do': 'make' }
   Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
+  Plug 'fatih/vim-go'
+  Plug 'rust-lang/rust.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
   Plug 'junegunn/fzf.vim' " use to search for files, on search in files
   " Syntax highlighting
@@ -50,6 +56,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'majutsushi/tagbar'
   " Php
   Plug 'm2mdas/phpcomplete-extended'
+  Plug 'racer-rust/vim-racer'
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
@@ -123,7 +130,6 @@ augroup phpSyntaxOverride
 augroup END
 
 let g:deoplete#enable_at_startup = 1
-"let g:deoplete#delimeters = ['/', '.', '::', ':', '#', '->']
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 
@@ -133,3 +139,13 @@ endfunction
 function g:Multiple_cursors_after()
   let g:deoplete#disable_auto_complete = 0
 endfunction
+
+let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
+let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
+
+let g:deoplete#enable_at_startup = 1
+
+" deoplete tab-complete
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" ,<Tab> for regular tab
+inoremap <Leader><Tab> <Space><Space>
