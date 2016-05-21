@@ -31,6 +31,8 @@ zmodload zsh/terminfo && [[ $(uname) == Darwin ]] && {
 
 zplug load
 
+(( $+commands[livestreamer] )) && function twitch { livestreamer twitch.tv/$@ best }
+function n { (($#)) && echo alias $1="'""$(fc -n1 -1)""'" >> ~/.zshrc && exec zsh } # n: create an alias
 function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } } # t: add or display todo items
 
 function h help { man $@ }
@@ -47,8 +49,7 @@ function gcA { git commit --amend -C HEAD }
 (( $+commands[curl] )) && alias curl='noglob curl'
 (( $+commands[http] )) && alias http='noglob http'
 
-# upgrade everything
-function up {
+function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
   (( $+commands[zplug] )) && zplug update
   (( $+commands[brew] )) && {
@@ -70,11 +71,9 @@ function up {
   }
 }
 
-# fzf-enhanced functions
 (( $+commands[fzf] )) && {
-  # gl - git commit browser
   (( $+aliases[gl] )) && unalias gl
-  function gl {
+  function gl { # gl: git commit browser
     git log --graph --color=always \
         --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
     fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
@@ -83,30 +82,25 @@ function up {
                   xargs -I % sh -c 'git show --color=always % | less -R'"
   }
 
-  # easy to kill
-  function fkill {
+  function fkill { # fzf-kill: interactive kill
     pid=$(ps -ef | sed 1d | fzf -m -e | awk '{print $2}')
     test $pid && kill -${1:-9} $_
   }
 }
 
 # cli notifications
-(( ! $+commands[notify] )) && (( $+commands[osascript] )) && {
+(( ! $+commands[notify] && $+commands[osascript] )) && {
   function notify {
     osascript -e "display notification \"$2\" with title \"$1\""
   }
 }
 
-# shorthand for watching twitch on mpv
-(( $+commands[livestreamer] )) && twitch() { livestreamer twitch.tv/$@ best }
-
 # remote pbcopy, pbpaste, notify
 test ${SSH_CLIENT} && {
   for command in pb{copy,paste} notify; do
-    (( ! $+commands[$command] )) && {
-      function $command {
-        ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
-      }
+    (( $+commands[$command] )) && unfunction $command
+    function $command {
+      ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
     }
   done
 }
