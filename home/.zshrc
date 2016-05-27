@@ -103,6 +103,9 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   done
 }
 
+function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
+
 [[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 test -f ~/.zshrc.local && source $_
-(( $+commands[t] )) && t # show todo on new shell
+(( $+functions[badge] )) && badge $(t)
+(( $+functions[t] )) && t # show todo on new shell
