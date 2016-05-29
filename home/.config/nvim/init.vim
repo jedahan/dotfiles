@@ -24,8 +24,8 @@ endfunction
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
   Plug 'shougo/deoplete.nvim'
-  Plug 'Shougo/vimproc', { 'do': 'make' }
-  Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
+  Plug 'shougo/vimproc', { 'do': 'make' }
+"  Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   Plug 'fatih/vim-go'
   Plug 'rust-lang/rust.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
@@ -73,11 +73,11 @@ syntax on
 set background=dark
 colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#formatter = 'rodeoicons'
+"let g:airline#extensions#tabline#formatter = 'rodeoicons'
 let g:airline#extensions#tabline#enabled = 1
 
 " fzf!
-nnoremap <silent> <leader>o :FZF<CR>
+nnoremap <silent> <leader><space> :FZF<CR>
 
 " buffers
 nnoremap <C-h> :bprevious<CR>
