@@ -106,8 +106,6 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
 
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 
-(( $+commands[brew] )) && brew command command-not-found-init > /dev/null && eval "$(brew command-not-found-init)"
-
 [[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 test -f ~/.zshrc.local && source $_
 (( $+functions[t] )) && t # show todo on new shell
