@@ -11,6 +11,7 @@ source ~/.zplug/init.zsh
 
 zplugs=()
 zplug "rimraf/k"
+zplug "psprint/zsh-morpho", use:"zsh-morpho.plugin.zsh"
 zplug "sindresorhus/pure", use:"{async,pure}.zsh"
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '"
 zplug "andsens/homeshick", use:"homeshick.sh"
