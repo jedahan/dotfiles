@@ -6,6 +6,8 @@ setopt pushd_ignore_dups
 setopt pushd_to_home
 setopt interactivecomments
 
+autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
+
 test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
@@ -46,9 +48,6 @@ function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
 function gcA { git commit --amend -C HEAD }
-
-(( $+commands[curl] )) && alias curl='noglob curl'
-(( $+commands[http] )) && alias http='noglob http'
 
 function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
