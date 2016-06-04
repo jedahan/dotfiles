@@ -16,7 +16,6 @@ zplug "rimraf/k" # replacement for `ls` with colors and other features
 zplug "sindresorhus/pure", use:"{async,pure}.zsh" # simple fast prompt theme
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # helps remember aliases
 zplug "andsens/homeshick", use:"homeshick.sh" # manage dotfiles with the `homesick` command
-zplug "ericfreese/zsh-cwd-history"
 zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"
