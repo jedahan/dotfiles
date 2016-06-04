@@ -12,12 +12,10 @@ test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/
 source ~/.zplug/init.zsh
 
 zplugs=()
-zplug "rimraf/k"
-zplug "psprint/zsh-morpho", use:"zsh-morpho.plugin.zsh"
-zplug "sindresorhus/pure", use:"{async,pure}.zsh"
-zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '"
-zplug "andsens/homeshick", use:"homeshick.sh"
-zplug "b4b4r07/enhancd", use:"zsh/enhancd.zsh"
+zplug "rimraf/k" # replacement for `ls` with colors and other features
+zplug "sindresorhus/pure", use:"{async,pure}.zsh" # simple fast prompt theme
+zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # helps remember aliases
+zplug "andsens/homeshick", use:"homeshick.sh" # manage dotfiles with the `homesick` command
 zplug "ericfreese/zsh-cwd-history"
 zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
