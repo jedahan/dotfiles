@@ -14,18 +14,19 @@ autocmd FileType php setlocal shiftwidth=4
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+  autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
 endif
 
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
 
+let isEtsy = system('hostname') =~ 'etsy.com'
+
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
   Plug 'shougo/deoplete.nvim'
   Plug 'shougo/vimproc', { 'do': 'make' }
-"  Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   Plug 'fatih/vim-go'
   Plug 'rust-lang/rust.vim'
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
@@ -37,6 +38,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tikhomirov/vim-glsl'                           " opengl shader language
   Plug 'fatih/vim-go'
   Plug 'plasticboy/vim-markdown'                       " markdown
+  Plug 'm2mdas/phpcomplete-extended'
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
@@ -47,20 +49,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-scripts/a.vim'
   Plug 'joonty/vdebug'
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
-  Plug 'scrooloose/nerdtree'               " file browser sidebar
-  Plug 'Xuyuanp/nerdtree-git-plugin'       " ...with icons for git stuff
   Plug 'terryma/vim-multiple-cursors'      " like sublime/atom command-D
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
   Plug 'majutsushi/tagbar'
-  " Php
-  Plug 'm2mdas/phpcomplete-extended'
   Plug 'racer-rust/vim-racer'
+  if isEtsy
+    Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
+  endif
 call plug#end()
 
 " SYNTAX HIGHLIGHTING
-let g:syntastic_check_on_open = 0
 let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
@@ -73,7 +73,6 @@ syntax on
 set background=dark
 colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#formatter = 'rodeoicons'
 let g:airline#extensions#tabline#enabled = 1
 
 " fzf!
@@ -82,13 +81,6 @@ nnoremap <silent> <leader><space> :FZF<CR>
 " buffers
 nnoremap <C-h> :bprevious<CR>
 nnoremap <C-l> :bnext<CR>
-
-" hound
-let g:hound_base_url = "hound.etsycorp.com"
-
-" TREE
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " fzf.vim bindings
 map <C-a> :Ag 
@@ -113,8 +105,6 @@ nmap <silent> <c-w> :bdelete<CR>
 
 let g:syntastic_javascript_checkers = ['standard']
 autocmd bufwritepost *.js silent !standard-format -w %
-set autoread
-au BufReadPost * if getfsize(bufname("%")) > 100*1024 | set syntax= | endif
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -143,9 +133,10 @@ endfunction
 let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
 let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
 
-let g:deoplete#enable_at_startup = 1
-
-" deoplete tab-complete
+" use <Tab> for deoplete, \<Tab> for doublespace
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-" ,<Tab> for regular tab
 inoremap <Leader><Tab> <Space><Space>
+
+if isEtsy
+  let g:airline#extensions#tabline#formatter = 'rodeoicons'
+endif
