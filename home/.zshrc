@@ -45,7 +45,6 @@ function v { nvim $@ }
 function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
-function gcA { git commit --amend -C HEAD }
 
 function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
