@@ -25,5 +25,7 @@ export HISTSIZE=$((2 ** 20))
   export PATH=$PATH:$GEM_HOME/bin
 }
 
-(( $+commands[brew] )) && export HOMEBREW_NO_ANALYTICS=1
-
+(( $+commands[brew] )) && {
+  export HOMEBREW_NO_ANALYTICS=1
+  export PATH="$(brew --prefix)/sbin:$PATH"
+}
