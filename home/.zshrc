@@ -106,3 +106,4 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
 cd ~/development/*web >/dev/null
 (( $+commands[dbaliases] )) && source $(dbaliases)
 (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
+(( $+commands[try] )) && try() { [[ $1 =~ "ROD-[0-9]+" ]] && { try -P --extra-param jira=$1 } || /usr/local/bin/try $* }
