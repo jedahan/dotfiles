@@ -4,6 +4,9 @@ set undodir=$HOME/.local/share/nvim/undo " where to save undo histories
 set undolevels=1000                      " how many undos
 set undoreload=10000                     " number of lines to save for
 
+" REDO
+noremap Q @q
+
 " WHITESPACE
 set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
 set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
