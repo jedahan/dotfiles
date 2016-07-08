@@ -49,7 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-scripts/a.vim'
   Plug 'joonty/vdebug'
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
-  Plug 'terryma/vim-multiple-cursors'      " like sublime/atom command-D
   Plug 'mustache/vim-mustache-handlebars'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
@@ -75,14 +74,14 @@ colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
+" buffer navigation
+nnoremap <C-h> :bprevious!<CR>
+nnoremap <C-l> :bnext!<CR>
+nmap <silent> <a-w> :bdelete!<CR>
+nmap <silent> <c-w> :bdelete!<CR>
+
 " fzf!
 nnoremap <silent> <leader><space> :FZF<CR>
-
-" buffers
-nnoremap <C-h> :bprevious<CR>
-nnoremap <C-l> :bnext<CR>
-
-" fzf.vim bindings
 map <C-a> :Ag 
 
 function! s:with_git_root()
@@ -95,47 +94,19 @@ command! -nargs=* SearchGitRoot
 
 map <C-s> :SearchGitRoot 
 
-nmap <silent> <a-k> :wincmd k!<CR>
-nmap <silent> <a-j> :wincmd j!<CR>
-nmap <silent> <a-h> :wincmd h!<CR>
-nmap <silent> <a-l> :wincmd l!<CR>
-
-nmap <silent> <a-w> :bdelete<CR>
-nmap <silent> <c-w> :bdelete<CR>
-
+" javascript
 let g:syntastic_javascript_checkers = ['standard']
 autocmd bufwritepost *.js silent !standard-format -w %
 
-nmap <F8> :TagbarToggle<CR>
-
-" Override phpdoc highlighting
-function! PhpSyntaxOverride()
-  hi! def link phpDocTags  phpDefine
-  hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
+" completion
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 
-function g:Multiple_cursors_before()
-  let g:deoplete#disable_auto_complete = 1
-endfunction
-function g:Multiple_cursors_after()
-  let g:deoplete#disable_auto_complete = 0
-endfunction
-
+" rust
 let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
 let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
-
-" use <Tab> for deoplete, \<Tab> for doublespace
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-inoremap <Leader><Tab> <Space><Space>
 
 if isEtsy
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
