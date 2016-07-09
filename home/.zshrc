@@ -3,7 +3,6 @@ bindkey -e
 setopt autocd
 setopt autopushd
 setopt pushd_ignore_dups
-setopt pushd_to_home
 setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
@@ -105,4 +104,16 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
 cd ~/development/*web >/dev/null
 (( $+commands[dbaliases] )) && source $(dbaliases)
 (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
-(( $+commands[try] )) && try() { [[ $1 =~ "ROD-[0-9]+" ]] && { try -P --extra-param jira=$1 } || /usr/local/bin/try $* }
+
+(( $+commands[try] )) && try() {
+  local arg=$(echo $* | grep -oE 'ROD-[0-9]+')
+  local log=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
+
+  [[ -z $arg$log ]] && { $commands[try] $*; return }
+
+  [[ -n $arg && -n $log && $arg != $log ]] && {
+    echo "mismatch between commit RODEO ticket and command RODEO ticket ($arg != $log)"; return -1
+  }
+
+  try -P --extra-param jira=${arg:-$log}
+}
