@@ -113,4 +113,5 @@ let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
 
 if isEtsy
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
+  let g:phpcomplete_index_composer_command = '/usr/bin/composer'
 endif
