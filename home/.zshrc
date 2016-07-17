@@ -101,7 +101,7 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
 
 [[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
 
-cd ~/development/*web >/dev/null
+[[ -d ~/development/*web ]] && cd $_
 (( $+commands[dbaliases] )) && source $(dbaliases)
 (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
