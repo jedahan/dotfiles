@@ -12,18 +12,18 @@ source ~/.zplug/init.zsh
 
 zplugs=()
 zplug "rimraf/k" # replacement for `ls` with colors and other features
-zplug "sindresorhus/pure", use:"{async,pure}.zsh" # simple fast prompt theme
+zplug "frmendes/geometry"
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # helps remember aliases
 zplug "andsens/homeshick", use:"homeshick.sh" # manage dotfiles with the `homesick` command
-zplug "joshuarubin/zsh-homebrew"
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"
-zplug "junegunn/fzf", use:'shell/key-bindings.zsh', if:"(( $+commands[fz[fy]] ))"
+zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh"
+zplug "junegunn/fzf", use:'shell/key-bindings.zsh'
 zplug "zsh-users/zsh-autosuggestions"
 zplug "psprint/zsh-morpho"
 zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"
 zplug "zsh-users/zsh-history-substring-search"
-zmodload zsh/terminfo && [[ $(uname) == Darwin ]] && {
+[[ $(uname) == Darwin ]] && {
   bindkey "$terminfo[cuu1]" history-substring-search-up
   bindkey "$terminfo[cud1]" history-substring-search-down
 }
