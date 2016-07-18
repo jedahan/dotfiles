@@ -99,9 +99,6 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   done
 }
 
-[[ $TERM_PROGRAM = iTerm.app ]] && test -f ~/.iterm2_shell_integration.zsh && source $_
-
-[[ -d ~/development/*web ]] && cd $_
 (( $+commands[dbaliases] )) && source $(dbaliases)
 (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
@@ -117,3 +114,5 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
 
   try -P --extra-param jira=${arg:-$log}
 }
+
+[[ -d ~/development/Etsyweb ]] && cd $_
