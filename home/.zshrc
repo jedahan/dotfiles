@@ -106,13 +106,9 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   local arg=$(echo $* | grep -oE 'ROD-[0-9]+')
   local log=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
 
-  [[ -z $arg$log ]] && { $commands[try] $*; return }
-
-  [[ -n $arg && -n $log && $arg != $log ]] && {
-    echo "mismatch between commit RODEO ticket and command RODEO ticket ($arg != $log)"; return -1
-  }
-
-  try -P --extra-param jira=${arg:-$log}
+  [[ -n $log && -n $arg ]] && echo "[ERROR] Commit and command ticket found" && return -1
+  [[ -n $log ]] && JIRA_PARAM=" --extra-param jira=$log"
+  $commands[try] $* $JIRA_PARAM
 }
 
 test -d ~/development/Etsyweb || test -d ~/code/rustboy && cd $_
