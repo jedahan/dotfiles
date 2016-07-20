@@ -30,6 +30,7 @@ let isEtsy = system('hostname') =~ 'etsy.com'
 
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'bogado/file-line'
   Plug 'shougo/deoplete.nvim'
   Plug 'shougo/vimproc', { 'do': 'make' }
   Plug 'fatih/vim-go'
