@@ -1,4 +1,6 @@
-" UNDO
+set relativenumber
+set number
+
 set undofile                             " save undo history after file closes
 set undodir=$HOME/.local/share/nvim/undo " where to save undo histories
 set undolevels=1000                      " how many undos
