@@ -115,4 +115,4 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   try -P --extra-param jira=${arg:-$log}
 }
 
-[[ -d ~/development/Etsyweb ]] && cd $_
+test -d ~/development/Etsyweb || test -d ~/code/rustboy && cd $_

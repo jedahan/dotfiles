@@ -28,6 +28,8 @@ let isEtsy = system('hostname') =~ 'etsy.com'
 
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'xolox/vim-misc'
+  Plug 'xolox/vim-easytags'
   Plug 'shougo/deoplete.nvim'
   Plug 'shougo/vimproc', { 'do': 'make' }
   Plug 'fatih/vim-go'
@@ -114,4 +116,13 @@ let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
 if isEtsy
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:phpcomplete_index_composer_command = '/usr/bin/composer'
+
+  let g:easytags_cmd = '/usr/bin/uctags'
+  let g:easytags_async = 1
+  let g:easytags_auto_highlight = 0
+
+  " Auto create project specific tags
+  set cpoptions+=d
+  set tags=./tags
+  let g:easytags_dynamic_files = 2
 endif
