@@ -18,7 +18,7 @@ zplug "andsens/homeshick", use:"homeshick.sh" # manage dotfiles with the `homesi
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"
 zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh"
-zplug "junegunn/fzf", use:'shell/key-bindings.zsh'
+zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "psprint/zsh-morpho"
 zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"
@@ -76,11 +76,6 @@ function up { # upgrade everything
         --bind "ctrl-m:execute:
                   echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
                   xargs -I % sh -c 'git show --color=always % | less -R'"
-  }
-
-  function fkill { # fzf-kill: interactive kill
-    pid=$(ps -ef | sed 1d | fzf -m -e | awk '{print $2}')
-    test $pid && kill -${1:-9} $_
   }
 }
 
