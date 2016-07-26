@@ -1,52 +1,21 @@
-set relativenumber
-set number
-
-set undofile                             " save undo history after file closes
-set undodir=$HOME/.local/share/nvim/undo " where to save undo histories
-set undolevels=1000                      " how many undos
-set undoreload=10000                     " number of lines to save for
-
-" REDO
-noremap Q @q
-
-" WHITESPACE
-set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
-set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
-autocmd FileType php setlocal tabstop=4
-autocmd FileType php setlocal shiftwidth=4
-
-" Install vim-plug as a plugin manager, if it isn't already installed
+" PLUGINS
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
 endif
 
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-
-let isEtsy = system('hostname') =~ 'etsy.com'
-
-" PLUGINS
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'bogado/file-line'
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-easytags'
-  Plug 'shougo/deoplete.nvim'
-  Plug 'shougo/vimproc', { 'do': 'make' }
+  Plug 'scrooloose/syntastic'
+  " Languages
+  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+  Plug 'ekalinin/Dockerfile.vim'
+  Plug 'tikhomirov/vim-glsl'
   Plug 'fatih/vim-go'
-  Plug 'rust-lang/rust.vim'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
-  Plug 'junegunn/fzf.vim' " use to search for files, on search in files
-  " Syntax highlighting
-  Plug 'scrooloose/syntastic'   " show syntax and precompiler errors on the sidebar
-  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' } " coffee-script
-  Plug 'ekalinin/Dockerfile.vim'                       " Dockerfile
-  Plug 'tikhomirov/vim-glsl'                           " opengl shader language
-  Plug 'fatih/vim-go'
-  Plug 'plasticboy/vim-markdown'                       " markdown
+  Plug 'plasticboy/vim-markdown'
+  Plug 'mustache/vim-mustache-handlebars'
   Plug 'm2mdas/phpcomplete-extended'
+  Plug 'rust-lang/rust.vim'
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
@@ -54,26 +23,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'    " more themes for airline
   Plug 'airblade/vim-gitgutter'            " show git information in the gutter
   " Other
-  Plug 'vim-scripts/a.vim'
-  Plug 'joonty/vdebug'
+  Plug 'bogado/file-line'                  " vim file.ext:line
+  Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
+  Plug 'shougo/deoplete.nvim'              " autocompletion
+  Plug 'shougo/vimproc', { 'do': 'make' }    " required for deoplete
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
+  Plug 'junegunn/fzf.vim'                  " use to search for files, on search in files
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
-  Plug 'mustache/vim-mustache-handlebars'
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
-  Plug 'majutsushi/tagbar'
   Plug 'racer-rust/vim-racer'
-  if isEtsy
+  if system('hostname') =~ 'etsy.com'
     Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   endif
 call plug#end()
-
-" SYNTAX HIGHLIGHTING
-let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-
-" FOLDING
-set nofoldenable
-let g:DisableAutoPHPFolding = 1
 
 " COLORS
 syntax on
@@ -82,50 +45,50 @@ colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
-" buffer navigation
+" UNDO / REDO
+set undofile                             " save undo history after file closes
+set undodir=$HOME/.local/share/nvim/undo " where to save undo histories
+set undolevels=1000                      " how many undos
+set undoreload=10000                     " number of lines to save for
+noremap Q @q
+
+" WHITESPACE
+set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
+set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
+autocmd FileType php setlocal tabstop=4
+autocmd FileType php setlocal shiftwidth=4
+
+" BUFFER NAV
 nnoremap <C-h> :bprevious!<CR>
 nnoremap <C-l> :bnext!<CR>
 nmap <silent> <a-w> :bdelete!<CR>
 nmap <silent> <c-w> :bdelete!<CR>
 
-" fzf!
-nnoremap <silent> <leader><space> :FZF<CR>
-map <C-a> :Ag 
+" FUZZY FIND
+nnoremap <silent> <leader><space> :Files<CR>
 
 function! s:with_git_root()
   let root = systemlist('git rev-parse --show-toplevel')[0]
   return v:shell_error ? {} : {'dir': root}
 endfunction
 
-command! -nargs=* SearchGitRoot
-  \ call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
+command! -nargs=* FzfGit call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
+map <C-s> :FzfGit 
 
-map <C-s> :SearchGitRoot 
-
-" javascript
-let g:syntastic_javascript_checkers = ['standard']
-autocmd bufwritepost *.js silent !standard-format -w %
-
-" completion
+" COMPLETION
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 
-" rust
+" RUST
 let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
 let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
 
-if isEtsy
+" ETSY
+if system("hostname") =~ 'etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:phpcomplete_index_composer_command = '/usr/bin/composer'
-
-  let g:easytags_cmd = '/usr/bin/uctags'
-  let g:easytags_async = 1
-  let g:easytags_auto_highlight = 0
-
-  " Auto create project specific tags
-  set cpoptions+=d
-  set tags=./tags
-  let g:easytags_dynamic_files = 2
+  let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
 endif
