@@ -11,24 +11,23 @@ test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/
 source ~/.zplug/init.zsh
 
 zplugs=()
-zplug "rimraf/k" # replacement for `ls` with colors and other features
-zplug "frmendes/geometry"
-zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # helps remember aliases
-zplug "andsens/homeshick", use:"homeshick.sh" # manage dotfiles with the `homesick` command
-zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"
-zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"
-zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh"
-zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "psprint/zsh-morpho"
-zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"
-zplug "zsh-users/zsh-history-substring-search"
+zplug "rimraf/k"                                              # better version of `ls`
+zplug "frmendes/geometry"                                     # clean theme
+zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
+zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
+zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
+zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh" # sensible homebrew shortcuts
+zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"          # fuzzy finder, try ^R, ^T, and kill <tab>
+zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
+zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"        # commandline syntax highlighting
+zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
+zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # help remember aliases
+zplug load
+
 [[ $(uname) == Darwin ]] && {
   bindkey "$terminfo[cuu1]" history-substring-search-up
   bindkey "$terminfo[cud1]" history-substring-search-down
 }
-
-zplug load
 
 function h help { man $@ }
 function x { exit }
