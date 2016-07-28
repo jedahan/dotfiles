@@ -42,7 +42,7 @@ function , { clear && k }
 [[ $TERM_PROGRAM = iTerm.app ]] && function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 (( $+commands[livestreamer] )) && function twitch { livestreamer twitch.tv/$@ best }
 function n { (($#)) && echo alias $1="'""$(fc -n1 -1)""'" >> ~/.zshrc && exec zsh } # n: create an alias
-function t { (( $# )) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
 
 function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
