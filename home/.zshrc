@@ -12,7 +12,6 @@ source ~/.zplug/init.zsh
 
 zplugs=()
 zplug "rimraf/k"                                              # better version of `ls`
-zplug "frmendes/geometry"                                     # clean theme
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
@@ -22,6 +21,7 @@ zplug "zsh-users/zsh-autosuggestions"                         # suggest from his
 zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"        # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
 zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # help remember aliases
+zplug "frmendes/geometry", hook-load: "export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true" # clean theme
 zplug load
 
 [[ $(uname) == Darwin ]] && {
