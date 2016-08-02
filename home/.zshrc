@@ -20,8 +20,11 @@ zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"          # fuzzy finder, tr
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
 zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"        # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
-zplug "djui/alias-tips", hook-load: "export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '" # help remember aliases
-zplug "frmendes/geometry", hook-load: "export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true" # clean theme
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
+zplug "djui/alias-tips"                                       # help remember aliases
+export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
+export PROMPT_GEOMETRY_GIT_TIME=false
+zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
 [[ $(uname) == Darwin ]] && {
