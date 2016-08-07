@@ -10,6 +10,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste
 test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
+export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 zplugs=()
 zplug "rimraf/k"                                              # better version of `ls`
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
