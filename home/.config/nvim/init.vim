@@ -91,4 +91,5 @@ if system("hostname") =~ 'etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:phpcomplete_index_composer_command = '/usr/bin/composer'
   let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
+  let g:syntastic_python_python_exec = 'python3'
 endif
