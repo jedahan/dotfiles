@@ -29,3 +29,5 @@ export HISTSIZE=$((2 ** 20))
   export HOMEBREW_NO_ANALYTICS=1
   export PATH="$(brew --prefix)/sbin:$PATH"
 }
+
+export XDEBUG_CONFIG="idekey=xdebug"

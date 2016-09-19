@@ -6,15 +6,10 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'scrooloose/syntastic'
+  Plug 'neomake/neomake'
+  Plug 'joonty/vdebug'
   " Languages
-  Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-  Plug 'ekalinin/Dockerfile.vim'
-  Plug 'tikhomirov/vim-glsl'
-  Plug 'fatih/vim-go'
   Plug 'plasticboy/vim-markdown'
-  Plug 'mustache/vim-mustache-handlebars'
-  Plug 'm2mdas/phpcomplete-extended'
   Plug 'rust-lang/rust.vim'
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
@@ -37,6 +32,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   endif
 call plug#end()
+
+nnoremap ; :
+nnoremap : ;
 
 " COLORS
 syntax on
@@ -86,10 +84,29 @@ let g:syntastic_cpp_compiler_options = '-std=c++11'
 let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
 let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
 
+" NEOMAKE
+let g:neomake_javascript_enabled_makers = ['eslint']
+autocmd! BufWritePost * Neomake
+
 " ETSY
 if system("hostname") =~ 'etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:phpcomplete_index_composer_command = '/usr/bin/composer'
   let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
   let g:syntastic_python_python_exec = 'python3'
+  let g:vdebug_options = {}
+  let g:vdebug_options["port"] = 9192
+  let g:vdebug_options["host"] = 127.0.0.1
+
+  au BufEnter *.php :call SetPHPCSStandard()
+
+  function! SetPHPCSStandard()
+      let test_std_root = expand($HOME) ."/development/Etsyweb/tests/standards/"
+      let g:neomake_php_phpcs_args_standard = test_std_root ."stable-ruleset.xml"
+
+      if expand("%:p") =~ ".*/Etsyweb/tests/phpunit.*"
+          let g:neomake_php_phpcs_args_standard = test_std_root ."phpunit-ruleset.xml"
+      endif
+  endfunction
+
 endif
