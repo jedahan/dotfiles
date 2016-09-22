@@ -115,4 +115,5 @@ test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
   $commands[try] $* $JIRA_PARAM
 }
 
+test -f ~/development/Etsyweb/bin/dev_proxy && alias p=$_; alias pon='p on'; alias pof='p off'; alias prw='p rw'
 test -d ~/development/Etsyweb || test -d ~/code/rustboy && cd $_
