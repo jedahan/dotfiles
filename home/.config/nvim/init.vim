@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Languages
   Plug 'plasticboy/vim-markdown'
   Plug 'rust-lang/rust.vim'
+  Plug 'sebastianmarkow/deoplete-rust'
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
