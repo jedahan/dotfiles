@@ -53,8 +53,6 @@ noremap Q @q
 " WHITESPACE
 set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
 set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
-autocmd FileType php setlocal tabstop=4
-autocmd FileType php setlocal shiftwidth=4
 
 " BUFFER NAV
 nnoremap <C-h> :bprevious!<CR>
@@ -78,7 +76,6 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 " RUST
 let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
@@ -91,12 +88,12 @@ autocmd! BufWritePost * Neomake
 " ETSY
 if system("hostname") =~ 'etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
-  let g:phpcomplete_index_composer_command = '/usr/bin/composer'
-  let g:syntastic_php_phpcs_args = "--standard=~/development/Etsyweb/tests/standards/stable-ruleset.xml"
-  let g:syntastic_python_python_exec = 'python3'
   let g:vdebug_options = {}
   let g:vdebug_options["port"] = 9192
   let g:vdebug_options["host"] = 127.0.0.1
+
+  autocmd FileType php setlocal tabstop=4
+  autocmd FileType php setlocal shiftwidth=4
 
   au BufEnter *.php :call SetPHPCSStandard()
 
