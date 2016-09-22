@@ -34,9 +34,6 @@ call plug#begin('~/.config/nvim/plugged')
   endif
 call plug#end()
 
-nnoremap ; :
-nnoremap : ;
-
 " COLORS
 syntax on
 set background=dark
@@ -56,10 +53,13 @@ set tabstop=2 shiftwidth=2 expandtab    " tab just inserts 2 spaces
 set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
 
 " BUFFER NAV
-nnoremap <C-h> :bprevious!<CR>
-nnoremap <C-l> :bnext!<CR>
-nmap <silent> <a-w> :bdelete!<CR>
-nmap <silent> <c-w> :bdelete!<CR>
+nnoremap <c-h> :bprevious!<CR>
+nnoremap <c-l> :bnext!<CR>
+nnoremap <silent> <a-w> :bdelete!<CR>
+nnoremap <silent> <c-w> :bdelete!<CR>
+
+nnoremap ; :
+nnoremap : ;
 
 " FUZZY FIND
 nnoremap <silent> <leader><space> :Files<CR>
