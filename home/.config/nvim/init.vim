@@ -108,3 +108,6 @@ if system("hostname") =~ 'etsy.com'
   endfunction
 
 endif
+
+nnoremap ; :
+nnoremap : ;
