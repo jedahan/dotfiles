@@ -80,6 +80,12 @@ function up { # upgrade everything
                   echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
                   xargs -I % sh -c 'git show --color=always % | less -R'"
   }
+
+  __fopen() {
+    fzf-tmux --bind='enter:execute:{}' --preview='head -n$LINES {} | highlight --force -O ansi'
+  }
+
+  bindkey '^O' __fopen
 }
 
 (( ! $+commands[notify] && $+commands[osascript] )) && {
