@@ -1,0 +1,3 @@
+hardstatus string "%{= KW} %H [%`] %{= Kw}|%{-} %-Lw%{= bW}%n%f %t%{-}%+Lw %=%C%a %Y-%M-%d"
+termcapinfo xterm* ti@:te
+maptimeout 0

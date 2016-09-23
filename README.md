@@ -5,6 +5,7 @@
   * [zsh](https://zsh.org)
   * [neovim](https://neovim.io)
   * [advanced-ssh-config](https://github.com/moul/advanced-ssh-config)
+  * [screen](https://gnu.org/software/screen/)
   * [iTerm3](https://iterm2.com/version3.html)
   * [alfred](https://alfredapp.com)
   
