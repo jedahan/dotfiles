@@ -7,7 +7,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'neomake/neomake'
-  Plug 'joonty/vdebug'
+  Plug 'cloudhead/neovim-fuzzy', { 'branch': 'dev' }
   " Languages
   Plug 'plasticboy/vim-markdown'
   Plug 'rust-lang/rust.vim'
@@ -23,8 +23,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
   Plug 'shougo/deoplete.nvim'              " autocompletion
   Plug 'shougo/vimproc', { 'do': 'make' }    " required for deoplete
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " fuzzy finder
-  Plug 'junegunn/fzf.vim'                  " use to search for files, on search in files
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
@@ -62,15 +60,8 @@ nnoremap ; :
 nnoremap : ;
 
 " FUZZY FIND
-nnoremap <silent> <leader><space> :Files<CR>
-
-function! s:with_git_root()
-  let root = systemlist('git rev-parse --show-toplevel')[0]
-  return v:shell_error ? {} : {'dir': root}
-endfunction
-
-command! -nargs=* FzfGit call fzf#vim#ag(<q-args>, extend(s:with_git_root(), g:fzf#vim#default_layout))
-map <C-s> :FzfGit 
+map <silent> <C-o> :FuzzyOpen<CR>
+map <silent> <C-s> :FuzzySearch<CR>
 
 " COMPLETION
 let g:deoplete#enable_at_startup = 1
