@@ -7,7 +7,6 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
-test -f ~/.zplug/init.zsh || git clone --single-branch https://github.com/zplug/zplug.git ~/.zplug
 source ~/.zplug/init.zsh
 
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
@@ -19,7 +18,7 @@ zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history
 zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh" # sensible homebrew shortcuts
 zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"          # fuzzy finder, try ^R, ^T, and kill <tab>
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
-zplug "zsh-users/zsh-syntax-highlighting", lazy:"true"        # commandline syntax highlighting
+zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplug "djui/alias-tips"                                       # help remember aliases
@@ -28,10 +27,8 @@ export PROMPT_GEOMETRY_GIT_TIME=false
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
-[[ $(uname) == Darwin ]] && {
-  bindkey "$terminfo[cuu1]" history-substring-search-up
-  bindkey "$terminfo[cud1]" history-substring-search-down
-}
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
 
 function h help { man $@ }
 function x { exit }
@@ -43,8 +40,8 @@ function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
 
-[[ $TERM_PROGRAM = iTerm.app ]] && function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
-(( $+commands[livestreamer] )) && function twitch { livestreamer twitch.tv/$@ best }
+function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
+function twitch { livestreamer twitch.tv/$@ best }
 function n { (($#)) && echo alias $1="'""$(fc -n1 -1)""'" >> ~/.zshrc && exec zsh } # n: create an alias
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
 
@@ -70,50 +67,31 @@ function up { # upgrade everything
   }
 }
 
-(( $+commands[fzf] )) && {
-  (( $+aliases[gl] )) && unalias gl
-  function gl { # gl: git commit browser
-    git log --graph --color=always \
-        --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --no-sort --reverse --tiebreak=index --toggle-sort=\` \
-        --bind "ctrl-m:execute:
-                  echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
-                  xargs -I % sh -c 'git show --color=always % | less -R'"
-  }
-
-  __fopen() {
-    fzf-tmux --bind='enter:execute:{}' --preview='head -n$LINES {} | highlight --force -O ansi'
-  }
-
-  bindkey '^O' __fopen
+function notify { # commandline notifications
+  osascript -e "display notification \"$2\" with title \"$1\""
 }
 
-(( ! $+commands[notify] && $+commands[osascript] )) && {
-  function notify { # commandline notifications
-    osascript -e "display notification \"$2\" with title \"$1\""
-  }
-}
-
-test ${SSH_CLIENT} && { # remote pbcopy, pbpaste, notify
+[[ -n $SSH_CLIENT ]] && { # remote pbcopy, pbpaste, notify
   for command in pb{copy,paste} notify; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
       ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
     }
   done
+
+  (( $+commands[dbaliases] )) && source $(dbaliases)
+  (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
+
+  (( $+commands[try] )) && try() {
+    local arg=$(echo $* | grep -oE 'ROD-[0-9]+')
+    local log=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
+
+    [[ -n $log && -n $arg ]] && echo "[ERROR] Commit and command ticket found" && return -1
+    [[ -n $log ]] && JIRA_PARAM=" --extra-param jira=$log"
+    $commands[try] $* $JIRA_PARAM
+  }
+
+  alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
 }
 
-(( $+commands[dbaliases] )) && source $(dbaliases)
-(( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
-
-(( $+commands[try] )) && try() {
-  local arg=$(echo $* | grep -oE 'ROD-[0-9]+')
-  local log=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
-
-  [[ -n $log && -n $arg ]] && echo "[ERROR] Commit and command ticket found" && return -1
-  [[ -n $log ]] && JIRA_PARAM=" --extra-param jira=$log"
-  $commands[try] $* $JIRA_PARAM
-}
-
-test -f ~/development/Etsyweb/bin/dev_proxy && alias p=$_; alias pon='p on'; alias pof='p off'; alias prw='p rw'
-test -d ~/development/Etsyweb || test -d ~/code/rustboy && cd $_
+cd ~/development/Etsyweb || cd ~/code/rustboy
