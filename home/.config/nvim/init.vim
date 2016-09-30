@@ -7,7 +7,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'neomake/neomake'
-  Plug 'cloudhead/neovim-fuzzy'
+  Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   " Languages
   Plug 'plasticboy/vim-markdown'
   Plug 'rust-lang/rust.vim'
@@ -61,7 +61,8 @@ nnoremap : ;
 
 " FUZZY FIND
 nnoremap <silent> <C-o> :FuzzyOpen<CR>
-nnoremap <silent> <C-s> :FuzzySearch<CR>
+nnoremap <silent> <C-p> :FuzzyGrep<CR>
+nnoremap <C-s> :FuzzyGrep 
 
 " COMPLETION
 let g:deoplete#enable_at_startup = 1
