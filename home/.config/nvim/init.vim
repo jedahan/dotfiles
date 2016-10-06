@@ -60,8 +60,8 @@ nnoremap ; :
 nnoremap : ;
 
 " FUZZY FIND
-map <silent> <C-o> :FuzzyOpen<CR>
-map <silent> <C-s> :FuzzySearch<CR>
+nnoremap <silent> <C-o> :FuzzyOpen<CR>
+nnoremap <silent> <C-s> :FuzzySearch<CR>
 
 " COMPLETION
 let g:deoplete#enable_at_startup = 1
@@ -99,6 +99,3 @@ if system("hostname") =~ 'etsy.com'
   endfunction
 
 endif
-
-nnoremap ; :
-nnoremap : ;
