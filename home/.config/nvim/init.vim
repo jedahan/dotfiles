@@ -7,7 +7,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   Plug 'neomake/neomake'
-  Plug 'cloudhead/neovim-fuzzy', { 'branch': 'dev' }
+  Plug 'cloudhead/neovim-fuzzy'
   " Languages
   Plug 'plasticboy/vim-markdown'
   Plug 'rust-lang/rust.vim'
