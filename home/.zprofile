@@ -30,4 +30,8 @@ export HISTSIZE=$((2 ** 20))
   export PATH="$(brew --prefix)/sbin:$PATH"
 }
 
+(( $+commands[cargo] )) && {
+  export PATH="$HOME/.cargo/bin:$PATH"
+}
+
 export XDEBUG_CONFIG="idekey=xdebug"
