@@ -32,7 +32,7 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 function h help { man $@ }
 function x { exit }
-function s { sift --git --group $@ }
+function s { rg $@ }
 function o { open "${@:-'.'}" }
 function a { atom "${@:-'.'}" }
 function v { nvim $@ }
