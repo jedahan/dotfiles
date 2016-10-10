@@ -51,16 +51,6 @@ function up { # upgrade everything
   (( $+commands[brew] )) && {
     brew update && \
     brew upgrade && \
-    () { # brew upgrade --head --weekly
-      last_week=`date -v -7d +%s`
-      for pkg in `brew ls`; do
-        install_date=`brew info $pkg | rg -N --replace '$1' "Built from source on ([-\d+]+).*"`
-        if (( $install_date )); then
-          install_date=`date -j -f %Y-%m-%d $install_date +%s`
-          (( $last_week > $install_date )) && brew reinstall $pkg
-        fi
-      done
-    }
     brew cleanup && \
     brew cask cleanup && \
     brew doctor
