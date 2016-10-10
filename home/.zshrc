@@ -52,8 +52,7 @@ function up { # upgrade everything
     brew update && \
     brew upgrade && \
     brew cleanup && \
-    brew cask cleanup && \
-    brew doctor
+    brew cask cleanup
   }
 }
 
