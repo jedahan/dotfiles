@@ -71,15 +71,6 @@ function notify { # commandline notifications
   (( $+commands[dbaliases] )) && source $(dbaliases)
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
-  (( $+commands[try] )) && try() {
-    local arg=$(echo $* | grep -oE 'ROD-[0-9]+')
-    local log=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
-
-    [[ -n $log && -n $arg ]] && echo "[ERROR] Commit and command ticket found" && return -1
-    [[ -n $log ]] && JIRA_PARAM=" --extra-param jira=$log"
-    $commands[try] $* $JIRA_PARAM
-  }
-
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
 }
 
