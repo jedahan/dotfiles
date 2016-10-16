@@ -74,4 +74,4 @@ function notify { # commandline notifications
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
 }
 
-cd ~/development/Etsyweb || cd ~/code/rustboy
+cd ~/development/Etsyweb >/dev/null 2>&1 || cd ~/code/jedahan/rustboy >/dev/null 2>&1
