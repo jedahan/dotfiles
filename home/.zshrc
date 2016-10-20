@@ -60,7 +60,7 @@ function notify { # commandline notifications
   osascript -e "display notification \"$2\" with title \"$1\""
 }
 
-[[ -n $SSH_CLIENT ]] && { # remote pbcopy, pbpaste, notify
+if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   for command in pb{copy,paste} notify; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
@@ -72,6 +72,8 @@ function notify { # commandline notifications
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
-}
+else
+  alias try="ssh vm 'try -P'"
+fi
 
 cd ~/development/Etsyweb >/dev/null 2>&1 || cd ~/code/jedahan/rustboy >/dev/null 2>&1
