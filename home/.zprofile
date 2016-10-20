@@ -27,7 +27,7 @@ export HISTSIZE=$((2 ** 20))
 
 (( $+commands[brew] )) && {
   export HOMEBREW_NO_ANALYTICS=1
-  export PATH="$(brew --prefix)/sbin:$PATH"
+  export PATH="$(brew --prefix)/{s,}bin:$PATH"
 }
 
 test -f ~/.cargo/env && source $_
