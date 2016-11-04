@@ -30,6 +30,4 @@ export HISTSIZE=$((2 ** 20))
   export PATH="$(brew --prefix)/{s,}bin:$PATH"
 }
 
-test -f ~/.cargo/env && source $_
-
 export XDEBUG_CONFIG="idekey=xdebug"
