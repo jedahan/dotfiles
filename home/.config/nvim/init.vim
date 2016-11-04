@@ -26,7 +26,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
-  Plug 'racer-rust/vim-racer'
   if system('hostname') =~ 'etsy.com'
     Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   endif
@@ -71,8 +70,8 @@ let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 
 " RUST
-let g:racer_cmd = "/Users/jedahan/.cargo/bin/racer"
-let $RUST_SRC_PATH = "/Users/jedahan/.rust/src"
+let g:deoplete#sources#rust#racer_binary="/Users/jedahan/.cargo/bin/racer"
+let g:deoplete#sources#rust#rust_source_path="/Users/jedahan/.rust/src"
 
 " NEOMAKE
 let g:neomake_javascript_enabled_makers = ['eslint']
