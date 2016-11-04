@@ -9,7 +9,6 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste
 
 source ~/.zplug/init.zsh
 
-export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 zplugs=()
 zplug "rimraf/k"                                              # better version of `ls`
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
@@ -23,7 +22,8 @@ zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy hi
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplug "djui/alias-tips"                                       # help remember aliases
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
-export PROMPT_GEOMETRY_GIT_TIME=false
+export PROMPT_GEOMETRY_TIME_NEUTRAL='yellow'
+export PROMPT_GEOMETRY_EXEC_TIME=true
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
