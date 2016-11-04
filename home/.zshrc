@@ -41,7 +41,7 @@ function _ { sudo $@ }
 function , { clear && k }
 
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
-function twitch { livestreamer twitch.tv/$@ best }
+function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
 function n { (($#)) && echo alias $1="'""$(fc -n1 -1)""'" >> ~/.zshrc && exec zsh } # n: create an alias
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
 
