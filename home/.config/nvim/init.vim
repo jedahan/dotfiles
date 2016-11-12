@@ -97,5 +97,4 @@ if system("hostname") =~ 'etsy.com'
           let g:neomake_php_phpcs_args_standard = test_std_root ."phpunit-ruleset.xml"
       endif
   endfunction
-
 endif
