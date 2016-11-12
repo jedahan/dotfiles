@@ -47,6 +47,9 @@ function , { clear && k }
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
+function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
+
+function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
@@ -54,10 +57,8 @@ function up { # upgrade everything
   (( $+commands[brew] )) && brew update && brew upgrade && brew cleanup
 }
 
-function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
-
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
-  for command in pb{copy,paste} notify; do
+  for command in pb{copy,paste} notify anybar; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
       ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
