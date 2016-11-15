@@ -7,6 +7,12 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
+export ZPLUG_USE_CACHE=true
+export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
+export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
+export PROMPT_GEOMETRY_TIME_NEUTRAL='yellow'
+export PROMPT_GEOMETRY_EXEC_TIME=true
+
 source ~/.zplug/init.zsh
 
 zplugs=()
@@ -19,11 +25,7 @@ zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"          # fuzzy finder, tr
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
 zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 zplug "djui/alias-tips"                                       # help remember aliases
-export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
-export PROMPT_GEOMETRY_TIME_NEUTRAL='yellow'
-export PROMPT_GEOMETRY_EXEC_TIME=true
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
