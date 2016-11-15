@@ -52,9 +52,7 @@ function up { # upgrade everything
   (( $+commands[brew] )) && brew update && brew upgrade && brew cleanup
 }
 
-function notify { # commandline notifications
-  osascript -e "display notification \"$2\" with title \"$1\""
-}
+function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   for command in pb{copy,paste} notify; do
