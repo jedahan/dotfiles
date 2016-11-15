@@ -13,6 +13,8 @@ export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_TIME_NEUTRAL='yellow'
 export PROMPT_GEOMETRY_EXEC_TIME=true
 
+export FZF_DEFAULT_COMMAND='rg --files --follow'
+
 source ~/.zplug/init.zsh
 
 zplugs=()
