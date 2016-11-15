@@ -49,12 +49,7 @@ function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $
 function up { # upgrade everything
   (( $+commands[homeshick] )) && homeshick pull
   (( $+commands[zplug] )) && zplug update
-  (( $+commands[brew] )) && {
-    brew update && \
-    brew upgrade && \
-    brew cleanup && \
-    brew cask cleanup
-  }
+  (( $+commands[brew] )) && brew update && brew upgrade && brew cleanup
 }
 
 function notify { # commandline notifications
