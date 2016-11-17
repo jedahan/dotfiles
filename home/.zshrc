@@ -69,8 +69,15 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
+  function try {
+    local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
+    $commands[try] -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}
+  }
 else
-  alias try="ssh vm 'try -P'"
+  function try {
+    local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
+    ssh vm "try -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}"
+  }
 fi
 
 cd ~/development/Etsyweb >/dev/null 2>&1 || cd ~/code/jedahan/rustboy >/dev/null 2>&1
