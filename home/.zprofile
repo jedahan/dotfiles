@@ -32,4 +32,8 @@ export HISTSIZE=$((2 ** 20))
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
+[[ $HOST == *etsy.com ]] && {
+  export GITHUB_URL=https://github.etsycorp.com/
+}
+
 export XDEBUG_CONFIG="idekey=xdebug"
