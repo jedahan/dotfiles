@@ -18,7 +18,6 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 source ~/.zplug/init.zsh
 
 zplugs=()
-zplug "rimraf/k"                                              # better version of `ls`
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
@@ -43,6 +42,8 @@ function v { nvim $@ }
 function c { lolcat $@ }
 function _ { sudo $@ }
 function , { clear && k }
+function l { exa $@ }
+function ll { exa -l $@ }
 
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
