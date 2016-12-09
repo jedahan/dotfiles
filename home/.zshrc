@@ -49,7 +49,7 @@ alias vm='ssh vm5'
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || { test -f ~/todo.md && c $_ } }; t # t: add or display todo items
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || c ~/todo.md }; t # t: add or display todo items
 function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
