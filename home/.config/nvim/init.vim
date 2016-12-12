@@ -83,6 +83,8 @@ if system("hostname") =~ 'etsy.com'
   let g:vdebug_options = {}
   let g:vdebug_options["port"] = 9192
   let g:vdebug_options["host"] = 127.0.0.1
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_javascript_eslint_exe = "/usr/bin/etsy-eslint"
 
   autocmd FileType php setlocal tabstop=4
   autocmd FileType php setlocal shiftwidth=4
