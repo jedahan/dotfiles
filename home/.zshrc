@@ -72,6 +72,9 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
+  alias -g INFO='/var/log/httpd/info.log'
+  alias -g ERROR='/var/log/httpd/php.log'
+
   function try {
     local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
     $commands[try] -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}
@@ -83,4 +86,6 @@ else
   }
 fi
 
-cd ~/development/Etsyweb >/dev/null 2>&1 || cd ~/code/jedahan/rustboy >/dev/null 2>&1
+function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
+
+cd ~/development/Etsyweb || cd ~/code/rustboy
