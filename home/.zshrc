@@ -72,11 +72,6 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
   alias -g INFO='/var/log/httpd/info.log'
   alias -g ERROR='/var/log/httpd/php.log'
-
-  function try {
-    local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
-    $commands[try] -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}
-  }
 fi
 
 function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
