@@ -22,7 +22,7 @@ zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfi
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
 zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh" # sensible homebrew shortcuts
-zplug "junegunn/fzf", hook-load: "source ~/.fzf.zsh"          # fuzzy finder, try ^R, ^T, and kill <tab>
+zplug "junegunn/fzf", use:"shell/*.zsh"                       # fuzzy finder, try ^r, ^t, kill<tab>
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
 zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
