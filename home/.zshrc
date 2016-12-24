@@ -88,4 +88,4 @@ fi
 
 function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
 
-cd ~/development/Etsyweb || cd ~/code/rustboy
+cd ~/development/Etsyweb 2>/dev/null || cd ~/code/$USER/rustboy 2>/dev/null
