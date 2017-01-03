@@ -16,7 +16,6 @@ export PROMPT_GEOMETRY_EXEC_TIME=true
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 source ~/.zplug/init.zsh
-
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
@@ -78,13 +77,8 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
     local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
     $commands[try] -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}
   }
-else
-  function try {
-    local rodeo_ticket=$(git log -1 --oneline | grep -oE 'ROD-[0-9]+')
-    ssh vm "try -P $* ${rodeo_ticket:+--extra-param jira=$rodeo_ticket}"
-  }
 fi
 
 function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
 
-cd ~/development/Etsyweb 2>/dev/null || cd ~/code/$USER/rustboy 2>/dev/null
+[[ $HOST == *etsy.com ]] && cd ~/development/Etsyweb
