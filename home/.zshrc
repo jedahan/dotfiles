@@ -17,7 +17,6 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 source ~/.zplug/init.zsh
 
-zplugs=()
 zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
