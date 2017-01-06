@@ -7,11 +7,11 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
-export ZPLUG_USE_CACHE=true
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
+
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
-export PROMPT_GEOMETRY_TIME_NEUTRAL='yellow'
 export PROMPT_GEOMETRY_EXEC_TIME=true
+export GEOMETRY_TIME_NEUTRAL='yellow'
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
