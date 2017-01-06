@@ -90,6 +90,7 @@ if system("hostname") =~ 'etsy.com'
   autocmd FileType php setlocal shiftwidth=4
 
   au BufEnter *.php :call SetPHPCSStandard()
+  let g:neomake_php_enabled_makers = ["php", "phpcs"]
 
   function! SetPHPCSStandard()
       let test_std_root = expand($HOME) ."/development/Etsyweb/tests/standards/"
