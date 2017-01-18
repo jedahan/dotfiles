@@ -26,8 +26,11 @@ export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
+# local
+export PATH=$HOME/.bin:$PATH
 
 [[ $HOST == *etsy.com ]] && {
   export GITHUB_URL=https://github.etsycorp.com/
   export XDEBUG_CONFIG="idekey=xdebug"
 }
+

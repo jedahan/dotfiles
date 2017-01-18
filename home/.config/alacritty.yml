@@ -20,13 +20,13 @@ font:
   italic:
     family: Inconsolata for Powerline
 
-  size: 20.0
+  size: 24.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: -1.0
-    y: -6.0
+    x: -2.0
+    y: 0.0
 
 # Should display the render timer
 render_timer: false
@@ -39,26 +39,25 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x000000'
+    black:   '0x2d2d2d'
     red:     '0xf2777a'
     green:   '0x99cc99'
     yellow:  '0xffcc66'
     blue:    '0x6699cc'
     magenta: '0xcc99cc'
     cyan:    '0x66cccc'
-    white:   '0x999999'
+    white:   '0xd3d0c8'
 
   # Bright colors
   bright:
-    black:   '0x666666'
-    red:     '0x393939'
-#f99157 Orange
+    black:   '0x747369'
+    red:     '0xf99157'
     green:   '0x393939'
     yellow:  '0x515151'
-    blue:    '0x7aa6da'
-    magenta: '0xb77ee0'
-    cyan:    '0x54ced6'
-    white:   '0x2a2a2a'
+    blue:    '0xa09f93'
+    magenta: '0xe8e6df'
+    cyan:    '0xd27b53'
+    white:   '0xf2f0ec'
 
 # Key bindings
 #
@@ -91,6 +90,8 @@ colors:
 key_bindings:
   - { key: V,        mods: Command, action: Paste                        }
   - { key: C,        mods: Command, action: Copy                         }
+  - { key: LBracket, mods: Command, chars: "\x02p"                       } # Cmd+[ => ^b+p
+  - { key: RBracket, mods: Command, chars: "\x02n"                       } # Cmd+] => ^b+n
   - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
   - { key: Home,                    chars: "\x1b[1~",  mode: AppCursor   }
   - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
