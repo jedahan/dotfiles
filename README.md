@@ -15,6 +15,14 @@ Install homeshick
 
     git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick && source ${_}/homeshick.sh
     
+Install zplug
+
+    git clone https://github.com/zplug/zplug $HOME/.zplug
+    
 Clone and link the castle
 
     homeshick --force clone jedahan/dotfiles
+
+Start zsh
+
+    exec zsh
