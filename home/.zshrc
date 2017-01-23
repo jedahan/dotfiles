@@ -76,5 +76,5 @@ fi
 
 function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
 
-[[ $HOST == *etsy.com ]] && cd ~/development/Etsyweb
-[[ $TERM != screen* ]] && tmux
+if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
+if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
