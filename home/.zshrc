@@ -10,6 +10,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste
 export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git rustup)
+export GEOMETRY_SYMBOL_RUSTUP=
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export GEOMETRY_TIME_NEUTRAL='yellow'
