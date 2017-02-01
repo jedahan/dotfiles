@@ -21,7 +21,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Other
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
-  Plug 'shougo/deoplete.nvim'              " autocompletion
+  Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' } " autocompletion
   Plug 'shougo/vimproc', { 'do': 'make' }    " required for deoplete
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'
@@ -70,8 +70,13 @@ let g:deoplete#omni#input_patterns.php = '\h\w*\|[^. \t]->\%(\h\w*\)\?\|\h\w*::\
 inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
 
 " RUST
-let g:deoplete#sources#rust#racer_binary="/Users/jedahan/.cargo/bin/racer"
-let g:deoplete#sources#rust#rust_source_path="/Users/jedahan/.rust/src"
+if executable('rustc')
+  let sysroot = substitute(system('rustc --print sysroot'), '\n', '', '')
+  let srcpath = expand(sysroot . '/lib/rustlib/src/rust/src')
+  let $RUST_SRC_PATH = isdirectory(srcpath) ? srcpath : ''
+  let g:deoplete#sources#rust#racer_binary = expand("~/.cargo/bin/racer")
+  let g:deoplete#sources#rust#rust_source_path = $RUST_SRC_PATH
+endif
 
 " NEOMAKE
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -93,7 +98,7 @@ if system("hostname") =~ 'etsy.com'
   let g:neomake_php_enabled_makers = ["php", "phpcs"]
 
   function! SetPHPCSStandard()
-      let test_std_root = expand($HOME) ."/development/Etsyweb/tests/standards/"
+      let test_std_root = expand("~/development/Etsyweb/tests/standards/")
       let g:neomake_php_phpcs_args_standard = test_std_root ."stable-ruleset.xml"
 
       if expand("%:p") =~ ".*/Etsyweb/tests/phpunit.*"
