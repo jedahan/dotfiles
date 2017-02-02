@@ -43,7 +43,7 @@ function , { clear && k }
 function l { exa $@ }
 function ll { exa -l $@ }
 
-alias vm='ssh vm5'
+alias vm='tmux rename-window vm && ssh vm'
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
