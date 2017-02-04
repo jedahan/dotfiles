@@ -56,9 +56,11 @@ function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
-  (( $+commands[homeshick] )) && homeshick pull
-  (( $+commands[zplug] )) && zplug update
-  (( $+commands[brew] )) && brew update && brew upgrade && brew cleanup
+  (( $+functions[homeshick] )) && { echo "updating dotfiles..." && homeshick pull & }
+  (( $+functions[zplug] )) && { echo "updating zsh plugins..." && zplug update & }
+  (( $+commands[nvim] )) &&  { echo "updating nvim..." && nvim +PlugInstall +PlugUpdate +PlugClean +qall }
+  (( $+commands[brew] )) && { echo "updating homebrew packages..." && brew update; brew upgrade; brew cleanup }
+  (( $+commands[rustup] )) && { echo "updating rust..." && rustup update stable; rustup update beta }
 }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
