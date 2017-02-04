@@ -41,9 +41,10 @@ function a { atom "${@:-'.'}" }
 function v { nvim $@ }
 function c { lolcat $@ }
 function _ { sudo $@ }
-function , { clear && k }
-function l { exa $@ }
-function ll { exa -l $@ }
+function l { $LS $@ }
+function ls { $LS $@ }
+function ll { $LS -l $@ }
+function , { clear && $LS }
 
 alias vm='tmux rename-window vm && ssh vm'
 alias gist='gist --private --copy'
