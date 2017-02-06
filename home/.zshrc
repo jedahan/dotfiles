@@ -58,7 +58,7 @@ function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 function up { # upgrade everything
   (( $+functions[homeshick] )) && { echo "updating dotfiles..." && homeshick pull }
   (( $+functions[zplug] )) && { echo "updating zsh plugins..." && zplug update }
-  (( $+commands[nvim] )) &&  { echo "updating nvim..." && nvim +PlugInstall +PlugUpdate +PlugClean! +qall }
+  (( $+commands[nvim] )) &&  { echo "updating nvim..." && nvim +PlugUpdate! +PlugClean! +qall }
   (( $+commands[brew] )) && { echo "updating homebrew packages..." && brew update; brew upgrade; brew cleanup }
   (( $+commands[rustup] )) && { echo "updating rust..." && rustup update stable; rustup update beta }
 }
