@@ -50,17 +50,22 @@ alias vm='tmux rename-window vm && ssh vm'
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat -p 1}; t # t: add or display todo items
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
 function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
-  (( $+functions[homeshick] )) && { echo "updating dotfiles..." && homeshick pull }
-  (( $+functions[zplug] )) && { echo "updating zsh plugins..." && zplug update }
-  (( $+commands[nvim] )) &&  { echo "updating nvim..." && nvim +PlugUpdate! +PlugClean! +qall }
-  (( $+commands[brew] )) && { echo "updating homebrew packages..." && brew update; brew upgrade; brew cleanup }
-  (( $+commands[rustup] )) && { echo "updating rust..." && rustup update stable; rustup update beta }
+  function u { echo -n "updating $1..." }
+  local log=$(mktemp -t up.XXXXXX)
+  function err { echo "error log $log" && exit -1 }
+  (( $+functions[homeshick] )) && { u 'dotfiles'     && { homeshick pull  > $log } && echo ''   || err }
+  (( $+functions[zplug] ))     && { u 'zsh plugins'  && { zplug update   >> $log } && echo '▲'   || err }
+  (( $+commands[tldr] ))       && { u 'tldr'         && { tldr --update  >> $log } && echo '⚡'  || err }
+  (( $+commands[nvim] ))       && { u 'neovim'       && { nvim +PlugUpdate! +PlugClean! +qall >/dev/null && echo '' || err } }
+  (( $+commands[brew] ))       && { u 'applications' && { brew update && brew upgrade && brew cleanup } >> $log && echo '' || err }
+  (( $+commands[rustup] ))     && { u 'rust'         && { rustup update stable && rustup update beta } &>> $log && echo '' || err }
+  echo ''
 }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
