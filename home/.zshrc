@@ -56,15 +56,16 @@ function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
-  function u { echo -n "updating $1..." }
   local log=$(mktemp -t up.XXXXXX)
-  function err { echo "error log $log" && exit -1 }
-  (( $+functions[homeshick] )) && { u 'dotfiles'     && { homeshick pull  > $log } && echo ''   || err }
-  (( $+functions[zplug] ))     && { u 'zsh plugins'  && { zplug update   >> $log } && echo '▲'   || err }
-  (( $+commands[tldr] ))       && { u 'tldr'         && { tldr --update  >> $log } && echo '⚡'  || err }
-  (( $+commands[nvim] ))       && { u 'neovim'       && { nvim +PlugUpdate! +PlugClean! +qall >/dev/null && echo '' || err } }
-  (( $+commands[brew] ))       && { u 'applications' && { brew update && brew upgrade && brew cleanup } >> $log && echo '' || err }
-  (( $+commands[rustup] ))     && { u 'rust'         && { rustup update stable && rustup update beta } &>> $log && echo '' || err }
+  function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
+  function err { echo "error log $log" && return -1 }
+
+  fun homeshick 'dotfiles' && { homeshick pull >> $log } && echo '' || err
+  fun zplug 'zsh plugins'  && { zplug update   >> $log } && echo '▲' || err
+  fun tldr 'tldr'          && { tldr --update  >> $log } && echo '⚡'|| err
+  fun brew 'applications'  && { brew update && brew upgrade && brew cleanup }  >> $log && echo '' || err
+  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall       } >/dev/null && echo '' || err
+  fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && echo '' || err
   echo ''
 }
 
