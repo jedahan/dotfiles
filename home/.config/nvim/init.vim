@@ -83,7 +83,7 @@ let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
 
 " ETSY
-if system("hostname") =~ 'etsy.com'
+if system("hostname") =~ 'vm.*etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:vdebug_options = {}
   let g:vdebug_options["port"] = 9192
