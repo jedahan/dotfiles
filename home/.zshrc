@@ -84,7 +84,7 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   alias -g ERROR='/var/log/httpd/php.log'
 fi
 
-function anybar { echo -n $1 | nc -4u -w10 $USER.prodvpn.etsy.com ${2:-1738}; }
+alias try="ssh vm 'try -P'"
 
 if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
 if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
