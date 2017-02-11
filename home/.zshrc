@@ -14,6 +14,7 @@ export GEOMETRY_SYMBOL_RUSTUP=
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export GEOMETRY_TIME_NEUTRAL='yellow'
+export GEOMETRY_PLUGIN_SEPARATOR=' :: '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
