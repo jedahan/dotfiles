@@ -58,6 +58,7 @@ function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
   local log=$(mktemp -t up.XXXXXX)
+  echo "  $log"
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function err { echo "error log $log" && return -1 }
 
@@ -67,7 +68,6 @@ function up { # upgrade everything
   fun brew 'applications'  && { brew update && brew upgrade && brew cleanup }  >> $log && echo '' || err
   fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall       } >/dev/null && echo '' || err
   fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && echo '' || err
-  echo ''
 }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
