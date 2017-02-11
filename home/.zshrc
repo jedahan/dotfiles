@@ -67,7 +67,7 @@ function up { # upgrade everything
   fun zplug 'zsh plugins'  && { zplug update   >> $log } && lol ▲ || err
   fun tldr 'tldr'          && { tldr --update  >> $log } && lol ⚡|| err
   fun brew 'brews'         && { brew update && brew upgrade && brew cleanup }  >> $log && lol || err
-  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall } >/dev/null && lol  || err
+  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall } &>>$log && lol  || err
   fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && lol  || err
   fun cargo 'crates'       && { cargo install-update --all } &>> $log && lol  || err
 
