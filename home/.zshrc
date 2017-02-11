@@ -61,14 +61,15 @@ function up { # upgrade everything
   echo "  $log"
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function err { echo "error log $log" && return -1 }
+  function lol { lolcat <<< $1 }
 
-  fun homeshick 'dotfiles' && { homeshick pull >> $log } && echo  || err
-  fun zplug 'zsh plugins'  && { zplug update   >> $log } && echo ▲ || err
-  fun tldr 'tldr'          && { tldr --update  >> $log } && echo ⚡|| err
-  fun brew 'brews'         && { brew update && brew upgrade && brew cleanup }  >> $log && echo || err
-  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall } >/dev/null && echo  || err
-  fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && echo  || err
-  fun cargo 'crates'       && { cargo install-update --all } &>> $log && echo  || err
+  fun homeshick 'dotfiles' && { homeshick pull >> $log } && lol  || err
+  fun zplug 'zsh plugins'  && { zplug update   >> $log } && lol ▲ || err
+  fun tldr 'tldr'          && { tldr --update  >> $log } && lol ⚡|| err
+  fun brew 'brews'         && { brew update && brew upgrade && brew cleanup }  >> $log && lol || err
+  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall } >/dev/null && lol  || err
+  fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && lol  || err
+  fun cargo 'crates'       && { cargo install-update --all } &>> $log && lol  || err
 }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
