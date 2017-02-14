@@ -7,7 +7,7 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
-export ZSH_PLUGINS_ALIAS_TIPS_TEXT='💡  '
+export RIPZ_TEXT='💡 '
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git rustup)
 export GEOMETRY_SYMBOL_RUSTUP=
@@ -27,7 +27,7 @@ zplug "junegunn/fzf", use:"shell/*.zsh"                       # fuzzy finder, tr
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
 zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
-zplug "djui/alias-tips"                                       # help remember aliases
+zplug "jedahan/ripz"                                          # help remember aliases
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
