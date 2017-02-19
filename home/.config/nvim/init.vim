@@ -5,8 +5,11 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source ~/.config/nvim/init.vim
 endif
 
+set hidden
+set nofoldenable
+
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'neomake/neomake'
+  Plug 'JelteF/neomake', { 'branch': 'improve-cargo' }
   Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   " Languages
   Plug 'plasticboy/vim-markdown'
@@ -76,6 +79,7 @@ if executable('rustc')
   let $RUST_SRC_PATH = isdirectory(srcpath) ? srcpath : ''
   let g:deoplete#sources#rust#racer_binary = expand("~/.cargo/bin/racer")
   let g:deoplete#sources#rust#rust_source_path = $RUST_SRC_PATH
+  let g:racer_experimental_completer = 1
 endif
 
 " NEOMAKE
