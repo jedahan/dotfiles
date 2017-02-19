@@ -57,17 +57,20 @@ function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 function up { # upgrade everything
   local log=$(mktemp -t up.XXXXXX)
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
-  function err { echo "error log $log" && return -1 }
-  function lol { lolcat <<< $1 }
   (($+commands[tmux])) && tmux split-window -d -p 40 "echo   $log; tail -f $log"
 
-  fun homeshick 'dotfiles' && { homeshick pull >> $log } && lol  || err
-  fun zplug 'zsh plugins'  && { zplug update   >> $log } && lol ▲ || err
-  fun tldr 'tldr'          && { tldr --update  >> $log } && lol ⚡|| err
-  fun brew 'brews'         && { brew update && brew upgrade && brew cleanup }  >> $log && lol || err
-  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall } &>>$log && lol  || err
-  fun rustup 'rust'        && { rustup update stable && rustup update beta  } &>> $log && lol  || err
-  fun cargo 'crates'       && { cargo install-update --all } &>> $log && lol  || err
+  fun homeshick 'dotfiles' && { homeshick pull }                           &>> $log ; c <<< 
+  fun zplug 'zsh plugins'  && { zplug install; zplug update }              &>> $log ; c <<< ▲
+  fun tldr 'tldr'          && { tldr --update }                            &>> $log ; c <<< ⚡
+  fun brew 'brews'         && { brew update; brew upgrade; brew cleanup }  &>> $log ; c <<< 
+  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall }      &>> $log ; c <<< 
+  fun rustup 'rust'        && { rustup update stable; rustup update beta } &>> $log ; c <<< 
+  fun cargo 'crates'       && { cargo install-update --all }               &>> $log ; c <<< 
+
+  for update in "$(s 'Updated!\s+(.+/.+)' -r '$1' -N $log)" \
+    "$(s 'updated.*rustc' -N $log | cut -d' ' -f7)" \
+    "$(s 'Upgrading' -A1 -N $log | head -2 | tail -1)" \
+  ; do [[ -n $update ]] && echo "  $update"; done
 
   (($+commands[tmux])) && tmux kill-pane -t -1
 }
