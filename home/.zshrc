@@ -29,6 +29,8 @@ zplug "jedahan/ripz", hook-load:"export RIPZ_TEXT=' '"      # help remember a
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
+source <(kubectl completion zsh 2>/dev/null)
+
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
 
