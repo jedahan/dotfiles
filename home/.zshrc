@@ -7,10 +7,11 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
-export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup)
+export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 export GEOMETRY_SYMBOL_RUSTUP=
+export GEOMETRY_SYMBOL_HYDRATE=
 export GEOMETRY_TIME_NEUTRAL='yellow'
-export GEOMETRY_PLUGIN_SEPARATOR=' :: '
+export GEOMETRY_PLUGIN_SEPARATOR='   '
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
 
@@ -25,7 +26,7 @@ zplug "junegunn/fzf", use:"shell/*.zsh"                       # fuzzy finder, tr
 zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
 zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
 zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
-zplug "jedahan/ripz", hook-load:"export RIPZ_TEXT=' '"      # help remember aliases
+zplug "jedahan/ripz", hook-load:"export RIPZ_TEXT=' '"       # help remember aliases
 zplug "frmendes/geometry"                                     # clean theme
 zplug load
 
