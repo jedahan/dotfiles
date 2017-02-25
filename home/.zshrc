@@ -73,6 +73,7 @@ function up { # upgrade everything
   for update in "$(s 'Updated!\s+(.+/.+)' -r '$1' -N $log)" \
     "$(s 'updated.*rustc' -N $log | cut -d' ' -f7)" \
     "$(s 'Upgrading' -A1 -N $log | head -2 | tail -1)" \
+    "$(s '(.*)Yes$' --replace '$1')" \
   ; do [[ -n $update ]] && echo "  $update"; done
 
   (($+commands[tmux])) && tmux kill-pane -t -1
