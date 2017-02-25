@@ -8,12 +8,12 @@ setopt interactivecomments
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
-export GEOMETRY_SYMBOL_RUSTUP=
-export GEOMETRY_SYMBOL_HYDRATE=
-export GEOMETRY_TIME_NEUTRAL='yellow'
-export GEOMETRY_PLUGIN_SEPARATOR='   '
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
+export GEOMETRY_SYMBOL_RUSTUP=
+export GEOMETRY_TIME_NEUTRAL='yellow'
+export GEOMETRY_PLUGIN_HYDRATE_SYMBOL=
+export GEOMETRY_PLUGIN_SEPARATOR='%F{242}  %f'
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
