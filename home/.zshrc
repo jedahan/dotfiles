@@ -99,3 +99,14 @@ alias try="ssh vm 'try -P'"
 
 if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
 if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
+
+function bat {
+  battery=$(ioreg -rc AppleSmartBattery)
+  function _stat {
+    echo $battery | rg --no-line-number ".*?$1.*?(\d+)" --replace '$1'
+  }
+  current_capacity=$(_stat CurrentCapacity)
+  max_capacity=$(_stat MaxCapacity)
+  percent=$(( 100 * $current_capacity / $max_capacity ))
+  echo "$current_capacity mAh (${percent}%)"
+}
