@@ -60,7 +60,7 @@ function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 function up { # upgrade everything
   local log=$(mktemp -t up.XXXXXX)
   (($+commands[tmux])) && {
-    tmux select-window -t update || tmux-rename-window update
+    tmux select-window -t update || tmux rename-window update
     tmux split-window -d -p 40 -t update "echo   $log; tail -f $log"
   }
 
