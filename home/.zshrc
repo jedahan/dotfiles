@@ -58,25 +58,25 @@ function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
-  local log=$(mktemp -t up.XXXXXX)
+  uplog=$(mktemp -t up.XXXXXX)
   (($+commands[tmux])) && {
-    tmux select-window -t update || tmux rename-window update
-    tmux split-window -d -p 40 -t update "echo   $log; tail -f $log"
+    tmux select-window -t update 2>/dev/null || tmux rename-window update
+    tmux split-window -d -p 40 -t update "echo    $uplog; tail -f $uplog"
   }
 
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
-  fun homeshick 'dotfiles' && { homeshick pull }                           &>> $log ; c <<< 
-  fun zplug 'zsh plugins'  && { zplug install; zplug update }              &>> $log ; c <<< ▲
-  fun tldr 'tldr'          && { tldr --update }                            &>> $log ; c <<< ⚡
-  fun brew 'brews'         && { brew update; brew upgrade; brew cleanup }  &>> $log ; c <<< 
-  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall }      &>> $log ; c <<< 
-  fun rustup 'rust'        && { rustup update stable; rustup update beta } &>> $log ; c <<< 
-  fun cargo 'crates'       && { cargo install-update --all }               &>> $log ; c <<< 
+  fun homeshick 'dotfiles' && { homeshick pull }                           &>> $uplog ; c <<< 
+  fun zplug 'zsh plugins'  && { zplug install; zplug update }              &>> $uplog ; c <<< ▲
+  fun tldr 'tldr'          && { tldr --update }                            &>> $uplog ; c <<< ⚡
+  fun brew 'brews'         && { brew update; brew upgrade; brew cleanup }  &>> $uplog ; c <<< 
+  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall }      &>> $uplog ; c <<< 
+  fun rustup 'rust'        && { rustup update stable; rustup update beta } &>> $uplog ; c <<< 
+  fun cargo 'crates'       && { cargo install-update --all }               &>> $uplog ; c <<< 
 
-  s 'Updated!\s+(.+/.+)' -r '$1' -N $log
-  s 'updated.*rustc' -N $log | cut -d' ' -f7
-  s 'Upgrading' -A1 -N $log | head -2 | tail -1
-  s '(.*)Yes$' --replace '$1'
+  s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog
+  s 'updated.*rustc' -N $uplog | cut -d' ' -f7
+  s 'Upgrading' -A1 -N $uplog | head -2 | tail -1
+  s '(.*)Yes$' --replace '$1' $uplog
 
   (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
 }
