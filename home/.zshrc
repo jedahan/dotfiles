@@ -1,5 +1,12 @@
 bindkey -e
 
+if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
+_names=(amazing angry awesome backstabbing berserk big boring chaotic clever cranky dead desperate determined distracted dreamy drunk ecstatic elated elegant evil focused furious gloomy goofy happy high hopeful hungry insane jolly jovial lonely loving mad modest naughty nauseous nostalgic pedantic pensive prickly romantic sad serene sharp sick silly sleepy small stoic spooky spoopy suspicious tender thirsty tiny)
+_icons=( ⚡                       )
+tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
+function s { rg $@ }
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
+
 setopt autocd
 setopt autopushd
 setopt pushd_ignore_dups
@@ -37,7 +44,6 @@ bindkey "$terminfo[cud1]" history-substring-search-down
 
 function h help { man $@ }
 function x { exit }
-function s { rg $@ }
 function o { open "${@:-'.'}" }
 function a { atom "${@:-'.'}" }
 function v { nvim $@ }
@@ -52,7 +58,6 @@ alias vm='tmux rename-window vm && ssh vm'
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t& # t: add or display todo items
 function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
 
 function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
@@ -99,7 +104,6 @@ fi
 
 alias try="ssh vm 'try -P'"
 
-if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
 if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
 
 function bat {
