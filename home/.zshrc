@@ -1,6 +1,6 @@
 bindkey -e
 
-if [[ -z $TMUX ]]; then { tmux attach || tmux }; fi
+if [[ -z $TMUX && -z $SSH_CLIENT ]]; then { tmux attach || tmux }; fi
 _names=(amazing angry awesome backstabbing berserk big boring chaotic clever cranky dead desperate determined distracted dreamy drunk ecstatic elated elegant evil focused furious gloomy goofy happy high hopeful hungry insane jolly jovial lonely loving mad modest naughty nauseous nostalgic pedantic pensive prickly romantic sad serene sharp sick silly sleepy small stoic spooky spoopy suspicious tender thirsty tiny)
 _icons=( ⚡                       )
 tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
@@ -100,19 +100,19 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
   alias -g INFO='/var/log/httpd/info.log'
   alias -g ERROR='/var/log/httpd/php.log'
+else
+  alias try="ssh vm 'try -P'"
+
+  function bat {
+    battery=$(ioreg -rc AppleSmartBattery)
+    function _stat {
+      echo $battery | rg --no-line-number ".*?$1.*?(\d+)" --replace '$1'
+    }
+    current_capacity=$(_stat CurrentCapacity)
+    max_capacity=$(_stat MaxCapacity)
+    percent=$(( 100 * $current_capacity / $max_capacity ))
+    echo "$current_capacity mAh (${percent}%)"
+  }
 fi
 
-alias try="ssh vm 'try -P'"
-
 if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
-
-function bat {
-  battery=$(ioreg -rc AppleSmartBattery)
-  function _stat {
-    echo $battery | rg --no-line-number ".*?$1.*?(\d+)" --replace '$1'
-  }
-  current_capacity=$(_stat CurrentCapacity)
-  max_capacity=$(_stat MaxCapacity)
-  percent=$(( 100 * $current_capacity / $max_capacity ))
-  echo "$current_capacity mAh (${percent}%)"
-}
