@@ -54,7 +54,6 @@ function ls { $LS $@ }
 function ll { $LS -l $@ }
 function , { clear && $LS }
 
-alias vm='tmux rename-window vm && ssh vm'
 alias gist='gist --private --copy'
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
@@ -102,6 +101,7 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   alias -g ERROR='/var/log/httpd/php.log'
 else
   alias try="ssh vm 'try -P'"
+  alias vm='tmux rename-window vm && ssh vm'
 
   function bat {
     battery=$(ioreg -rc AppleSmartBattery)
