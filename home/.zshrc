@@ -59,9 +59,12 @@ function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
   local log=$(mktemp -t up.XXXXXX)
-  function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
-  (($+commands[tmux])) && tmux split-window -d -p 40 "echo   $log; tail -f $log"
+  (($+commands[tmux])) && {
+    tmux select-window -t update || tmux-rename-window update
+    tmux split-window -d -p 40 -t update "echo   $log; tail -f $log"
+  }
 
+  function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   fun homeshick 'dotfiles' && { homeshick pull }                           &>> $log ; c <<< 
   fun zplug 'zsh plugins'  && { zplug install; zplug update }              &>> $log ; c <<< ▲
   fun tldr 'tldr'          && { tldr --update }                            &>> $log ; c <<< ⚡
@@ -70,13 +73,12 @@ function up { # upgrade everything
   fun rustup 'rust'        && { rustup update stable; rustup update beta } &>> $log ; c <<< 
   fun cargo 'crates'       && { cargo install-update --all }               &>> $log ; c <<< 
 
-  for update in "$(s 'Updated!\s+(.+/.+)' -r '$1' -N $log)" \
-    "$(s 'updated.*rustc' -N $log | cut -d' ' -f7)" \
-    "$(s 'Upgrading' -A1 -N $log | head -2 | tail -1)" \
-    "$(s '(.*)Yes$' --replace '$1')" \
-  ; do [[ -n $update ]] && echo "  $update"; done
+  s 'Updated!\s+(.+/.+)' -r '$1' -N $log
+  s 'updated.*rustc' -N $log | cut -d' ' -f7
+  s 'Upgrading' -A1 -N $log | head -2 | tail -1
+  s '(.*)Yes$' --replace '$1'
 
-  (($+commands[tmux])) && tmux kill-pane -t -1
+  (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
 }
 
 if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
