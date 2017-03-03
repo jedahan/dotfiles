@@ -24,7 +24,9 @@ call plug#begin('~/.config/nvim/plugged')
   " Other
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
-  Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' } " autocompletion
+  if has('python3')
+    Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' } " autocompletion
+  endif
   Plug 'shougo/vimproc', { 'do': 'make' }    " required for deoplete
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'
