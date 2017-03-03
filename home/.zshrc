@@ -54,7 +54,7 @@ function ls { $LS $@ }
 function ll { $LS -l $@ }
 function , { clear && $LS }
 
-(( `gist --version | cut -d'.' -f1` = 3 )) || _gist_copy='--copy'
+[[ `gist --version | cut -d'.' -f1` = "3" ]] || _gist_copy='--copy'
 alias gist="gist --private $_gist_copy"
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
