@@ -24,8 +24,8 @@ export GEOMETRY_PLUGIN_SEPARATOR='%F{242}  %f'
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
+test -d ~/.zplug || git clone https://github.com/zplug/zplug $HOME/.zplug
 source ~/.zplug/init.zsh
-zplug "andsens/homeshick", use:"homeshick.sh"                 # `homesick` dotfiles manager
 zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
 zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
 zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh" # sensible homebrew shortcuts
@@ -54,6 +54,7 @@ function ls { $LS $@ }
 function ll { $LS -l $@ }
 function , { clear && $LS }
 
+alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 [[ `gist --version | cut -d'.' -f1` = "3" ]] || _gist_copy='--copy'
 alias gist="gist --private $_gist_copy"
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }

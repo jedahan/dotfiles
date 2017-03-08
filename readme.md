@@ -14,18 +14,14 @@
 
 ### Installation
 
-Install homeshick
+Clone the dotfiles to a bare repository
 
-    git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick && source ${_}/homeshick.sh
+    git clone --bare git://github.com/jedahan/dotfiles.git $HOME/.dotfiles
 
-Install zplug
+Setup the config alias
 
-    git clone https://github.com/zplug/zplug $HOME/.zplug
+    alias config="git --git-dir=$HOME/.dotfiles/.git --work-dir=$HOME"
 
-Clone and link the castle
+Checkout the files
 
-    homeshick --force clone jedahan/dotfiles
-
-Start zsh
-
-    exec zsh
+    config checkout
