@@ -20,14 +20,18 @@ Clone the dotfiles to a bare repository
 
 Checkout the files
 
-    git --git-dir=$HOME/.dotfiles --work-dir=$HOME checkout
+    git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
 
 Hide untracked files
 
-    git --git-dir=$HOME/.dotfiles --work-dir=$HOME config status.showUntrackedFiles no
+    git --git-dir=$HOME/.dotfiles --work-tree=$HOME config status.showUntrackedFiles no
+
+### Usage
+
+To manage the dotfiles, use the `config` git alias.
 
 ### Backup
 
 If files would be overwritten, you can run this to back them up
 
-    mkdir .dotfiles-backup && git --git-dir=$HOME/.dotfiles --work-dir=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
+    mkdir .dotfiles-backup && git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
