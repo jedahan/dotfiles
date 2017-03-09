@@ -1,4 +1,4 @@
-export LC_ALL="en_US.UTF-8"                                                                                                         [4/127]
+export LC_ALL="en_US.UTF-8"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
