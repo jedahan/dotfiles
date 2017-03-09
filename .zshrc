@@ -106,7 +106,11 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
   alias -g ERROR='/var/log/httpd/php.log'
 else
   alias try="ssh vm 'try -P'"
-  alias vm='tmux rename-window vm && ssh vm'
+  function vm {
+    tmux select-pane -t:.0 -P 'bg=colour237'
+    ssh vm
+    tmux select-pane -t:.0 -P 'bg=black'
+  }
 
   function bat {
     battery=$(ioreg -rc AppleSmartBattery)
