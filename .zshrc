@@ -14,30 +14,32 @@ setopt interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
 
-export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
 export GEOMETRY_SYMBOL_RUSTUP=
 export GEOMETRY_TIME_NEUTRAL='yellow'
 export GEOMETRY_PLUGIN_HYDRATE_SYMBOL=
 export GEOMETRY_PLUGIN_SEPARATOR='%F{242}  %f'
+export RIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-test -d ~/.zplug || git clone https://github.com/zplug/zplug $HOME/.zplug
-source ~/.zplug/init.zsh
-zplug "sorin-ionescu/prezto", use:"modules/git/alias.zsh"     # sensible git aliases
-zplug "sorin-ionescu/prezto", use:"modules/history/init.zsh"  # sensible history defaults
-zplug "sorin-ionescu/prezto", use:"modules/homebrew/init.zsh" # sensible homebrew shortcuts
-zplug "junegunn/fzf", use:"shell/*.zsh"                       # fuzzy finder, try ^r, ^t, kill<tab>
-zplug "zsh-users/zsh-autosuggestions"                         # suggest from history
-zplug "zsh-users/zsh-syntax-highlighting"                     # commandline syntax highlighting
-zplug "zsh-users/zsh-history-substring-search"                # partial fuzzy history search
-zplug "jedahan/ripz", hook-load:"export RIPZ_TEXT=' '"       # help remember aliases
-zplug "frmendes/geometry"                                     # clean theme
-zplug load
+test -f $HOME/.zpm-init.zsh && source $_ || {
+  zpm zsh-users/prezto/modules/git           # sensible git aliases
+  zpm zsh-users/prezto/modules/history       # sensible history defaults
+  zpm zsh-users/prezto/modules/homebrew      # sensible homebrew shortcuts
+  zpm junegunn/fzf/shell                     # fuzzy finder, try ^r, ^t, kill<tab>
+  zpm zsh-users/zsh-autosuggestions          # suggest from history
+  zpm zsh-users/zsh-syntax-highlighting      # commandline syntax highlighting
+  zpm zsh-users/zsh-history-substring-search # partial fuzzy history search
+  zpm jedahan/ripz                           # help remember aliases
+  zpm frmendes/geometry                      # clean theme
+  zpm jedahan/geometry-hydrate               # remind you to hydrate
+}
 
-source <(kubectl completion zsh 2>/dev/null)
+export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
+
+#source <(kubectl completion zsh 2>/dev/null)
 
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
