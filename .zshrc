@@ -107,8 +107,8 @@ if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
 else
   alias try="ssh vm 'try -P'"
   function vm {
-    tmux select-pane -t:.0 -P 'bg=colour237'
-    ssh vm
+    tmux select-pane -t:.0 -P 'bg=colour236'
+    ssh vm $@
     tmux select-pane -t:.0 -P 'bg=black'
   }
 
