@@ -37,6 +37,8 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm jedahan/geometry-hydrate               # remind you to hydrate
 }
 
+source ~/.zpm/plugins/junegunn/fzf/shell/key-bindings.zsh
+
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 #source <(kubectl completion zsh 2>/dev/null)
