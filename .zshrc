@@ -25,10 +25,8 @@ export RIPZ_TEXT=' '
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 test -f $HOME/.zpm-init.zsh && source $_ || {
-  zpm zsh-users/prezto/modules/git           # sensible git aliases
-  zpm zsh-users/prezto/modules/history       # sensible history defaults
-  zpm zsh-users/prezto/modules/homebrew      # sensible homebrew shortcuts
-  zpm junegunn/fzf/shell                     # fuzzy finder, try ^r, ^t, kill<tab>
+  zpm zsh-users/prezto modules/git           # sensible git aliases
+  zpm junegunn/fzf                           # fuzzy finder, try ^r, ^t, kill<tab>
   zpm zsh-users/zsh-autosuggestions          # suggest from history
   zpm zsh-users/zsh-syntax-highlighting      # commandline syntax highlighting
   zpm zsh-users/zsh-history-substring-search # partial fuzzy history search
@@ -37,7 +35,10 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm jedahan/geometry-hydrate               # remind you to hydrate
 }
 
-source ~/.zpm/plugins/junegunn/fzf/shell/key-bindings.zsh
+source ~/.zpm/plugins/junegunn/fzf/shell/key-bindings.zsh         # fzf keybindings
+source ~/.zpm/plugins/zsh-users/prezto/modules/git/*zsh           # sensible git aliases
+source ~/.zpm/plugins/zsh-users/prezto/modules/history/*zsh       # sensible history defaults
+source ~/.zpm/plugins/zsh-users/prezto/modules/homebrew/*zsh      # sensible homebrew shortcuts
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
