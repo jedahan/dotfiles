@@ -66,9 +66,6 @@ function config { git --git-dir=$HOME/.dotfiles --work-tree=$HOME $@ }
 alias gist="gist --private $_gist_copy"
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
-function notify { osascript -e "display notification \"$2\" with title \"$1\"" }
-
-function anybar { echo -n $1 | nc -4u -w10 localhost ${2:-1738} }
 
 function up { # upgrade everything
   uplog=$(mktemp -t up.XXXXXX)
@@ -94,8 +91,8 @@ function up { # upgrade everything
   (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
 }
 
-if [[ -n $SSH_CLIENT ]]; then # remote pbcopy, pbpaste, notify
-  for command in pb{copy,paste} notify anybar; do
+if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
+  for command in pb{copy,paste}; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
       ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
