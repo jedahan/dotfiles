@@ -1,10 +1,8 @@
 bindkey -e
 
-if [[ -z $TMUX && -z $SSH_CLIENT ]]; then
-  tmux attach || tmux
-  _icons=( ⚡                       )
-  tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
-fi
+[[ -z $TMUX && -z $SSH_CLIENT ]] && { tmux attach || tmux }
+_icons=( ⚡                       )
+tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 function s { rg $@ }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
 
