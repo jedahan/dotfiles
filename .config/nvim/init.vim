@@ -7,9 +7,23 @@ endif
 
 set hidden
 set nofoldenable
+let mapleader="\<SPACE>"
+set mouse=r
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" arrow key resize
+nnoremap <Left> :vertical resize -1<CR>
+nnoremap <Right> :vertical resize +1<CR>
+nnoremap <Up> :resize -1<CR>
+nnoremap <Down> :resize +1<CR>
+" Disable arrow keys completely in Insert Mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'JelteF/neomake', { 'branch': 'improve-cargo' }
+  Plug 'w0rp/ale'
   Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   " Languages
   Plug 'plasticboy/vim-markdown'
@@ -70,7 +84,7 @@ nnoremap <C-s> :FuzzyGrep
 
 " COMPLETION
 let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " RUST
 if executable('rustc')
@@ -82,31 +96,13 @@ if executable('rustc')
   let g:racer_experimental_completer = 1
 endif
 
-" NEOMAKE
-let g:neomake_javascript_enabled_makers = ['eslint']
-autocmd! BufWritePost * Neomake
-
 " ETSY
 if system("hostname") =~ 'vm.*etsy.com'
   let g:airline#extensions#tabline#formatter = 'rodeoicons'
   let g:vdebug_options = {}
   let g:vdebug_options["port"] = 9192
   let g:vdebug_options["host"] = 127.0.0.1
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_javascript_eslint_exe = "/usr/bin/etsy-eslint"
 
   autocmd FileType php setlocal tabstop=4
   autocmd FileType php setlocal shiftwidth=4
-
-  au BufEnter *.php :call SetPHPCSStandard()
-  let g:neomake_php_enabled_makers = ["php", "phpcs"]
-
-  function! SetPHPCSStandard()
-      let test_std_root = expand("~/development/Etsyweb/tests/standards/")
-      let g:neomake_php_phpcs_args_standard = test_std_root ."stable-ruleset.xml"
-
-      if expand("%:p") =~ ".*/Etsyweb/tests/phpunit.*"
-          let g:neomake_php_phpcs_args_standard = test_std_root ."phpunit-ruleset.xml"
-      endif
-  endfunction
 endif

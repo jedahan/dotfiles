@@ -3,6 +3,7 @@ bindkey -e
 [[ -z $TMUX && -z $SSH_CLIENT ]] && { tmux attach || tmux }
 _icons=( ⚡                       )
 tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
+
 function s { rg $@ }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
 
@@ -23,6 +24,8 @@ export RIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
+export GEOMETRY_PROMPT_PLUGINS=${GEOMETRY_PROMPT_PLUGINS-(exec_time git +rustup hydrate)}
+
 test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm zsh-users/prezto modules/git           # sensible git aliases
   zpm junegunn/fzf                           # fuzzy finder, try ^r, ^t, kill<tab>
@@ -32,14 +35,13 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm jedahan/ripz                           # help remember aliases
   zpm frmendes/geometry                      # clean theme
   zpm jedahan/geometry-hydrate               # remind you to hydrate
+  exec zsh
 }
 
 source ~/.zpm/plugins/junegunn/fzf/shell/key-bindings.zsh         # fzf keybindings
 source ~/.zpm/plugins/zsh-users/prezto/modules/git/*zsh           # sensible git aliases
 source ~/.zpm/plugins/zsh-users/prezto/modules/history/*zsh       # sensible history defaults
 source ~/.zpm/plugins/zsh-users/prezto/modules/homebrew/*zsh      # sensible homebrew shortcuts
-
-export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 #source <(kubectl completion zsh 2>/dev/null)
 
@@ -66,25 +68,21 @@ function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
 
 function up { # upgrade everything
-  uplog=$(mktemp -t up.XXXXXX)
+  uplog=$(mktemp -t up)
   (($+commands[tmux])) && {
     tmux select-window -t update 2>/dev/null || tmux rename-window update
-    tmux split-window -d -p 40 -t update "echo    $uplog; tail -f $uplog"
+    tmux split-window -d -p 40 -t update "tail -f $uplog"
   }
 
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
-  fun homeshick 'dotfiles' && { homeshick pull }                           &>> $uplog ; c <<< 
-  fun zplug 'zsh plugins'  && { zplug install; zplug update }              &>> $uplog ; c <<< ▲
-  fun tldr 'tldr'          && { tldr --update }                            &>> $uplog ; c <<< ⚡
-  fun brew 'brews'         && { brew update; brew upgrade; brew cleanup }  &>> $uplog ; c <<< 
-  fun nvim 'neovim'        && { nvim +PlugUpdate! +PlugClean! +qall }      &>> $uplog ; c <<< 
-  fun rustup 'rust'        && { rustup update stable; rustup update beta } &>> $uplog ; c <<< 
-  fun cargo 'crates'       && { cargo install-update --all }               &>> $uplog ; c <<< 
-
-  s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog
-  s 'updated.*rustc' -N $uplog | cut -d' ' -f7
-  s 'Upgrading' -A1 -N $uplog | head -2 | tail -1
-  s '(.*)Yes$' --replace '$1' $uplog
+  c <<< "  $uplog"
+  fun config 'dotfiles'  && { config pull }                              &>> $uplog && c <<< 
+  fun zpm 'zsh plugins'  && { zpm update }                               &>> $uplog && c <<< ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog | s '\.\.\.' | cut -d' ' -f2 | paste -s -d'.' -
+  fun tldr 'tldr'        && { tldr --update }                            &>> $uplog && c <<< ⚡
+  fun brew 'brews'       && { brew upgrade; brew cleanup }               &>> $uplog && c <<< 
+  fun nvim 'neovim'      && { nvim +PlugUpdate! +PlugClean! +qall }      &>> $uplog && c <<<  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
+  fun rustup 'rust'      && { rustup update stable; rustup update beta } &>> $uplog && c <<<  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
+  fun cargo 'crates'     && { cargo install-update --all }               &>> $uplog && c <<<  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
 
   (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
 }
