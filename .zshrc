@@ -24,7 +24,7 @@ export RIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT_PLUGINS=${GEOMETRY_PROMPT_PLUGINS-(exec_time git +rustup hydrate)}
+export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm zsh-users/prezto modules/git           # sensible git aliases
