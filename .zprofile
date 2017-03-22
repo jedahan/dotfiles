@@ -30,7 +30,9 @@ export GOPATH=$HOME/.go
 export PATH=$GOPATH/bin:$PATH
 # rust
 export PATH=$HOME/.cargo/bin:$PATH
-export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
+export DYLD_LIBRARY_PATH=$(rustc --print sysroot)/lib
+export RUST_SRC_PATH=$DYLD_LIBRARY_PATH/rustlib/src/rust/src
+export RLS_ROOT=$HOME/src/rls
 # local
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/bin:$PATH
