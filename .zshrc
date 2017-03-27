@@ -33,6 +33,7 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm zsh-users/zsh-syntax-highlighting      # commandline syntax highlighting
   zpm zsh-users/zsh-history-substring-search # partial fuzzy history search
   zpm jedahan/ripz                           # help remember aliases
+  zpm changyuheng/zsh-interactive-cd
   zpm frmendes/geometry                      # clean theme
   zpm jedahan/geometry-hydrate               # remind you to hydrate
   exec zsh
