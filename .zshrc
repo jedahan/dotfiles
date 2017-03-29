@@ -95,6 +95,8 @@ if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
     }
   done
 
+  export PROMPT_GEOMETRY_SYMBOL="⬡"
+
   (( $+commands[dbaliases] )) && source $(dbaliases)
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
