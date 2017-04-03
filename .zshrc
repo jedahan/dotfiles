@@ -88,7 +88,7 @@ function up { # upgrade everything
 }
 
 if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
-  export PROMPT_GEOMETRY=$(geometry_colorize $PROMPT_GEOMETRY_COLOR ⬡)
+  export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR ⬡)
   for command in pb{copy,paste}; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
@@ -104,7 +104,7 @@ if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
   alias -g INFO='/var/log/httpd/info.log'
   alias -g ERROR='/var/log/httpd/php.log'
 else
-  export PROMPT_GEOMETRY=$(geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
+  export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
   alias try="ssh vm 'try -P'"
   function vm {
     tmux select-pane -t:.0 -P 'bg=colour236'
