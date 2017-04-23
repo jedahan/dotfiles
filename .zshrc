@@ -30,9 +30,9 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   zpm zsh-users/prezto modules/git           # sensible git aliases
   zpm junegunn/fzf                           # fuzzy finder, try ^r, ^t, kill<tab>
   zpm zsh-users/zsh-autosuggestions          # suggest from history
-  zpm zsh-users/zsh-syntax-highlighting      # commandline syntax highlighting
+  zpm zdharma/fast-syntax-highlighting       # commandline syntax highlighting
   zpm zsh-users/zsh-history-substring-search # partial fuzzy history search
-  zpm jedahan/ripz                           # help remember aliases
+  zpm molovo/tipz                            # help remember aliases
   zpm changyuheng/zsh-interactive-cd
   zpm frmendes/geometry                      # clean theme
   zpm jedahan/geometry-hydrate               # remind you to hydrate
