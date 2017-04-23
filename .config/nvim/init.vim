@@ -16,19 +16,8 @@ nnoremap <Left> :vertical resize -1<CR>
 nnoremap <Right> :vertical resize +1<CR>
 nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
-" Disable arrow keys completely in Insert Mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
 
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'w0rp/ale'
-  Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
-  " Languages
-  Plug 'plasticboy/vim-markdown'
-  Plug 'rust-lang/rust.vim'
-  Plug 'sebastianmarkow/deoplete-rust'
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
@@ -36,15 +25,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'    " more themes for airline
   Plug 'airblade/vim-gitgutter'            " show git information in the gutter
   " Other
+  Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
-  if has('python3')
-    Plug 'shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' } " autocompletion
-  endif
-  Plug 'shougo/vimproc', { 'do': 'make' }    " required for deoplete
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
-  Plug 'mhinz/vim-signify'
-  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify'                 " Show git diffs in gutter
+  Plug 'tpope/vim-fugitive'                " Git commands, Gblame etc
   if system('hostname') =~ 'etsy.com'
     Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   endif
@@ -71,8 +57,6 @@ set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
 " BUFFER NAV
 nnoremap <c-h> :bprevious!<CR>
 nnoremap <c-l> :bnext!<CR>
-nnoremap <silent> <a-w> :bdelete!<CR>
-nnoremap <silent> <c-w> :bdelete!<CR>
 
 nnoremap ; :
 nnoremap : ;
@@ -81,20 +65,6 @@ nnoremap : ;
 nnoremap <silent> <C-o> :FuzzyOpen<CR>
 nnoremap <silent> <C-p> :FuzzyGrep<CR>
 nnoremap <C-s> :FuzzyGrep 
-
-" COMPLETION
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-" RUST
-if executable('rustc')
-  let sysroot = substitute(system('rustc --print sysroot'), '\n', '', '')
-  let srcpath = expand(sysroot . '/lib/rustlib/src/rust/src')
-  let $RUST_SRC_PATH = isdirectory(srcpath) ? srcpath : ''
-  let g:deoplete#sources#rust#racer_binary = expand("~/.cargo/bin/racer")
-  let g:deoplete#sources#rust#rust_source_path = $RUST_SRC_PATH
-  let g:racer_experimental_completer = 1
-endif
 
 " ETSY
 if system("hostname") =~ 'vm.*etsy.com'
