@@ -18,6 +18,12 @@ nnoremap <Up> :resize -1<CR>
 nnoremap <Down> :resize +1<CR>
 
 call plug#begin('~/.config/nvim/plugged')
+  " Completion
+  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
+  Plug 'rust-lang/rust.vim'                " rust language support
+  Plug 'Shougo/echodoc.vim'                " statusline documentation
+  Plug 'Shougo/denite.nvim'                " popup and refactoring
+  Plug 'roxma/nvim-completion-manager'     " completion
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
@@ -35,6 +41,17 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
   endif
 call plug#end()
+
+" COMPLETION
+let g:LanguageClient_serverCommands = { 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+let g:LanguageClient_autoStart = 1
+let g:echodoc#enable_at_startup = 1
+set noshowmode
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+inoremap <expr> <cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+inoremap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " COLORS
 syntax on
