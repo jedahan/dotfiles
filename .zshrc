@@ -1,10 +1,8 @@
 bindkey -e
 
-[[ -z $TMUX && -z $SSH_CLIENT ]] && {
-  tmux attach || tmux
-  _icons=( ⚡                       )
-  tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
-}
+[[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && { tmux attach || tmux }
+_icons=( ⚡                      )
+[[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 
 function s { rg $@ }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
@@ -112,9 +110,9 @@ else
   function vm {
     tmux select-pane -t:.0 -P 'bg=colour236'
     old_name=`tmux list-windows | grep '*' | cut -d':' -f2 | cut -d'*' -f1`
-    tmux rename-window "[$old_name]"
+    tmux rename-window .$old_name
     ssh vm
-    tmux rename-window $old_name
+    tmux rename-window "$old_name"
     tmux select-pane -t:.0 -P 'bg=black'
   }
 
