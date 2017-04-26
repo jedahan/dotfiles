@@ -109,7 +109,7 @@ else
   alias try="ssh vm 'try -P'"
   function vm {
     tmux select-pane -t:.0 -P 'bg=colour236'
-    old_name=`tmux list-windows | grep '*' | cut -d':' -f2 | cut -d'*' -f1`
+    old_name=`tmux list-windows | grep '*' | cut -d' ' -f2 | cut -d'*' -f1`
     tmux rename-window .$old_name
     ssh vm
     tmux rename-window "$old_name"
