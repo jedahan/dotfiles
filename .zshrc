@@ -5,7 +5,7 @@ _icons=( ⚡                �
 [[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 
 function s { rg $@ }
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' | lolcat }; t # t: add or display todo items
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
 setopt autocd
 setopt autopushd
@@ -39,13 +39,6 @@ test -f $HOME/.zpm-init.zsh && source $_ || {
   exec zsh
 }
 
-source ~/.zpm/plugins/junegunn/fzf/shell/key-bindings.zsh         # fzf keybindings
-source ~/.zpm/plugins/zsh-users/prezto/modules/git/*zsh           # sensible git aliases
-source ~/.zpm/plugins/zsh-users/prezto/modules/history/*zsh       # sensible history defaults
-source ~/.zpm/plugins/zsh-users/prezto/modules/homebrew/*zsh      # sensible homebrew shortcuts
-
-#source <(kubectl completion zsh 2>/dev/null)
-
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
 
@@ -63,8 +56,6 @@ function , { clear && $LS }
 
 function config { git --git-dir=$HOME/.dotfiles --work-tree=$HOME $@ }
 
-[[ `gist --version | cut -d'.' -f1` = "3" ]] || _gist_copy='--copy'
-alias gist="gist --private $_gist_copy"
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
 function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
 
