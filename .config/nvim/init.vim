@@ -9,7 +9,6 @@ set hidden
 set nofoldenable
 let mapleader="\<SPACE>"
 set mouse=r
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " arrow key resize
 nnoremap <Left> :vertical resize -1<CR>
