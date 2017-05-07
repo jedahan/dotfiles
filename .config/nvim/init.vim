@@ -55,7 +55,6 @@ inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " COLORS
 syntax on
-set background=dark
 colorscheme base16-eighties
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
