@@ -26,16 +26,16 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
-test -f $HOME/.zpm-init.zsh && source $_ || {
-  zpm zsh-users/prezto modules/git           # sensible git aliases
-  zpm junegunn/fzf                           # fuzzy finder, try ^r, ^t, kill<tab>
-  zpm zsh-users/zsh-autosuggestions          # suggest from history
-  zpm zdharma/fast-syntax-highlighting       # commandline syntax highlighting
-  zpm zsh-users/zsh-history-substring-search # partial fuzzy history search
-  zpm molovo/tipz                            # help remember aliases
-  zpm changyuheng/zsh-interactive-cd
-  zpm frmendes/geometry                      # clean theme
-  zpm jedahan/geometry-hydrate               # remind you to hydrate
+test -f $HOME/.zr/init.zsh && source $_ || {
+  zr add zsh-users/prezto modules/git/alias.zsh # sensible git aliases
+  zr add junegunn/fzf shell/key-bindings.zsh    # fuzzy finder, try ^r, ^t, kill<tab>
+  zr add zsh-users/zsh-autosuggestions          # suggest from history
+  zr add zdharma/fast-syntax-highlighting       # commandline syntax highlighting
+  zr add zsh-users/zsh-history-substring-search # partial fuzzy history search
+  zr add molovo/tipz                            # help remember aliases
+  zr add changyuheng/zsh-interactive-cd
+  zr add frmendes/geometry                      # clean theme
+  zr add jedahan/geometry-hydrate               # remind you to hydrate
   exec zsh
 }
 
