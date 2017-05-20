@@ -73,9 +73,6 @@ set list listchars=tab:→\ ,trail:·      " show tabs, and trailing spaces
 nnoremap <c-h> :bprevious!<CR>
 nnoremap <c-l> :bnext!<CR>
 
-nnoremap ; :
-nnoremap : ;
-
 " FUZZY FIND
 nnoremap <silent> <C-o> :FuzzyOpen<CR>
 nnoremap <silent> <C-p> :FuzzyGrep<CR>
