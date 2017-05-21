@@ -20,7 +20,7 @@ export GEOMETRY_SYMBOL_RUSTUP=
 export GEOMETRY_TIME_NEUTRAL='yellow'
 export GEOMETRY_PLUGIN_HYDRATE_SYMBOL=
 export GEOMETRY_PLUGIN_SEPARATOR='%F{242}  %f'
-export RIPZ_TEXT=' '
+export TIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
@@ -28,6 +28,7 @@ export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 test -f $HOME/.zr/init.zsh && source $_ || {
   zr add zsh-users/prezto modules/git/alias.zsh # sensible git aliases
+  zr add zsh-users/prezto modules/osx/init.zsh  # some osx shortcuts
   zr add junegunn/fzf shell/key-bindings.zsh    # fuzzy finder, try ^r, ^t, kill<tab>
   zr add zsh-users/zsh-autosuggestions          # suggest from history
   zr add zdharma/fast-syntax-highlighting       # commandline syntax highlighting
@@ -79,44 +80,39 @@ function up { # upgrade everything
   (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
 }
 
+export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
+
 if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
   export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR ⬡)
+
   for command in pb{copy,paste}; do
     (( $+commands[$command] )) && unfunction $command
     function $command {
       ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
     }
   done
+fi
 
+if [[ $HOST == *vpn*etsy* ]]; then
+    alias try="ssh vm 'try -P'"
+    function vm {
+      tmux select-pane -t:.0 -P 'bg=colour236'
+      old_name=`tmux list-windows | grep '*' | cut -d' ' -f2 | cut -d'*' -f1`
+      tmux rename-window .$old_name
+      ssh vm
+      tmux rename-window "$old_name"
+      tmux select-pane -t:.0 -P 'bg=black'
+    }
+  fi
+fi
 
+if [[ $HOST == *vm*etsy* ]]; then
   (( $+commands[dbaliases] )) && source $(dbaliases)
   (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
 
   alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
   alias -g INFO='/var/log/httpd/info.log'
   alias -g ERROR='/var/log/httpd/php.log'
-else
-  export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
-  alias try="ssh vm 'try -P'"
-  function vm {
-    tmux select-pane -t:.0 -P 'bg=colour236'
-    old_name=`tmux list-windows | grep '*' | cut -d' ' -f2 | cut -d'*' -f1`
-    tmux rename-window .$old_name
-    ssh vm
-    tmux rename-window "$old_name"
-    tmux select-pane -t:.0 -P 'bg=black'
-  }
-
-  function bat {
-    battery=$(ioreg -rc AppleSmartBattery)
-    function _stat {
-      echo $battery | rg --no-line-number ".*?$1.*?(\d+)" --replace '$1'
-    }
-    current_capacity=$(_stat CurrentCapacity)
-    max_capacity=$(_stat MaxCapacity)
-    percent=$(( 100 * $current_capacity / $max_capacity ))
-    echo "$current_capacity mAh (${percent}%)"
-  }
 fi
 
-if [[ $HOST == *etsy.com ]]; then cd ~/development/Etsyweb; fi
+test -d ~/development/Etsyweb 2>/dev/null && cd $_
