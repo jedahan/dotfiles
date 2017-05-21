@@ -104,7 +104,6 @@ if [[ $HOST == *vpn*etsy* ]]; then
       tmux rename-window "$old_name"
       tmux select-pane -t:.0 -P 'bg=black'
     }
-  fi
 fi
 
 if [[ $HOST == *vm*etsy* ]]; then
@@ -116,4 +115,4 @@ if [[ $HOST == *vm*etsy* ]]; then
   alias -g ERROR='/var/log/httpd/php.log'
 fi
 
-test -d ~/development/Etsyweb 2>/dev/null && cd $_
+test -d ~/development/Etsyweb >/dev/null && cd $_ || echo -n
