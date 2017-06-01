@@ -30,6 +30,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'    " more themes for airline
   Plug 'airblade/vim-gitgutter'            " show git information in the gutter
   " Other
+  Plug 'vim-scripts/Conque-GDB'            " gdb debugging
   Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
