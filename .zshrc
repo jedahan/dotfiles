@@ -1,7 +1,7 @@
 bindkey -e
 
 [[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && { tmux attach || tmux }
-_icons=( ⚡                      )
+_icons=( ⚡                       )
 [[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 
 function s { rg $@ }
