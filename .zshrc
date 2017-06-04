@@ -1,3 +1,4 @@
+[[ -v ZSH_PROF ]] && zmodload zsh/zprof
 bindkey -e
 
 [[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && { tmux attach || tmux }
@@ -26,21 +27,23 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
-test -f ~/.zr/init.zsh && source $_ || {
-  zr add sorin-ionescu/prezto modules/git/alias.zsh     # sensible git aliases
-  zr add sorin-ionescu/prezto modules/history/init.zsh  # sensible history settings
-  zr add sorin-ionescu/prezto modules/osx/init.zsh      # some osx shortcuts
-  zr add sorin-ionescu/prezto modules/homebrew/init.zsh # some osx shortcuts
-  zr add junegunn/fzf shell/key-bindings.zsh            # fuzzy finder, try ^r, ^t, kill<tab>
-  zr add zsh-users/zsh-autosuggestions                  # suggest from history
-  zr add zdharma/fast-syntax-highlighting               # commandline syntax highlighting
-  zr add zsh-users/zsh-history-substring-search         # partial fuzzy history search
-  zr add molovo/tipz                                    # help remember aliases
-  zr add changyuheng/zsh-interactive-cd                 # fuzzy finding on tabcomplete for cd
-  zr add frmendes/geometry                              # clean theme
-  zr add jedahan/geometry-hydrate                       # remind you to hydrate
-  source ~/.zr/init.zsh
+function init_zr {
+  zr load sorin-ionescu/prezto modules/git/alias.zsh \
+  sorin-ionescu/prezto modules/history/init.zsh \
+  sorin-ionescu/prezto modules/osx/init.zsh \
+  sorin-ionescu/prezto modules/homebrew/init.zsh \
+  junegunn/fzf shell/key-bindings.zsh \
+  zsh-users/zsh-autosuggestions \
+  zdharma/fast-syntax-highlighting \
+  zsh-users/zsh-history-substring-search \
+  molovo/tipz \
+  changyuheng/zsh-interactive-cd \
+  frmendes/geometry \
+  jedahan/geometry-hydrate
 }
+
+init_zr
+source ~/.zr/init.zsh
 
 bindkey "$terminfo[cuu1]" history-substring-search-up
 bindkey "$terminfo[cud1]" history-substring-search-down
