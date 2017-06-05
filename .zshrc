@@ -28,18 +28,20 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 function init_zr {
-  zr load sorin-ionescu/prezto modules/git/alias.zsh \
-  sorin-ionescu/prezto modules/history/init.zsh \
-  sorin-ionescu/prezto modules/osx/init.zsh \
-  sorin-ionescu/prezto modules/homebrew/init.zsh \
-  junegunn/fzf shell/key-bindings.zsh \
-  zsh-users/zsh-autosuggestions \
-  zdharma/fast-syntax-highlighting \
-  zsh-users/zsh-history-substring-search \
-  molovo/tipz \
-  changyuheng/zsh-interactive-cd \
-  frmendes/geometry \
-  jedahan/geometry-hydrate
+  [[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
+    zr load sorin-ionescu/prezto modules/git/alias.zsh \
+      sorin-ionescu/prezto modules/history/init.zsh \
+      sorin-ionescu/prezto modules/osx/init.zsh \
+      sorin-ionescu/prezto modules/homebrew/init.zsh \
+      junegunn/fzf shell/key-bindings.zsh \
+      zsh-users/zsh-autosuggestions \
+      zdharma/fast-syntax-highlighting \
+      zsh-users/zsh-history-substring-search \
+      molovo/tipz \
+      changyuheng/zsh-interactive-cd \
+      frmendes/geometry \
+      jedahan/geometry-hydrate
+  }
 }
 
 init_zr
