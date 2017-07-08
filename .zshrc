@@ -29,11 +29,11 @@ export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 function init_zr {
   [[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
-    zr load sorin-ionescu/prezto modules/git/alias.zsh \
-      sorin-ionescu/prezto modules/history/init.zsh \
-      sorin-ionescu/prezto modules/osx/init.zsh \
-      sorin-ionescu/prezto modules/homebrew/init.zsh \
-      junegunn/fzf shell/key-bindings.zsh \
+    zr load sorin-ionescu/prezto/modules/git/alias.zsh \
+      sorin-ionescu/prezto/modules/history/init.zsh \
+      sorin-ionescu/prezto/modules/osx/init.zsh \
+      sorin-ionescu/prezto/modules/homebrew/init.zsh \
+      junegunn/fzf/shell/key-bindings.zsh \
       zsh-users/zsh-autosuggestions \
       zdharma/fast-syntax-highlighting \
       zsh-users/zsh-history-substring-search \
