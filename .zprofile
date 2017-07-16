@@ -41,3 +41,12 @@ export PATH=$HOME/bin:$PATH
   export GITHUB_URL=https://github.etsycorp.com/
   export XDEBUG_CONFIG="idekey=xdebug"
 }
+
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_HOME=${HOME}/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+export PATH=${PATH}:/usr/local/Cellar/node/8.1.4/bin
+
+source ~/.zshsecrets
