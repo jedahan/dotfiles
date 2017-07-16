@@ -28,8 +28,10 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
 function init_zr {
+  test -d ~/.zr || mkdir $_
+  test -f ~/.zr/init.zsh || touch $_
   [[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
-    zr load sorin-ionescu/prezto/modules/git/alias.zsh \
+    RUST_BACKTRACE=1 zr load sorin-ionescu/prezto/modules/git/alias.zsh \
       sorin-ionescu/prezto/modules/history/init.zsh \
       sorin-ionescu/prezto/modules/osx/init.zsh \
       sorin-ionescu/prezto/modules/homebrew/init.zsh \
