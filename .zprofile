@@ -49,4 +49,4 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 export PATH=${PATH}:/usr/local/Cellar/node/8.1.4/bin
 
-source ~/.zshsecrets
+test -f ~/.zshsecrets && source $_
