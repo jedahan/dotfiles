@@ -27,30 +27,22 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
-function init_zr {
-  test -d ~/.zr || mkdir $_
-  test -f ~/.zr/init.zsh || touch $_
-  [[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
-    RUST_BACKTRACE=1 zr load sorin-ionescu/prezto/modules/git/alias.zsh \
-      sorin-ionescu/prezto/modules/history/init.zsh \
-      sorin-ionescu/prezto/modules/osx/init.zsh \
-      sorin-ionescu/prezto/modules/homebrew/init.zsh \
-      junegunn/fzf/shell/key-bindings.zsh \
-      zsh-users/zsh-autosuggestions \
-      zdharma/fast-syntax-highlighting \
-      zsh-users/zsh-history-substring-search \
-      molovo/tipz \
-      changyuheng/zsh-interactive-cd \
-      frmendes/geometry \
-      jedahan/geometry-hydrate
-  }
+test -d ~/.zr || mkdir $_
+test -f ~/.zr/init.zsh || touch $_
+[[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
+  zr load sorin-ionescu/prezto/modules/git/alias.zsh \
+    sorin-ionescu/prezto/modules/history/init.zsh \
+    sorin-ionescu/prezto/modules/osx/init.zsh \
+    sorin-ionescu/prezto/modules/homebrew/init.zsh \
+    junegunn/fzf/shell/key-bindings.zsh \
+    zsh-users/zsh-autosuggestions \
+    zdharma/fast-syntax-highlighting \
+    molovo/tipz \
+    changyuheng/zsh-interactive-cd \
+    frmendes/geometry \
+    jedahan/geometry-hydrate
 }
-
-init_zr
 source ~/.zr/init.zsh
-
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
 
 function h help { man $@ }
 function x { exit }
@@ -71,10 +63,10 @@ function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 72
 
 function up { # upgrade everything
   uplog=$(mktemp -t up)
-  (($+commands[tmux])) && {
-    tmux select-window -t update 2>/dev/null || tmux rename-window update
-    tmux split-window -d -p 40 -t update "tail -f $uplog"
-  }
+
+  window_name=`tmux list-windows | grep '*' | cut -d'*' -f1 | cut -d' ' -f2`
+  tmux select-window -t update 2>/dev/null || tmux rename-window update
+  tmux split-window -d -p 40 -t update "tail -f $uplog"
 
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
@@ -87,7 +79,8 @@ function up { # upgrade everything
   fun rustup 'rust'     && { rustup update }                       &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
   fun cargo 'crates'    && { cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
 
-  (($+commands[tmux])) && tmux kill-pane -t 0:update.-1
+  tmux kill-pane -t 0:update.{bottom}
+  tmux rename-window $window_name
 }
 
 export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
@@ -102,26 +95,3 @@ if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
     }
   done
 fi
-
-if [[ $HOST == *vpn*etsy* ]]; then
-    alias try="ssh vm 'try -P'"
-    function vm {
-      tmux select-pane -t:.0 -P 'bg=colour236'
-      old_name=`tmux list-windows | grep '*' | cut -d' ' -f2 | cut -d'*' -f1`
-      tmux rename-window .$old_name
-      ssh vm
-      tmux rename-window "$old_name"
-      tmux select-pane -t:.0 -P 'bg=black'
-    }
-fi
-
-if [[ $HOST == *vm*etsy* ]]; then
-  (( $+commands[dbaliases] )) && source $(dbaliases)
-  (( $+commands[review] )) && r() { (( ! $# )) && echo "$0 reviewer [cc [cc...]]" || EDITOR=true review -g -r $1 ${2+-c "${(j.,.)@[2,-1]}"} }
-
-  alias p='~/development/Etsyweb/bin/dev_proxy'; alias pon='p on'; alias pof='p off'; alias prw='p rw'
-  alias -g INFO='/var/log/httpd/info.log'
-  alias -g ERROR='/var/log/httpd/php.log'
-fi
-
-test -d ~/development/Etsyweb >/dev/null && cd $_ || echo -n
