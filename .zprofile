@@ -48,4 +48,6 @@ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 export PATH=${PATH}:/usr/local/Cellar/node/8.1.4/bin
 
+export PATH=${PATH}:$(yarn global bin)
+
 test -f ~/.zshsecrets && source $_
