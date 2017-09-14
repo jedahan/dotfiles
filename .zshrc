@@ -55,11 +55,12 @@ function l { $LS $@ }
 function ls { $LS $@ }
 function ll { $LS -l $@ }
 function , { clear && $LS }
+function b { mv "$@" /Volumes/data/b/ }
 
 function config { git --git-dir=$HOME/.dotfiles --work-tree=$HOME $@ }
 
 function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
-function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p30}
+function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p60 || livestreamer twitch.tv/$@ 720p30 || livestreamer twitch.tv/$@ best }
 
 function up { # upgrade everything
   uplog=$(mktemp -t up)
