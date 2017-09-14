@@ -11,7 +11,7 @@ env:
   # Note that some xterm terminfo databases don't declare support for italics.
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
-  TERM: xterm-256color
+  TERM: screen-256color
 
 # Window dimensions in character columns and lines
 # (changes require restart)
@@ -158,6 +158,9 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
 
+# Background Opactiy
+background_opacity: 1.0
+
 # Key bindings
 #
 # Each binding is defined as an object with some properties. Most of the
@@ -196,9 +199,9 @@ key_bindings:
   - { key: Q,        mods: Command, action: Quit                         }
   - { key: W,        mods: Command, action: Quit                         }
   - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
+  - { key: Home,                    chars: "\x1b[H",  mode: ~AppCursor  }
   - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[4~",  mode: ~AppCursor  }
+  - { key: End,                     chars: "\x1b[F",  mode: ~AppCursor  }
   - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
   - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
   - { key: PageUp,                  chars: "\x1b[5~"                     }
@@ -242,6 +245,8 @@ key_bindings:
   - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
   - { key: Insert,                  chars: "\x1b[2~"                     }
   - { key: Delete,                  chars: "\x1b[3~"                     }
+  - { key: B,        mods: Alt,     chars: "\x1b[1;2D"                   }
+  - { key: F,        mods: Alt,     chars: "\x1b[1;2C"                   }
 
 # Mouse bindings
 #
