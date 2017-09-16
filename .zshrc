@@ -78,7 +78,7 @@ function up { # upgrade everything
   fun brew 'brews'      && { brew upgrade; brew cleanup }          &>> $uplog; e 
   fun nvim 'neovim'     && { nvim +PlugUpdate! +PlugClean! +qall } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
   fun rustup 'rust'     && { rustup update }                       &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
-  fun cargo 'crates'    && { cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
+  fun cargo 'crates'    && { cargo +nightly install-update clippy; cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
 
   tmux kill-pane -t 0:update.{bottom}
   tmux rename-window $window_name
