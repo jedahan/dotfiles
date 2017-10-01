@@ -20,6 +20,8 @@ call plug#begin('~/.config/nvim/plugged')
   " Completion
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
   Plug 'rust-lang/rust.vim'                " rust language support
+  Plug 'isRuslan/vim-es6'                  " es6 language support
+  Plug 'posva/vim-vue'                     " vue language support
   Plug 'Shougo/echodoc.vim'                " statusline documentation
   Plug 'Shougo/denite.nvim'                " popup and refactoring
   Plug 'roxma/nvim-completion-manager'     " completion
@@ -43,7 +45,10 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " COMPLETION
-let g:LanguageClient_serverCommands = { 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+let g:LanguageClient_serverCommands = {
+  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+  \ 'vue': ['vls'],
+  \ }
 let g:LanguageClient_autoStart = 1
 let g:echodoc#enable_at_startup = 1
 set noshowmode
