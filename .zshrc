@@ -66,8 +66,8 @@ function up { # upgrade everything
   uplog=$(mktemp -t up)
 
   window_name=`tmux list-windows | grep '*' | cut -d'*' -f1 | cut -d' ' -f2`
-  tmux select-window -t update 2>/dev/null || tmux rename-window update
-  tmux split-window -d -p 40 -t update "tail -f $uplog"
+  tmux select-window -t  2>/dev/null || tmux rename-window 
+  tmux split-window -d -p 40 -t  "tail -f $uplog"
 
   function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
@@ -80,7 +80,7 @@ function up { # upgrade everything
   fun rustup 'rust'     && { rustup update }                       &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
   fun cargo 'crates'    && { cargo +nightly install-update clippy; cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
 
-  tmux kill-pane -t 0:update.{bottom}
+  tmux kill-pane -t 0:.{bottom}
   tmux rename-window $window_name
 }
 
