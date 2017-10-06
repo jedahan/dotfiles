@@ -19,8 +19,11 @@ nnoremap <Down> :resize +1<CR>
 call plug#begin('~/.config/nvim/plugged')
   " Completion
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
+  Plug 'Shougo/deoplete.nvim'
   Plug 'rust-lang/rust.vim'                " rust language support
   Plug 'isRuslan/vim-es6'                  " es6 language support
+  Plug 'mhartington/nvim-typescript'       " typescript language support
+  Plug 'HerringtonDarkholme/yats.vim'      " typescript syntax support
   Plug 'posva/vim-vue'                     " vue language support
   Plug 'Shougo/echodoc.vim'                " statusline documentation
   Plug 'Shougo/denite.nvim'                " popup and refactoring
@@ -84,13 +87,4 @@ nnoremap <silent> <C-o> :FuzzyOpen<CR>
 nnoremap <silent> <C-p> :FuzzyGrep<CR>
 nnoremap <C-s> :FuzzyGrep 
 
-" ETSY
-if system("hostname") =~ 'vm.*etsy.com'
-  let g:airline#extensions#tabline#formatter = 'rodeoicons'
-  let g:vdebug_options = {}
-  let g:vdebug_options["port"] = 9192
-  let g:vdebug_options["host"] = 127.0.0.1
-
-  autocmd FileType php setlocal tabstop=4
-  autocmd FileType php setlocal shiftwidth=4
-endif
+let g:deoplete#enable_at_startup = 1
