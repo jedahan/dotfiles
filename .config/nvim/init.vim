@@ -18,6 +18,7 @@ nnoremap <Down> :resize +1<CR>
 
 call plug#begin('~/.config/nvim/plugged')
   " Completion
+  Plug 'rhysd/github-complete.vim' "emoji, mostly
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
   Plug 'Shougo/deoplete.nvim'
   Plug 'rust-lang/rust.vim'                " rust language support
@@ -88,3 +89,9 @@ nnoremap <silent> <C-p> :FuzzyGrep<CR>
 nnoremap <C-s> :FuzzyGrep 
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_completion_start_length = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_auto_close_preview = 1
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
+inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
