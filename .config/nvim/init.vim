@@ -10,22 +10,13 @@ set nofoldenable
 let mapleader="\<SPACE>"
 set mouse=r
 
-" arrow key resize
-nnoremap <Left> :vertical resize -1<CR>
-nnoremap <Right> :vertical resize +1<CR>
-nnoremap <Up> :resize -1<CR>
-nnoremap <Down> :resize +1<CR>
-
 call plug#begin('~/.config/nvim/plugged')
   " Completion
-  Plug 'rhysd/github-complete.vim' "emoji, mostly
+  Plug 'sheerun/vim-polyglot'              " lots of syntax highlighting
+  Plug 'w0rp/ale'
+  Plug 'rhysd/github-complete.vim'         " emoji, mostly
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
   Plug 'Shougo/deoplete.nvim'
-  Plug 'rust-lang/rust.vim'                " rust language support
-  Plug 'isRuslan/vim-es6'                  " es6 language support
-  Plug 'mhartington/nvim-typescript'       " typescript language support
-  Plug 'HerringtonDarkholme/yats.vim'      " typescript syntax support
-  Plug 'posva/vim-vue'                     " vue language support
   Plug 'Shougo/echodoc.vim'                " statusline documentation
   Plug 'Shougo/denite.nvim'                " popup and refactoring
   Plug 'roxma/nvim-completion-manager'     " completion
@@ -36,16 +27,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'    " more themes for airline
   Plug 'airblade/vim-gitgutter'            " show git information in the gutter
   " Other
-  Plug 'vim-scripts/Conque-GDB'            " gdb debugging
   Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
   Plug 'bogado/file-line'                  " vim file.ext:line
-  Plug 'terryma/vim-multiple-cursors'      " ^n like sublime text
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'                 " Show git diffs in gutter
-  Plug 'tpope/vim-fugitive'                " Git commands, Gblame etc
-  if system('hostname') =~ 'etsy.com'
-    Plug 'git@github.etsycorp.com:Engineering/vim-rodeo.git'
-  endif
+  Plug 'tpope/vim-fugitive'                " git commands
 call plug#end()
 
 " COMPLETION
@@ -55,12 +41,6 @@ let g:LanguageClient_serverCommands = {
   \ }
 let g:LanguageClient_autoStart = 1
 let g:echodoc#enable_at_startup = 1
-set noshowmode
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-inoremap <expr> <cr>    pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
-inoremap <expr> <tab>   pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 
 " COLORS
 syntax on
@@ -88,10 +68,21 @@ nnoremap <silent> <C-o> :FuzzyOpen<CR>
 nnoremap <silent> <C-p> :FuzzyGrep<CR>
 nnoremap <C-s> :FuzzyGrep 
 
+" DEOPLETE
+set noshowmode
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_completion_start_length = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_auto_close_preview = 1
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<C-x>\<C-o>"
-inoremap <expr><S-Tab>  pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <cr> pumvisible() ? "\<c-y>\<cr>" : "\<cr>"
+inoremap <expr> <tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr> <s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+
+" LINTING
+let g:ale_linters = {
+\   'javascript': ['standard'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['standard'],
+\}
+let g:ale_fix_on_save = 1 " auto-lint
