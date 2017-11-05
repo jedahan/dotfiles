@@ -1,23 +1,14 @@
+# language
 export LC_ALL="en_US.UTF-8"
-
+# editor
 export EDITOR=nvim
 export VISUAL=$EDITOR
-
+# use exa for ls
 export LS=exa
-
+# colored less output
 export LESS='-r'
-
-# Colored manpages
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[00;47;30m'
-export LESS_TERMCAP_ue=$'\E[0m'
-export LESS_TERMCAP_us=$'\E[01;32m'
-
+# history
 export HISTSIZE=$((2 ** 20))
-
 # ruby
 export GEM_HOME=$HOME/.gems
 export PATH=$PATH:$GEM_HOME/bin
@@ -35,19 +26,10 @@ export RLS_ROOT=$HOME/src/rls
 # local
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/bin:$PATH
-
-[[ $HOST == *etsy.com ]] && {
-  export GITHUB_URL=https://github.etsycorp.com/
-  export XDEBUG_CONFIG="idekey=xdebug"
-}
-
+# android
 export ANDROID_HOME=/usr/local/share/android-sdk
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-
-export PATH=${PATH}:/usr/local/Cellar/node/8.6.0/bin
-
-export PATH=${PATH}:$(yarn global bin)
-
+# secrets
 test -f ~/.zshsecrets && source $_

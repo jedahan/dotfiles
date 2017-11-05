@@ -40,7 +40,8 @@ test -f ~/.zr/init.zsh || touch $_
     molovo/tipz \
     changyuheng/zsh-interactive-cd \
     frmendes/geometry \
-    jedahan/geometry-hydrate
+    jedahan/geometry-hydrate \
+    ael-code/zsh-colored-man-pages
 }
 source ~/.zr/init.zsh
 
