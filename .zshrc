@@ -27,11 +27,6 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
 
-zstyle ":morpho" screen-saver "/Users/jedahan/src/ternimal/ternimal"
-zstyle ":morpho" arguments "length=100 segments=50 thickness=1,4,1,0 radius=6,12 gradient=0:#666600,0.5:#00ff00,1:#003300"
-zstyle ":morpho" delay "45"
-zstyle ":morpho" check "15"
-
 test -d ~/.zr || mkdir $_
 test -f ~/.zr/init.zsh || touch $_
 [[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
@@ -46,8 +41,7 @@ test -f ~/.zr/init.zsh || touch $_
     changyuheng/zsh-interactive-cd \
     frmendes/geometry \
     jedahan/geometry-hydrate \
-    ael-code/zsh-colored-man-pages \
-    psprint/zsh-morpho
+    ael-code/zsh-colored-man-pages
 }
 source ~/.zr/init.zsh
 
