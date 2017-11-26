@@ -41,16 +41,18 @@ test -f ~/.zr/init.zsh || touch $_
 }
 source ~/.zr/init.zsh
 
-function h help { man $@ }
-function x { exit }
-function o { open "${@:-'.'}" }
-function a { atom "${@:-'.'}" }
-function v { nvim $@ }
-function c { lolcat $@ }
-function _ { sudo $@ }
-function l { $LS $@ }
-function ls { $LS $@ }
-function ll { $LS -l $@ }
+alias man=tldr
+alias help=tldr
+alias h=tldr
+alias x=exit
+alias o=open
+alias a=atom
+alias v=nvim
+alias c=lolcat
+alias _=sudo
+alias s=rg
+alias l=$LS
+alias ll="$LS -l"
 function , { clear && $LS }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
