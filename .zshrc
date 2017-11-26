@@ -1,19 +1,15 @@
-[[ -v ZSH_PROF ]] && zmodload zsh/zprof
 bindkey -e
 
 [[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && { tmux attach || tmux }
 _icons=( ⚡                       )
 [[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 
-function s { rg $@ }
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
-
 setopt autocd
 setopt autopushd
 setopt pushd_ignore_dups
 setopt interactivecomments
 
-autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste bracketed-paste-url-magic
+autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
 export PROMPT_GEOMETRY_EXEC_TIME=true
@@ -56,12 +52,10 @@ function l { $LS $@ }
 function ls { $LS $@ }
 function ll { $LS -l $@ }
 function , { clear && $LS }
-function b { mv "$@" /Volumes/data/b/ }
+function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
-function config { git --git-dir=$HOME/.dotfiles --work-tree=$HOME $@ }
-
-function badge { printf "\e]1337;SetBadgeFormat=%s\a" $(echo -n "$@" | base64) }
-function twitch { livestreamer twitch.tv/$@ high || livestreamer twitch.tv/$@ 720p60 || livestreamer twitch.tv/$@ 720p30 || livestreamer twitch.tv/$@ best }
+alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+function twitch { livestreamer twitch.tv/$@ best }
 
 function up { # upgrade everything
   uplog=$(mktemp -t up)
@@ -85,16 +79,3 @@ function up { # upgrade everything
   tmux kill-pane -t 0:.{bottom}
   tmux rename-window $window_name
 }
-
-export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR $PROMPT_GEOMETRY_SYMBOL)
-
-if [[ -n "$SSH_CLIENT" ]]; then # remote pbcopy, pbpaste, notify
-  export PROMPT_GEOMETRY=$(prompt_geometry_colorize $PROMPT_GEOMETRY_COLOR ⬡)
-
-  for command in pb{copy,paste}; do
-    (( $+commands[$command] )) && unfunction $command
-    function $command {
-      ssh `echo $SSH_CLIENT | awk '{print $1}'` "zsh -i -c \"$command $@\"";
-    }
-  done
-fi
