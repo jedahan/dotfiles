@@ -80,7 +80,7 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (Tomorrow Night 80s)
+# Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
