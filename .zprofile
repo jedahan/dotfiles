@@ -31,5 +31,7 @@ export ANDROID_HOME=/usr/local/share/android-sdk
 export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+# clojars
+export CLOJARS_USER=$USER
 # secrets
 test -f ~/.zshsecrets && source $_
