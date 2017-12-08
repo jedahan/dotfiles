@@ -33,5 +33,8 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 # clojars
 export CLOJARS_USER=$USER
+# carp
+export PATH=$HOME/.local/bin:$PATH
+export CARP_DIR=$HOME/src/Carp/
 # secrets
 test -f ~/.zshsecrets && source $_
