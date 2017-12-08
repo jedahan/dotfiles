@@ -35,7 +35,7 @@ test -f ~/.zr/init.zsh || touch $_
     zdharma/fast-syntax-highlighting \
     molovo/tipz \
     changyuheng/zsh-interactive-cd \
-    frmendes/geometry \
+    geometry-zsh/geometry \
     jedahan/geometry-hydrate \
     ael-code/zsh-colored-man-pages
 }
