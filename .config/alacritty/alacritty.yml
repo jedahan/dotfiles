@@ -80,17 +80,18 @@ render_timer: false
 # and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Colors (Tomorrow Night Bright)
+# Base16 Eighties - alacritty color config
+# Chris Kempson (http://chriskempson.com)
 colors:
   # Default colors
   primary:
     background: '0x2d2d2d'
-    foreground: '0xeaeaea'
+    foreground: '0xd3d0c8'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x000000'
-    cursor: '0xffffff'
+    text: '0x2d2d2d'
+    cursor: '0xd3d0c8'
 
   # Normal colors
   normal:
@@ -101,7 +102,7 @@ colors:
     blue:    '0x6699cc'
     magenta: '0xcc99cc'
     cyan:    '0x66cccc'
-    white:   '0xd3d9c8'
+    white:   '0xd3d0c8'
 
   # Bright colors
   bright:
@@ -112,20 +113,7 @@ colors:
     blue:    '0xa09f93'
     magenta: '0xe8e6df'
     cyan:    '0xd27b53'
-    white:   '0xf2f0ec'
-
-  # Dim colors (Optional)
-  dim:
-    black:   '0x747369'
-    # black:   '0x333333'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xdddddd'
-
+    white:   '0xd3d0c8'
 
 # Visual Bell
 #
