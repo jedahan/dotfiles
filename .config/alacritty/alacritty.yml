@@ -321,3 +321,5 @@ key_bindings:
   - { key: F12,      mods: Command, chars: "\x1b[24;3~"                  }
   - { key: B,        mods: Alt,     chars: "\x1bb"                       }
   - { key: F,        mods: Alt,     chars: "\x1bf"                       }
+  - { key: RBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["next"] } }
+  - { key: LBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["prev"] } }
