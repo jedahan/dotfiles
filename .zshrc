@@ -1,5 +1,6 @@
 bindkey -e
 
+export PATH=/usr/local/bin:$PATH
 [[ -z "$TMUX" && -z "$SSH_CLIENT" ]] && { tmux attach || tmux }
 _icons=( ⚡                       )
 [[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
@@ -21,7 +22,7 @@ export TIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT_PLUGINS=(exec_time git +rustup hydrate)
+export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time git +rustup hydrate)
 
 test -d ~/.zr || mkdir $_
 test -f ~/.zr/init.zsh || touch $_
@@ -58,7 +59,7 @@ function , { clear && $LS }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-function twitch { livestreamer twitch.tv/$@ best }
+function twitch { streamlink twitch.tv/$@ best }
 
 function up { # upgrade everything
   uplog=$(mktemp -t up)
