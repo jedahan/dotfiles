@@ -68,7 +68,7 @@ function up { # upgrade everything
   tmux select-window -t  2>/dev/null || tmux rename-window 
   tmux split-window -d -p 40 -t  "tail -f $uplog"
 
-  function fun { (( $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
+  function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
   c <<< "  $uplog"
   fun config 'dotfiles' && { config pull }                         &>> $uplog; e 
