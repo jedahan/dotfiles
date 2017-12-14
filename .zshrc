@@ -42,7 +42,7 @@ test -f ~/.zr/init.zsh || touch $_
 }
 source ~/.zr/init.zsh
 
-alias manual=/usr/bin/man
+alias manual=$functions[man]
 alias man=tldr
 alias help=tldr
 alias h=tldr
