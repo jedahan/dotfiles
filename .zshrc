@@ -83,3 +83,5 @@ function up { # upgrade everything
   tmux kill-pane -t 0:.{bottom}
   tmux rename-window $window_name
 }
+
+source ~/.zshsecrets
