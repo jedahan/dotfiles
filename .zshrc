@@ -55,6 +55,7 @@ alias _=sudo
 alias s=rg
 alias l=$LS
 alias ll="$LS -l"
+function ls { $LS }
 function , { clear && $LS }
 function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
