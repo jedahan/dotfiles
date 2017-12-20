@@ -5,6 +5,8 @@ export EDITOR=nvim
 export VISUAL=$EDITOR
 # use exa for ls
 export LS=exa
+# use fd for find
+export FIND=fd
 # colored less output
 export LESS='-r'
 # history
