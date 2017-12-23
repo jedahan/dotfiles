@@ -34,7 +34,7 @@ export ANDROID_HOME=${HOME}/Library/Android/sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 # clojars
-export CLOJARS_USER=$USER
+export CLOJARS_USER=jedahan
 # carp
 export PATH=$HOME/.local/bin:$PATH
 export CARP_DIR=$HOME/src/Carp/
