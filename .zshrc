@@ -22,7 +22,7 @@ export TIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time git +rustup hydrate)
+export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git +rustup hydrate)
 
 test -d ~/.zr || mkdir $_
 test -f ~/.zr/init.zsh || touch $_
@@ -38,6 +38,7 @@ test -f ~/.zr/init.zsh || touch $_
     changyuheng/zsh-interactive-cd \
     geometry-zsh/geometry \
     jedahan/geometry-hydrate \
+    jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages
 }
 source ~/.zr/init.zsh
@@ -59,7 +60,6 @@ function ls { $LS }
 alias f=$FIND
 function find { $FIND }
 function , { clear && $LS }
-function t { (($#)) && echo -E - "$*" >> ~/todo.md || s '###' ~/todo.md --replace '⌫ ' 2>/dev/null | lolcat }; t # todo
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 function twitch { streamlink twitch.tv/$@ best }
