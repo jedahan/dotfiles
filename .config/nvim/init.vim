@@ -13,6 +13,7 @@ set mouse=r
 call plug#begin('~/.config/nvim/plugged')
   " Completion
   Plug 'sheerun/vim-polyglot'              " lots of syntax highlighting
+  Plug 'hellerve/carp-vim'
   Plug 'w0rp/ale'
   Plug 'rhysd/github-complete.vim'         " emoji, mostly
   Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
