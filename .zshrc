@@ -58,7 +58,6 @@ alias l=$LS
 alias ll="$LS -l"
 function ls { $LS }
 alias f=$FIND
-function find { $FIND }
 function , { clear && $LS }
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
