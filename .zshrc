@@ -61,7 +61,7 @@ function ls { $LS }
 abbrev-alias f=$FIND
 function , { clear && $LS }
 
-abbrev-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 function twitch { streamlink --player mpv twitch.tv/$@ best }
 
 function up { # upgrade everything
