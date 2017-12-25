@@ -28,7 +28,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'    " more themes for airline
   Plug 'airblade/vim-gitgutter'            " show git information in the gutter
   " Other
-  Plug 'cloudhead/neovim-fuzzy'            " fuzzy-finder, try ^o, ^p, and ^s
+  Plug '/usr/local/opt/fzf'                " fuzzy find ^o for files, ^p for ripgrep
+  Plug 'junegunn/fzf.vim'
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'                 " Show git diffs in gutter
@@ -65,9 +66,20 @@ nnoremap <c-h> :bprevious!<CR>
 nnoremap <c-l> :bnext!<CR>
 
 " FUZZY FIND
-nnoremap <silent> <C-o> :FuzzyOpen<CR>
-nnoremap <silent> <C-p> :FuzzyGrep<CR>
-nnoremap <C-s> :FuzzyGrep 
+" Ripgrep instead of ag for fzf
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+nnoremap <silent> <C-o> :Files<CR>
+nnoremap <silent> <C-p> :Rg<CR>
 
 " DEOPLETE
 set noshowmode
