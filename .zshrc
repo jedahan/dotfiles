@@ -39,28 +39,29 @@ test -f ~/.zr/init.zsh || touch $_
     geometry-zsh/geometry \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
-    ael-code/zsh-colored-man-pages
+    ael-code/zsh-colored-man-pages \
+    momo-lab/zsh-abbrev-alias
 }
 source ~/.zr/init.zsh
 
-alias manual=$functions[man]
-alias man=tldr
-alias help=tldr
-alias h=tldr
-alias x=exit
-alias o=open
-alias a=atom
-alias v=nvim
-alias c=lolcat
-alias _=sudo
-alias s=rg
-alias l=$LS
-alias ll="$LS -l"
+abbrev-alias manual=$functions[man]
+abbrev-alias man=tldr
+abbrev-alias help=tldr
+abbrev-alias h=tldr
+abbrev-alias x=exit
+abbrev-alias o=open
+abbrev-alias a=atom
+abbrev-alias v=nvim
+abbrev-alias c=lolcat
+abbrev-alias _=sudo
+abbrev-alias s=rg
+abbrev-alias l=$LS
+abbrev-alias ll="$LS -l"
 function ls { $LS }
-alias f=$FIND
+abbrev-alias f=$FIND
 function , { clear && $LS }
 
-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+abbrev-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 function twitch { streamlink --player mpv twitch.tv/$@ best }
 
 function up { # upgrade everything
