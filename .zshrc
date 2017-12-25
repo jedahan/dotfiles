@@ -44,7 +44,7 @@ test -f ~/.zr/init.zsh || touch $_
 }
 source ~/.zr/init.zsh
 
-abbrev-alias manual=$functions[man]
+alias manual=$functions[man]
 abbrev-alias man=tldr
 abbrev-alias help=tldr
 abbrev-alias h=tldr
