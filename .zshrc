@@ -65,7 +65,7 @@ alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 function twitch { streamlink --player mpv twitch.tv/$@ best }
 
 function up { # upgrade everything
-  uplog=/tmp/up; rm -rf $uplog >/dev/null
+  uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
 
   window_name=`tmux list-windows | grep '*' | cut -d'*' -f1 | cut -d' ' -f2`
   tmux select-window -t  2>/dev/null || tmux rename-window 
