@@ -76,44 +76,33 @@ font:
 # Should display the render timer
 render_timer: false
 
-# Use custom cursor colors. If true, display the cursor in the cursor.foreground
-# and cursor.background colors, otherwise invert the colors of the cursor.
 custom_cursor_colors: false
 
-# Base16 Eighties - alacritty color config
-# Chris Kempson (http://chriskempson.com)
+# new moon https://github.com/taniarascia/new-moon
 colors:
-  # Default colors
   primary:
-    background: '0x2d2d2d'
-    foreground: '0xd3d0c8'
+    background: '0x8a8a80'
+    foreground: '0xcccccc'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
-  cursor:
-    text: '0x2d2d2d'
-    cursor: '0xd3d0c8'
-
-  # Normal colors
   normal:
     black:   '0x2d2d2d'
     red:     '0xf2777a'
     green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xd3d0c8'
+    yellow:  '0xffd479'
+    blue:    '0x78aad6'
+    magenta: '0xd6acd6'
+    cyan:    '0x76d4d6'
+    white:   '0xcccccc'
 
-  # Bright colors
   bright:
-    black:   '0x747369'
-    red:     '0xf99157'
-    green:   '0x393939'
-    yellow:  '0x515151'
-    blue:    '0xa09f93'
-    magenta: '0xe8e6df'
-    cyan:    '0xd27b53'
-    white:   '0xd3d0c8'
+    black:   '0x4f4f4f'
+    red:     '0xf2777a'
+    green:   '0x99cc99'
+    yellow:  '0xffd479'
+    blue:    '0x78aad6'
+    magenta: '0xd6acd6'
+    cyan:    '0x76d4d6'
+    white:   '0xcccccc'
 
 # Visual Bell
 #

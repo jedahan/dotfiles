@@ -40,7 +40,8 @@ test -f ~/.zr/init.zsh || touch $_
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages \
-    momo-lab/zsh-abbrev-alias
+    momo-lab/zsh-abbrev-alias \
+    chriskempson/base16-shell/scripts/base16-eighties.sh
 }
 source ~/.zr/init.zsh
 
