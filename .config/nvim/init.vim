@@ -33,6 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'                 " Show git diffs in gutter
   Plug 'tpope/vim-fugitive'                " git commands
+  Plug 'tpope/vim-unimpaired'              " mostly for ]l and [l for navigating quick fixes
 call plug#end()
 
 " COMPLETION
