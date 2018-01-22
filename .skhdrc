@@ -1,5 +1,5 @@
 # enter fullscreen mode for the focused container
-alt - f : chunkc tiling::window --toggle fullscreen
+shift + alt - f : chunkc tiling::window --toggle fullscreen
 
 #alt - enter : [ `chunkc tiling::query --window owner` == "Alacritty" ] && echo focused || echo not
 
