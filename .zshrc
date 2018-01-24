@@ -59,7 +59,7 @@ abbrev-alias _=sudo
 abbrev-alias s=rg
 abbrev-alias l=$LS
 abbrev-alias ll="$LS -l"
-function ls { $LS }
+function ls { $LS $@ }
 abbrev-alias f=$FIND
 function , { clear && $LS }
 
