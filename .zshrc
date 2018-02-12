@@ -1,12 +1,12 @@
+export PATH=/usr/local/bin:$PATH
+
+icons=( ⚡                      )
+icon="${icons[RANDOM % $#icons + 1]} "
+[[ (( $+commands[tmux] )) && -z "$TMUX$SSH_CLIENT" ]] && { tmux ls 2>/dev/null | rg -v attached>/dev/null && tmux attach || tmux new -s $icon -n $icon }
+
 bindkey -e
 autoload -U select-word-style
 select-word-style bash
-
-export PATH=/usr/local/bin:$PATH
-[[ -z "$TMUX" && (( $+commands[tmux] )) ]] && export tmux_session=$(tmux ls | rg -v attached | cut -d':' -f1 | head -n1)
-[[ -z "$TMUX" && -n "$tmux_session" && -z "$SSH_CLIENT" ]] && tmux attach $tmux_session
-_icons=( ⚡                       )
-[[ -z "$TMUX" ]] || tmux rename-window "${_icons[RANDOM % $#_icons + 1]} "
 
 setopt autocd
 setopt autopushd
