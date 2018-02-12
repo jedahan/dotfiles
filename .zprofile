@@ -40,3 +40,5 @@ export PATH=$HOME/.local/bin:$PATH
 export CARP_DIR=$HOME/src/Carp/
 # secrets
 test -f ~/.zshsecrets && source $_
+# pip
+export PATH=$HOME/Library/Python/3.6/bin:$PATH
