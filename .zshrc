@@ -1,4 +1,6 @@
 bindkey -e
+autoload -U select-word-style
+select-word-style bash
 
 export PATH=/usr/local/bin:$PATH
 [[ -z "$TMUX" && (( $+commands[tmux] )) ]] && latest_session=$(tmux ls | rg -v attached | cut -d':' -f1 | head -n1)
