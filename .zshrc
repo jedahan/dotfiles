@@ -4,6 +4,7 @@ icons=( ⚡                �
 icon="${icons[RANDOM % $#icons + 1]} "
 source $HOME/.zr/plugins/chriskempson/base16-shell/scripts/base16-eighties.sh
 [[ (( $+commands[tmux] )) && -z "$TMUX$SSH_CLIENT" ]] && { tmux ls 2>/dev/null | rg -v attached>/dev/null && tmux attach || tmux new -s $icon -n $icon }
+[[ -n "$TMUX" ]] && tmux rename-window $icon
 
 bindkey -e
 autoload -U select-word-style
@@ -88,7 +89,7 @@ function up { # upgrade everything
   fun cargo 'crates'    && { cargo +nightly install-update clippy; cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
   fun mas 'apps'        && { mas upgrade }                         &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
 
-  tmux kill-pane -t 0:.{bottom}
+  tmux kill-pane -t :.{bottom}
   tmux rename-window $window_name
 }
 
