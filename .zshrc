@@ -1,6 +1,6 @@
 export PATH=/usr/local/bin:$PATH
 
-icons=(                       )
+icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
 source $HOME/.zr/plugins/chriskempson/base16-shell/scripts/base16-eighties.sh
 [[ (( $+commands[tmux] )) && -z "$TMUX$SSH_CLIENT" ]] && { tmux ls 2>/dev/null | rg -v attached>/dev/null && tmux attach || tmux new -s $icon -n $icon }
