@@ -27,7 +27,8 @@ export TIPZ_TEXT=' '
 
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git rustup hydrate)
+export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(hydrate path hostname)
+export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git rustup)
 
 test -d ~/.zr || mkdir $_
 test -f ~/.zr/init.zsh || touch $_
