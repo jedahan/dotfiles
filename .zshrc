@@ -47,7 +47,7 @@ test -f ~/.zr/init.zsh || touch $_
     jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
-    chriskempson/base16-shell/scripts/base16-eighties.sh
+    wfxr/forgit
 }
 source ~/.zr/init.zsh
 
