@@ -47,9 +47,12 @@ test -f ~/.zr/init.zsh || touch $_
     jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
-    wfxr/forgit
+    zpm-zsh/ssh
 }
 source ~/.zr/init.zsh
+
+function hydrate_clear { hydrate && zle reset-prompt && zle clear-screen }
+zle -N hydrate_widget hydrate_clear && bindkey '^L' hydrate_widget
 
 alias manual=$functions[man]
 abbrev-alias man=tldr
