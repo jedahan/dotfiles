@@ -5,9 +5,9 @@
 	word-diff = color
 [alias]
 	wdiff = diff --color-words
-[alias]
 	showtool = "!f() { git difftool $1^ $1; }; f"
 	added = difftool --cached
+	clown = clone
 [diff]
 	tool = icdiff
 [difftool]
