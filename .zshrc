@@ -29,6 +29,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(hydrate path hostname)
 export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git rustup)
+export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
 
 test -d ~/.zr || mkdir $_
 test -f ~/.zr/init.zsh || touch $_
@@ -50,9 +51,6 @@ test -f ~/.zr/init.zsh || touch $_
     zpm-zsh/ssh
 }
 source ~/.zr/init.zsh
-
-function hydrate_clear { hydrate && zle reset-prompt && zle clear-screen }
-zle -N hydrate_widget hydrate_clear && bindkey '^L' hydrate_widget
 
 alias manual=$functions[man]
 abbrev-alias man=tldr
