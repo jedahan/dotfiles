@@ -49,6 +49,7 @@ test -f ~/.zr/init.zsh || touch $_
     jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
+    jedahan/alacritty-completions \
     zpm-zsh/ssh
 }
 source ~/.zr/init.zsh
