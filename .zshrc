@@ -1,4 +1,5 @@
 export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/.npm-global/bin:$PATH
 
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
