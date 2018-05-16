@@ -86,7 +86,7 @@ custom_cursor_colors: false
 # new moon https://github.com/taniarascia/new-moon
 colors:
   primary:
-    background: '0x8a8a80'
+    background: '0x2d2d2d'
     foreground: '0xcccccc'
 
   normal:
