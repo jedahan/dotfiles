@@ -1,44 +1,27 @@
-# language
 export LC_ALL="en_US.UTF-8"
-# editor
+export HISTSIZE=$((2 ** 20))
+
 export EDITOR=nvim
 export VISUAL=$EDITOR
-# use exa for ls
+
 export LS=exa
-# use fd for find
 export FIND=fd
-# colored less output
 export LESS='-r'
-# history
-export HISTSIZE=$((2 ** 20))
-# ruby
-export GEM_HOME=$HOME/.gems
-export PATH=$PATH:$GEM_HOME/bin
-# homebrew
+
 export HOMEBREW_NO_ANALYTICS=1
-export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-# go
-export GOPATH=$HOME/.go
+
+export TMPHOME=/Volumes/data/tmp
+
+export GEM_HOME=$TMPHOME/gems
+export PATH=$GEM_HOME/bin:$PATH
+
+export GOPATH=$TMPHOME/go
 export PATH=$GOPATH/bin:$PATH
-# rust
-export PATH=$HOME/.cargo/bin:$PATH
-export DYLD_LIBRARY_PATH=$(rustc --print sysroot)/lib
-export RUST_SRC_PATH=$DYLD_LIBRARY_PATH/rustlib/src/rust/src
-export RLS_ROOT=$HOME/src/rls
-# local
-export PATH=$HOME/.bin:$PATH
-export PATH=$HOME/bin:$PATH
-# android
-export ANDROID_HOME=/usr/local/share/android-sdk
-export ANDROID_HOME=${HOME}/Library/Android/sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-# clojars
-export CLOJARS_USER=jedahan
-# carp
-export PATH=$HOME/.local/bin:$PATH
-export CARP_DIR=$HOME/src/Carp/
-# secrets
-test -f ~/.zshsecrets && source $_
-# pip
+
+export CARGO_HOME=$TMPHOME/cargo
+export RUSTUP_HOME=$TMPHOME/rustup
+export PATH=$CARGO_HOME/bin:$PATH
+
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
+
+test -f $HOME/.zshsecrets && source $_
