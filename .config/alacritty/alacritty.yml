@@ -17,8 +17,8 @@ window:
   # Window dimensions in character columns and lines
   # (changes require restart)
   dimensions:
-    columns: 200
-    lines: 62
+    columns: 187
+    lines: 51
 
   # Adds this many blank pixels of padding around the window
   # Units are physical pixels; this is not DPI aware.
