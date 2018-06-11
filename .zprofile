@@ -9,6 +9,7 @@ export FIND=fd
 export LESS='-r'
 
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_UPGRADE_CLEANUP=1
 
 export TMPHOME=/Volumes/data/tmp
 
