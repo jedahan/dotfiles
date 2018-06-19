@@ -1,15 +1,15 @@
-[Jonathan Dahan](http://jonathan.is)'s dotfiles for OSX and linux
+[Jonathan Dahan](http://jonathan.is)'s dotfiles for macOS
 
 ### Software
 
-[zsh](https://zsh.org),
-[neovim](https://neovim.io),
-[tmux](https://tmux.github.io),
 [alacritty](https://github.com/jwilm/alacritty),
-[mpv](https://mpv.io),
 [git](https://git-scm.com),
-[livestreamer](docs.livestreamer.io),
-[parity](https://parity.io)
+[mpv](https://mpv.io),
+[neovim](https://neovim.io),
+[parity](https://parity.io),
+[streamlink](https://streamlink.github.io),
+[tmux](https://tmux.github.io),
+[zsh](https://zsh.org)
 
 ### Installation
 

@@ -71,7 +71,7 @@ abbrev-alias f=$FIND
 function , { clear && $LS }
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-function twitch { streamlink --player "mpv --vo=opengl -hwdec=videotoolbox --fs --native-fs=no" twitch.tv/$@ best }
+function twitch { streamlink twitch.tv/$@ best }
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
