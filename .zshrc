@@ -71,7 +71,7 @@ abbrev-alias f=$FIND
 function , { clear && $LS }
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-function twitch { streamlink twitch.tv/$@ best }
+function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$@ best }
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
