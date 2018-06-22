@@ -95,3 +95,10 @@ function up { # upgrade everything
   tmux kill-pane -t :.{bottom}
   tmux rename-window $window_name
 }
+
+function baculus() {
+  local interface=en5
+  local ipv6local=$(ifconfig $interface | grep inet6 | cut -d' ' -f2)
+  local ipv6remote=$(ping6 -c 2 ff02::1%$interface | grep '^16' | grep -v $ipv6local | cut -d' ' -f4-5 | cut -d',' -f1)
+  ssh -i ~/.ssh/baculus pi@$ipv6remote
+}
