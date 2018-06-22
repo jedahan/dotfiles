@@ -22,6 +22,7 @@ export PATH=$GOPATH/bin:$PATH
 export CARGO_HOME=$TMPHOME/cargo
 export RUSTUP_HOME=$TMPHOME/rustup
 export PATH=$CARGO_HOME/bin:$PATH
+export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
