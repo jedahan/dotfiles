@@ -24,6 +24,10 @@ export RUSTUP_HOME=$TMPHOME/rustup
 export PATH=$CARGO_HOME/bin:$PATH
 export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
+export NPM_CONFIG_PREFIX=$TMPHOME/npm/global
+export NPM_CONFIG_CACHE=$TMPHOME/npm/cache
+export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
+
 export PATH=$HOME/Library/Python/3.6/bin:$PATH
 
 test -f $HOME/.zshsecrets && source $_
