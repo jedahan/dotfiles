@@ -3,8 +3,7 @@ export PATH=$HOME/.npm-global/bin:$PATH
 
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
-[[ (( $+commands[tmux] )) && -z "$TMUX$SSH_CLIENT" ]] && { tmux ls 2>/dev/null | rg -v attached>/dev/null && tmux attach || tmux new -s $icon -n $icon }
-[[ -n "$TMUX" ]] && tmux rename-window $icon
+tmux bind-key c new-window -n $icon
 
 bindkey -e
 autoload -U select-word-style
