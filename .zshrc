@@ -30,9 +30,8 @@ export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname)
 export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git rustup hydrate)
 export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
 
-test -d ~/.zr || mkdir $_
-test -f ~/.zr/init.zsh || touch $_
-[[ ~/.zshrc -nt ~/.zr/init.zsh ]] && {
+if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
+  test -d ~/.zr || mkdir $_
   zr load sorin-ionescu/prezto/modules/git/alias.zsh \
     sorin-ionescu/prezto/modules/history/init.zsh \
     sorin-ionescu/prezto/modules/osx/init.zsh \
@@ -50,7 +49,7 @@ test -f ~/.zr/init.zsh || touch $_
     jedahan/alacritty-completions \
     jedahan/laser \
     zpm-zsh/ssh
-}
+fi
 source ~/.zr/init.zsh
 
 alias manual=$functions[man]
