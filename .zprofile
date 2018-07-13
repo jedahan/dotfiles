@@ -11,6 +11,7 @@ export LESS='-r'
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_UPGRADE_CLEANUP=1
 export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 export TMPHOME=/Volumes/data/tmp
 
@@ -21,8 +22,9 @@ export GOPATH=$TMPHOME/go
 export PATH=$GOPATH/bin:$PATH
 
 export CARGO_HOME=$TMPHOME/cargo
-export RUSTUP_HOME=$TMPHOME/rustup
 export PATH=$CARGO_HOME/bin:$PATH
+
+export RUSTUP_HOME=$TMPHOME/rustup
 export RUST_SRC_PATH=$RUSTUP_HOME/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
 export NPM_CONFIG_PREFIX=$TMPHOME/npm/global

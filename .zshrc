@@ -1,5 +1,5 @@
-export PATH=/usr/local/bin:$PATH
-export PATH=$HOME/.npm-global/bin:$PATH
+[[ -n "$TMUX" ]] || tmux
+(( $+commands[tmux] )) && [[ -z "$TMUX" ]] && { tmux ls 2>/dev/null | rg -v attached >/dev/null && tmux attach || tmux new -s }
 
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
