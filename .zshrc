@@ -36,6 +36,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     sorin-ionescu/prezto/modules/osx/init.zsh \
     sorin-ionescu/prezto/modules/homebrew/init.zsh \
     junegunn/fzf/shell/key-bindings.zsh \
+    leophys/zsh-plugin-fzf-finder \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     molovo/tipz \
