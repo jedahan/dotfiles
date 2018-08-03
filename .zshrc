@@ -27,7 +27,7 @@ export TIPZ_TEXT=' '
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname)
-export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git rustup hydrate)
+export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time +todo git rustup hydrate)
 export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
 
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
@@ -51,6 +51,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zpm-zsh/ssh
 fi
 source ~/.zr/init.zsh
+geometry_plugin_register todo
 
 alias manual=$functions[man]
 abbrev-alias man=tldr
