@@ -77,7 +77,7 @@ function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
 
-  window_name=`tmux list-windows | grep '*' | cut -d'*' -f1 | cut -d' ' -f2`
+  window_name=`tmux list-windows -F '#{?window_active,#{window_name},}'`
   tmux select-window -t  2>/dev/null || tmux rename-window 
   tmux split-window -d -p 40 -t  "tail -f $uplog"
 
@@ -94,7 +94,7 @@ function up { # upgrade everything
   fun mas 'apps'        && { mas upgrade }                         &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
 
   tmux kill-pane -t :.{bottom}
-  tmux rename-window $window_name
+  tmux rename-window ${window_name//[[:space:]]/}
 }
 
 function par() {
