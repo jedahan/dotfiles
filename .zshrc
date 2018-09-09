@@ -27,7 +27,7 @@ export TIPZ_TEXT=' '
 export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname)
-export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time +todo git rustup hydrate)
+export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git +rustup hydrate)
 export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
 
 export FZF_FINDER_BINDKEY='^B'
