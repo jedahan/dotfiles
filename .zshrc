@@ -48,6 +48,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     momo-lab/zsh-abbrev-alias \
     jedahan/alacritty-completions \
     jedahan/laser \
+    csurfer/tmuxrepl \
     zpm-zsh/ssh
 fi
 source ~/.zr/init.zsh
