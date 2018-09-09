@@ -30,6 +30,8 @@ export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname)
 export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time +todo git rustup hydrate)
 export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
 
+export FZF_FINDER_BINDKEY='^B'
+
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load sorin-ionescu/prezto/modules/git/alias.zsh \
     sorin-ionescu/prezto/modules/history/init.zsh \
