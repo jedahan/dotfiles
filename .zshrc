@@ -97,9 +97,13 @@ function up { # upgrade everything
   tmux rename-window $window_name
 }
 
-function baculus() {
-  local interface=en5
-  local ipv6local=$(ifconfig $interface | grep inet6 | cut -d' ' -f2)
-  local ipv6remote=$(ping6 -c 2 ff02::1%$interface | grep '^16' | grep -v $ipv6local | cut -d' ' -f4-5 | cut -d',' -f1)
-  ssh -i ~/.ssh/baculus pi@$ipv6remote
+function par() {
+  parity \
+    --config=$HOME/.config/parity/config.toml \
+    --cache-size 1024 \
+    --db-compaction ssd \
+    --pruning fast \
+    --mode active \
+    --jsonrpc-threads 4 &
+  sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
 }
