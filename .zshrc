@@ -38,7 +38,6 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     leophys/zsh-plugin-fzf-finder \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
-    molovo/tipz \
     changyuheng/zsh-interactive-cd \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
@@ -52,22 +51,25 @@ fi
 source ~/.zr/init.zsh
 geometry_plugin_register todo
 
-alias manual=$functions[man]
-abbrev-alias man=tldr
-abbrev-alias help=tldr
-abbrev-alias h=tldr
+alias manual=$commands[man]
+alias find=${commands[fd]:-$commands[find]}
+alias grep=${commands[rg]:-$commands[grep]}
+alias ls=${commands[exa]:-$commands[ls]}
+(( $+commands[tldr] )) && function man { tldr $* 2>/dev/null || tldr -o linux $* }
+abbrev-alias help=man
+abbrev-alias h=man
 abbrev-alias x=exit
 abbrev-alias o=open
 abbrev-alias a=atom
 abbrev-alias v=nvim
 abbrev-alias c=lolcat
 abbrev-alias _=sudo
-abbrev-alias s=rg
-abbrev-alias l=$LS
-abbrev-alias ll="$LS -l"
-function ls { $LS $@ }
-abbrev-alias f=$FIND
-function , { clear && $LS }
+abbrev-alias s=grep
+abbrev-alias f=find
+abbrev-alias repl=tmuxrepl
+abbrev-alias l=ls
+abbrev-alias ll='ls -l'
+function , { clear && ls }
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }

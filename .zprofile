@@ -1,11 +1,9 @@
 export LC_ALL="en_US.UTF-8"
 export HISTSIZE=$((2 ** 20))
 
-export EDITOR=amp
+export EDITOR=${commands[amp]:-$commands[vim]}
 export VISUAL=$EDITOR
 
-export LS=exa
-export FIND=fd
 export LESS='-r'
 
 export HOMEBREW_NO_ANALYTICS=1
