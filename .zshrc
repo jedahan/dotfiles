@@ -9,24 +9,19 @@ bindkey -e
 autoload -U select-word-style
 select-word-style bash
 
-setopt autocd
-setopt autopushd
-setopt pushd_ignore_dups
-setopt interactivecomments
+setopt autocd autopushd pushd_ignore_dups interactivecomments
 
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
-export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true
-export PROMPT_GEOMETRY_EXEC_TIME=true
-export GEOMETRY_PLUGIN_SEPARATOR=' '
-
-export GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname)
-export GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git +rustup hydrate)
-
-export GEOMETRY_SYMBOL_RUSTUP=
-export GEOMETRY_TIME_NEUTRAL='yellow'
-export GEOMETRY_PLUGIN_HYDRATE_SYMBOL=
-export GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L'
+export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true \
+ PROMPT_GEOMETRY_EXEC_TIME=true \
+ GEOMETRY_PLUGIN_SEPARATOR=' ' \
+ GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname) \
+ GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git +rustup hydrate) \
+ GEOMETRY_SYMBOL_RUSTUP= \
+ GEOMETRY_TIME_NEUTRAL='yellow' \
+ GEOMETRY_PLUGIN_HYDRATE_SYMBOL=\
+ GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L' \
 
 export FZF_FINDER_BINDKEY='^B'
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
@@ -53,24 +48,27 @@ fi
 source ~/.zr/init.zsh
 geometry_plugin_register todo
 
-alias manual=$commands[man]
-alias find=${commands[fd]:-$commands[find]}
-alias grep=${commands[rg]:-$commands[grep]}
-alias ls=${commands[exa]:-$commands[ls]}
+alias manual=$commands[man] \
+ find=${commands[fd]:-$commands[find]} \
+ grep=${commands[rg]:-$commands[grep]} \
+ ls=${commands[exa]:-$commands[ls]} \
+ cat=${commands[bat]:-$commands[cat]}
+
 (( $+commands[tldr] )) && function man { tldr $* 2>/dev/null || tldr -o linux $* }
-abbrev-alias help=man
-abbrev-alias h=man
-abbrev-alias x=exit
-abbrev-alias o=open
-abbrev-alias a=atom
-abbrev-alias v=nvim
-abbrev-alias c=lolcat
-abbrev-alias _=sudo
-abbrev-alias s=grep
-abbrev-alias f=find
-abbrev-alias repl=tmuxrepl
-abbrev-alias l=ls
-abbrev-alias ll='ls -l'
+
+abbrev-alias help=man \
+ h=man \
+ x=exit \
+ o=open \
+ a=atom \
+ v=nvim \
+ c=lolcat \
+ _=sudo \
+ s=grep \
+ f=find \
+ repl=tmuxrepl \
+ l=ls \
+ ll='ls -l'
 function , { clear && ls }
 
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
