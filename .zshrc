@@ -60,7 +60,7 @@ alias manual=$commands[man] \
   local info=("${(@f)$(brew info --json=v1 $1 2>/dev/null | jq -r '.[].homepage,.[].desc')}")
   test $#info -gt 1 || info=("${(@f)$(cargo show $1 2>/dev/null | awk '/^homepage|description/ { $1=""; print }')}")
   test $#info -gt 1 || return
-  hub -C ~/code/tldr issue create -F <(echo "page request: $1\n\nAdd documentation for [$1]($info[1])\n$info[2]")
+  hub -C ~/code/tldr issue | grep -q $1 || echo hub -C ~/code/tldr $repo issue create -F <(echo "page request: $1\n\nAdd documentation for [$1]($info[1])\n$info[2]")
 }
 
 abbrev-alias help=man \
