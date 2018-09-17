@@ -82,9 +82,11 @@ function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
 
-  window_name=`tmux list-windows -F '#{?window_active,#{window_name},}'`
-  tmux select-window -t  2>/dev/null || tmux rename-window 
-  tmux split-window -d -p 40 -t  "tail -f $uplog"
+  (( $+commands[tmux] )) && {
+    window_name=`tmux list-windows -F '#{?window_active,#{window_name},}'`
+    tmux select-window -t  2>/dev/null || tmux rename-window 
+    tmux split-window -d -p 40 -t  "tail -f $uplog"
+  }
 
   function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
@@ -98,8 +100,10 @@ function up { # upgrade everything
   fun cargo 'crates'    && { cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
   fun mas 'apps'        && { mas upgrade }                         &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
 
-  tmux kill-pane -t :.{bottom}
-  tmux rename-window ${window_name//[[:space:]]/}
+  (( $+commands[tmux] )) && {
+    tmux kill-pane -t :.{bottom}
+    tmux rename-window ${window_name//[[:space:]]/}
+  }
 }
 
 function par() {
