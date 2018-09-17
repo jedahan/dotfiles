@@ -6,11 +6,9 @@ icon="${icons[RANDOM % $#icons + 1]}"
 tmux bind-key c new-window -n $icon
 
 bindkey -e
-autoload -U select-word-style
-select-word-style bash
-
 setopt autocd autopushd pushd_ignore_dups interactivecomments
 
+autoload -Uz select-word-style && select-word-style bash
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true \
