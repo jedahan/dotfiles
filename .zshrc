@@ -53,8 +53,8 @@ alias manual=$commands[man] \
  cat=${commands[bat]:-$commands[cat]}
 
 (( $+commands[tldr] )) && function man {
-  tldr $* 2>/dev/null && return
-  tldr -o linux $* 2>/dev/null && return
+  tldr -q $* && return
+  tldr -q -o linux $* && return
   local info=("${(@f)$(brew info --json=v1 $1 2>/dev/null | jq -r '.[].homepage,.[].desc')}")
   test $#info -gt 1 || info=("${(@f)$(cargo show $1 2>/dev/null | awk '/^homepage|description/ { $1=""; print }')}")
   test $#info -gt 1 || return
