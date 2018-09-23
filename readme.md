@@ -1,4 +1,4 @@
-[Jonathan Dahan](http://jonathan.is)'s dotfiles for macOS
+[jedahan](http://jonathan.is)'s dotfiles for macOS
 
 Configures [alacritty](https://github.com/jwilm/alacritty),
 [amp](https://amp.rs),
