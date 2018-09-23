@@ -1,6 +1,4 @@
-[jedahan](http://jonathan.is)'s dotfiles for macOS
-
-Configures [alacritty](https://github.com/jwilm/alacritty),
+[jedahan](http://jonathan.is)'s dotfiles for [alacritty](https://github.com/jwilm/alacritty),
 [amp](https://amp.rs),
 [git](https://git-scm.com),
 [mpv](https://mpv.io),
@@ -8,7 +6,7 @@ Configures [alacritty](https://github.com/jwilm/alacritty),
 [parity](https://parity.io),
 [streamlink](https://streamlink.github.io),
 [tmux](https://tmux.github.io),
-and [zsh](https://zsh.org)
+and [zsh](https://zsh.org) on [macOS](https://github.com/jedahan/oh-my-macOS).
 
 ### Installation
 
@@ -27,6 +25,8 @@ Checkout to your home directory
 Hide untracked files
 
     git --git-dir=$HOME/.dotfiles --work-tree=$HOME config status.showUntrackedFiles no
+
+### Usage
 
 Manage dotfiles with the `config` git alias
 
