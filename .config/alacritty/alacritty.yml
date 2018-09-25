@@ -218,9 +218,8 @@ mouse:
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
-  save_to_clipboard: true
-
   # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
 
 dynamic_title: true
 
@@ -432,6 +431,8 @@ key_bindings:
   - { key: F12,      mods: Command, chars: "\x1b[24;3~"                  }
   - { key: B,        mods: Alt,     chars: "\x1bb"                       }
   - { key: F,        mods: Alt,     chars: "\x1bf"                       }
+  - { key: LBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-L"] } }
+  - { key: RBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-R"] } }
   - { key: LBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["prev"] } }
   - { key: RBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["next"] } }
   - { key: PageUp,   mods: Shift,   action: ScrollPageUp   }
