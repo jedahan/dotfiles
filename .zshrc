@@ -1,5 +1,3 @@
-(( $+commands[tmux] )) && test -z "$TMUX" && { tmux attach 2>/dev/null || tmux new -n }
-
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
 tmux bind-key c new-window -n $icon

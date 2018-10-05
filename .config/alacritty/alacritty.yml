@@ -246,9 +246,9 @@ live_config_reload: true
 # Entries in `shell.args` are passed unmodified as arguments to the shell.
 #
 shell:
-  program: /usr/local/bin/zsh
+  program: /usr/local/bin/tmux
   args:
-    - --login
+    - attach
 
 # Key bindings
 #
