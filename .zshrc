@@ -8,30 +8,17 @@ setopt autocd autopushd pushd_ignore_dups interactivecomments
 autoload -Uz select-word-style && select-word-style bash
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
-export PROMPT_GEOMETRY_COLORIZE_SYMBOL=true \
- PROMPT_GEOMETRY_EXEC_TIME=true \
- GEOMETRY_PLUGIN_SEPARATOR=' ' \
- GEOMETRY_PROMPT_PLUGINS_PRIMARY=(path hostname) \
- GEOMETRY_PROMPT_PLUGINS_SECONDARY=(exec_time todo git +rustup hydrate) \
- GEOMETRY_SYMBOL_RUSTUP= \
- GEOMETRY_TIME_NEUTRAL='yellow' \
- GEOMETRY_PLUGIN_HYDRATE_SYMBOL=\
- GEOMETRY_PLUGIN_HYDRATE_BINDKEY='^L' \
-
 export FZF_FINDER_BINDKEY='^B'
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
-  zr load sorin-ionescu/prezto/modules/git/alias.zsh \
+  zr load \
+    sorin-ionescu/prezto/modules/git/alias.zsh \
     sorin-ionescu/prezto/modules/history/init.zsh \
     sorin-ionescu/prezto/modules/homebrew/init.zsh \
-    junegunn/fzf/shell/key-bindings.zsh \
-    leophys/zsh-plugin-fzf-finder \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     changyuheng/zsh-interactive-cd \
-    jedahan/geometry-hydrate \
-    jedahan/geometry-todo \
     geometry-zsh/geometry \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
@@ -41,7 +28,6 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zpm-zsh/ssh
 fi
 source ~/.zr/init.zsh
-geometry_plugin_register todo
 
 alias manual=$commands[man] \
  find=${commands[fd]:-$commands[find]} \
