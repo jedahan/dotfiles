@@ -11,6 +11,10 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 export FZF_FINDER_BINDKEY='^B'
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
+export GEOMETRY_PROMPT=(geometry_status)
+export GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs geometry_rustup)
+export GEOMETRY_RUSTUP_PIN=true
+export GEOMETRY_GIT_SEPARATOR=" "
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
