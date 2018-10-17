@@ -18,10 +18,24 @@ export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
   GEOMETRY_GIT_SEPARATOR=" " \
   ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
 
+(( $+commands[brew] )) && {
+  eval "$(brew shellenv 2> /dev/null)"
+
+  alias \
+    brewi='brew install' \
+    brewl='brew list' \
+    brews='brew search' \
+    brewu='brew upgrade' \
+    brewx='brew uninstall' \
+    caski='brew install' \
+    caskl='brew list' \
+    casku='brew upgrade' \
+    caskx='brew uninstall'
+}
+
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
-    sorin-ionescu/prezto/modules/homebrew/init.zsh \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     changyuheng/zsh-interactive-cd \
