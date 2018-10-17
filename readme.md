@@ -28,6 +28,6 @@ Hide untracked files
 
 ### Usage
 
-Manage dotfiles with the `config` git alias
+Manage dotfiles in the home directory with this git function
 
-    alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+    git() { [[ "$HOME" = "$PWD" ]] && GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME command git $* || command git $* }

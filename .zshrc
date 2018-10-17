@@ -65,7 +65,7 @@ abbrev-alias help=man \
  ll='ls -l'
 function , { clear && ls }
 
-alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+git() { [[ "$HOME" = "$PWD" ]] && GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME command git $* || command git $*}
 function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
 
 function up { # upgrade everything
