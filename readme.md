@@ -30,4 +30,4 @@ Hide untracked files
 
 Manage dotfiles in the home directory with this git function
 
-    git() { if [[ -d .dotfiles ]]; then GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD command git $@; else command git $@; fi }
+    git() { test -d .dotfiles && local -x GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" }
