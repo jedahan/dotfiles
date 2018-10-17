@@ -43,11 +43,7 @@ alias manual=$commands[man] \
 
 (( $+commands[tldr] )) && function man {
   tldr -q $* && return
-  tldr -q -o linux $* && return
-  local info=("${(@f)$(brew info --json=v1 $1 2>/dev/null | jq -r '.[].homepage,.[].desc')}")
-  test $#info -gt 1 || info=("${(@f)$(cargo show $1 2>/dev/null | awk '/^homepage|description/ { $1=""; print }')}")
-  test $#info -gt 1 || return
-  hub -C ~/code/tldr issue | grep -q $1 || echo hub -C ~/code/tldr $repo issue create -F <(echo "page request: $1\n\nAdd documentation for [$1]($info[1])\n$info[2]")
+  tldr -q -o linux $*
 }
 
 abbrev-alias help=man \
@@ -75,8 +71,9 @@ function up { # upgrade everything
     tmux split-window -d -p 40 -t  "tail -f $uplog"
   }
 
-  function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
+  function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
+
   c <<< "  $uplog"
   fun config 'dotfiles' && { config pull }                         &>> $uplog; e 
   fun zr 'zsh plugins'  && { zr update }                           &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
@@ -93,7 +90,7 @@ function up { # upgrade everything
   }
 }
 
-function par() {
+function par {
   parity \
     --config=$HOME/.config/parity/config.toml \
     --cache-size 1024 \
