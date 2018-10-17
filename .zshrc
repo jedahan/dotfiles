@@ -8,13 +8,13 @@ setopt autocd autopushd pushd_ignore_dups interactivecomments
 autoload -Uz select-word-style && select-word-style bash
 autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
-export FZF_FINDER_BINDKEY='^B'
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT=(geometry_status geometry_hydrate)
-export GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs geometry_rustup geometry_todo)
-export GEOMETRY_RUSTUP_PIN=true
-export GEOMETRY_GIT_SEPARATOR=" "
+export GEOMETRY_PROMPT=(geometry_status geometry_hydrate) \
+  GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs geometry_rustup geometry_todo) \
+  GEOMETRY_RUSTUP_PIN=true \
+  GEOMETRY_GIT_SEPARATOR=" "
+
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
@@ -54,21 +54,18 @@ abbrev-alias help=man \
  h=man \
  x=exit \
  o=open \
- a=atom \
- v=nvim \
+ n=nvim \
  c=lolcat \
  _=sudo \
  s=grep \
  f=find \
  repl=tmuxrepl \
  l=ls \
- ll='ls -l'
-function , { clear && ls }
-
-git() ( test -d .dotfiles && export GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" )
+ ll='ls -l' \
+ ,='clear && ls'
 
 function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
-
+git() ( test -d .dotfiles && export GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" )
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
 
