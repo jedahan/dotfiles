@@ -3,17 +3,5 @@
 	email = hi@jonathan.is
 [diff]
 	word-diff = color
-[alias]
-	wdiff = diff --color-words
-	showtool = "!f() { git difftool $1^ $1; }; f"
-	added = difftool --cached
-[diff]
-	tool = icdiff
-[difftool]
-	prompt = false
-[difftool "icdiff"]
-	cmd = /usr/bin/icdiff --line-numbers $LOCAL $REMOTE
-[pager]
-	difftool = true
 [rebase]
 	autoStash = true
