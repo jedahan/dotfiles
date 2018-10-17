@@ -1,6 +1,5 @@
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
-tmux rename-window 
 tmux bind-key c new-window -n $icon
 
 bindkey -e
@@ -11,8 +10,8 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export GEOMETRY_PROMPT=(geometry_status geometry_hydrate) \
-  GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs geometry_rustup geometry_todo) \
+export GEOMETRY_PROMPT=(geometry_hydrate geometry_todo geometry_status) \
+  GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs) \
   GEOMETRY_RUSTUP_PIN=true \
   GEOMETRY_GIT_SEPARATOR=" "
 
