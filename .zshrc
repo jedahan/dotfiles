@@ -1,5 +1,6 @@
 icons=(🌀                        )
 icon="${icons[RANDOM % $#icons + 1]}"
+tmux rename-window 
 tmux bind-key c new-window -n $icon
 
 bindkey -e
