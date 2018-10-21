@@ -13,8 +13,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
   GEOMETRY_PROMPT=(geometry_hydrate geometry_todo geometry_status) \
-  GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs) \
-  GEOMETRY_RUSTUP_PIN=true \
+  GEOMETRY_RPROMPT=(geometry_exec_time geometry_path geometry_git geometry_jobs geometry_rustup) \
   GEOMETRY_GIT_SEPARATOR=" " \
   ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
 
