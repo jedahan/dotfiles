@@ -44,8 +44,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
     jedahan/laser \
-    csurfer/tmuxrepl \
-    zpm-zsh/ssh
+    csurfer/tmuxrepl
 fi
 source ~/.zr/init.zsh
 
