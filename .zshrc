@@ -18,7 +18,7 @@ export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
   ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
 
 (( $+commands[brew] )) && {
-  eval "$(brew shellenv 2> /dev/null)"
+  test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
 
   alias \
     brewi='brew install' \
@@ -43,7 +43,6 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     geometry-zsh/geometry \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
-    jedahan/alacritty-completions \
     jedahan/laser \
     csurfer/tmuxrepl \
     zpm-zsh/ssh
