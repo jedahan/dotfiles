@@ -37,6 +37,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     sorin-ionescu/prezto/modules/git/alias.zsh \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
+    zdharma/history-search-multi-word \
     changyuheng/zsh-interactive-cd \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
