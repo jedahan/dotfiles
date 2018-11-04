@@ -25,10 +25,10 @@ export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
     brews='brew search' \
     brewu='brew upgrade' \
     brewx='brew uninstall' \
-    caski='brew install' \
-    caskl='brew list' \
-    casku='brew upgrade' \
-    caskx='brew uninstall'
+    caski='brew cask install' \
+    caskl='brew cask list' \
+    casku='brew cask upgrade' \
+    caskx='brew cask uninstall'
 }
 
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
