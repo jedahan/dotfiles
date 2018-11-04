@@ -31,12 +31,16 @@ export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
     caskx='brew cask uninstall'
 }
 
+export FZF_FINDER_BINDKEY='^B'
+
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
+    wfxr/forgit \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     zdharma/history-search-multi-word \
+    leophys/zsh-plugin-fzf-finder \
     changyuheng/zsh-interactive-cd \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
