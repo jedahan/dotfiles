@@ -25,10 +25,11 @@ export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
     brews='brew search' \
     brewu='brew upgrade' \
     brewx='brew uninstall' \
-    caski='brew cask install' \
-    caskl='brew cask list' \
-    casku='brew cask upgrade' \
-    caskx='brew cask uninstall'
+    cask='brew cask' \
+    caski='cask install' \
+    caskl='cask list' \
+    casku='cask upgrade' \
+    caskx='cask uninstall'
 }
 
 export FZF_FINDER_BINDKEY='^B'
