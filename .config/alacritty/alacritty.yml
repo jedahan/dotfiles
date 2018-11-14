@@ -484,6 +484,8 @@ key_bindings:
   - { key: F9,       mods: Command, chars: "\x1b[20;3~"                  }
   - { key: F10,      mods: Command, chars: "\x1b[21;3~"                  }
   - { key: F11,      mods: Command, chars: "\x1b[23;3~"                  }
+  - { key: B,        mods: Alt,     chars: "\x1bb"                       }
+  - { key: F,        mods: Alt,     chars: "\x1bf"                       }
   - { key: F12,      mods: Command, chars: "\x1b[24;3~"                  }
   - { key: LBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-L"] } }
   - { key: RBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-R"] } }
