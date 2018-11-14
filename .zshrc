@@ -11,7 +11,9 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
+
 export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
+  GEOMETRY_INFO=(geometry_hostname pwd) \
   GEOMETRY_PROMPT=(geometry_status) \
   GEOMETRY_RPROMPT=(geometry_exec_time geometry_rustup geometry_node geometry_kube geometry_path geometry_git geometry_hg geometry_virtualenv) \
   ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
