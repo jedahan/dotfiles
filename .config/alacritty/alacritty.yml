@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 0
+    lines: 0
 
   # Window padding (changes require restart)
   #
@@ -46,6 +46,9 @@ window:
   #     - buttonless: Title bar, transparent background and title bar buttons
   #     - transparent: Title bar, transparent background, but no title bar buttons
   decorations: transparent
+
+  # When true, alacritty starts maximized.
+  start_maximized: true
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
