@@ -53,7 +53,7 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     jedahan/laser \
     csurfer/tmuxrepl
 fi
-source ~/.zr/init.zsh
+source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
 
 alias manual=$commands[man] \
  find=${commands[fd]:-$commands[find]} \
