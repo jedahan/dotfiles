@@ -11,12 +11,10 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-
-export HISTFILE="${HOME}/.zhistory" HISTSIZE=10000 SAVEHIST=10000 \
-  GEOMETRY_INFO=(geometry_hostname pwd) \
+export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd \
   GEOMETRY_PROMPT=(geometry_status) \
-  GEOMETRY_RPROMPT=(geometry_exec_time geometry_rustup geometry_node geometry_kube geometry_path geometry_git geometry_hg geometry_virtualenv) \
-  ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
+  GEOMETRY_RPROMPT=(geometry_exec_time geometry_rustup geometry_node geometry_path geometry_git) \
+  GEOMETRY_INFO=(geometry_hostname pwd)
 
 (( $+commands[brew] )) && {
   test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
@@ -80,8 +78,9 @@ abbrev-alias help=man \
  ll='ls -l' \
  ,='clear && ls'
 
-function twitch { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
+twitch() { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
 git() ( test -d .dotfiles && export GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" )
+
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
 
@@ -111,12 +110,6 @@ function up { # upgrade everything
 }
 
 function par {
-  parity \
-    --config=$HOME/.config/parity/config.toml \
-    --cache-size 1024 \
-    --db-compaction ssd \
-    --pruning fast \
-    --mode active \
-    --jsonrpc-threads 4 &
+  parity --config=$HOME/.config/parity/config.toml &
   sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
 }
