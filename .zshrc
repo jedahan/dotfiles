@@ -35,7 +35,7 @@ export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_
 export FZF_FINDER_BINDKEY='^B'
 
 if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
-  zr load \
+  /Volumes/data/tmp/cargo/bin/zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
     wfxr/forgit \
     zsh-users/zsh-autosuggestions \
