@@ -57,23 +57,22 @@ alias manual=$commands[man] \
  find=${commands[fd]:-$commands[find]} \
  grep=${commands[rg]:-$commands[grep]} \
  ls=${commands[exa]:-$commands[ls]} \
- cat=${commands[bat]:-$commands[cat]}
+ cat=${commands[bat]:-$commands[cat]} \
+ sed=${commands[sd]:-$commands[sed]} \
+ awk=${commands[sd]:-$commands[awk]}
 
 (( $+commands[tldr] )) && function man {
-  tldr -q $* && return
-  tldr -q -o linux $*
+  tldr -q $* || tldr -q -o linux $*
 }
 
 abbrev-alias help=man \
  h=man \
  x=exit \
  o=open \
- n=nvim \
  c=lolcat \
  _=sudo \
  s=grep \
  f=find \
- repl=tmuxrepl \
  l=ls \
  ll='ls -l' \
  ,='clear && ls'
