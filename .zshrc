@@ -111,3 +111,5 @@ function par {
   parity --config=$HOME/.config/parity/config.toml &
   sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
 }
+
+test -f ~/.env && source ~/.env
