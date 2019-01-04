@@ -77,8 +77,7 @@ abbrev-alias help=man \
  ll='ls -l' \
  ,='clear && ls'
 
-twitch() { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
-git() ( test -d .dotfiles && export GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" )
+config() { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
