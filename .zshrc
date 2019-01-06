@@ -77,12 +77,9 @@ abbrev-alias help=man \
  ll='ls -l' \
  ,='clear && ls'
 
-config() {
-  if [[ $PWD = $HOME ]]; then
-    command git --git-dir=$PWD/.dotfiles --work-tree=$PWD "$@"
-  else
-    command git "$@"
-  fi
+git() {
+  [[ $PWD != $HOME ]] && { command git "$@"; return }
+  command git --git-dir=.dotfiles --work-tree=. "$@"
 }
 
 function up { # upgrade everything
