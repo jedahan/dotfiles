@@ -13,13 +13,10 @@ set mouse=r
 call plug#begin('~/.config/nvim/plugged')
   " Completion
   Plug 'sheerun/vim-polyglot'              " lots of syntax highlighting
-  Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' } " language client
-  "Plug 'Shougo/deoplete.nvim'
-  "Plug 'Shougo/echodoc.vim'                " statusline documentation
-  "Plug 'Shougo/denite.nvim'                " popup and refactoring
+  Plug 'roxma/nvim-yarp'                   " completion dependency
   Plug 'ncm2/ncm2'                         " completion
   Plug 'ncm2/ncm2-github'                  " repos and emoji
-  Plug 'roxma/nvim-yarp'                   " completion dependency
+  Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   " Theming
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
@@ -36,10 +33,7 @@ autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 
 " COMPLETION
-let g:LanguageClient_serverCommands = {
-  \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-  \ 'vue': ['vls'],
-  \ }
+let g:LanguageClient_serverCommands = { 'rust': ['rustup', 'run', 'rls'] }
 let g:LanguageClient_autoStart = 1
 let g:echodoc#enable_at_startup = 1
 
