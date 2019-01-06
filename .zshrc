@@ -77,7 +77,13 @@ abbrev-alias help=man \
  ll='ls -l' \
  ,='clear && ls'
 
-config() { streamlink --twitch-oauth-token=$STREAMLINK_TWITCH_OAUTH_TOKEN twitch.tv/$1 ${2:-best} }
+config() {
+  if [[ $PWD = $HOME ]]; then
+    command git --git-dir=$PWD/.dotfiles --work-tree=$PWD "$@"
+  else
+    command git "$@"
+  fi
+}
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
