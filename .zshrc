@@ -15,7 +15,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd \
   GEOMETRY_PROMPT=(geometry_status) \
   GEOMETRY_RPROMPT=(geometry_exec_time geometry_rustup geometry_node geometry_path geometry_git) \
-  GEOMETRY_INFO=(geometry_hostname pwd)
+  GEOMETRY_INFO=(geometry_todo)
 
 (( $+commands[brew] )) && {
   test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
