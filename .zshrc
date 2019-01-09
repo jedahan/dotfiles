@@ -1,6 +1,7 @@
 icons=(                     )
-icon="${icons[RANDOM % $#icons + 1]}"
-tmux bind-key c new-window -n $icon
+existing=($(tmux list-windows -F'#W'|paste -s -))
+available=(${icons:|existing})
+tmux bind-key c new-window -n ${available[RANDOM % $#available + 1]}
 
 bindkey -e
 setopt autocd autopushd pushd_ignore_dups interactivecomments
