@@ -63,7 +63,7 @@ alias manual=$commands[man] \
  awk=${commands[sd]:-$commands[awk]}
 
 (( $+commands[tldr] )) && function man {
-  tldr -q $* || tldr -q -o linux $*
+  tldr -q $* || { tldr -q -o linux $* || manual $* }
 }
 
 abbrev-alias help=man \
