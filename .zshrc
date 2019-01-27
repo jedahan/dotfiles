@@ -62,13 +62,20 @@ alias manual=$commands[man] \
  sed=${commands[sd]:-$commands[sed]} \
  awk=${commands[sd]:-$commands[awk]}
 
-(( $+commands[tldr] )) && function man {
-  tldr -q $* || { tldr -q -o linux $* || manual $* }
-}
+(( $+commands[tldr] )) && function help {
+  if [[ $# = 0 ]]; then \cat <<<'help v0.1.0
 
-abbrev-alias help=man \
- h=man \
- x=exit \
+help [--os <type>] <command|all>
+
+  <type>    linux, osx, sunos, other
+     all    List all commands
+
+Try `help --os linux tar`'; return; fi
+  echo $* | grep -q all && tldr --list && return
+  tldr -q $* || { tldr -q -o linux $* || manual $* }
+} && abbrev-alias man=help h=help
+
+abbrev-alias x=exit \
  o=open \
  c=lolcat \
  _=sudo \
