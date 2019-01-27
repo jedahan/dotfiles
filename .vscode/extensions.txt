@@ -1,0 +1,5 @@
+chenxsan.vscode-standardjs
+saviorisdead.RustyCode
+serayuzgur.crates
+taniarascia.new-moon-vscode
+wmaurer.change-case
