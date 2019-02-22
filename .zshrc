@@ -12,10 +12,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd \
-  GEOMETRY_PROMPT=(geometry_status) \
-  GEOMETRY_RPROMPT=(geometry_exec_time geometry_rustup geometry_node geometry_path geometry_git) \
-  GEOMETRY_INFO=(geometry_todo)
+export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 (( $+commands[brew] )) && {
   test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
@@ -44,9 +41,9 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zdharma/history-search-multi-word \
     leophys/zsh-plugin-fzf-finder \
     changyuheng/zsh-interactive-cd \
+    jedahan/geometry \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
-    geometry-zsh/geometry \
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
     jedahan/laser \
