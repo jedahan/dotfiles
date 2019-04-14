@@ -9,7 +9,7 @@ export LESS='-r'
 export TMPHOME=/Volumes/data/tmp
 
 export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_UPGRADE_CLEANUP=1
+export HOMEBREW_INSTALL_CLEANUP=1
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 
