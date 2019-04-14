@@ -12,7 +12,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-export HISTFILE=${HOME}/.zhistory HISTSIZE=10000 SAVEHIST=10000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 (( $+commands[brew] )) && {
   test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
