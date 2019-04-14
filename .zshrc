@@ -36,6 +36,8 @@ if [[ ! -f ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   /Volumes/data/tmp/cargo/bin/zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
     wfxr/forgit \
+    rupa/z \
+    DarrinTisdale/zsh-aliases-exa \
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     zdharma/history-search-multi-word \
@@ -54,7 +56,6 @@ source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
 alias manual=$commands[man] \
  find=${commands[fd]:-$commands[find]} \
  grep=${commands[rg]:-$commands[grep]} \
- ls=${commands[exa]:-$commands[ls]} \
  cat=${commands[bat]:-$commands[cat]} \
  sed=${commands[sd]:-$commands[sed]} \
  awk=${commands[sd]:-$commands[awk]}
@@ -78,9 +79,7 @@ abbrev-alias x=exit \
  _=sudo \
  s=grep \
  f=find \
- l=ls \
- ll='ls -l' \
- ,='clear && ls'
+ ,='clear && l'
 
 git() {
   [[ $PWD != $HOME ]] && { command git "$@"; return }
