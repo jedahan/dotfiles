@@ -119,3 +119,5 @@ function par {
   sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
 }
 
+test -s "$WASMER_DIR/wasmer.sh" && source $_
+(( $+commands[wapm] )) && source <(wapm completions zsh)
