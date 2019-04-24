@@ -15,7 +15,7 @@ autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 (( $+commands[brew] )) && {
-  test -f ~/.brew_env || brew shellenv > ~/.brew_env; source ~/.brew_env
+  test $HOMEBREW_PREFIX || brew shellenv >> ~/.zshenv
 
   alias \
     brewi='brew install' \
@@ -119,4 +119,3 @@ function par {
   sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
 }
 
-test -f ~/.env && source ~/.env
