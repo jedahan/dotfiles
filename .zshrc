@@ -8,7 +8,6 @@ setopt autocd autopushd pushd_ignore_dups interactivecomments
 setopt bang_hist extended_history inc_append_history share_history hist_ignore_space hist_verify
 
 autoload -Uz select-word-style && select-word-style bash
-autoload -Uz bracketed-paste-url-magic && zle -N bracketed-paste $_
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
@@ -81,10 +80,8 @@ abbrev-alias x=exit \
  f=find \
  ,='clear && l'
 
-git() {
-  [[ $PWD != $HOME ]] && { command git "$@"; return }
-  command git --git-dir=.dotfiles --work-tree=. "$@"
-}
+config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
+git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
@@ -99,14 +96,15 @@ function up { # upgrade everything
   function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
 
   c <<< "  $uplog"
-  fun config 'dotfiles' && { config pull }                         &>> $uplog; e 
-  fun zr 'zsh plugins'  && { zr update }                           &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
-  fun tldr 'tldr'       && { tldr --update }                       &>> $uplog; e ⚡
-  fun brew 'brews'      && { brew cask upgrade; brew upgrade }     &>> $uplog; e  && s 🍺 $uplog | cut -d'/' -f5-6 | cut -d':' -f1
+  fun config 'dotfiles' && { config pull }                          &>> $uplog; e 
+  fun zr 'zsh plugins'  && { zr update }                            &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
+  fun tldr 'tldr'       && { tldr --update }                        &>> $uplog; e ⚡
+  fun brew 'brews'      && { brew cask upgrade; brew upgrade }      &>> $uplog; e  && s 🍺 $uplog | cut -d'/' -f5-6 | cut -d':' -f1
+  fun apt 'apt'         && { sudo apt update; sudo apt -y upgrade } &>> $uplog; e 
   fun nvim 'neovim'     && { nvim '+PlugUpdate!' '+PlugClean!' '+qall' } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
-  fun rustup 'rust'     && { rustup update }                       &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
-  fun cargo 'crates'    && { cargo install-update --all }          &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
-  fun mas 'apps'        && { mas upgrade }                         &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
+  fun rustup 'rust'     && { rustup update }                        &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
+  fun cargo 'crates'    && { cargo install-update --all }           &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
+  fun mas 'apps'        && { mas upgrade }                          &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
 
   (( $+commands[tmux] )) && {
     tmux kill-pane -t :.{bottom}
@@ -121,3 +119,6 @@ function par {
 
 test -s "$WASMER_DIR/wasmer.sh" && source $_
 (( $+commands[wapm] )) && source <(wapm completions zsh)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.mpw.bash ] && source ~/.mpw.bash

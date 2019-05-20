@@ -45,15 +45,15 @@ window:
   #     - none: Neither borders nor title bar
   #     - buttonless: Title bar, transparent background and title bar buttons
   #     - transparent: Title bar, transparent background, but no title bar buttons
-  decorations: transparent
+  decorations: none
 
   # When true, alacritty starts maximized.
-  start_maximized: true
+  startup_mode: Maximized
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  history: 10000
+  history: 0
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
@@ -101,7 +101,7 @@ font:
     #style: Italic
 
   # Point size
-  size: 18.0
+  size: 20.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -296,7 +296,7 @@ live_config_reload: true
 # You can set `shell.program` to the path of your favorite shell, e.g. `/bin/fish`.
 # Entries in `shell.args` are passed unmodified as arguments to the shell.
 shell:
-  program: /usr/local/bin/tmux
+  program: /usr/bin/tmux
   args:
     - new-session
     - -A
@@ -490,8 +490,4 @@ key_bindings:
   - { key: B,        mods: Alt,     chars: "\x1bb"                       }
   - { key: F,        mods: Alt,     chars: "\x1bf"                       }
   - { key: F12,      mods: Command, chars: "\x1b[24;3~"                  }
-  - { key: LBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-L"] } }
-  - { key: RBracket, mods: Command, command: { program: "/usr/local/bin/tmux", args: ["select-pane", "-R"] } }
-  - { key: LBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["prev"] } }
-  - { key: RBracket, mods: Command|Shift, command: { program: "/usr/local/bin/tmux", args: ["next"] } }
   - { key: NumpadEnter,             chars: "\n"                          }
