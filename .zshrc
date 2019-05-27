@@ -91,26 +91,13 @@ function up { # upgrade everything
   fun config 'dotfiles' && { config pull }                          &>> $uplog; e 
   fun zr 'zsh plugins'  && { zr update }                            &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
   fun tldr 'tldr'       && { tldr --update }                        &>> $uplog; e ⚡
-  fun brew 'brews'      && { brew cask upgrade; brew upgrade }      &>> $uplog; e  && s 🍺 $uplog | cut -d'/' -f5-6 | cut -d':' -f1
   fun apt 'apt'         && { sudo apt update; sudo apt -y upgrade } &>> $uplog; e 
   fun nvim 'neovim'     && { nvim '+PlugUpdate!' '+PlugClean!' '+qall' } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
   fun rustup 'rust'     && { rustup update }                        &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
   fun cargo 'crates'    && { cargo install-update --all }           &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
-  fun mas 'apps'        && { mas upgrade }                          &>> $uplog; e && s -A1 'outdated applications' -N $uplog | tail -n1
 
   (( $+commands[tmux] )) && {
     tmux kill-pane -t :.{bottom}
     tmux rename-window ${window_name//[[:space:]]/}
   }
 }
-
-function par {
-  parity --config=$HOME/.config/parity/config.toml &
-  sleep 5 && sudo cputhrottle $(ps aux | awk '/[p]arity/ {print $2}') 50
-}
-
-test -s "$WASMER_DIR/wasmer.sh" && source $_
-(( $+commands[wapm] )) && source <(wapm completions zsh)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.mpw.bash ] && source ~/.mpw.bash
