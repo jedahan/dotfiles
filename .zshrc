@@ -31,7 +31,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zdharma/history-search-multi-word \
     leophys/zsh-plugin-fzf-finder \
     changyuheng/zsh-interactive-cd \
-    jedahan/geometry \
+    geometry-zsh/geometry \
     jedahan/geometry-hydrate \
     jedahan/geometry-todo \
     ael-code/zsh-colored-man-pages \
