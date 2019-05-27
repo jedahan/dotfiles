@@ -48,6 +48,20 @@ alias manual=$commands[man] \
  sed=${commands[sd]:-$commands[sed]} \
  awk=${commands[sd]:-$commands[awk]}
 
+abbrev-alias x=exit \
+ o=open \
+ c=lolcat \
+ _=sudo \
+ s=grep \
+ f=find \
+ ,='clear && l'
+
+config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
+git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
+clip() { xclip -selection clipboard -"$([[ -t  0 ]] && echo out || echo in)" }
+mpw() { MPW_ASKPASS=ssh-askpass command mpw -u "Jonathan Dahan" -t x -q "$@" | clip }
+alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
+
 (( $+commands[tldr] )) && function help {
   if [[ $# = 0 ]]; then \cat <<<'help v0.1.0
 
@@ -60,17 +74,6 @@ Try `help --os linux tar`'; return; fi
   echo $* | grep -q all && tldr --list && return
   tldr -q $* || { tldr -q -o linux $* || manual $* }
 } && abbrev-alias man=help h=help
-
-abbrev-alias x=exit \
- o=open \
- c=lolcat \
- _=sudo \
- s=grep \
- f=find \
- ,='clear && l'
-
-config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
-git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
 
 function up { # upgrade everything
   uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
