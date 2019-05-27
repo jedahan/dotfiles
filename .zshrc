@@ -17,7 +17,7 @@ export FZF_FINDER_BINDKEY='^B'
 
 (( $+commands[apt] )) && apt() {
   test "$1" = "add-repository" && cmd=apt-add-repository
-  shift; command ${cmd:-apt} "$@"
+  command ${cmd:-apt} "$@"
 }
 
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
