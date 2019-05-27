@@ -9,27 +9,16 @@ setopt bang_hist extended_history inc_append_history share_history hist_ignore_s
 
 autoload -Uz select-word-style && select-word-style bash
 
-(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
-
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
-(( $+commands[brew] )) && {
-  test $HOMEBREW_PREFIX || brew shellenv >> ~/.zshenv
-
-  alias \
-    brewi='brew install' \
-    brewl='brew list' \
-    brews='brew search' \
-    brewu='brew upgrade' \
-    brewx='brew uninstall' \
-    cask='brew cask' \
-    caski='cask install' \
-    caskl='cask list' \
-    casku='cask upgrade' \
-    caskx='cask uninstall'
-}
-
 export FZF_FINDER_BINDKEY='^B'
+
+(( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
+
+(( $+commands[apt] )) && apt() {
+  test "$1" = "add-repository" && cmd=apt-add-repository
+  shift; command ${cmd:-apt} "$@"
+}
 
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   /Volumes/data/tmp/cargo/bin/zr load \
