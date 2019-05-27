@@ -21,7 +21,7 @@ export FZF_FINDER_BINDKEY='^B'
 }
 
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
-  /Volumes/data/tmp/cargo/bin/zr load \
+  zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
     wfxr/forgit \
     rupa/z \
