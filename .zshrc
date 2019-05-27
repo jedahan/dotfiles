@@ -37,7 +37,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
     jedahan/laser \
-    csurfer/tmuxrepl
+    zsh-users/zsh-completions
 fi
 source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
 
