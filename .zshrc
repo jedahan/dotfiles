@@ -58,8 +58,7 @@ abbrev-alias x=exit \
 
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
 git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
-clip() { xclip -selection clipboard -"$([[ -t  0 ]] && echo out || echo in)" }
-mpw() { MPW_ASKPASS=ssh-askpass command mpw -u "Jonathan Dahan" -t x -q "$@" | clip }
+mpw() { MPW_ASKPASS=ssh-askpass command mpw -u "Jonathan Dahan" -t x -q "$@" | xclip }
 alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
 
 (( $+commands[tldr] )) && function help {
