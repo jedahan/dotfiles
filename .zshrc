@@ -48,6 +48,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zsh-users/zsh-completions
 fi
 source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
+test -f /etc/zsh_command_not_found && source $_ || true
 __zic_fzf_prog() { echo "sk --height 40%" }
 
 abbrev-alias x=exit \
