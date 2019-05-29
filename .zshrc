@@ -30,7 +30,6 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zsh-users/zsh-autosuggestions \
     zdharma/fast-syntax-highlighting \
     zdharma/history-search-multi-word \
-    leophys/zsh-plugin-fzf-finder \
     changyuheng/zsh-interactive-cd \
     geometry-zsh/geometry \
     jedahan/geometry-hydrate \
@@ -48,6 +47,7 @@ alias manual=$commands[man] \
  cat=${commands[bat]:-$commands[cat]} \
  sed=${commands[sd]:-$commands[sed]} \
  awk=${commands[sd]:-$commands[awk]}
+__zic_fzf_prog() { echo "sk --height 40%" }
 
 abbrev-alias x=exit \
  o=open \
