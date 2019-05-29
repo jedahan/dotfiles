@@ -16,8 +16,9 @@ export FZF_FINDER_BINDKEY='^B'
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 (( $+commands[apt] )) && apt() {
-  test "$1" = "add-repository" && cmd=apt-add-repository
-  command ${cmd:-apt} "$@"
+  test "$1" = "add-repository" && cmd='sudo add-apt-repository'
+  test "$1" = "add-key" && cmd='sudo apt-key add'
+  test "$cmd" && { $cmd "$@" } || { command apt "$@" }
 }
 
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
