@@ -21,6 +21,14 @@ export FZF_FINDER_BINDKEY='^B'
   test "$cmd" && { $cmd "$@" } || { command apt "$@" }
 }
 
+alias manual=$commands[man] \
+ find=${commands[fd]:-$commands[find]} \
+ grep=${commands[rg]:-$commands[grep]} \
+ cat=${commands[bat]:-$commands[cat]} \
+ sed=${commands[sd]:-$commands[sed]} \
+ awk=${commands[sd]:-$commands[awk]} \
+ fzf=${commands[sk]:-$commands[fzf]}
+
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
@@ -40,13 +48,6 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     zsh-users/zsh-completions
 fi
 source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
-
-alias manual=$commands[man] \
- find=${commands[fd]:-$commands[find]} \
- grep=${commands[rg]:-$commands[grep]} \
- cat=${commands[bat]:-$commands[cat]} \
- sed=${commands[sd]:-$commands[sed]} \
- awk=${commands[sd]:-$commands[awk]}
 __zic_fzf_prog() { echo "sk --height 40%" }
 
 abbrev-alias x=exit \
