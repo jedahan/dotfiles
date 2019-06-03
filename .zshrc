@@ -60,6 +60,7 @@ abbrev-alias x=exit \
  _=sudo \
  s=grep \
  f=find \
+ code=vscodium \
  ,='clear && l'
 
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
