@@ -82,7 +82,7 @@ Try `help --os linux tar`'; return; fi
 } && abbrev-alias man=help h=help
 
 function up { # upgrade everything
-  uplog=/tmp/up; rm -rf $uplog >/dev/null; touch $uplog
+  uplog=/tmp/up; echo > $uplog
 
   (( $+commands[tmux] )) && {
     window_name=`tmux list-windows -F '#{?window_active,#{window_name},}'`
@@ -98,7 +98,7 @@ function up { # upgrade everything
   fun zr 'zsh plugins'  && { zr update }                            &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
   fun tldr 'tldr'       && { tldr --update }                        &>> $uplog; e ⚡
   fun apt 'apt'         && { sudo apt update; sudo apt -y upgrade } &>> $uplog; e 
-  fun nvim 'neovim'     && { nvim '+PlugUpdate!' '+PlugClean!' '+qall' } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
+  fun nvim 'neovim'     && { nvim +PlugUpdate! +PlugClean! +qall  } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
   fun rustup 'rust'     && { rustup update }                        &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
   fun cargo 'crates'    && { cargo install-update --all }           &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
 
