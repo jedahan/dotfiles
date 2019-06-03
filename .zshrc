@@ -87,7 +87,7 @@ function up { # upgrade everything
   (( $+commands[tmux] )) && {
     window_name=`tmux list-windows -F '#{?window_active,#{window_name},}'`
     tmux select-window -t  2>/dev/null || tmux rename-window 
-    tmux split-window -d -p 40 -t  "tail -f $uplog"
+    tmux split-window -h -d -t  "tail -f $uplog"
   }
 
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
