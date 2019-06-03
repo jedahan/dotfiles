@@ -1,7 +1,10 @@
 icons=(                     )
 existing=($(tmux list-windows -F'#W'|paste -s -))
 available=(${icons:|existing})
-tmux bind-key c new-window -n ${available[RANDOM % $#available + 1]}
+export ICON=${available[RANDOM % $#available + 1]}
+
+tmux bind-key -n C-t new-window -n $ICON
+tmux bind-key -n C-n new-window -n $ICON
 
 bindkey -e
 setopt autocd autopushd pushd_ignore_dups interactivecomments
