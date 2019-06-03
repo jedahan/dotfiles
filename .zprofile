@@ -16,6 +16,9 @@ export NPM_CONFIG_PREFIX=$TMPHOME/npm/global
 export NPM_CONFIG_CACHE=$TMPHOME/npm/cache
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
+export GOPATH=$TMPHOME/go
+export PATH=$GOPATH/bin:$PATH
+
 export PATH=$HOME/bin:$PATH
 
 test -f $HOME/.zshsecrets && source $_ || true
