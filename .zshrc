@@ -93,7 +93,7 @@ function up { # upgrade everything
   function e { if [ $? -eq 0 ]; then c <<< $1; else echo ":("; fi }
   function fun { (( $+aliases[$1] || $+functions[$1] || $+commands[$1] )) && echo -n "updating $2..." }
 
-  c <<< "  $uplog"
+  sudo -v; c <<< "  $uplog"
   fun config 'dotfiles' && { config pull }                          &>> $uplog; e 
   fun zr 'zsh plugins'  && { zr update }                            &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
   fun tldr 'tldr'       && { tldr --update }                        &>> $uplog; e ⚡
