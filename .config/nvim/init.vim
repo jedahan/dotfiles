@@ -27,7 +27,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'bogado/file-line'                  " vim file.ext:line
   Plug 'mhinz/vim-startify'                " better startup - choose from recently open files, etc
   Plug 'mhinz/vim-signify'                 " Show git diffs in gutter
+  Plug 'Alok/notational-fzf-vim'           " notes with fzf
 call plug#end()
+
+let g:nv_search_paths = ['~/src', '~/todo.md', '~/todone.md', '~/notes.md', 'docs.md', './notes.md']
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
