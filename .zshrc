@@ -2,6 +2,7 @@ icons=(                  �
 existing=($(tmux list-windows -F'#W'|paste -s -))
 available=(${icons:|existing})
 export ICON=${available[RANDOM % $#available + 1]}
+grep -q zsh <(tmux list-windows -F'#W') && tmux rename-window $ICON
 
 tmux bind-key -n C-t new-window -n $ICON
 tmux bind-key -n C-n new-window -n $ICON
