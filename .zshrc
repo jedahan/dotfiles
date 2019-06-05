@@ -15,8 +15,6 @@ autoload -Uz select-word-style && select-word-style bash
 
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
-export FZF_FINDER_BINDKEY='^B'
-
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
 (( $+commands[apt] )) && apt() {
@@ -36,31 +34,26 @@ alias manual=$commands[man] \
 if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
   zr load \
     sorin-ionescu/prezto/modules/git/alias.zsh \
-    wfxr/forgit \
-    rupa/z \
     DarrinTisdale/zsh-aliases-exa \
     zsh-users/zsh-autosuggestions \
-    zdharma/fast-syntax-highlighting \
-    zdharma/history-search-multi-word \
-    changyuheng/zsh-interactive-cd \
-    geometry-zsh/geometry \
-    jedahan/geometry-hydrate \
-    jedahan/geometry-todo \
-    ael-code/zsh-colored-man-pages \
     momo-lab/zsh-abbrev-alias \
+    zdharma/history-search-multi-word \
+    ael-code/zsh-colored-man-pages \
+    geometry-zsh/geometry \
+    rupa/z \
     jedahan/laser \
-    zsh-users/zsh-completions
+    changyuheng/fz
 fi
-source ~/.zr/init.zsh || { sleep 3 && source ~/.zr/init.zsh }
+#    zdharma/fast-syntax-highlighting \ # really slow startup
+#    zsh-users/zsh-completions \ # really slow startup
+source ~/.zr/init.zsh
 test -f /etc/zsh_command_not_found && source $_ || true
-__zic_fzf_prog() { echo "sk --height 40%" }
 
 abbrev-alias x=exit \
  o=open \
  c=lolcat \
  _=sudo \
  s=grep \
- f=find \
  code=vscodium \
  ,='clear && l'
 
