@@ -43,10 +43,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     rupa/z \
     jedahan/laser \
     changyuheng/fz
-fi
-#    zdharma/fast-syntax-highlighting \ # really slow startup
-#    zsh-users/zsh-completions \ # really slow startup
-source ~/.zr/init.zsh
+fi; source ~/.zr/init.zsh
 test -f /etc/zsh_command_not_found && source $_ || true
 
 abbrev-alias x=exit \
