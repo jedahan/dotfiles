@@ -89,12 +89,12 @@ function up { # upgrade everything
   fun zr 'zsh plugins'  && { zr update }                            &>> $uplog; e ▲ && s 'Updating [a-f0-9]{6}\.\.[a-f0-9]{6}' -B1 $uplog
   fun tldr 'tldr'       && { tldr --update }                        &>> $uplog; e ⚡
   fun apt 'apt'         && { sudo apt update; sudo apt -y upgrade; sudo apt autoremove } &>> $uplog; e  && sed -n '/graded:$/,/graded,/{/graded:$/b;/graded,/b;p}' $uplog
-  fun nvim 'neovim'     && { nvim +PlugUpdate! +PlugClean! +qall  } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s -
-  fun rustup 'rust'     && { rustup update }                        &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s -
-  fun cargo 'crates'    && { cargo install-update --all }           &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s -
+  fun nvim 'neovim'     && { nvim +PlugUpdate! +PlugClean! +qall  } &>> $uplog; e  && s 'Updated!\s+(.+/.+)' -r '$1' -N $uplog | paste -s - | head -c -1
+  fun rustup 'rust'     && { rustup update }                        &>> $uplog; e  && s 'updated.*rustc' -N $uplog | cut -d' ' -f7 | paste -s - | head -c -1
+  fun cargo 'crates'    && { cargo install-update --all }           &>> $uplog; e  && s '(.*)Yes$' --replace '$1' $uplog | paste -s - | head -c -1
 
   (( $+commands[tmux] )) && {
-    tmux kill-pane -t :.{bottom}
+    tmux kill-pane -t :.{right}
     tmux rename-window ${window_name//[[:space:]]/}
   }
 }
