@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 130
-    lines: 36
+    columns: 118
+    lines: 32
 
   #position:
   #  x: 0
@@ -132,9 +132,6 @@ font:
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`
   use_thin_strokes: true
-
-# Display the time it takes to redraw each frame.
-render_timer: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -301,6 +298,10 @@ cursor:
 
 # Live config reload (changes require restart)
 live_config_reload: true
+
+debug:
+# Display the time it takes to redraw each frame.
+  render_timer: false
 
 # Shell
 #
