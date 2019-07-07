@@ -17,12 +17,6 @@ export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGES
 
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 
-(( $+commands[apt] )) && apt() {
-  test "$1" = "add-repository" && cmd='sudo add-apt-repository'
-  test "$1" = "add-key" && cmd='sudo apt-key add'
-  test "$cmd" && { $cmd "$@" } || { command apt "$@" }
-}
-
 alias manual=$commands[man] \
  find=${commands[fd]:-$commands[find]} \
  grep=${commands[rg]:-$commands[grep]} \
