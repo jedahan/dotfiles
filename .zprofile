@@ -1,6 +1,6 @@
 export LC_ALL="en_US.UTF-8"
 
-export EDITOR=${commands[amp]:-$commands[vim]}
+export EDITOR=${commands[amp]:-$commands[nvim]}
 export VISUAL=$EDITOR
 
 export LESS='-r'
