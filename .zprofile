@@ -1,5 +1,4 @@
 export LC_ALL="en_US.UTF-8"
-export HISTSIZE=$((2 ** 20))
 
 export EDITOR=${commands[amp]:-$commands[vim]}
 export VISUAL=$EDITOR
