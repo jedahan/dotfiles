@@ -33,7 +33,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     momo-lab/zsh-abbrev-alias \
     zdharma/history-search-multi-word \
     ael-code/zsh-colored-man-pages \
-    geometry-zsh/geometry \
+    jedahan/mnml \
     rupa/z \
     jedahan/laser \
     jedahan/help.zsh \
