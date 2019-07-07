@@ -5,20 +5,20 @@ export VISUAL=$EDITOR
 
 export LESS='-r'
 
-export TMPHOME=$HOME/tmp
+export TMP=$HOME/tmp
 
-export RUSTUP_HOME=$TMPHOME/rustup
-export CARGO_HOME=$TMPHOME/cargo
+export RUSTUP_HOME=$TMP/rustup
+export CARGO_HOME=$TMP/cargo
 export PATH=$CARGO_HOME/bin:$PATH
 
-export NPM_CONFIG_PREFIX=$TMPHOME/npm/global
-export NPM_CONFIG_CACHE=$TMPHOME/npm/cache
+export NPM_CONFIG_PREFIX=$TMP/npm/global
+export NPM_CONFIG_CACHE=$TMP/npm/cache
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
-export DENO_DIR=$TMPHOME/deno
+export DENO_DIR=$TMP/deno
 export PATH="$DENO_DIR/bin:$PATH"
 
-export GOPATH=$TMPHOME/go
+export GOPATH=$TMP/go
 export PATH=$GOPATH/bin:$PATH
 
 export PATH=$HOME/bin:$PATH
