@@ -1,4 +1,4 @@
-export LC_ALL="en_US.UTF-8"
+export LC_ALL=en_US.UTF-8
 
 export EDITOR=${commands[amp]:-$commands[nvim]}
 export VISUAL=$EDITOR
@@ -16,7 +16,7 @@ export NPM_CONFIG_CACHE=$TMP/npm/cache
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
 export DENO_DIR=$TMP/deno
-export PATH="$DENO_DIR/bin:$PATH"
+export PATH=$DENO_DIR/bin:$PATH
 
 export GOPATH=$TMP/go
 export PATH=$GOPATH/bin:$PATH
