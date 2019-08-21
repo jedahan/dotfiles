@@ -33,7 +33,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     momo-lab/zsh-abbrev-alias \
     zdharma/history-search-multi-word \
     ael-code/zsh-colored-man-pages \
-    jedahan/mnml \
+    jedahan/geometry \
     rupa/z \
     jedahan/laser \
     jedahan/help.zsh \
@@ -41,6 +41,8 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     changyuheng/fz
 fi; source ~/.zr/init.zsh
 test -f /etc/zsh_command_not_found && source $_ || true
+
+GEOMETRY_RPROMPT+=(geometry_virtualenv)
 
 abbrev-alias x=exit \
  o=open \
