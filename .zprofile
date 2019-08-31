@@ -21,4 +21,4 @@ export PATH=$DENO_DIR/bin:$PATH
 export GOPATH=$TMP/go
 export PATH=$GOPATH/bin:$PATH
 
-test -f $HOME/.zshsecrets && source $_ || true
+export PATH=$HOME/.local/bin:$PATH
