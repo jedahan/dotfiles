@@ -37,7 +37,7 @@ if [[ ! -s ~/.zr/init.zsh ]] || [[ ~/.zshrc -nt ~/.zr/init.zsh ]]; then
     rupa/z \
     jedahan/laser \
     jedahan/help.zsh \
-    changyuheng/fz
+    jedahan/up.zsh
 fi; source ~/.zr/init.zsh
 test -f /etc/zsh_command_not_found && source $_ || true
 
