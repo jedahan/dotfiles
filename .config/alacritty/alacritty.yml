@@ -312,8 +312,6 @@ shell:
   args:
     - new-session
     - -A
-    - -s
-    - main
 
 # Key bindings
 #
