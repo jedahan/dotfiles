@@ -6,7 +6,10 @@
 [parity](https://parity.io),
 [streamlink](https://streamlink.github.io),
 [tmux](https://tmux.github.io),
+[vscode](https://github.com/Microsoft/vscode),
 and [zsh](https://zsh.org) on [macOS](https://github.com/jedahan/oh-my-macOS).
+
+I try and keep customizations to a minimum, or at least easy to understand what each thing does so it is easily changeable for newcomers.
 
 ### Installation
 
@@ -28,6 +31,7 @@ Hide untracked files
 
 ### Usage
 
-Manage dotfiles in the home directory with this git function
+Manage dotfiles in the home directory with these functions
 
-    git() ( test -d .dotfiles && export GIT_DIR=$PWD/.dotfiles GIT_WORK_TREE=$PWD; command git "$@" )
+    config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
+    git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
