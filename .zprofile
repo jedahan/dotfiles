@@ -15,18 +15,19 @@ export LESS_TERMCAP_so=$(tput smso)
 export LESS_TERMCAP_se=$(tput rmso)
 export PAGER="${commands[less]:-$PAGER}"
 
-export RUSTUP_HOME=$HOME/tmp/rustup
-export CARGO_HOME=$HOME/tmp/cargo
+CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}
+export RUSTUP_HOME=$CACHE_DIR/rustup
+export CARGO_HOME=$CACHE_DIR/cargo
 export PATH=$CARGO_HOME/bin:$PATH
 
-export NPM_CONFIG_PREFIX=$HOME/tmp/npm/global
-export NPM_CONFIG_CACHE=$HOME/tmp/npm/cache
+export NPM_CONFIG_PREFIX=$CACHE_DIR/npm/global
+export NPM_CONFIG_CACHE=$CACHE_DIR/npm/cache
 export PATH=$NPM_CONFIG_PREFIX/bin:$PATH
 
-export DENO_DIR=$HOME/tmp/deno
+export DENO_DIR=$CACHE_DIR/deno
 export PATH=$DENO_DIR/bin:$PATH
 
-export GOPATH=$HOME/tmp/go
+export GOPATH=$CACHE_DIR/go
 export PATH=$GOPATH/bin:$PATH
 
 export PATH=$HOME/.local/bin:$PATH
