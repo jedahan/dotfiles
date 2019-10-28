@@ -35,7 +35,6 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
     momo-lab/zsh-abbrev-alias \
     zdharma/history-search-multi-word \
     zdharma/fast-syntax-highlighting \
-    ael-code/zsh-colored-man-pages \
     geometry-zsh/geometry \
     rupa/z \
     jedahan/laser \
