@@ -4,10 +4,9 @@ available=(${icons:|existing})
 export ICON=${available[RANDOM % $#available + 1]}
 grep -q zsh <(tmux list-windows -F'#W') && tmux rename-window $ICON
 
-#tmux bind-key -n C-t new-window -n $ICON
 tmux bind-key -n C-n new-window -n $ICON
 
-bindkey -v
+bindkey -e
 setopt autocd autopushd pushd_ignore_dups interactivecomments
 setopt bang_hist extended_history inc_append_history share_history hist_ignore_space hist_verify
 
