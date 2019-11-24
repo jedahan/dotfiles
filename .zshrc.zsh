@@ -29,6 +29,7 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
   zr \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
+    MichaelMure/git-bug.git/misc/zsh_completion/git-bug \
     DarrinTisdale/zsh-aliases-exa \
     zsh-users/zsh-autosuggestions \
     momo-lab/zsh-abbrev-alias \
