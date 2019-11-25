@@ -29,7 +29,6 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
   zr \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
-    MichaelMure/git-bug.git/misc/zsh_completion/git-bug \
     DarrinTisdale/zsh-aliases-exa \
     zsh-users/zsh-autosuggestions \
     momo-lab/zsh-abbrev-alias \
@@ -41,9 +40,7 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
     jedahan/help.zsh \
     jedahan/up.zsh > $ZR
 fi; source $ZR
-GEOMETRY_GIT_SEPARATOR=" "
 
-test -f ${HOME}/.cache/zr/sorin-ionescu/prezto.git/modules/git/alias.zsh && source $_ || true
 test -f /etc/zsh_command_not_found && source $_ || true
 
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 2 ))"
