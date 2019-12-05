@@ -29,7 +29,6 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
   zr \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
-    DarrinTisdale/zsh-aliases-exa \
     zsh-users/zsh-autosuggestions \
     momo-lab/zsh-abbrev-alias \
     zdharma/history-search-multi-word \
@@ -54,6 +53,10 @@ abbrev-alias x=exit \
  man=help \
  h=help \
  manual=man \
+ ls=exa \
+ l='exa -s type' \
+ ll='exa -lbGF --git' \
+ tree='exa --tree --level=2' \
  ,='clear && l'
 
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
