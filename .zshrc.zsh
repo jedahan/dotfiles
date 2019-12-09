@@ -22,7 +22,8 @@ alias manual=$commands[man] \
  cat=${commands[bat]:-$commands[cat]} \
  sed=${commands[sd]:-$commands[sed]} \
  awk=${commands[sd]:-$commands[awk]} \
- fzf=${commands[sk]:-$commands[fzf]}
+ fzf=${commands[sk]:-$commands[fzf]} \
+ t='cd $(mktemp -d /tmp/$1.XXXX)'
 
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
 if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
