@@ -31,3 +31,4 @@ export GOPATH=$CACHE_DIR/go
 export PATH=$GOPATH/bin:$PATH
 
 export PATH=$HOME/.local/bin:$PATH
+export XDG_DATA_HOME=$HOME/.local/share
