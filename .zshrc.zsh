@@ -58,6 +58,7 @@ abbrev-alias x=exit \
  ,='clear && l'
 
 # functions
+rfc() { zcat $(fd "$@" /usr/share/doc/RFC) | less }
 t() { cd $(mktemp -d /tmp/$1.XXXX) }
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
 git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
