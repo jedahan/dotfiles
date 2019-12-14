@@ -18,6 +18,8 @@ zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
 if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
   zr \
+    asdf-vm/asdf.git/asdf.sh \
+    asdf-vm/asdf.git/completions/asdf.bash \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
     zsh-users/zsh-autosuggestions \
