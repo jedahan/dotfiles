@@ -41,21 +41,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-#font-0 = fixed:pixelsize=10;1
-#font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-0= "Inconsolata Nerd Font:pixelsize=32;1"
-font-1 = "Inconsolata Nerd Font:pixelsize=32;1"
-font-2 = siji:pixelsize=32;1
-#font-2 = "Inconsolata Nerd Font:pixelsize=32;1"
-
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Siji:pixelsize=32;1
 
 modules-left =  i3
 modules-center = xwindow
 modules-right = pulseaudio xkeyboard wlan battery date powermenu
-
-tray-position = right
-tray-padding = 2
-;tray-background = #0063ff
 
 wm-restack = i3
 
@@ -157,10 +149,9 @@ format-connected-underline = #9f78e1
 label-connected = %essid%
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -169,21 +160,20 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-;[module/eth]
-;type = internal/network
-;interface = en0
-;interval = 3.0
+[module/eth]
+type = internal/network
+interface = en0
+interval = 3.0
 
-;format-connected-underline = #55aa55
-;format-connected-prefix = " "
-;format-connected-prefix-foreground = ${colors.foreground-alt}
-;label-connected = %local_ip%
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
 
-;format-disconnected =
-;;format-disconnected = <label-disconnected>
-;;format-disconnected-underline = ${self.format-connected-underline}
-;;label-disconnected = %ifname% disconnected
-;;label-disconnected-foreground = ${colors.foreground-alt}
+format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -208,7 +198,7 @@ format-volume = <bar-volume>
 label-volume = VOL %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+label-muted = muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
