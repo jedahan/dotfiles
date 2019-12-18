@@ -1,10 +1,10 @@
 # tmux
-icons=(                     )
-existing=($(tmux list-windows -F'#W'|paste -s -))
-available=(${icons:|existing})
-export ICON=${available[RANDOM % $#available + 1]}
-grep -q zsh <(tmux list-windows -F'#W') && tmux rename-window $ICON
-tmux bind-key -n C-n new-window -n $ICON
+#icons=(                     )
+#existing=($(tmux list-windows -F'#W'|paste -s -))
+#available=(${icons:|existing})
+#export ICON=${available[RANDOM % $#available + 1]}
+#grep -q zsh <(tmux list-windows -F'#W') && tmux rename-window $ICON
+#tmux bind-key -n C-n new-window -n $ICON
 
 # zsh options
 bindkey -e
@@ -13,6 +13,7 @@ setopt bang_hist extended_history inc_append_history share_history hist_ignore_s
 autoload -Uz select-word-style && select-word-style bash
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
+(cat ~/.cache/wal/sequences &)
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh

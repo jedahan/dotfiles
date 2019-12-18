@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ncm2/ncm2-github'                  " repos and emoji
   Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
   " Theming
+  Plug 'dylanaraps/wal.vim'
   Plug 'chriskempson/base16-vim'           " medium-contrast color schemes
   Plug 'ryanoasis/vim-devicons'            " icons for filetypes
   Plug 'vim-airline/vim-airline'           " bottom and top gutters
@@ -42,7 +43,8 @@ let g:echodoc#enable_at_startup = 1
 
 " COLORS
 syntax on
-colorscheme base16-eighties
+"colorscheme base16-eighties
+colorscheme wal
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
