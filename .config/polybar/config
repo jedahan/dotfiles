@@ -7,20 +7,18 @@
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
+background = ${xrdb:color0:#222}
+background-alt = ${xrdb:color2:#444}
+foreground = ${xrdb:color7:#dfdfdf}
+foreground-alt = ${xrdb:color0:#555}
+primary = ${xrdb:color1:#ffb52a}
+secondary = ${xrdb:color5:#e60053}
 alert = #bd2c40
 
 [bar/micro]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 64
+height = 48
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 6.0
@@ -32,7 +30,7 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -41,9 +39,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0= "Inconsolata Nerd Font:pixelsize=32;1"
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = Siji:pixelsize=32;1
+font-0 = "Inconsolata Nerd Font:pixelsize=32;1"
 
 modules-left =  i3
 modules-center = xwindow
@@ -142,22 +138,21 @@ label-song-ellipsis = true
 [module/wlan]
 type = internal/network
 interface = wlp2s0
-interval = 3.0
+interval = 5.0
 
-format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+format-connected = <label-connected>
+format-connected-underline = ${colors.background-alt}
 label-connected = %essid%
 
-format-disconnected =
+format-disconnected = ""
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
+label-disconnected = x %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = ▁
+ramp-signal-1 = ▃
+ramp-signal-2 = ▅
+ramp-signal-3 = ▇
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -165,14 +160,14 @@ type = internal/network
 interface = en0
 interval = 3.0
 
-format-connected-underline = #55aa55
+format-connected-underline = ${colors.foreground-alt}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
 format-disconnected = <label-disconnected>
 format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = %ifname% disconnected
+label-disconnected = x %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
@@ -187,8 +182,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
-
+format-underline = ${colors.background-alt}
 label = %time%
 
 [module/pulseaudio]
@@ -201,7 +195,7 @@ label-volume-foreground = ${root.foreground}
 label-muted = muted
 label-muted-foreground = #666
 
-bar-volume-width = 10
+bar-volume-width = 20
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -216,7 +210,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -225,10 +219,12 @@ adapter = AC
 full-at = 98
 
 format-charging = <label-charging>
-format-charging-underline = #ffb52a
+;format-charging-underline = #ffb52a
+format-charging-underline = ${colors.background-alt}
 
 format-discharging = <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+;format-discharging-underline = ${self.format-charging-underline}
+format-discharging-underline = ${colors.primary}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -241,9 +237,9 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = ⏻
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
