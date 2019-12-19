@@ -17,37 +17,31 @@ alert = #bd2c40
 
 [bar/micro]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
-height = 48
-;offset-x = 1%
-;offset-y = 1%
-radius = 6.0
-fixed-center = false
+width = 3540px
+height = 60px
+offset-x = 150px
+offset-y = 32px
+fixed-center = true
 
+override-redirect = true
+wm-restack = i3
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
+border-size = 2
+border-color = ${colors.background-alt}
 
-border-size = 0
-border-color = #00000000
-
-padding-left = 0
-padding-right = 2
-
-module-margin-left = 1
-module-margin-right = 2
+padding = 1
+module-margin = 1
 
 font-0 = "Inconsolata Nerd Font:pixelsize=32;1"
+font-1 = "Roboto:size=11:weight=bold;2"
+font-2 = "Unifont Upper:size=32;1"
+font-3 = "Noto Sans Mongolian:size=32;2"
 
 modules-left =  i3
 modules-center = xwindow
-modules-right = pulseaudio xkeyboard wlan battery date powermenu
-
-wm-restack = i3
-
-;override-redirect = true
+modules-right = pulseaudio xkeyboard wlan date battery powermenu
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -65,25 +59,12 @@ blacklist-0 = num lock
 
 format-prefix = ""
 format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/i3]
 type = internal/i3
@@ -101,7 +82,6 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -111,7 +91,6 @@ label-unfocused-padding = 2
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -119,54 +98,33 @@ label-urgent = %index%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-; Separator in between workspaces
-; label-separator = |
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-
-label-song-maxlen = 25
-label-song-ellipsis = true
-
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 5.0
 
-format-connected = <label-connected>
-format-connected-underline = ${colors.background-alt}
+format-connected = <ramp-signal> <label-connected>
 label-connected = %essid%
 
 format-disconnected = ""
-format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = x %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = ▁
-ramp-signal-1 = ▃
-ramp-signal-2 = ▅
-ramp-signal-3 = ▇
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-0 = x 
+ramp-signal-1 = ᠂
+ramp-signal-2 = ᠃
+ramp-signal-3 = ᠅ 
 
 [module/eth]
 type = internal/network
 interface = en0
 interval = 3.0
 
-format-connected-underline = ${colors.foreground-alt}
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
 label-disconnected = x %ifname%
 label-disconnected-foreground = ${colors.foreground-alt}
 
@@ -180,55 +138,43 @@ date-alt = "%Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.background-alt}
 label = %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo 
 
-format-volume = <bar-volume>
-label-volume = VOL %percentage%%
-label-volume-foreground = ${root.foreground}
+format-volume = <ramp-volume> 
 
-label-muted = muted
+label-muted = 🔇
 label-muted-foreground = #666
 
-bar-volume-width = 20
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground}
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
 
 [module/battery]
 type = internal/battery
 battery = BAT0
-adapter = AC
+adapter = ADP0
 full-at = 98
+time-format = %M
 
-format-charging = <label-charging>
-;format-charging-underline = #ffb52a
-format-charging-underline = ${colors.background-alt}
+format-charging = <ramp-capacity>
+format-discharging = <ramp-capacity>
 
-format-discharging = <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-format-discharging-underline = ${colors.primary}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+ramp-capacity-0 = %{T2}%{F#bf616a}%{F- T-}
+ramp-capacity-1 = %{T2}%{T-}
+ramp-capacity-2 = %{T2}%{T-}
+ramp-capacity-3 = %{T2}%{T-}
+ramp-capacity-4 = %{T2}%{T-}
+ramp-capacity-5 = %{T2}%{T-}
+ramp-capacity-6 = %{T2}%{T-}
+ramp-capacity-7 = %{T2}%{T-}
+ramp-capacity-8 = %{T2}%{T-}
+ramp-capacity-9 = %{T2}%{T-}
 
 [module/powermenu]
 type = custom/menu
@@ -237,7 +183,7 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = ⏻
+label-open = ⏾
 label-open-foreground = ${colors.secondary}
 label-close = cancel
 label-close-foreground = ${colors.secondary}
