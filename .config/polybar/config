@@ -22,6 +22,7 @@ height = 60px
 offset-x = 150px
 offset-y = 32px
 fixed-center = true
+line-size = 2
 
 override-redirect = true
 wm-restack = i3
@@ -34,10 +35,10 @@ border-color = ${colors.background-alt}
 padding = 1
 module-margin = 1
 
-font-0 = "Inconsolata Nerd Font:pixelsize=32;1"
-font-1 = "Roboto:size=11:weight=bold;2"
-font-2 = "Unifont Upper:size=32;1"
-font-3 = "Noto Sans Mongolian:size=32;2"
+font-0 = "Inconsolata Nerd Font:pixelsize=32;4"
+font-1 = "Roboto:size=32;8"
+font-2 = "Unifont Upper:size=32;4"
+font-3 = "Noto Sans Mongolian:size=32;8"
 
 modules-left =  i3
 modules-center = xwindow
@@ -81,7 +82,9 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
+label-focused-background = ${colors.background}
+label-focused-overline = ${colors.secondary}
+label-focused-underline = ${self.label-focused-overline}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -165,16 +168,16 @@ time-format = %M
 format-charging = <ramp-capacity>
 format-discharging = <ramp-capacity>
 
-ramp-capacity-0 = %{T2}%{F#bf616a}%{F- T-}
-ramp-capacity-1 = %{T2}%{T-}
-ramp-capacity-2 = %{T2}%{T-}
-ramp-capacity-3 = %{T2}%{T-}
-ramp-capacity-4 = %{T2}%{T-}
-ramp-capacity-5 = %{T2}%{T-}
-ramp-capacity-6 = %{T2}%{T-}
-ramp-capacity-7 = %{T2}%{T-}
-ramp-capacity-8 = %{T2}%{T-}
-ramp-capacity-9 = %{T2}%{T-}
+ramp-capacity-0 = %{F#bf616a}%{F-}
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
 
 [module/powermenu]
 type = custom/menu
