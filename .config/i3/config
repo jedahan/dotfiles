@@ -28,11 +28,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 10 # decrease screen brightness
 
 # start a terminal
-bindsym $mod+Return exec alacritty --config-file $HOME/.config/alacritty/i3.yml
+bindsym $mod+Return exec --no-startup-id alacritty --config-file $HOME/.config/alacritty/i3.yml
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -49,10 +49,9 @@ client.background       $bg
 # PROTIP: You can also dynamically set dmenu's colors this way:
 bindsym $mod+d exec --no-startup-id rofi -show drun
 
-bindsym $mod+backslash exec rofi -show run
+bindsym $mod+backslash exec --no-startup-id rofi -show run
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-
 
 # change focus
 bindsym $mod+j focus left
@@ -116,6 +115,11 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+bindsym $mod+bracketleft workspace prev
+bindsym $mod+bracketright workspace next
+bindsym $mod+Shift+bracketleft move container to workspace prev
+bindsym $mod+Shift+bracketright move container to workspace next
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
