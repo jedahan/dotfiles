@@ -1,5 +1,3 @@
-#icons=(                     )
-
 # zsh options
 bindkey -e
 setopt autocd autopushd pushd_ignore_dups interactivecomments
