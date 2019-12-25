@@ -1,0 +1,6 @@
+wal -R &
+xinput set-prop "DELL08AF:00 06CB:76AF Touchpad" "libinput Accel Speed" 1 &
+setxkbmap -option ctrl:swapcaps &
+picom -b &
+bum --server joosebox.local &
+#~/src/xwinwrap/xwinwrap -ni -fdt -sh rectangle -un -b -nf -ov -fs -- mpv --wid WID --no-config --loop --no-border --x11-bypass-compositor=no --x11-name=mpvbg deviantart_559807830_Stacking\ houses\ on\ a\ windy\ day.gif
