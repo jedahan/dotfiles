@@ -1,1 +1,0 @@
-/home/micro/.zshrc.zsh

@@ -1,24 +1,11 @@
+export TERM=alacritty
 export LC_ALL=en_US.UTF-8
-
-export EDITOR=${commands[amp]:-$commands[nvim]}
-export VISUAL=$EDITOR
-
-export LESS='-r'
-
-# colored man pages
-export LESS_TERMCAP_md=$(tput bold; tput setaf 4)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_mb=$(tput blink)
-export LESS_TERMCAP_us=$(tput setaf 2)
-export LESS_TERMCAP_ue=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput smso)
-export LESS_TERMCAP_se=$(tput rmso)
-export PAGER="${commands[less]:-$PAGER}"
 
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-$HOME/.local/share}
 
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export RUSTUP_HOME=$XDG_CACHE_HOME/rustup
 export CARGO_HOME=$XDG_CACHE_HOME/cargo
 export PATH=$CARGO_HOME/bin:$PATH
