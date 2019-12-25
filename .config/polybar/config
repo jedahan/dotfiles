@@ -44,6 +44,7 @@ offset-x = 79%
 offset-y = 96%
 fixed-center = true
 line-size = 2
+tray-position = right
 
 module-margin = 1
 
@@ -131,7 +132,7 @@ label-visible-background = ${self.label-focused-background}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
