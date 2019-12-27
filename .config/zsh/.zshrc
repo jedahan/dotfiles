@@ -59,10 +59,11 @@ alias manual=$commands[man] \
 (( $+commands[exa] )) && alias tree='exa --tree --level=2'
 
 abbrev-alias x=exit \
+ f=find \
+ s=grep \
  o=xdg-open \
  c='bat -p' \
  _=sudo \
- s=grep \
  code=vscodium \
  h=help \
  ls=exa \
