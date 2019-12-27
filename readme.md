@@ -1,13 +1,14 @@
 [jedahan](http://jonathan.is)'s dotfiles for [alacritty](https://github.com/jwilm/alacritty),
-[amp](https://amp.rs),
 [git](https://git-scm.com),
+[i3]*(https://i3wm.org),
 [mpv](https://mpv.io),
-[neovim](https://neovim.io),
+[neovim](https://neovim.io)+[spacevim](https://spacevim.org),
 [parity](https://parity.io),
+[polybar](https://polybar.github.io),
 [streamlink](https://streamlink.github.io),
 [tmux](https://tmux.github.io),
 [vscode](https://github.com/Microsoft/vscode),
-and [zsh](https://zsh.org) on [macOS](https://github.com/jedahan/oh-my-macOS).
+and [zsh](https://zsh.org) on [elementaryOS](https://elementaryos.com)
 
 I try and keep customizations to a minimum, or at least easy to understand what each thing does so it is easily changeable for newcomers.
 
