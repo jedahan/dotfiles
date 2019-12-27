@@ -51,6 +51,8 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 
 bindsym $mod+backslash exec --no-startup-id rofi -show run
 
+bindsym $mod+p exec --no-startup-id $HOME/src/mpw-rofi/mpw-rofi.sh
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # change focus
