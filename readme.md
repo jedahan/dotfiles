@@ -20,7 +20,7 @@ Backup existing dotfiles
 
 Clone to a bare repository
 
-    git clone --bare https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
+    git clone --bare --recursive https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
 
 Checkout to your home directory
 

@@ -26,3 +26,5 @@ export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdfrc
 export PATH=$XDG_CONFIG_HOME/poetry/bin:$PATH
 
 export PATH=$HOME/.local/bin:$PATH
+
+export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
