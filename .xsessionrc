@@ -1,4 +1,3 @@
-xrdb -merge $HOME/.xresources
 wal -R &
 xinput set-prop "DELL08AF:00 06CB:76AF Touchpad" "libinput Accel Speed" 1 &
 setxkbmap -option ctrl:swapcaps &
