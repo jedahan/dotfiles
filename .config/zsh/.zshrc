@@ -57,7 +57,9 @@ alias manual=$commands[man] \
 
 # aliases
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
-(( $+commands[exa] )) && alias tree='exa --tree --level=2'
+(( $+commands[exa] )) \
+  && alias tree='exa --tree --level=2' \
+  && abbrev-alias ls=exa
 
 abbrev-alias x=exit \
  f=find \
@@ -65,11 +67,10 @@ abbrev-alias x=exit \
  o=xdg-open \
  c='bat -p' \
  _=sudo \
- code=vscodium \
- h=help \
- ls=exa \
  l='exa -s type' \
  ll='exa -lbGF --git' \
+ code=vscodium \
+ h=help \
  ,='clear && l'
 
 # functions
