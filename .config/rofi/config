@@ -1,0 +1,3 @@
+rofi.theme: /home/micro/.cache/wal/colors-rofi-dark.rasi
+rofi.font: mono 36
+rofi.modi: run,ssh,drun
