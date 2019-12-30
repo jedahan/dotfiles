@@ -3,9 +3,10 @@ bindkey -e
 setopt autocd autopushd pushd_ignore_dups interactivecomments
 setopt bang_hist extended_history inc_append_history share_history hist_ignore_space hist_verify
 autoload -Uz select-word-style && select-word-style bash
+autoload -Uz compinit && compinit
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
-(cat ~/.cache/wal/sequences &)
+test -f ~/.cache/wal/sequences && (cat ~/.cache/wal/sequences &)
 
 export EDITOR=${commands[amp]:-$commands[nvim]}
 export VISUAL=$EDITOR
