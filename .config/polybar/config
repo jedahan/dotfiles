@@ -35,10 +35,12 @@ font-1 = "Roboto:size=32;8"
 font-2 = "Unifont Upper:size=32;4"
 font-3 = "Noto Sans Mongolian:size=32;8"
 
+modules-center = wlan_ip
+
 [bar/right]
-width = 20%
+width = 16%
 height = 3%
-offset-x = 79%
+offset-x = 83%
 offset-y = 96%
 fixed-center = true
 line-size = 2
@@ -56,7 +58,7 @@ font-1 = "Roboto:size=32;8"
 font-2 = "Unifont Upper:size=32;4"
 font-3 = "Noto Sans Mongolian:size=32;8"
 
-modules-center = pulseaudio xkeyboard wlan date battery powermenu
+modules-center = xkeyboard date battery powermenu
 
 cursor-click = pointer
 
@@ -139,7 +141,8 @@ type = custom/script
 interface = wlan0
 interval = 15
 
-exec = ip a show wlan0 | grep -Eo 'inet ([0-9]+.[0-9]+.[0-9]+.[0-9])'
+#exec = ip a show wlan0 | grep -Eo 'inet ([0-9]+.[0-9]+.[0-9]+.[0-9])'
+exec = /sbin/iw dev wlan0 info | grep ssid | awk '{print $2}'
 
 [module/wlan]
 type = internal/network
