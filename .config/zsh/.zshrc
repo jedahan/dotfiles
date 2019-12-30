@@ -25,7 +25,7 @@ export PAGER="${commands[less]:-$PAGER}"
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
 if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
-  zr \
+  ~/.local/bin/zr \
     asdf-vm/asdf.git/asdf.sh \
     asdf-vm/asdf.git/completions/asdf.bash \
     denisidoro/navi \

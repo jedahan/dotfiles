@@ -35,8 +35,6 @@ font-1 = "Roboto:size=32;8"
 font-2 = "Unifont Upper:size=32;4"
 font-3 = "Noto Sans Mongolian:size=32;8"
 
-modules-center = wlan_ip
-
 [bar/right]
 width = 20%
 height = 3%
@@ -137,13 +135,11 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
 [module/wlan_ip]
-type = internal/network
-interface = wlp2s0
-interval = 15.0
+type = custom/script
+interface = wlan0
+interval = 15
 
-label-connected = %local_ip%
-
-label-disconnected = %local_ip%
+exec = ip a show wlan0 | grep -Eo 'inet ([0-9]+.[0-9]+.[0-9]+.[0-9])'
 
 [module/wlan]
 type = internal/network
