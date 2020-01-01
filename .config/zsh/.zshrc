@@ -76,6 +76,7 @@ abbrev-alias x=exit \
 # functions
 rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
 t() { cd $(mktemp -d /tmp/$1.XXXX) }
+down() { t; http -d "$1"; ll }
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
 git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
 mpw() { . ~/.secrets && command mpw -t x "$@" | tee >(xsel -ib) >(xsel -i) 1>/dev/null; unset MPW_FULLNAME MPW_ASKPASS }
