@@ -208,7 +208,7 @@ adapter = ADP0
 full-at = 98
 time-format = %M
 
-format-charging = <ramp-capacity>
+format-charging = <ramp-capacity> <label-charging>
 format-discharging = <ramp-capacity>
 
 ramp-capacity-0 = %{F#bf616a}%{F-}
@@ -221,6 +221,8 @@ ramp-capacity-6 = 
 ramp-capacity-7 = 
 ramp-capacity-8 = 
 ramp-capacity-9 = 
+
+label-charging = "%percentage%"
 
 [module/powermenu]
 type = custom/menu

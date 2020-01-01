@@ -7,8 +7,10 @@ font pango:Inconsolata Nerd Font 16
 # from the generated scheme.
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
-set_from_resource $fg i3wm.color7 #f0f0f0
-set_from_resource $bg i3wm.color2 #f0f0f0
+#set_from_resource $fg i3wm.color7 #f0f0f0
+#set_from_resource $bg i3wm.color2 #f0f0f0
+set $fg #f0f0f0
+set $bg #f0f0f0
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice
 
@@ -170,5 +172,5 @@ bindsym $mod+r mode "resize"
 for_window [class=".*"] border pixel 0
 
 gaps inner 10
-gaps outer 10
-gaps bottom 48
+gaps outer 0
+gaps bottom 24
