@@ -28,3 +28,5 @@ export PATH=$XDG_CONFIG_HOME/poetry/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
+export MOZ_ENABLE_WAYLAND=1
+unset DISPLAY
