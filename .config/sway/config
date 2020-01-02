@@ -29,13 +29,13 @@ set $menu wofi --insensitive --show drun --style /home/micro/.config/wofi.css | 
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 output * bg /home/micro/images/desktop.png fill
 
-set $laptop eDP-1
+set $laptop 'Unknown 0x282B 0x00000000'
 output $laptop {
   scale 2
   position 320 1440
 } 
 
-set $desktop DP-1
+set $desktop 'Lenovo Group Limited LEN P27h-10 0x00000101'
 output $desktop {
   position 0 0
 } 
