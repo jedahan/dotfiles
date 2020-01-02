@@ -8,15 +8,11 @@
 [sway]*(https://swaywm.org),
 [tmux](https://tmux.github.io),
 [vscode](https://github.com/Microsoft/vscode),
-and [zsh](https://zsh.org) on [elementaryOS](https://elementaryos.com)
+and [zsh](https://zsh.org) on [debian](https://debian.org)
 
 I try and keep customizations to a minimum, or at least easy to understand what each thing does so it is easily changeable for newcomers.
 
 ### Installation
-
-Backup existing dotfiles
-
-    mkdir .dotfiles-backup && git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
 
 Clone to a bare repository
 
