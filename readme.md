@@ -1,11 +1,11 @@
 [jedahan](http://jonathan.is)'s dotfiles for [alacritty](https://github.com/jwilm/alacritty),
 [git](https://git-scm.com),
-[i3]*(https://i3wm.org),
+[i3status-rust](https://github.com/greshake/i3status-rust),
 [mpv](https://mpv.io),
 [neovim](https://neovim.io)+[spacevim](https://spacevim.org),
 [parity](https://parity.io),
-[polybar](https://polybar.github.io),
 [streamlink](https://streamlink.github.io),
+[sway]*(https://swaywm.org),
 [tmux](https://tmux.github.io),
 [vscode](https://github.com/Microsoft/vscode),
 and [zsh](https://zsh.org) on [elementaryOS](https://elementaryos.com)

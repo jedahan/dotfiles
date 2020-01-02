@@ -4,6 +4,9 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+
+include ~/.cache/wal/colors-sway
+
 ### Variables
 #
 # Logo key. Use Mod1 for Alt.
@@ -31,6 +34,7 @@ output $laptop {
   scale 2
   position 320 1440
 } 
+
 set $desktop DP-1
 output $desktop {
   position 0 0
@@ -232,14 +236,14 @@ bindsym $mod+r mode "resize"
 bar {
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command status
+    status_command ~/.local/bin/i3status-rs ~/.config/i3status-rust.toml
     font "Inconsolata Nerd Font 16"
     mode hide
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #323232 #323232 #5c5c5c
+        background $background
+        statusline $foreground
+        inactive_workspace $color0 $color0 $color8
     }
 }
 
