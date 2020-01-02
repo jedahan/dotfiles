@@ -41,7 +41,7 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
     jedahan/help.zsh \
     jedahan/up.zsh > $ZR
 fi; source $ZR
-export GEOMETRY_PROMPT=(geometry_status geometry_path)
+export GEOMETRY_PROMPT=(geometry_echo geometry_status geometry_path)
 test -f /etc/zsh_command_not_found && source $_ || true
 
 # default commands
