@@ -1,0 +1,35 @@
+theme = "plain"
+icons = "awesome"
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "battery"
+interval = 30
+format = "{percentage} {time}"
+
+[[block]]
+block = "sound"
+
+[[block]]
+block = "net"
+device = "wlan0"
+ssid = true
+ip = true
+interval = 30
+hide_inactive = true
+
+[[block]]
+block = "net"
+device = "enx3c18a0d251a9"
+ip = true
+interval = 30
+speed_up = false
+speed_down = false
+hide_inactive = true
+
+[[block]]
+block = "time"
+interval = 60
+format = "%d.%m %R"
