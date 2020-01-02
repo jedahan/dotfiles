@@ -79,5 +79,5 @@ t() { cd $(mktemp -d /tmp/$1.XXXX) }
 down() { t; http -d "$1"; ll }
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
 git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
-mpw() { . ~/.secrets && command mpw -t x "$@" | tee >(xsel -ib) >(xsel -i) 1>/dev/null; unset MPW_FULLNAME MPW_ASKPASS }
+mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" | wl-copy -n; unset MP_FULLNAME }
 alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
