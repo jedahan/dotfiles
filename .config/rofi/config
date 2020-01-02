@@ -1,3 +1,0 @@
-rofi.theme: /home/micro/.config/rofi/new-moon.rasi
-rofi.font: mono 36
-rofi.modi: run,ssh,drun
