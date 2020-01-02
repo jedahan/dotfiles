@@ -1,0 +1,6 @@
+#!/usr/bin/zsh
+
+killall -q i3status-rs
+while pgrep -u $UID -x i3status-rs >/dev/null; do sleep 1; done
+i3status-rs $XDG_CONFIG_HOME/i3status-rs.toml &
+

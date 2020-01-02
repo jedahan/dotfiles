@@ -6,7 +6,7 @@ block = "backlight"
 
 [[block]]
 block = "battery"
-interval = 30
+interval = 60
 format = "{percentage} {time}"
 
 [[block]]
@@ -17,14 +17,14 @@ block = "net"
 device = "wlan0"
 ssid = true
 ip = true
-interval = 30
+interval = 60
 hide_inactive = true
 
 [[block]]
 block = "net"
 device = "enx3c18a0d251a9"
 ip = true
-interval = 30
+interval = 60
 speed_up = false
 speed_down = false
 hide_inactive = true
