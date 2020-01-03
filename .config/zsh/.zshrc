@@ -70,6 +70,7 @@ abbrev-alias x=exit \
  l='exa -s type' \
  ll='exa -lbGF --git' \
  code=vscodium \
+ sys='systemctl --user' \
  h=help \
  ,='clear && l'
 
