@@ -37,7 +37,8 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec "st -f InconsolataNerdFont-16"
+#bindsym $mod+Return exec "st -f InconsolataNerdFont-16"
+bindsym $mod+Return exec alacritty
 bindsym $mod+u exec pango-view --waterfall ~/.local/share/fonts/Inconsolata\ Nerd\ Font\ Complete.otf
 
 # kill focused window
