@@ -54,6 +54,11 @@ alias manual=$commands[man] \
  awk=${commands[sd]:-$commands[awk]} \
  fzf=${commands[sk]:-$commands[fzf]}
 
+# kiss package manager
+(( $+commands[kiss] )) && alias \
+  k='sudo --preserve-env=KISS_PATH,CFLAGS,CXXFLAGS,MAKEFLAGS kiss' \
+  kb='k b' ki='k i' ks='k s'
+
 # aliases
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 (( $+commands[exa] )) \
