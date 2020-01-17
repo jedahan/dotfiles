@@ -47,3 +47,4 @@ alias kb='sudo --preserve-env=KISS_PATH,CFLAGS,CXXFLAGS,MAKEFLAGS kiss b'
 alias ki='sudo --preserve-env=KISS_PATH,CFLAGS,CXXFLAGS,MAKEFLAGS kiss i'
 alias ks='sudo --preserve-env=KISS_PATH,CFLAGS,CXXFLAGS,MAKEFLAGS kiss s'
 export PATH=$HOME/bin:$PATH
+export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
