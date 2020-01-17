@@ -24,17 +24,16 @@ export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdfrc
 
 export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
 
-export PATH=$HOME/.local/bin:$PATH
 export PATH=/sbin:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
 
 command -v alacritty >/dev/null 2>&1 && export TERM=alacritty
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
 export MOZ_ENABLE_WAYLAND=1
 unset DISPLAY
-test -z "$WAYLAND_DISPLAY" && test -f /usr/share/consolefonts/Uni3-Terminus32x16.psf.gz && setfont Uni3-Terminus32x16
-test "$TERM" = "linux" && test -f /usr/share/consolefonts/ter-u32n.psf.gz && setfont /usr/share/consolefonts/ter-u32n.psf.gz
+if [[ -z "$WAYLAND_DISPLAY" ]]; then setfont Uni3-Terminus32x16 || true; fi
+if [[ "$TERM" = "linux" ]]; then setfont /usr/share/consolefonts/ter-u32n.psf.gz || true; fi
 
 export CFLAGS="-O2 -march=native -pipe"
 export CXXFLAGS="$CFLAGS"
