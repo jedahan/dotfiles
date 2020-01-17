@@ -1,6 +1,6 @@
 # zsh options
 bindkey -e
-setopt autocd autopushd pushd_ignore_dups interactivecomments
+setopt autocd autopushd pushd_ignore_dups interactivecomments no_clobber
 setopt bang_hist extended_history inc_append_history share_history hist_ignore_space hist_verify
 autoload -Uz select-word-style && select-word-style bash
 autoload -Uz compinit && compinit
@@ -41,7 +41,6 @@ if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
     jedahan/help.zsh \
     jedahan/up.zsh > $ZR
 fi; source $ZR
-export GEOMETRY_PROMPT=(geometry_echo geometry_status geometry_path)
 test -f /etc/zsh_command_not_found && source $_ || true
 
 # default commands
