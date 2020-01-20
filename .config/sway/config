@@ -99,6 +99,9 @@ input type:keyboard {
     # Start your launcher
     bindsym $mod+d exec $menu
 
+    # password manager
+    bindsym $mod+p exec jimpass
+
     # Lock
     bindsym $mod+Shift+Delete exec 'swaylock -f -c 000000'
 
