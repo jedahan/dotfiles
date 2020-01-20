@@ -24,7 +24,7 @@ export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdfrc
 
 export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
 
-grep -q ':/sbin' "$PATH" || export PATH=/sbin:$PATH
+[[ "$PATH" =~ ":/sbin" ]] || export PATH=/sbin:$PATH
 command -v systemd-path >/dev/null 2>&1 && user_binaries="$(systemd-path user-binaries)"
 test -d "$user_binaries" && export PATH=$user_binaries:$PATH
 
