@@ -152,6 +152,14 @@ input type:keyboard {
     set $ws6 
     set $ws7 
 
+#    workspace $ws1 persistent true
+#    workspace $ws2 persistent true
+#    workspace $ws3 persistent true
+#    workspace $ws4 persistent true
+#    workspace $ws5 persistent true
+#    workspace $ws6 persistent true
+#    workspace $ws7 persistent true
+
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
