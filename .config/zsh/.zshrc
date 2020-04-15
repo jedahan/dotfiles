@@ -25,21 +25,21 @@ export PAGER="${commands[less]:-$PAGER}"
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
-if [[ ! -s $ZR ]] || [[ ~/.zshrc -nt $ZR ]]; then
-  ~/.local/bin/zr \
+ZSHRC=${XDG_CONFIG_HOME:-${HOME}/.config}/zsh/.zshrc
+if [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]]; then
+  zr \
     asdf-vm/asdf.git/asdf.sh \
     asdf-vm/asdf.git/completions/asdf.bash \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
     zsh-users/zsh-autosuggestions \
-    momo-lab/zsh-abbrev-alias \
     zdharma/history-search-multi-word \
     zdharma/fast-syntax-highlighting \
     geometry-zsh/geometry \
-    rupa/z \
+    Aloxaf/fzf-tab \
     jedahan/laser \
     jedahan/help.zsh \
-    jedahan/up.zsh > $ZR
+    jedahan/up.zsh >! $ZR
 fi; source $ZR
 test -f /etc/zsh_command_not_found && source $_ || true
 
