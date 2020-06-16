@@ -14,61 +14,43 @@ set $right l
 # terminal emulator
 set $term alacritty
 
-# Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-#set $menu dmenu_path | dmenu | xargs swaymsg exec --
-# set $menu wofi --insensitive --show drun --style /home/micro/.config/wofi.css | xargs swaymsg exec --
-#for_window [app_id="gmenu"] floating enable; resize set 750 260
-#set $menu alacritty --class gmenu --title gmenu --working-directory ~ -e gmenu
-set $menu gtkmenu --width 500 --height 260
+# application launcher
+set $menu alacritty --config-file /home/micro/.config/menu.yml --class gmenu --title gmenu --working-directory ~ -e gmenu -no-generic -no-details
+for_window [app_id="gmenu"] floating enable; resize set 600 400
+
+# password manager
+set $passman alacritty --config-file /home/micro/.config/menu.yml --class pass --title pass --working-directory ~ -e rbw-fzf-copy
+for_window [app_id="pass"] floating enable; resize set 600 400
 
 ### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+
 output * bg /home/micro/images/desktop.png fill
 
-set $laptop 'Unknown 0x282B 0x00000000'
-output $laptop {
-  scale 2
-  position 320 1440
-} 
+# names found with `swaymsg -t get_outputs`
+set $laptop eDP-1
+set $asus DP-2
 
-set $desktop 'Lenovo Group Limited LEN P27h-10 0x00000101'
-output $desktop {
-  position 0 0
-} 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+#output   $asus pos 0 0    res 2560x1440
+#output $laptop pos 0 1440 res 1920x1080 scale 2
+#output $laptop pos 0 0    res 1920x1080 scale 2
+#focus output $asus
+
+bindswitch --reload lid:on output $laptop disable
+bindswitch --reload lid:off output $laptop enable
 
 ### Idle configuration
-#
-# Example configuration:
 
+# lock before sleep
+# lock after 20 minutes of inactivity
+# turn off screen after another 10 minutes
 exec swayidle -w \
-          timeout 600 'swaylock -f -c 000000' \
-          timeout 900 'swaymsg "output * dpms off"' \
-               resume 'swaymsg "output * dpms on"' \
+          timeout 1200 'swaylock -f -c 000000' \
+          timeout 1800 'swaymsg "output * dpms off"' \
+                resume 'swaymsg "output * dpms on"' \
           before-sleep 'swaylock -f -c 000000'
 
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
+
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
@@ -82,20 +64,30 @@ input type:keyboard {
 }
 
 ### Key bindings
+
 #
-# Basics:
+# Basics
 #
     # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+q kill
-
-    # Start your launcher
+    # start launcher
     bindsym $mod+d exec --no-startup-id $menu
 
+    # test keybinding
+    bindsym $mod+t exec swaynag -m 'oh hello there'
+
+    # open havoc
+    bindsym $mod+u exec /home/micro/havoc/havoc
+
     # password manager
-    bindsym $mod+p exec jimpass
+    bindsym $mod+p exec $passman
+
+    # emoji
+    bindsym $mod+o exec emoji-keyboard
+
+    # kill focused window
+    bindsym $mod+Shift+q kill
 
     # Lock
     bindsym $mod+Shift+Delete exec 'swaylock -f -c 000000'
@@ -112,8 +104,9 @@ input type:keyboard {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
 #
-# Moving around:
+# Navigation
 #
     # Move your focus around
     bindsym $mod+$left focus left
@@ -136,8 +129,9 @@ input type:keyboard {
     bindsym $mod+Shift+Down move down
     bindsym $mod+Shift+Up move up
     bindsym $mod+Shift+Right move right
+
 #
-# Workspaces:
+# Workspaces
 #
     set $ws1 
     set $ws2 
@@ -146,14 +140,6 @@ input type:keyboard {
     set $ws5 
     set $ws6 
     set $ws7 
-
-#    workspace $ws1 persistent true
-#    workspace $ws2 persistent true
-#    workspace $ws3 persistent true
-#    workspace $ws4 persistent true
-#    workspace $ws5 persistent true
-#    workspace $ws6 persistent true
-#    workspace $ws7 persistent true
 
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
@@ -176,8 +162,9 @@ input type:keyboard {
     bindsym $mod+bracketright workspace next
     bindsym $mod+Shift+bracketleft move container to workspace prev
     bindsym $mod+Shift+bracketright move container to workspace next
+
 #
-# Layout stuff:
+# Layouts
 #
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
@@ -240,23 +227,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 set $clear #ffffff00
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-bar {
-    status_command status
-    font "Inconsolata Nerd Font 20"
-    mode hide
-    workspace_buttons yes
 
-    colors {
-        background $clear
-        focused_background $clear
-        active_workspace $clear $clear $color15
-        inactive_workspace $clear $clear $color0
-        focused_workspace $clear $clear $color15
-    }
+bar {
+  swaybar_command waybar
 }
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
