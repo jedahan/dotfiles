@@ -243,6 +243,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 default_border none
 
+for_window [app_id="firefox" title="Firefox - Sharing Indicator"] floating enable, move position 1825 980
+
 include /etc/sway/config.d/*
 
 gaps inner 10
