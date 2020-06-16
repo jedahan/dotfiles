@@ -30,18 +30,9 @@ if [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]]; then
     jedahan/help.zsh \
     jedahan/up.zsh >! $ZR
 fi; source $ZR
+gitbug() { git rev-parse 2>/dev/null && { git bug ls --status open | wc -l } }
+GEOMETRY_RPROMPT+=(gitbug)
 test -f /etc/zsh_command_not_found && source $_ || true
-
-# default commands
-alias manual=$commands[man] \
- find=${commands[fd]:-$commands[find]} \
- grep=${commands[rg]:-$commands[grep]} \
- cat=${commands[bat]:-$commands[cat]} \
- cloc=${commands[tokei]:-$commands[cloc]} \
- dig=${commands[drill]:-$commands[dig]} \
- sed=${commands[sd]:-$commands[sed]} \
- awk=${commands[sd]:-$commands[awk]} \
- fzf=${commands[sk]:-$commands[fzf]}
 
 # kiss package manager
 (( $+commands[kiss] )) && alias \
@@ -52,20 +43,30 @@ alias manual=$commands[man] \
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 (( $+commands[exa] )) \
   && alias tree='exa --tree --level=2' \
-  && abbrev-alias ls=exa
+  && abbrev-alias ls='exa --icons --group-directories-first'
 
-abbrev-alias x=exit \
- f=find \
- s=grep \
+alias f=fd \
+ s=rg \
  o=xdg-open \
- c='bat -p' \
  _=sudo \
- l='exa -s type' \
- ll='exa -lbGF --git' \
- code=vscodium \
- sys='systemctl --user' \
+ code=codium \
  h=help \
+ c='bat -p' \
+ l='exa -s type --icons --group-directories-first' \
+ ll='exa -lbGF --git' \
+ sys='systemctl --user' \
  ,='clear && l'
+
+# expand aliases
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
+bindkey " " globalias
+bindkey "^ " magic-space
+bindkey -M isearch " " magic-space # normal space during searches
 
 # functions
 rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
