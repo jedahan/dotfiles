@@ -6,22 +6,11 @@ autoload -Uz select-word-style && select-word-style bash
 autoload -Uz compinit && compinit
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
-test -f ~/.cache/wal/sequences && (cat ~/.cache/wal/sequences &)
 
 export EDITOR=${commands[amp]:-$commands[nvim]}
 export VISUAL=$EDITOR
 
 export LESS='-r'
-
-# colored man pages
-export LESS_TERMCAP_md=$(tput bold; tput setaf 4)
-export LESS_TERMCAP_me=$(tput sgr0)
-export LESS_TERMCAP_mb=$(tput blink)
-export LESS_TERMCAP_us=$(tput setaf 2)
-export LESS_TERMCAP_ue=$(tput sgr0)
-export LESS_TERMCAP_so=$(tput smso)
-export LESS_TERMCAP_se=$(tput rmso)
-export PAGER="${commands[less]:-$PAGER}"
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
