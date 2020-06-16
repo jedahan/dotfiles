@@ -1,13 +1,22 @@
-#input {
-  background-color: #777c85;
+window {
+  background-color: rgba(10,5,15,127);
+  margin-bottom: 10px;
+  width: 600px;
 }
 
-#inner-box {
-  background-color: #2d2d2d;
+#input {
+  background-color: rgba(0,0,0,0);
+  width: 50px;
+  border: 0;
+  color: white;
 }
 
 #outer-box {
-  background-color: #2d2d2d;
+  background-color: rgba(255,0,0,0);
+}
+
+#inner-box {
+  background-color: #335566;
 }
 
 #scroll {
