@@ -1,6 +1,6 @@
 #!/bin/env zsh
 
-steps=(0% 1% 10% 20% 30% 50% 80% 100%)
+steps=(0% 1% 20% 50% 80% 100%)
 
 brightness=$(brightnessctl info -m | cut -d',' -f4)
 direction=${1:-up}
