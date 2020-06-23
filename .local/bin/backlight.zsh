@@ -16,5 +16,5 @@ if [[ -z "$index" ]]; then return; fi
 
 newbrightness=${steps[$index]}
 
-printf "backlight moving %s from %s to %s" "$direction" "$brightness" "$newbrightness"
+printf "backlight moving %s from %s to %s\n" "$direction" "$brightness" "$newbrightness"
 brightnessctl set "$newbrightness" >/dev/null
