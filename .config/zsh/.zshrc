@@ -7,7 +7,7 @@ autoload -Uz compinit && compinit
 export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
 
-export EDITOR=${commands[amp]:-$commands[nvim]}
+export EDITOR=${$commands[nvim]:-$commands[vim]}
 export VISUAL=$EDITOR
 
 export LESS='-r'
