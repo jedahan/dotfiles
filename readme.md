@@ -9,7 +9,7 @@
 [vscode](https://github.com/Microsoft/vscode),
 and [zsh](https://zsh.org) on [kiss](https://k1ss.org) and [debian](https://debian.org)
 
-I try and keep customizations to a minimum, or at least easy to understand what each thing does so it is easily changeable for newcomers.
+Customizations should be minimal, understandable, and independent, so newcomers can dive in.
 
 ### Installation
 
@@ -27,7 +27,7 @@ Hide untracked files
 
 ### Usage
 
-Manage dotfiles in the home directory with these functions
+Manage dotfiles in the home directory with these functions (which are included if you use zsh)
 
     config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
     git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
