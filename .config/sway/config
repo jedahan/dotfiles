@@ -71,14 +71,18 @@ input type:keyboard {
     # Start a terminal
     bindsym $mod+Return exec $term
 
+    # Start a terminal
+    bindsym $mod+a exec alacritty
+
     # start launcher
-    bindsym $mod+d exec --no-startup-id $menu
+    bindsym $mod+space exec --no-startup-id $menu
+
+    # start launcher
+    bindsym $mod+d exec firefox --no-remote
+
 
     # test keybinding
     bindsym $mod+t exec swaynag -m 'oh hello there'
-
-    # open havoc
-    bindsym $mod+u exec /home/micro/havoc/havoc
 
     # password manager
     bindsym $mod+p exec $passman
@@ -184,10 +188,10 @@ input type:keyboard {
     bindsym $mod+Shift+space floating toggle
 
     # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
