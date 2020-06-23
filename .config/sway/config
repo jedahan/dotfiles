@@ -233,7 +233,8 @@ bindsym $mod+r mode "resize"
 set $clear #ffffff00
 
 bar {
-  swaybar_command waybar
+  status_command while /home/micro/.local/bin/bar; do sleep 10; done
+  font "Inconsolata Nerd Font Normal 16"
 }
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
