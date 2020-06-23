@@ -12,7 +12,7 @@ set $up k
 set $right l
 
 # terminal emulator
-set $term alacritty
+set $term /home/micro/.local/bin/term
 
 # application launcher
 set $menu alacritty --config-file /home/micro/.config/menu.yml --class gmenu --title gmenu --working-directory ~ -e gmenu -no-generic -no-details
