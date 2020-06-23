@@ -47,6 +47,7 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[bat] )) && alias c='bat -p'
 (( $+commands[kiss] )) && alias k='sudo --preserve-env=KISS_PATH,CFLAGS,CXXFLAGS,MAKEFLAGS kiss'
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s'
+(( $+commands[vscodium ])) && alias code='vscodium'
 
 # auto-expand aliases while typing - hold control when pressing space to ignore
 globalias() {
