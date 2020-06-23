@@ -42,4 +42,10 @@ export KISS_PATH=$KISS_PATH:$KISS_HOME/admicos/custom
 export KISS_PATH=$KISS_PATH:$KISS_HOME/sdsddsd1/kiss-games
 export KISS_PATH=$KISS_PATH:$KISS_HOME/carbs/extra
 export KISS_PATH=$KISS_PATH:/var/db/kiss/repo/xorg
+
 export PATH=/usr/lib/ccache/bin:$PATH
+
+export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
+mkdir -p $XDG_RUNTIME_DIR
+
+export PATH="/var/cache/cargo/bin:$PATH"
