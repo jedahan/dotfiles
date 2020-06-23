@@ -240,8 +240,8 @@ bar {
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 7%- unmute
 bindsym XF86AudioMute exec amixer -q set Master 1+ toggle
-bindsym XF86MonBrightnessUp exec backlight.zsh up
-bindsym XF86MonBrightnessDown exec backlight.zsh down
+bindsym XF86MonBrightnessUp exec backlight up
+bindsym XF86MonBrightnessDown exec backlight down
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
