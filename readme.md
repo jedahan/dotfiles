@@ -1,6 +1,5 @@
 [jedahan](http://jonathan.is)'s dotfiles for [alacritty](https://github.com/jwilm/alacritty),
 [git](https://git-scm.com),
-[i3status-rust](https://github.com/greshake/i3status-rust),
 [mpv](https://mpv.io),
 [neovim](https://neovim.io)+[spacevim](https://spacevim.org),
 [parity](https://parity.io),
@@ -8,8 +7,7 @@
 [streamlink](https://streamlink.github.io),
 [sway](https://swaywm.org),
 [vscode](https://github.com/Microsoft/vscode),
-[wofi](https://hg.sr.ht/~scoopta/wofi),
-and [zsh](https://zsh.org) on [debian](https://debian.org)
+and [zsh](https://zsh.org) on [kiss](https://k1ss.org) and [debian](https://debian.org)
 
 I try and keep customizations to a minimum, or at least easy to understand what each thing does so it is easily changeable for newcomers.
 
