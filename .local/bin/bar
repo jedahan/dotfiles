@@ -1,0 +1,8 @@
+#!/bin/env bash
+
+wireless_ssid=$(iwgetid -r wlan0)
+wireless_address=$(ip a show wlan0 | grep 'inet ' | cut -d' ' -f6 | cut -d'/' -f1)
+wired_address=$(ip a show enp35s0u1u3u3 | grep 'inet ' | cut -d' ' -f6 | cut -d'/' -f1)
+clock=$(date +"%H:%M")
+
+echo "$wired_address $wireless_address $wireless_ssid $clock"
