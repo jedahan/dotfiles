@@ -59,6 +59,7 @@ bindkey "^ " magic-space
 bindkey -M isearch " " magic-space # normal space during searches
 
 # functions
+debian() { sudo efibootmgr --bootnext 2 && sudo reboot }
 rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
 t() { cd $(mktemp -d /tmp/$1.XXXX) } # cd into temporary directory
 download() { t; http -d "$1"; ll } # download a file to temporary directory
