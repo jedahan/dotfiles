@@ -1,16 +1,14 @@
 # zsh options
-bindkey -e
-setopt autocd autopushd pushd_ignore_dups interactivecomments no_clobber
-setopt bang_hist extended_history inc_append_history share_history hist_ignore_space hist_verify
-autoload -Uz select-word-style && select-word-style bash
-autoload -Uz compinit && compinit
-export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+setopt autocd autopushd interactivecomments no_clobber pushd_ignore_dups
+
+# history
+setopt bang_hist extended_history hist_ignore_space hist_verify inc_append_history share_history
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
 
-export EDITOR=${commands[nvim]:-$commands[vim]}
-export VISUAL=$EDITOR
-
-export LESS='-r'
+# navigation and completion
+bindkey -e
+autoload -Uz select-word-style && select-word-style bash
+autoload -Uz compinit && compinit
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
@@ -28,8 +26,6 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
     jedahan/help.zsh \
     jedahan/up.zsh >! $ZR
 fi; source $ZR
-gitbug() { git rev-parse 2>/dev/null && (( $+commands[git-bug] )) && { git bug ls --status open | wc -l } }
-GEOMETRY_RPROMPT+=(gitbug)
 test -f /etc/zsh_command_not_found && source $_ || true
 
 # aliases
@@ -47,6 +43,18 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s'
 (( $+commands[vscodium ])) && alias code='vscodium'
 
+# functions
+debian() { sudo efibootmgr --bootnext 2 && sudo reboot }
+rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
+t() { cd $(mktemp -d /tmp/$1.XXXX) } # cd into temporary directory
+download() { t; http -d "$1"; ll } # download a file to temporary directory
+mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" | wl-copy -n; unset MP_FULLNAME }
+alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
+
+# dotfile management
+config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
+git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
+
 # auto-expand aliases while typing - hold control when pressing space to ignore
 globalias() {
    zle _expand_alias
@@ -57,15 +65,3 @@ zle -N globalias
 bindkey " " globalias
 bindkey "^ " magic-space
 bindkey -M isearch " " magic-space # normal space during searches
-
-# functions
-debian() { sudo efibootmgr --bootnext 2 && sudo reboot }
-rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
-t() { cd $(mktemp -d /tmp/$1.XXXX) } # cd into temporary directory
-download() { t; http -d "$1"; ll } # download a file to temporary directory
-mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" | wl-copy -n; unset MP_FULLNAME }
-alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
-
-# dotfile management via git
-config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
-git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
