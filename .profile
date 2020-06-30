@@ -30,22 +30,20 @@ export CXXFLAGS="$CFLAGS"
 PROCESSORS="$(nproc)"
 export MAKEFLAGS="-j$PROCESSORS"
 
+export KISS_REPO=/var/db/kiss/repo
 export KISS_HOME=$XDG_CACHE_HOME/repos
-export KISS_PATH=$KISS_PATH:$KISS_HOME/kiss-garbage
-export KISS_PATH=$KISS_PATH:$KISS_HOME/kiss-himmalerin/modified
-export KISS_PATH=$KISS_PATH:$KISS_HOME/jedahan
-export KISS_PATH=$KISS_PATH:$KISS_HOME/community/community
-export KISS_PATH=$KISS_PATH:$KISS_HOME/kiss-himmalerin/extra
-export KISS_PATH=$KISS_PATH:$KISS_HOME/mywayland/wayland
-export KISS_PATH=$KISS_PATH:$KISS_HOME/mywayland/noxland
-export KISS_PATH=$KISS_PATH:$KISS_HOME/admicos/custom
-export KISS_PATH=$KISS_PATH:$KISS_HOME/sdsddsd1/kiss-games
-export KISS_PATH=$KISS_PATH:$KISS_HOME/carbs/extra
-export KISS_PATH=$KISS_PATH:/var/db/kiss/repo/xorg
+export KISS_PATH=$KISS_REPO/core\
+:$KISS_HOME/jedahan\
+:$KISS_HOME/kiss-himmalerin/modified\
+:$KISS_HOME/kiss-himmalerin/extra\
+:$KISS_HOME/mywayland/noxland\
+:$KISS_HOME/kiss-garbage/garbage\
+:$KISS_HOME/admicos/custom\
+:$KISS_HOME/community/community\
+:$KISS_REPO/extra\
+:$KISS_REPO/xorg
 
 export PATH=/usr/lib/ccache/bin:$PATH
 
 export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
 mkdir -p $XDG_RUNTIME_DIR
-
-export PATH="/var/cache/cargo/bin:$PATH"
