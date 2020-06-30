@@ -38,7 +38,7 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 (( $+commands[rg] )) && alias s=rg
 (( $+commands[exa] )) && alias tree='exa --tree --level=2'
-(( $+commands[exa] )) && abbrev-alias ls='exa --icons --group-directories-first'
+(( $+commands[exa] )) && alias ls='exa --icons --group-directories-first'
 (( $+commands[exa] )) && alias l='exa -s type --icons --group-directories-first'
 (( $+commands[exa] )) && alias ll='exa -lbGF --git'
 (( $+commands[l] )) && alias ,='clear && l'
