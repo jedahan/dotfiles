@@ -17,8 +17,6 @@ ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
 ZSHRC=${(%):-%N} # this file
 if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
   zr \
-    asdf-vm/asdf.git/asdf.sh \
-    asdf-vm/asdf.git/completions/asdf.bash \
     denisidoro/navi \
     sorin-ionescu/prezto.git/modules/git/alias.zsh \
     zsh-users/zsh-autosuggestions \
