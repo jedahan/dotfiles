@@ -38,7 +38,7 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[exa] )) && alias ls='exa --icons --group-directories-first'
 (( $+commands[exa] )) && alias l='exa -s type --icons --group-directories-first'
 (( $+commands[exa] )) && alias ll='exa -lbGF --git'
-(( $+commands[l] )) && alias ,='clear && l'
+(( $+commands[exa] )) && alias ,='clear && l'
 (( $+commands[bat] )) && alias c='bat -p'
 (( $+commands[kiss] )) && alias k='_ kiss'
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s'
