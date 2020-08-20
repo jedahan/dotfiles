@@ -66,3 +66,6 @@ zle -N globalias
 bindkey " " globalias
 bindkey "^ " magic-space
 bindkey -M isearch " " magic-space # normal space during searches
+
+test -f $HOME/.ssh-agent || ssh-agent > $HOME/.ssh-agent
+source $HOME/.ssh-agent >/dev/null
