@@ -30,13 +30,12 @@ output * bg /home/micro/images/desktop.png fill
 set $laptop eDP-1
 set $asus DP-2
 
-#output   $asus pos 0 0    res 2560x1440
-#output $laptop pos 0 1440 res 1920x1080 scale 2
-#output $laptop pos 0 0    res 1920x1080 scale 2
-#focus output $asus
+output $asus pos 0 0 res 2560x1440
+output $laptop pos 0 1440 res 1920x1080 scale 2
+#output $laptop pos 0 0 res 1920x1080 scale 2
 
-bindswitch --reload lid:on output $laptop disable
-bindswitch --reload lid:off output $laptop enable
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
 
 ### Idle configuration
 
