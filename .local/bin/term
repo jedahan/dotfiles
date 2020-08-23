@@ -1,2 +1,2 @@
 #!/usr/bin/zsh
-[[ `lsb_release -is` = "Debian" ]] && alacritty || /home/micro/havoc/havoc
+[[ `lsb_release -is` = "Debian" ]] && alacritty || havoc
