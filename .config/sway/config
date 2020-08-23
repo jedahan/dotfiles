@@ -233,7 +233,7 @@ set $clear #ffffff00
 
 bar {
   status_command while /home/micro/.local/bin/bar; do sleep 10; done
-  font "Inconsolata Nerd Font Normal 16"
+  font "Hack Nerd Font Normal 18"
 }
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
@@ -251,5 +251,5 @@ for_window [app_id="firefox" title="Firefox - Sharing Indicator"] floating enabl
 
 include /etc/sway/config.d/*
 
-gaps inner 10
+gaps inner 8
 gaps outer 0
