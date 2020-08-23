@@ -49,7 +49,7 @@ debian() { _ efibootmgr --bootnext 2 && _ reboot }
 rfc() { zcat $(fd ".*$@.*.txt.gz" /usr/share/doc/RFC|head -1) | less }
 t() { cd $(mktemp -d -p /tmp) } # cd into temporary directory
 download() { t; http -d "$1"; ll } # download a file to temporary directory
-mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" | wl-copy -n; unset MP_FULLNAME }
+mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME }
 alert() { notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')" }
 
 # dotfile management
