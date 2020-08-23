@@ -77,7 +77,7 @@ input type:keyboard {
     bindsym $mod+space exec --no-startup-id $menu
 
     # start launcher
-    bindsym $mod+d exec firefox --no-remote
+    bindsym $mod+d exec MOZ_ENABLE_WAYLAND=1 firefox --no-remote
 
 
     # test keybinding
