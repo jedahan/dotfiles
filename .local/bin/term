@@ -1,2 +1,0 @@
-#!/usr/bin/zsh
-[[ `lsb_release -is` = "Debian" ]] && alacritty || havoc
