@@ -30,3 +30,9 @@ export MAKEFLAGS="-j$(nproc)"
 export KISS_PATH=/var/db/kiss/repos/jedahan:$KISS_PATH
 
 export XDG_RUNTIME_DIR=$(mktemp -d)
+
+export MOZ_ENABLE_WAYLAND=1
+export MOZ_USE_XINPUT2=1
+export MOZ_WEBRENDER=1
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
