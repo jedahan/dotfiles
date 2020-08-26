@@ -27,7 +27,9 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
     jedahan/help.zsh \
     jedahan/up.zsh >! $ZR
 fi; source $ZR
-test -f /etc/zsh_command_not_found && source $_ || true
+
+# plugin options
+export GLOBALIAS_EXCLUDE=(l ls ll)
 
 # aliases
 (( $+commands[sudo] )) && alias _=sudo
@@ -44,9 +46,6 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[kiss] )) && alias k='kiss'
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s' kbi='k bi'
 (( $+commands[vscodium ])) && alias code='vscodium'
-
-# options
-export GLOBALIAS_EXCLUDE=(l ls ll)
 
 # functions
 t() { cd $(mktemp -d) } # cd into temporary directory
