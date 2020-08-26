@@ -21,6 +21,7 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
     zdharma/history-search-multi-word \
     zdharma/fast-syntax-highlighting \
     geometry-zsh/geometry \
+    matteocellucci/globalias \
     Aloxaf/fzf-tab \
     jedahan/laser \
     jedahan/help.zsh \
@@ -33,16 +34,19 @@ test -f /etc/zsh_command_not_found && source $_ || true
 (( $+commands[doas] )) && alias _=doas
 (( $+commands[fd] )) && alias f=fd
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
-(( $+commands[rg] )) && alias s=rg
+(( $+commands[rg] )) && alias s=rg rgh='rg --hidden'
 (( $+commands[exa] )) && alias tree='exa --tree --level=2'
 (( $+commands[exa] )) && alias ls='exa --icons --group-directories-first'
 (( $+commands[exa] )) && alias l='exa -s type --icons --group-directories-first'
 (( $+commands[exa] )) && alias ll='exa -lbGF --git'
 (( $+commands[exa] )) && alias ,='clear && l'
 (( $+commands[bat] )) && alias c='bat -p'
-(( $+commands[kiss] )) && alias k='_ kiss'
-(( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s'
+(( $+commands[kiss] )) && alias k='kiss'
+(( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s' kbi='k bi'
 (( $+commands[vscodium ])) && alias code='vscodium'
+
+# options
+export GLOBALIAS_EXCLUDE=(l ls ll)
 
 # functions
 t() { cd $(mktemp -d) } # cd into temporary directory
@@ -52,17 +56,6 @@ mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME }
 # dotfile management
 config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
 git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
-
-# auto-expand aliases while typing - hold control when pressing space to ignore
-globalias() {
-   zle _expand_alias
-   zle expand-word
-   zle self-insert
-}
-zle -N globalias
-bindkey " " globalias
-bindkey "^ " magic-space
-bindkey -M isearch " " magic-space # normal space during searches
 
 # start ssh-agent if it isnt started, and then load
 pgrep -f 'ssh-agent' >/dev/null || ssh-agent | grep -v echo >! $HOME/.ssh-agent
