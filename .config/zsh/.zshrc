@@ -67,5 +67,6 @@ bindkey " " globalias
 bindkey "^ " magic-space
 bindkey -M isearch " " magic-space # normal space during searches
 
-test -f $HOME/.ssh-agent || ssh-agent > $HOME/.ssh-agent
-source $HOME/.ssh-agent >/dev/null
+# start ssh-agent if it isnt started, and then load
+pgrep -f 'ssh-agent' >/dev/null || ssh-agent | grep -v echo >! $HOME/.ssh-agent
+source $HOME/.ssh-agent &>/dev/null
