@@ -29,5 +29,4 @@ export MAKEFLAGS="-j$(nproc)"
 
 export KISS_PATH=/var/db/kiss/repos/jedahan:$KISS_PATH
 
-export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-mkdir -p $XDG_RUNTIME_DIR
+export XDG_RUNTIME_DIR=$(mktemp -d)
