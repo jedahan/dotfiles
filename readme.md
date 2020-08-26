@@ -7,7 +7,7 @@
 [streamlink](https://streamlink.github.io),
 [sway](https://swaywm.org),
 [vscode](https://github.com/Microsoft/vscode),
-and [zsh](https://zsh.org) on [kiss](https://k1ss.org) and [debian](https://debian.org)
+and [zsh](https://zsh.org) on [kiss](https://k1ss.org).
 
 Customizations should be minimal, understandable, and independent, so newcomers can dive in.
 
