@@ -6,6 +6,7 @@
 [spotifyd](https://github.com/Spotifyd/spotifyd),
 [streamlink](https://streamlink.github.io),
 [sway](https://swaywm.org),
+[tmux](https://github.com/tmux/tmux),
 [vscode](https://github.com/Microsoft/vscode),
 and [zsh](https://zsh.org) on [kiss](https://k1ss.org).
 
