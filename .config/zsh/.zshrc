@@ -16,13 +16,13 @@ ZSHRC=${(%):-%N} # this file
 if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
   zr \
     denisidoro/navi \
-    sorin-ionescu/prezto.git/modules/git/alias.zsh \
     zsh-users/zsh-autosuggestions \
     zdharma/history-search-multi-word \
     zdharma/fast-syntax-highlighting \
     geometry-zsh/geometry \
     matteocellucci/globalias \
     Aloxaf/fzf-tab \
+    jedahan/consistent-git-aliases \
     jedahan/laser \
     jedahan/help.zsh \
     jedahan/up.zsh >! $ZR
