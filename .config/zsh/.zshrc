@@ -59,3 +59,4 @@ git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
 # start ssh-agent if it isnt started, and then load
 pgrep -f 'ssh-agent' >/dev/null || ssh-agent | grep -v echo >! $HOME/.ssh-agent
 source $HOME/.ssh-agent &>/dev/null
+tm() { tmux -f $HOME/.config/tmux.conf new-session -n "${1:-${RANDOM}}" }
