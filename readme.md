@@ -20,11 +20,11 @@ Clone this repository
 
 Backup existing files
 
-    git -C $HOME/.dotfiles ls-files | xargs -I _ mv -vi "$HOME/_" "$HOME/_.backup"
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
 Symlink files
 
-    git -C $HOME/.dotfiles ls-files | xargs -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
 
 ### Usage
 
