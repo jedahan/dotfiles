@@ -14,21 +14,22 @@ Customizations should be minimal, understandable, and independent, so newcomers 
 
 ### Installation
 
-Clone to a bare repository
+Clone this repository
 
-    git clone --bare --recursive https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
+    git clone https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
 
-Checkout to your home directory
+Backup existing files
 
-    git --git-dir=$HOME/.dotfiles --work-tree=$HOME checkout
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
-Hide untracked files
+Symlink files
 
-    git --git-dir=$HOME/.dotfiles --work-tree=$HOME config status.showUntrackedFiles no
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
 
 ### Usage
 
-Manage dotfiles in the home directory with these functions (which are included if you use zsh)
+To add or remove files, just move them into .dotfiles and symlink.
 
-    config() { command git --git-dir=$HOME/.dotfiles --work-tree=$HOME/. "$@" }
-    git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || config "$@" }
+As a convinience in the home directory, you might want the following function
+
+git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || command git -C "$HOME/.dotfiles" "$@" }
