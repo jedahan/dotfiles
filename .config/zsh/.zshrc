@@ -53,7 +53,7 @@ down() { t; http -d "$1"; ll } # download a file to temporary directory
 mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME }
 
 # dotfile management
-git() { [[ $PWD != $HOME ]] && { command git "$@"; return } || command git -C "$HOME/.dotfiles" "$@" }
+git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi }
 
 # start ssh-agent if it isnt started, and then load
 pgrep -f 'ssh-agent' >/dev/null || ssh-agent | grep -v echo >! $HOME/.ssh-agent
