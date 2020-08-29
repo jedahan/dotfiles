@@ -36,3 +36,5 @@ export MOZ_USE_XINPUT2=1
 export MOZ_WEBRENDER=1
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
+
+eval $(ssh-agent | grep -v echo)

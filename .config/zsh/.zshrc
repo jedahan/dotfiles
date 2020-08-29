@@ -50,12 +50,6 @@ export GLOBALIAS_EXCLUDE=(l ls ll)
 # functions
 t() { cd $(mktemp -d) } # cd into temporary directory
 down() { t; http -d "$1"; ll } # download a file to temporary directory
-mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME }
-
-# dotfile management
-git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi }
-
-# start ssh-agent if it isnt started, and then load
-pgrep -f 'ssh-agent' >/dev/null || ssh-agent | grep -v echo >! $HOME/.ssh-agent
-source $HOME/.ssh-agent &>/dev/null
-tm() { tmux -f $HOME/.config/tmux.conf new-session -n "${1:-${RANDOM}}" }
+mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME } # password manager
+tm() { tmux -f $HOME/.config/tmux.conf new-session -n "${1:-${RANDOM}}" } # tmux session management
+git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi } # dotfiles
