@@ -32,7 +32,8 @@ fi; source $ZR
 export GLOBALIAS_EXCLUDE=(l ls ll)
 
 # aliases
-(( $+commands[sls] )) && alias _='sls -c' || alias _=sudo
+(( $+commands[sls] )) && alias _=sls || alias _=sudo
+(( $+commands[btm] )) && alias top=btm
 (( $+commands[fd] )) && alias f=fd
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 (( $+commands[rg] )) && alias s=rg rgh='rg --hidden'
