@@ -1,22 +1,18 @@
-# All SpaceVim option below [option] section
 [options]
-colorscheme = "wal"
-statusline_separator = "arrow"
-statusline_inactive_separator = "arrow"
-buffer_index_type = 4
-enable_tabline_filetype_icon = true
-enable_statusline_mode = false
+enable_guicolors = true
+colorscheme = 'base16-tomorrow-night-eighties'
 
 [[layers]]
 name = 'autocomplete'
-auto-completion-return-key-behavior = "complete"
 
 [[layers]]
-name = 'shell'
-default_position = 'top'
-default_height = 30
+name = 'format'
+
+[[layers]]
+name = 'git'
+
+[[layers]]
+name = 'lang#typescript'
 
 [[custom_plugins]]
-name = "dylanaraps/wal.vim"
-name = "taniarascia/new-moon.vim"
-name = "HerringtonDarkholme/yats.vim"
+name = 'chriskempson/base16-vim'
