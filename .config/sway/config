@@ -235,6 +235,12 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Take a screenshot with all output and save it into screenshots
+bindsym Print exec grim ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
+
+# Take a Screenshot with the region select
+bindsym $mod+Print exec grim -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
+
 default_border none
 
 for_window [app_id="firefox" title="Firefox - Sharing Indicator"] floating enable, move position 1825 980
