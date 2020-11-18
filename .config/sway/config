@@ -76,15 +76,8 @@ input type:keyboard {
     # start launcher
     bindsym $mod+d exec MOZ_ENABLE_WAYLAND=1 firefox --no-remote
 
-
-    # test keybinding
-    bindsym $mod+t exec swaynag -m 'oh hello there'
-
     # password manager
-    bindsym $mod+p exec $passman
-
-    # emoji
-    bindsym $mod+o exec emoji-keyboard
+    bindsym $mod+p exec $pass
 
     # kill focused window
     bindsym $mod+Shift+q kill
