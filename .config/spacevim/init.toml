@@ -3,6 +3,9 @@ enable_guicolors = true
 colorscheme = 'base16-tomorrow-night-eighties'
 
 [[layers]]
+name = 'lang#typescript'
+
+[[layers]]
 name = 'autocomplete'
 
 [[layers]]
@@ -12,7 +15,7 @@ name = 'format'
 name = 'git'
 
 [[layers]]
-name = 'lang#typescript'
+name = 'fzf'
 
 [[custom_plugins]]
 name = 'chriskempson/base16-vim'
