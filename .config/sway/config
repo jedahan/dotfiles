@@ -29,25 +29,21 @@ swaybg_command oguri-swaybg
 
 # names found with `swaymsg -t get_outputs`
 set $laptop eDP-1
-set $asus DP-2
 
-output $asus pos 0 0 res 2560x1440
-output $laptop pos 0 1440 res 1920x1080 scale 2
-#output $laptop pos 0 0 res 1920x1080 scale 2
-
+# closing the laptop lid when plugged into the external display
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
 
 ### Idle configuration
 
 # lock before sleep
-# lock after 20 minutes of inactivity
-# turn off screen after another 10 minutes
+set $locktime 1200 # 20 minutes
+set $offtime 1800 # 30 minutes
 exec swayidle -w \
-          timeout 1200 'swaylock -f -c 000000' \
-          timeout 1800 'swaymsg "output * dpms off"' \
-                resume 'swaymsg "output * dpms on"' \
-          before-sleep 'swaylock -f -c 000000'
+    timeout $locktime 'swaylock -f -c 000000' \
+    timeout $offtime 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c 000000'
 
 ### Input configuration
 
