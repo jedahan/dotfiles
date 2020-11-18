@@ -4,6 +4,9 @@ export VISUAL=$EDITOR
 export LESS='-R'
 export LC_ALL=en_US.UTF-8
 
+export PASSWORD_STORE_DIR=$HOME/.secrets/pass
+export GNUPGHOME=$HOME/.secrets/gpg
+
 export CACHE=/var/cache
 
 export CARGO_HOME=$CACHE/cargo
