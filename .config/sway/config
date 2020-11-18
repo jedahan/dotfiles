@@ -23,9 +23,9 @@ set $menu foot --app-id gmenu --title gmenu gmenu -no-generic -no-details
 for_window [app_id="pass"] floating enable; resize set 600 400
 set $pass foot --app-id pass --title pass rbw-fzf-copy
 
-### Output configuration
-
-output * bg /home/micro/images/desktop.png fill
+# background
+output * bg /home/micro/images/walls/tsmh9AE.gif stretch
+swaybg_command oguri-swaybg
 
 # names found with `swaymsg -t get_outputs`
 set $laptop eDP-1
