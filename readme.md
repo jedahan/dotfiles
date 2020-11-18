@@ -1,4 +1,4 @@
-[jedahan](http://jonathan.is)'s dotfiles for [alacritty](https://github.com/jwilm/alacritty),
+[jedahan](http://jonathan.is)'s dotfiles for [foot](https://codeberg.org/dnkl/foot),
 [git](https://git-scm.com),
 [mpv](https://mpv.io),
 [neovim](https://neovim.io)+[spacevim](https://spacevim.org),
@@ -7,7 +7,6 @@
 [streamlink](https://streamlink.github.io),
 [sway](https://swaywm.org),
 [tmux](https://github.com/tmux/tmux),
-[vscode](https://github.com/Microsoft/vscode),
 and [zsh](https://zsh.org) on [kiss](https://k1ss.org).
 
 Customizations should be minimal, understandable, and independent, so newcomers can dive in.
