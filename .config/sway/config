@@ -2,9 +2,8 @@
 
 xwayland disable
 
-### Variables
 
-# Logo key. Use Mod1 for Alt.
+# Mod1 = Alt
 set $mod Mod4
 
 # Home row direction keys, like vim
@@ -14,15 +13,15 @@ set $up k
 set $right l
 
 # terminal emulator
-set $term alacritty
+set $term foot
 
 # application launcher
-set $menu alacritty --config-file /home/micro/.config/menu.yml --class gmenu --title gmenu --working-directory ~ -e gmenu -no-generic -no-details
 for_window [app_id="gmenu"] floating enable; resize set 600 400
+set $menu foot --app-id gmenu --title gmenu gmenu -no-generic -no-details
 
 # password manager
-set $passman alacritty --config-file /home/micro/.config/menu.yml --class pass --title pass --working-directory ~ -e rbw-fzf-copy
 for_window [app_id="pass"] floating enable; resize set 600 400
+set $pass foot --app-id pass --title pass rbw-fzf-copy
 
 ### Output configuration
 
