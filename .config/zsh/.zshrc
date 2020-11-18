@@ -51,5 +51,5 @@ export GLOBALIAS_EXCLUDE=(l ls ll)
 t() { cd $(mktemp -d) } # cd into temporary directory
 down() { t; http -d "$1"; ll } # download a file to temporary directory
 mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME } # password manager
-tm() { tmux -f $HOME/.config/tmux.conf new-session -n "${1:-${RANDOM}}" "${${@:2}:-zsh}" } # tmux session management
+tm() { tmux new-session -n "${1:-${RANDOM}}" "${${@:2}:-zsh}" } # tmux session management
 git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi } # dotfiles
