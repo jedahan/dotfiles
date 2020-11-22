@@ -22,6 +22,8 @@ export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
 
 export PATH=$PATH:$HOME/.local/bin
 
+export PATH=$PATH:$HOME/.emacs.d/bin
+
 export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 
 export MOZ_ENABLE_WAYLAND=1
