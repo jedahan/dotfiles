@@ -5,10 +5,12 @@ setopt autocd autopushd interactivecomments no_clobber pushd_ignore_dups
 setopt bang_hist extended_history hist_ignore_space hist_verify inc_append_history share_history
 zstyle ":history-search-multi-word" page-size "$(( $LINES * 3 / 4 ))"
 
-# navigation and completion
+# navigation
 bindkey -e
 autoload -Uz select-word-style && select-word-style bash
-autoload -Uz compinit && compinit
+
+# completion
+autoload -U compinit; compinit -i
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
@@ -25,7 +27,9 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
     jedahan/consistent-git-aliases \
     jedahan/laser \
     jedahan/help.zsh \
-    jedahan/up.zsh >! $ZR
+    jedahan/up.zsh \
+    | grep -v compinit \
+    >! $ZR
 fi; source $ZR
 
 # plugin options
