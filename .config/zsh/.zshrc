@@ -55,4 +55,4 @@ tm() { tmux new-session -n "${1:-${RANDOM}}" "${${@:2}:-zsh}" } # tmux session m
 git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi } # dotfiles
 wall() { imv -c 'bind <Return> exec ogurictl output \* --image "$imv_current_file" ; quit' ~/images/walls/* }
 mvi() { imv -c 'bind f exec mv "$imv_current_file" ~/.fav/ ; next ' -c 'bind t exec mv "$imv_current_file" ~/.trash; next' -c 'bind n next' "$@" }
-
+patchbay() { curl https://patchbay.pub/pubsub/hello-pi-a ${@:+-d "$*"} }
