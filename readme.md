@@ -1,7 +1,8 @@
 [jedahan](http://jonathan.is)'s dotfiles for [foot](https://codeberg.org/dnkl/foot),
 [git](https://git-scm.com),
 [mpv](https://mpv.io),
-[neovim](https://neovim.io)+[spacevim](https://spacevim.org),
+[doom](https://github.com/hlissner/doom-emacs) [emacs](https://emacs.org),
+[space](https://spacevim.org)[vim](https://neovim.io),
 [parity](https://parity.io),
 [spotifyd](https://github.com/Spotifyd/spotifyd),
 [streamlink](https://streamlink.github.io),
@@ -15,7 +16,7 @@ Customizations should be minimal, understandable, and independent, so newcomers 
 
 Clone this repository
 
-    git clone https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
+    git clone --recursive https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
 
 Backup existing files
 
