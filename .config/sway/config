@@ -242,7 +242,7 @@ bindsym Print exec grim ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
 bindsym $mod+Print exec grim -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
 
 # Take a Screenshot with the region select and upload to 0x0.st
-bindsym $mod+Shift+Print exec swaynag -m $(slurp | grim -g - - | curl --form 'file=@-' http://0x0.st)
+bindsym $mod+Shift+Print exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy && swaynag -m "copied to clipboard"
 
 default_border none
 
