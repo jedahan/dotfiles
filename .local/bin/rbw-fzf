@@ -1,0 +1,14 @@
+#!/bin/bash
+# Wayland copy bitwarden passwords to paste once
+set -eu
+
+rbw unlocked || rbw unlock
+
+set -o pipefail
+
+wl-copy --paste-once "$(rbw ls --fields name,user,folder \
+  | perl -plE'/^([^\t]*)\t([^\t]*)\t([^\t]*)$/; $_ = join("/", grep { length } ($3, $1, $2)) . "\t$_"' \
+  | sort \
+  | fzf --with-nth=1 --color=16 --border --margin=0,0,0,0 --info=hidden \
+  | perl -ple'/^([^\t]*)\t([^\t]*)\t([^\t]*)\t([^\t]*)$/; $_ = "$2 $3"' \
+  | xargs -r rbw get)"
