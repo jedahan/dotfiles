@@ -1,0 +1,9 @@
+#!/bin/bash
+# Copy bitwarden passwords from sway
+set -eu
+
+rbw unlocked || rbw unlock
+
+swaymsg exec "wl-copy -s seat0 -o $(rbw-fzf)" # works
+#wl-copy -s seat0 --paste-once $(rbw-fzf) # broken
+#rbw-fzf | wl-copy -s seat0 --paste-once # broken
