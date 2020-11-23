@@ -10,7 +10,7 @@ bindkey -e
 autoload -Uz select-word-style && select-word-style bash
 
 # completion
-autoload -U compinit; compinit -i
+autoload -U compinit; compinit
 
 # plugins
 ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
