@@ -236,7 +236,7 @@ bindsym $mod+r mode "resize"
 set $clear #ffffff00
 
 bar {
-  status_command while /home/micro/.local/bin/bar; do sleep 10; done
+  status_command statusbar
   font "Hack Nerd Font Normal 18"
 }
 
