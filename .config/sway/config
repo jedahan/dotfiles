@@ -1,7 +1,5 @@
 # Read `man 5 sway` for a complete reference.
-
 xwayland disable
-
 
 # Mod1 = Alt
 set $mod Mod4
@@ -30,6 +28,9 @@ swaybg_command oguri-swaybg
 # names found with `swaymsg -t get_outputs`
 set $laptop eDP-1
 
+# lock
+set $lock 'swaylock -f -c 000000'
+
 # closing the laptop lid when plugged into the external display
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
@@ -40,10 +41,10 @@ bindswitch --reload --locked lid:off output $laptop enable
 set $locktime 1200 # 20 minutes
 set $offtime 1800 # 30 minutes
 exec swayidle -w \
-    timeout $locktime 'swaylock -f -c 000000' \
+    timeout $locktime $lock \
     timeout $offtime 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000'
+    before-sleep $lock
 
 ### Input configuration
 
@@ -83,7 +84,7 @@ input type:keyboard {
     bindsym $mod+Shift+q kill
 
     # Lock
-    bindsym $mod+Shift+Delete exec 'swaylock -f -c 000000'
+    bindsym $mod+Shift+Delete exec $lock
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -96,7 +97,20 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (S) shutdown
+    mode "$mode_system" {
+      bindsym l exec       $lock, mode "default"
+      bindsym e            exit
+      bindsym s exec       zzz, mode "default"
+      bindsym r exec       sls reboot, mode "default"
+      bindsym Shift+s exec sls poweroff, mode "default"
+
+      # return to default mode
+      bindsym Return mode "default"
+      bindsym Escape mode "default"
+    }
+    bindsym $mod+Shift+e mode "$mode_system"
 
 #
 # Navigation
