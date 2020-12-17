@@ -59,5 +59,16 @@ mpw() { . ~/.secrets/mpw && command mpw-rs -t x "$@" -x; unset MP_FULLNAME } # p
 tm() { tmux new-session -n "${1:-${RANDOM}}" "${${@:2}:-zsh}" } # tmux session management
 git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi } # dotfiles
 wall() { imv -c 'bind <Return> exec ogurictl output \* --image "$imv_current_file" ; quit' ~/images/walls/* }
-mvi() { imv -c 'bind f exec mv "$imv_current_file" ~/.fav/ ; next ' -c 'bind t exec mv "$imv_current_file" ~/.trash; next' -c 'bind n next' "$@" }
 patchbay() { curl https://patchbay.pub/pubsub/hello-pi-a ${@:+-d "$*"} }
+wifi-add() { printf $2 | iwd_passphrase $1 | sls tee /var/lib/iwd/"$1".psk }
+wg-up() { sls wg-quick up $HOME/data/wireguard/pi.conf }
+wg-down() { sls wg-quick down $HOME/data/wireguard/pi.conf }
+
+# quick image sorting
+mvi() {
+  imv \
+    -c 'bind f exec mv "$imv_current_file" ~/desk/b/; next' \
+    -c 'bind t exec mv "$imv_current_file" ~/.trash; next' \
+    -c 'bind n next' -c 'bind b previous' \
+      "$@"
+}
