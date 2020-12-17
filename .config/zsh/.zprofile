@@ -29,7 +29,7 @@ export SSH_AUTH_SOCK=/run/user/1000/ssh-agent.socket
 export MOZ_ENABLE_WAYLAND=1
 export MOZ_DBUS_REMOTE=1
 
-export CFLAGS="-O2 -march=native"
+export CFLAGS="-O2 -march=native -pipe"
 export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS="-j$(nproc)"
 
