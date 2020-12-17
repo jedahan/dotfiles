@@ -44,3 +44,4 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 
 eval $(ssh-agent | grep -v echo)
+eval $(antidot init)
