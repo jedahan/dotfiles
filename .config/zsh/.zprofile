@@ -1,4 +1,4 @@
-export HISTFILE=${HOME}/.zhistory HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+export HISTFILE=${XDG_CACHE_DIR:-${HOME}/.cache}/zsh/history HISTSIZE=100000 SAVEHIST=100000 ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 export EDITOR=${commands[nvim]:-$commands[vim]}
 export VISUAL=$EDITOR
 export LESS='-R'
