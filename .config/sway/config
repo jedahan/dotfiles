@@ -266,3 +266,7 @@ include /etc/sway/config.d/*
 
 gaps inner 8
 gaps outer 0
+
+# irc
+for_window [app_id="tiny"] border pixel 1
+exec foot --app-id tiny --title irc tmux new-session -n tiny tiny
