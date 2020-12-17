@@ -33,7 +33,7 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
 fi; source $ZR
 
 # plugin options
-export GLOBALIAS_EXCLUDE=(l ls ll)
+export GLOBALIAS_EXCLUDE=(l ls ll e)
 
 # aliases
 (( $+commands[sls] )) && alias _=sls || alias _=sudo
@@ -41,15 +41,16 @@ export GLOBALIAS_EXCLUDE=(l ls ll)
 (( $+commands[fd] )) && alias f=fd
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
 (( $+commands[rg] )) && alias s=rg rgh='rg --hidden'
-(( $+commands[exa] )) && alias tree='exa --tree --level=2'
+(( $+commands[exa] )) && alias tree='exa --tree --level 2' lst=tree
 (( $+commands[exa] )) && alias ls='exa --icons --group-directories-first'
-(( $+commands[exa] )) && alias l='exa -s type --icons --group-directories-first'
-(( $+commands[exa] )) && alias ll='exa -lbGF --git'
+(( $+commands[exa] )) && alias l='exa --icons --group-directories-first --sort type'
+(( $+commands[exa] )) && alias ll='exa --long --binary --grid --classify --git'
 (( $+commands[exa] )) && alias ,='clear && l'
-(( $+commands[bat] )) && alias c='bat -p'
+(( $+commands[bat] )) && alias c='bat -p' || alias c='cat'
 (( $+commands[kiss] )) && alias k='kiss'
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s' kbi='k bi'
 (( $+commands[vscodium ])) && alias code='vscodium'
+(( $+EDITOR )) && alias e="$EDITOR"
 
 # functions
 t() { cd $(mktemp -d) } # cd into temporary directory
