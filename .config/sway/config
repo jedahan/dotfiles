@@ -18,8 +18,8 @@ for_window [app_id="gmenu"] floating enable; resize set 600 400
 set $menu foot --app-id gmenu --title gmenu gmenu -no-generic -no-details
 
 # password manager
-for_window [app_id="pass"] floating enable, resize set 1200 600, border pixel 3
-set $pass foot --app-id pass --title pass rbw-fzf-sway-copy
+for_window [app_id="pass"] floating enable, border pixel 3
+set $pass foot --app-id pass --window-size-chars 80x20 rbw-sway
 
 # background
 output * bg /home/micro/images/walls/tsmh9AE.gif stretch
