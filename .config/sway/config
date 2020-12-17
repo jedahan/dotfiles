@@ -102,7 +102,7 @@ input type:keyboard {
     mode "$mode_system" {
       bindsym l exec       $lock, mode "default"
       bindsym e            exit
-      bindsym s exec       zzz, mode "default"
+      bindsym s exec       sls zzz, mode "default"
       bindsym r exec       sls reboot, mode "default"
       bindsym Shift+s exec sls poweroff, mode "default"
 
