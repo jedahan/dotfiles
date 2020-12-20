@@ -50,6 +50,7 @@ export GLOBALIAS_EXCLUDE=(l ls ll e)
 (( $+commands[kiss] )) && alias k='kiss'
 (( $+commands[kiss] )) && alias kb='k b' ki='k i' ks='k s' kbi='k bi'
 (( $+commands[vscodium ])) && alias code='vscodium'
+(( $+commands[wget ])) || alias wget='curl -Os'
 (( $+EDITOR )) && alias e="$EDITOR"
 
 # functions
