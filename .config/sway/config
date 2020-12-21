@@ -68,9 +68,6 @@ input type:keyboard {
     # Start a terminal
     bindsym $mod+Return exec $term
 
-    # Start a terminal
-    bindsym $mod+a exec alacritty
-
     # start launcher
     bindsym $mod+space exec --no-startup-id $menu
 
