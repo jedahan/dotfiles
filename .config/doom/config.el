@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "John Doe"
-      user-mail-address "john@doe.com")
+(setq user-full-name "Jonathan Dahan"
+      user-mail-address "hi@jonathan.is")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -22,10 +22,25 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
+(setq doom-font (font-spec :family "Inconsolata Nerd Font" :size 15)
+      doom-big-font (font-spec :family "Inconsolata Nerd Font" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil))
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+(map! :leader
+      :desc "neotree file viewer"
+      "t n" #'toggle-neotree)
+
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;;(setq doom-theme 'doom-one)
+;;(setq doom-theme 'base16-eighties)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -52,3 +67,13 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+(map! :leader
+      :desc "edit doom config"
+      "- c" #'(lambda () (interactive) (find-file "~/.config/doom/config.el"))
+      :leader
+      :desc "edit doom init"
+      "- i" #'(lambda () (interactive) (find-file "~/.config/doom/init.el"))
+      :leader
+      :desc "edit doom packages"
+      "- p" #'(lambda () (interactive) (find-file "~/.config/doom/packages.el")))
