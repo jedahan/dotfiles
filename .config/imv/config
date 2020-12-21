@@ -1,0 +1,11 @@
+# Styling
+[options]
+background = #2e3440
+fullscreen = true
+overlay = true
+overlay_font = monospace:24
+
+[binds]
+b = exec mv "$imv_current_file" ~/desk/b/; close
+#u = exec echo "$imv_current_file" >> ~/tags/$(foot --app-id gmenu "exa ~/tags | fzf")
+<Shift+X> = exec mv "$imv_current_file" ~/.trash/; close 

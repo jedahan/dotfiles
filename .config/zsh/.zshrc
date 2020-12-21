@@ -65,11 +65,6 @@ wifi-add() { printf $2 | iwd_passphrase $1 | sls tee /var/lib/iwd/"$1".psk }
 wg-up() { sls wg-quick up $HOME/data/wireguard/pi.conf }
 wg-down() { sls wg-quick down $HOME/data/wireguard/pi.conf }
 
-# quick image sorting
-mvi() {
-  imv \
-    -c 'bind f exec mv "$imv_current_file" ~/desk/b/; next' \
-    -c 'bind t exec mv "$imv_current_file" ~/.trash; next' \
-    -c 'bind n next' -c 'bind b previous' \
-      "$@"
-}
+# Suffix aliases
+alias -s md=e gmi=e
+alias -s png=imv jpg=imv
