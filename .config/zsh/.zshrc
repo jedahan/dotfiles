@@ -19,6 +19,7 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
   zr \
     denisidoro/navi \
     zsh-users/zsh-autosuggestions \
+    marlonrichert/zsh-autocomplete \
     zdharma/history-search-multi-word \
     zdharma/fast-syntax-highlighting \
     geometry-zsh/geometry \
