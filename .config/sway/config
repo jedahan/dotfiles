@@ -94,8 +94,7 @@ input type:keyboard {
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (S) shutdown
+    set $mode_system system (l) lock  (e) logout  (s) suspend  (r) reboot  (S) shutdown
     mode "$mode_system" {
       bindsym l exec       $lock, mode "default"
       bindsym e            exit
