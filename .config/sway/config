@@ -233,7 +233,9 @@ set $clear #ffffff00
 
 bar {
   status_command statusbar
-  font "Hack Nerd Font Normal 18"
+  #font "Hack Nerd Font Mono 20"
+  #font "Noto Sans Mono 18"
+  font "Inconsolata Nerd Font Mono 20"
 }
 
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
