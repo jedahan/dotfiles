@@ -69,6 +69,7 @@ patchbay() { curl https://patchbay.pub/pubsub/hello-pi-a ${@:+-d "$*"} }
 wifi-add() { printf $2 | iwd_passphrase $1 | sls tee /var/lib/iwd/"$1".psk }
 wg-up() { sls wg-quick up $HOME/data/wireguard/pi.conf }
 wg-down() { sls wg-quick down $HOME/data/wireguard/pi.conf }
+channel-id() { curl -s https://www.youtube.com/c/$1 | htmlparser 'meta[itemprop="channelId"] attr{content}' }
 
 # Suffix aliases
 alias -s md=e gmi=e
