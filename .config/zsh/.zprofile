@@ -45,3 +45,6 @@ export XDG_CURRENT_DESKTOP=sway
 
 eval $(ssh-agent | grep -v echo)
 eval $(antidot init)
+tmux new-session -A -D -s irc tiny
+tmux new-session -A -D -s rss neix
+tmux new-session -A -D -s yt tyt
