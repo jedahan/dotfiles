@@ -33,6 +33,10 @@ if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
     >! $ZR
 fi; source $ZR
 
+# fixes for autocomplete
+bindkey $key[Up] up-line-or-history
+bindkey $key[PageUp] up-line-or-history
+
 # plugin options
 export GLOBALIAS_EXCLUDE=(l ls ll e)
 
