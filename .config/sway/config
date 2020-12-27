@@ -233,6 +233,9 @@ set $clear #ffffff00
 
 bar {
   status_command statusbar
+  colors {
+    focused_workspace "#666666" "#666666" "#ffffff"
+  }
   #font "Hack Nerd Font Mono 20"
   #font "Noto Sans Mono 18"
   font "Inconsolata Nerd Font Mono 20"
