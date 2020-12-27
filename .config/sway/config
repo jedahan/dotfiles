@@ -268,7 +268,8 @@ include /etc/sway/config.d/*
 gaps inner 8
 gaps outer 0
 
-# irc
+# apps
 exec foot --app-id irc --title irc tmux new-session -A -s irc
 exec foot --app-id rss --title rss tmux new-session -A -s rss
-exec foot --app-id yt --title yt tmux new-session -A -s yt
+exec foot --app-id ytb --title ytb tmux new-session -A -s ytb
+exec foot --app-id gmi --title gmi tmux new-session -A -s gmi

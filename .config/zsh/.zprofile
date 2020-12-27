@@ -47,4 +47,5 @@ eval $(ssh-agent | grep -v echo)
 eval $(antidot init)
 tmux new -A -D -d -s irc tiny
 tmux new -A -D -d -s rss neix
-tmux new -A -D -d -s yt tyt
+tmux new -A -D -d -s ytb tyt
+tmux new -A -D -d -s gmi amfora
