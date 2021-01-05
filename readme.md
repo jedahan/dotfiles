@@ -32,4 +32,4 @@ To add or remove files, just move them into .dotfiles and symlink.
 
 As a convinience in the home directory, you might want the following function
 
-git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi }
+    git() { if [[ $PWD != $HOME ]]; then command git "$@"; else command git -C .dotfiles "$@"; fi }
