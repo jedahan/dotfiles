@@ -4,6 +4,8 @@ Customizations are minimal, understandable, and independent, so newcomers can di
 
 > check out [the linux branch](https://github.com/jedahan/dotfiles/tree/linux)
 
+![screenshot](screenshot.png)
+
 ### Installation
 
 Clone this repository
