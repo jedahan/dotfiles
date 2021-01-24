@@ -15,3 +15,8 @@ export GEOMETRY_PROMPT=(\
   geometry_path geometry_newline \
   geometry_status \
 )
+
+(($+commands[exa])) && alias \
+  ls='exa' \
+  ll='exa -l' \
+  la='exa -a'
