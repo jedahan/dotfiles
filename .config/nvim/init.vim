@@ -1,7 +1,7 @@
-colorscheme new-moon
 map <Space> <Leader>
+colorscheme new-moon " appropriate color scheme
 
-" use packer
+" use packer for plugins
 lua require('plugins')
 
 " find stuff
