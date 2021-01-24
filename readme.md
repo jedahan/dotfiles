@@ -12,6 +12,8 @@ and [zsh](https://zsh.org) on [kiss](https://k1ss.org).
 
 Customizations should be minimal, understandable, and independent, so newcomers can dive in.
 
+> See [the macOS branch](https://github.com/jedahan/dotfiles/tree/macOS)
+
 ### Installation
 
 Clone this repository
