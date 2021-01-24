@@ -22,4 +22,4 @@ export GEOMETRY_PROMPT=(\
   ll='exa -l' \
   la='exa -a'
 
-git() { command git -C ${PWD:/${HOME}/src/dotfiles} $* }
+git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
