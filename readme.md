@@ -1,8 +1,4 @@
-[jedahan](http://jonathan.is)'s dotfiles for 
-[zsh](https://zsh.org),
-[git](https://git-scm.com), and
-[neovim](https://neovim.io)
-on [macOS](https://www.apple.com/macos/big-sur/).
+[jedahan][]'s dotfiles for [zsh][], [git][], and [neovim][] on [macOS][].
 
 Customizations are minimal, understandable, and independent, so newcomers can dive in.
 
@@ -16,7 +12,7 @@ Backup existing files
 
     git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
-Symlink new files
+Symlink dotfiles to home directory
 
     git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
 
@@ -26,12 +22,32 @@ Manage changes with `git` in your home directory
 
     git status
 
-This zshrc adds track/untrack functions for managing your dotfiles
+To track or untrack new dotfiles easily, install [jedahan/track][]
 
-Add a new file to the repository
+    git clone https://github.com/jedahan/track && source track/track.zsh
 
-    track ~/.config/app/config
+Tracking a new file
 
-Remove a file from the repository
+    track .config/gh/config.yml
 
-    untrack ~/.config/app/config
+Untracking a file
+
+    untrack .config/gh/config.yml
+
+### Uninstallation
+
+
+Backup existing files
+
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
+
+Copy dotfiles from repo back to home
+
+    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
+
+[jedahan]: http://jonathan.is
+[zsh]: https://zsh.org
+[git]: https://git-scm.com
+[neovim]: https://neovim.io
+[macOS]: https://www.apple.com/macos/big-sur
+[jedahan/track]: http://github.com/jedahan/track
