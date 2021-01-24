@@ -2,6 +2,8 @@
 
 Customizations are minimal, understandable, and independent, so newcomers can dive in.
 
+> check out [the linux branch](https://github.com/jedahan/dotfiles/tree/linux)
+
 ### Installation
 
 Clone this repository
