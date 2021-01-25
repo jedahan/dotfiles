@@ -28,20 +28,23 @@ nnoremap <silent> <leader>cq <cmd>lua require('telescope.builtin').quickfix()<cr
 let g:which_key_map.f = { 'name' : '+file' }
 let g:which_key_map.f.s = 'save-file'
 let g:which_key_map.f.f = 'find-file'
-
+let g:which_key_map.f.S = 'save-file-as-root'
 nnoremap <silent> <leader>fs <cmd>update<cr>
 nnoremap <silent> <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <silent> <leader>fS <cmd>w !sudo tee % > /dev/null<cr>
 
 " buffers
 let g:which_key_map.b = { 'name' : '+buffer' }
 let g:which_key_map.b.f = 'find-buffer'
 let g:which_key_map.b.n = 'next-buffer'
 let g:which_key_map.b.p = 'previous-buffer'
+let g:which_key_map.b.d = 'delete-buffer'
 nnoremap <silent> <leader>bf <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <silent> <leader>bn <cmd>bnext<cr>
 nnoremap <silent> <leader>bp <cmd>bprevious<cr>
+nnoremap <silent> <leader>bd <cmd>bd<cr>
 
-" windows
+" app
 let g:which_key_map.h = 'left-window'
 let g:which_key_map.j = 'down-window'
 let g:which_key_map.k = 'up-window'
@@ -50,7 +53,14 @@ nnoremap <silent> <leader>h <c-w>h
 nnoremap <silent> <leader>j <c-w>j
 nnoremap <silent> <leader>k <c-w>k
 nnoremap <silent> <leader>l <c-w>l
+let g:which_key_map.q = 'quit'
+let g:which_key_map.Q = 'quit-without-saving'
+nnoremap <silent> <leader>q <cmd>q<cr>
+nnoremap <silent> <leader>Q <cmd>qA!<cr>
 
+command! W w !sudo tee % > /dev/null " :W to save file as root
+
+" windows
 let g:which_key_map.w = { 'name' : '+window' }
 let g:which_key_map.w.h = 'left-window'
 let g:which_key_map.w.j = 'down-window'
@@ -62,7 +72,7 @@ nnoremap <silent> <leader>wk <c-w>k
 nnoremap <silent> <leader>wl <c-w>l
 
 " pick
-let g:which_key_map.p = { 'name' : '+github' }
+let g:which_key_map.p = { 'name' : '+pick' }
 let g:which_key_map.p.p = 'pick-planets'
 let g:which_key_map.p.c = 'pick-colors'
 nnoremap <silent> <leader>pp <cmd>lua require('telescope.builtin').planets()<cr>
