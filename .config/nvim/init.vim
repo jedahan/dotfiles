@@ -1,4 +1,6 @@
 colorscheme new-moon " appropriate color scheme
+set hidden " allow switching buffers without saving
+set showcmd " show commands in status and selections in visual mode
 
 " press space for everything
 let g:mapleader = " "
