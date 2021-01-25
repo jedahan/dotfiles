@@ -39,6 +39,26 @@ nnoremap <silent> <leader>bf <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <silent> <leader>bn <cmd>bnext<cr>
 nnoremap <silent> <leader>bp <cmd>bprevious<cr>
 
+" windows
+let g:which_key_map.h = 'left-window'
+let g:which_key_map.j = 'down-window'
+let g:which_key_map.k = 'up-window'
+let g:which_key_map.l = 'right-window'
+nnoremap <silent> <leader>h <c-w>h
+nnoremap <silent> <leader>j <c-w>j
+nnoremap <silent> <leader>k <c-w>k
+nnoremap <silent> <leader>l <c-w>l
+
+let g:which_key_map.w = { 'name' : '+window' }
+let g:which_key_map.w.h = 'left-window'
+let g:which_key_map.w.j = 'down-window'
+let g:which_key_map.w.k = 'up-window'
+let g:which_key_map.w.l = 'right-window'
+nnoremap <silent> <leader>wh <c-w>h
+nnoremap <silent> <leader>wj <c-w>j
+nnoremap <silent> <leader>wk <c-w>k
+nnoremap <silent> <leader>wl <c-w>l
+
 " pick
 let g:which_key_map.p = { 'name' : '+github' }
 let g:which_key_map.p.p = 'pick-planets'
