@@ -87,6 +87,15 @@ nnoremap <silent> <leader>gi <cmd>lua require('telescope.builtin').extensions.is
 nnoremap <silent> <leader>gp <cmd>lua require('telescope.builtin').extensions.pull_request()<cr>
 nnoremap <silent> <leader>gg <cmd>lua require('telescope.builtin').extensions.gist()<cr>
 
+" v
+let g:which_key_map.v = { 'name' : '+vim' }
+let g:which_key_map.v.i = 'vim-edit-init'
+let g:which_key_map.v.p = 'vim-edit-plugins'
+let g:which_key_map.v.r = 'vim-reload-config'
+nnoremap <silent> <leader>vi <cmd>:vsplit ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vp <cmd>:vsplit ~/.config/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>vr <cmd>:source ~/.config/nvim/init.vim<cr>
+
 " enable better highlighting
 lua <<ENABLE_HIGHLIGHT
 require('nvim-treesitter.configs').setup {
