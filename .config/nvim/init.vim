@@ -1,4 +1,5 @@
 colorscheme new-moon " appropriate color scheme
+set autoread " automatically reload buffers when changed
 set hidden " allow switching buffers without saving
 set showcmd " show commands in status and selections in visual mode
 
