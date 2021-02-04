@@ -3,6 +3,10 @@ set autoread " automatically reload buffers when changed
 set hidden " allow switching buffers without saving
 set showcmd " show commands in status and selections in visual mode
 
+set tabstop=2
+set softtabstop=0
+set shiftwidth=2
+
 " press space for everything
 let g:mapleader = " "
 let g:maplocalleader = " "
