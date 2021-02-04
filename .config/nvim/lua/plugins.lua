@@ -11,6 +11,7 @@ return require('packer').startup(function()
       {'nvim-telescope/telescope-symbols.nvim'},
       {'nvim-telescope/telescope-github.nvim'},
       {'liuchengxu/vim-which-key'},
+      {'kyazdani42/nvim-web-devicons'},
       {'nvim-treesitter/nvim-treesitter'},
     }
   }
