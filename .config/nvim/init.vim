@@ -95,18 +95,13 @@ nnoremap <silent> <leader>gg <cmd>lua require('telescope.builtin').extensions.gi
 " v
 let g:which_key_map.v = { 'name' : '+vim' }
 let g:which_key_map.v.i = 'vim-edit-init'
+let g:which_key_map.v.r = 'vim-reload-init'
 let g:which_key_map.v.p = 'vim-edit-plugins'
-let g:which_key_map.v.r = 'vim-reload-config'
-nnoremap <silent> <leader>vi <cmd>:vsplit ~/.config/nvim/init.vim<cr>
-nnoremap <silent> <leader>vp <cmd>:vsplit ~/.config/nvim/lua/plugins.lua<cr>
-nnoremap <silent> <leader>vr <cmd>:source ~/.config/nvim/init.vim<cr>
+let g:which_key_map.v.u = 'vim-update-plugins'
+let g:which_key_map.v.f = 'vim-find-plugins'
+nnoremap <silent> <leader>vf <cmd>lua require('telescope').extensions.packer.plugins()<cr>
+nnoremap <silent> <leader>vi <cmd>vsplit ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vp <cmd>vsplit ~/.config/nvim/lua/plugins.lua<cr>
+nnoremap <silent> <leader>vr <cmd>source ~/.config/nvim/init.vim<cr>
+nnoremap <silent> <leader>vu <cmd>PackerUpdate<cr>
 
-" enable better highlighting
-lua <<ENABLE_HIGHLIGHT
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "maintained",
-  highlight = {
-    enable = true,
-  },
-}
-ENABLE_HIGHLIGHT
