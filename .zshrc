@@ -17,6 +17,14 @@ export GEOMETRY_PROMPT=(\
   geometry_status \
 )
 
+geometry_node_version() {
+	(( $+commands[node] )) || return
+	test -f package.json || test -f yarn.lock || return 1
+  node -v 2>/dev/null
+}
+GEOMETRY_RPROMPT+=(geometry_node_version)
+export GEOMETRY_RPROMPT
+
 (($+commands[exa])) && alias \
   ls='exa' \
   ll='exa -l' \
