@@ -31,3 +31,4 @@ export GEOMETRY_RPROMPT
   la='exa -a'
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
+node@14() { export PATH="/opt/homebrew/opt/node@14/bin:$PATH" }
