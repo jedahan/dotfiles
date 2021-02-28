@@ -167,6 +167,16 @@ log "download and install Around"; {
   test -f /Application/Around.app || open "https://meet.around.co/download"
 }
 
+log "setup neovim"; {
+  log "install 0.5.0"; {
+      log "download and put in ~/.local"
+  }
+  log "install packer"; {
+    git clone https://github.com/wbthomason/packer.nvim \
+      ~/.local/share/nvim/site/pack/packer/opt/packer.nvim
+  }
+}
+
 echo " gonna have to do these by hand:"
 log "update apps from app store"
 log "set display arrangement to vertical"
