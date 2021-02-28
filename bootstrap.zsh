@@ -63,8 +63,24 @@ log "install rust"; {
     || echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zprofile
 }
 
-log "installing bw, croc, fast, fzf, fd, gh, jq, node, mpw, podman, postgresql, ripgrep, tealdeer, vscode, and wireguard"; {
+log "installing inconsolata nerd font"; {
+    brew install --quiet homebrew/cask-fonts/inconsolata-nerd-font
+}
+
+log "installing krunvm"; {
+  brew tap --quiet slp/krun
+  brew install --quiet krunvm
+}
+
+log "installing r and rstudio"; {
+  brew install --quiet rstudio
+  brew install --quiet --cask r
+}
+
+log "installing adb, bat, bw, croc, fast, fzf, fd, gh, jq, node, mpw, podman, postgresql, ripgrep, signal-cli, tealdeer, vscode, and wireguard"; {
   brew install --quiet \
+    android-platform-tools \
+    bat \
     bitwarden-cli \
     croc \
     docker \
@@ -92,12 +108,13 @@ log "install docker desktop preview"; {
     && open  Docker-AppleSilicon-Preview7.dmg
 }
 
-log "install bitwarden, lulu, qbittorrent, rocket, slack, spotify, and steam"; {
+log "install bitwarden, lulu, qbittorrent, rocket, signal, slack, spotify, and steam"; {
   brew install --quiet \
     bitwarden \
     lulu \
     qbittorrent \
     rocket \
+    signal \
     slack \
     spotify \
     steam
