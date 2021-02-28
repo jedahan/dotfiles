@@ -94,9 +94,11 @@ log "installing adb, bat, bw, croc, fast, fzf, fd, gh, jq, node, mpw, podman, po
     podman \
     postgresql \
     ripgrep \
+    signal-cli \
     tealdeer \
     visual-studio-code \
     wireguard-tools
+
   (($+commands[tldr])) && tldr --update 
   (($+commands[fast])) || cargo install --git https://github.com/KabirKwatra/fast.git
 }
