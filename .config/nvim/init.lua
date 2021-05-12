@@ -12,10 +12,19 @@ local keymap = vim.api.nvim_set_keymap
 
 -- plugins
 cmd 'packadd paq-nvim'              -- load the package manager
-local paq = require('paq-nvim').paq
+local paq = require('paq-nvim').paq -- shortcut for paq function
 paq { 'savq/paq-nvim', opt = true } -- paq-nvim manages itself
 
-paq 'nvim-telescope/telescope.nvim' -- nice fuzzy finding
+-- fuzzy finder
+paq 'nvim-lua/popup.nvim'
+paq 'nvim-lua/plenary.nvim'
+paq 'nvim-telescope/telescope.nvim'
+
+-- hope the cursor around
+paq 'phaazon/hop.nvim'
+
+-- show context when deeply indented
+paq 'wellle/context.vim'
 
 -- completion - use tab/shift+tab to navigate
 paq 'nvim-lua/completion-nvim'
