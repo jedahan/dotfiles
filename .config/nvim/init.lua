@@ -82,6 +82,14 @@ global.keymaps = {
   j = { '<c-w>j', 'up-window' },
   k = { '<c-w>k', 'down-window' },
   l = { '<c-w>l', 'right-window' },
+  h = {
+    name = '+hop',
+    h = { ':HopChar', 'hop-char' },
+    w = { ':HopWord', 'hop-word' },
+    c = { ':HopChar2', 'hop-char-2' },
+    h = { ':HopPattern', 'hop-pattern' },
+    l = { ':HopLine', 'hop-line' },
+  },
   w = {
     name = '+window',
     h = { '<c-w>h', 'left-window' },
