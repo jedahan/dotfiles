@@ -2,6 +2,9 @@ setopt no_clobber \
   interactivecomments \
   autocd autopushd pushd_ignore_dups
 
+autoload -U select-word-style
+select-word-style bash
+
 source <(zr \
   geometry-zsh/geometry \
   aloxaf/fzf-tab \
