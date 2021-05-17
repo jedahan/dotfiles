@@ -19,7 +19,7 @@ source <(zr \
   zsh-users/zsh-autosuggestions \
   zdharma/fast-syntax-highlighting \
   jedahan/consistent-git-aliases \
-  jedahan/track
+  jedahan/track \
 )
 
 export GEOMETRY_PROMPT=(\
