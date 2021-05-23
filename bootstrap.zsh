@@ -192,4 +192,3 @@ log "enable touchID for sudo"; {
 }
 
 echo " bye"
-cargo install --git https://github.com/osa1/tiny.git
