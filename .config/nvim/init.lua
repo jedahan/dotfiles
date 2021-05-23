@@ -26,6 +26,15 @@ paq 'phaazon/hop.nvim'
 -- show context when deeply indented
 paq 'wellle/context.vim'
 
+-- envaluate blocks
+paq 'Olical/conjure'
+
+-- sexp
+paq 'tpope/vim-sexp-mappings-for-regular-people'
+paq 'guns/vim-sexp'
+paq 'tpope/vim-repeat'
+paq 'tpope/vim-surround'
+
 -- completion - use tab/shift+tab to navigate
 paq 'nvim-lua/completion-nvim'
 paq 'neovim/nvim-lspconfig'
@@ -83,8 +92,12 @@ global.keymaps = {
   k = { '<c-w>k', 'down-window' },
   l = { '<c-w>l', 'right-window' },
   h = {
-    name = '+hop',
-    h = { ':HopChar', 'hop-char' },
+    name = '+help',
+    c = { ':help conjure', 'help-conjure' },
+  },
+  j = {
+    name = '+jump',
+    j = { ':HopChar', 'hop-char' },
     w = { ':HopWord', 'hop-word' },
     c = { ':HopChar2', 'hop-char-2' },
     h = { ':HopPattern', 'hop-pattern' },
