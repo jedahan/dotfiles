@@ -184,6 +184,12 @@ log "set Terminal font to 18"
 log "set Terminal title to blank"
 log "set Firefox search for duckduckgo"
 log "install Alfred, register powerpack, and add bitwarden workflow"
+log "install Hush from the app store, enable in safari"
+
+log "enable touchID for sudo"; {
+  grep -q 'pam_tid.so$' /etc/pam.d/sudo \
+    || sudo sed -i '2s;^;auth       sufficient     pam_tid.so'
+}
 
 echo " bye"
 cargo install --git https://github.com/osa1/tiny.git
