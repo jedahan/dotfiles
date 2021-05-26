@@ -36,26 +36,36 @@ paq 'tpope/vim-repeat'
 paq 'tpope/vim-surround'
 
 -- completion - use tab/shift+tab to navigate
-paq 'nvim-lua/completion-nvim'
+paq 'hrsh7th/nvim-compe'
 paq 'neovim/nvim-lspconfig'
 paq 'prabirshrestha/vim-lsp'
 paq 'mattn/vim-lsp-settings'
 paq 'nvim-treesitter/nvim-treesitter'
-cmd [[ augroup completion_nvim_autocmd ]]
-cmd [[ autocmd! ]]
-cmd [[ autocmd BufEnter * lua require('completion').on_attach() ]]
-cmd [[ autocmd BufEnter * let g:completion_trigger_character = ['.'] ]]
-cmd [[ autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->'] ]]
-cmd [[ augroup END ]]
-
-global.completion_auto_change_source = 1
-global.completion_matching_smart_case = 1
-
--- tab and shift+tab to navigate completions
-keymap('i', '<expr> <Tab>', 'pumvisible() ? "<C-n>" : "<Tab>"', { noremap = true })
-keymap('i', '<expr> <S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { noremap = true })
 option.completeopt = 'menuone,noinsert,noselect' -- better completion defaults
-option.shortmess = option.shortmess .. 'c' -- avoid showing extra messages with completion
+require('compe').setup({
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+  };
+})
 
 require('lspconfig').tsserver.setup({})
 
