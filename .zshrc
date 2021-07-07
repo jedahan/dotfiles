@@ -42,6 +42,8 @@ export GEOMETRY_RPROMPT
   la='exa -a' \
   ,='exa'
 
+(($+commands[fcp])) && alias cp='fcp'
+
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
 # replacing nvm.sh and autoenv
