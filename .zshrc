@@ -46,7 +46,7 @@ export GEOMETRY_RPROMPT
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
-# replacing nvm.sh and autoenv
+# automatically switch to the correct node version in projects
 node@16() { export PATH="/opt/homebrew/opt/node@16/bin:$PATH" }
 node@14() { export PATH="/opt/homebrew/opt/node@14/bin:$PATH" }
 
