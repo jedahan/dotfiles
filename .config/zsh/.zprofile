@@ -15,9 +15,6 @@ export PATH=$PATH:$CARGO_HOME/bin
 export GOPATH=$XDG_CACHE_HOME/go
 export PATH=$GOPATH/bin:$PATH
 
-export ANDROID_SDK=$HOME/Android/Sdk/
-export PATH=$ANDROID_SDK/emulator:$PATH
-
 export SPACEVIMDIR=$XDG_CONFIG_HOME/spacevim/
 
 export PATH=$PATH:$HOME/.local/bin
@@ -44,8 +41,9 @@ export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
 
 eval $(ssh-agent | grep -v echo)
-eval $(antidot init)
+#eval $(antidot init)
 tmux new -A -D -d -s irc tiny
 tmux new -A -D -d -s rss neix
 tmux new -A -D -d -s ytb tyt
-tmux new -A -D -d -s gmi amfora
+tmux new -A -D -d -s gmi amfora about:subscriptions
+tmux new -A -D -d -s todo nvim ~/todo.md
