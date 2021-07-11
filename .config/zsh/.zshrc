@@ -12,36 +12,48 @@ autoload -Uz select-word-style && select-word-style bash
 # completion
 autoload -U compinit; compinit
 
-# plugins
-ZR=${XDG_CONFIG_HOME:-${HOME}/.config}/zr.zsh
-ZSHRC=${(%):-%N} # this file
-if (( $+commands[zr] )) && { [[ ! -s $ZR ]] || [[ $ZSHRC -nt $ZR ]] }; then
-  zr \
-    denisidoro/navi \
-    zsh-users/zsh-autosuggestions \
-    marlonrichert/zsh-autocomplete \
-    zdharma/history-search-multi-word \
-    zdharma/fast-syntax-highlighting \
-    geometry-zsh/geometry \
-    matteocellucci/globalias \
-    Aloxaf/fzf-tab \
-    jedahan/consistent-git-aliases \
-    jedahan/laser \
-    jedahan/help.zsh \
-    jedahan/up.zsh \
-    | grep -v compinit \
-    >! $ZR
-fi; source $ZR
+# autocomplete
+zstyle ':autocomplete:tab:*' fzf-completion yes
+zstyle ':autocomplete:tab:*' insert-unambiguous yes
+zstyle ':completion:*' list-prompt   ''
+zstyle ':completion:*' select-prompt ''
 
-# fixes for autocomplete
-bindkey $key[Up] up-line-or-history
-bindkey $key[PageUp] up-line-or-history
+# fzf-tab
+zstyle ":completion:*:git-checkout:*" sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+
+# marlonrichert/zsh-autocomplete
+
+# plugins
+(( $+commands[zr] )) && {
+  ZR=${XDG_CACHE_HOME:-${HOME}/.cache}/zr/zr.zsh
+  # if there is no ZR file, or this file is newer
+  [[ ! -s $ZR || ${(%):-%N} -nt $ZR ]] && {
+    zr \
+      matteocellucci/globalias \
+      zsh-users/zsh-autosuggestions \
+      zsh-packages/ls_colors \
+      zdharma/fast-syntax-highlighting \
+      zdharma/history-search-multi-word \
+      aloxaf/fzf-tab \
+      geometry-zsh/geometry \
+      jedahan/consistent-git-aliases \
+      jedahan/laser \
+      jedahan/help.zsh \
+      jedahan/up.zsh \
+      | grep -v compinit \
+      >! $ZR
+  }
+  source $ZR
+}
 
 # plugin options
 export GLOBALIAS_EXCLUDE=(l ls ll e)
 
 # aliases
-(( $+commands[sls] )) && alias _=sls || alias _=sudo
+(( $+commands[ssu] )) && alias _=ssu || alias _=sudo
 (( $+commands[btm] )) && alias top=btm
 (( $+commands[fd] )) && alias f=fd
 (( $+commands[rg] )) && export FZF_DEFAULT_COMMAND='rg --files --follow'
@@ -58,6 +70,10 @@ export GLOBALIAS_EXCLUDE=(l ls ll e)
 (( $+commands[wget ])) || alias wget='curl -Os'
 (( $+EDITOR )) && alias e="$EDITOR"
 
+# file suffix aliases
+alias -s md=e gmi=e
+alias -s png=imv jpg=imv
+
 # functions
 t() { cd $(mktemp -d) } # cd into temporary directory
 tget() { t; http -d "$1"; ll } # download a file to temporary directory
@@ -71,7 +87,3 @@ wg-up() { sls wg-quick up $HOME/data/wireguard/pi.conf }
 wg-down() { sls wg-quick down $HOME/data/wireguard/pi.conf }
 channel-id() { curl -s https://www.youtube.com/c/$1 | htmlparser 'meta[itemprop="channelId"] attr{content}' }
 showme() { curl -s $1 | img2sixel -w $((2 * $(swaymsg -t get_tree | jq '.. | select(.type?) | select(.focused==true).rect.width'))) }
-
-# Suffix aliases
-alias -s md=e gmi=e
-alias -s png=imv jpg=imv
