@@ -22,8 +22,9 @@ for_window [app_id="pass"] floating enable, border pixel 3
 set $pass foot --app-id pass --window-size-chars 80x20 rbw-sway
 
 # background
-output * bg /home/micro/images/walls/tsmh9AE.gif stretch
-swaybg_command oguri-swaybg
+#output * bg /home/micro/images/walls/tsmh9AE.gif stretch
+#swaybg_command oguri-swaybg
+swaybg_command *
 
 # names found with `swaymsg -t get_outputs`
 set $laptop eDP-1
@@ -32,8 +33,10 @@ set $laptop eDP-1
 set $lock 'swaylock -f -c 000000'
 
 # closing the laptop lid when plugged into the external display
-bindswitch --reload --locked lid:on output $laptop disable
-bindswitch --reload --locked lid:off output $laptop enable
+bindswitch --reload --locked {
+  lid:on output $laptop disable
+  lid:off output $laptop enable
+}
 
 ### Idle configuration
 
@@ -98,9 +101,9 @@ input type:keyboard {
     mode "$mode_system" {
       bindsym l exec       $lock, mode "default"
       bindsym e            exit
-      bindsym s exec       sls zzz, mode "default"
-      bindsym r exec       sls reboot, mode "default"
-      bindsym Shift+s exec sls poweroff, mode "default"
+      bindsym s exec       ssu zzz, mode "default"
+      bindsym r exec       ssu reboot, mode "default"
+      bindsym Shift+s exec ssu poweroff, mode "default"
 
       # return to default mode
       bindsym Return mode "default"
@@ -136,13 +139,13 @@ input type:keyboard {
 #
 # Workspaces
 #
-    set $ws1 
-    set $ws2 
-    set $ws3 
-    set $ws4 
-    set $ws5 
-    set $ws6 
-    set $ws7 
+    set $ws1 1:
+    set $ws2 2:
+    set $ws3 3:
+    set $ws4 4:
+    set $ws5 5:
+    set $ws6 6:
+    set $ws7 7:
 
     # Switch to workspace
     bindsym $mod+1 workspace $ws1
@@ -204,9 +207,7 @@ input type:keyboard {
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 
-#
 # Resizing containers:
-#
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -227,49 +228,66 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
-set $clear #ffffff00
-
 bar {
-  status_command statusbar
+  status_command /home/micro/.local/bin/statusbar
   colors {
     focused_workspace "#666666" "#666666" "#ffffff"
   }
-  #font "Hack Nerd Font Mono 20"
-  #font "Noto Sans Mono 18"
   font "Inconsolata Nerd Font Mono 20"
 }
 
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 7%- unmute
-bindsym XF86AudioMute exec amixer -q set Master 1+ toggle
-bindsym XF86MonBrightnessUp exec backlight up
-bindsym XF86MonBrightnessDown exec backlight down
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Take a screenshot with all output and save it into screenshots
-bindsym Print exec grim ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
-
-# Take a Screenshot with the region select
-bindsym $mod+Print exec grim -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
-
-# Take a Screenshot with the region select and upload to 0x0.st
-bindsym $mod+Shift+Print exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy && swaynag -m "copied to clipboard" -t custom
-
 default_border none
 
-for_window [app_id="firefox" title="Firefox - Sharing Indicator"] floating enable, move position 1825 980
+gaps {
+  inner 8
+  outer 0
+}
 
-include /etc/sway/config.d/*
+# media keys
+bindsym {
+  XF86AudioRaiseVolume exec amixer -q set Master 7%+ unmute
+  XF86AudioLowerVolume exec amixer -q set Master 7%- unmute
+  XF86AudioMute exec amixer -q set Master 1+ toggle
+  XF86MonBrightnessUp exec backlight up
+  XF86MonBrightnessDown exec backlight down
+  XF86AudioPlay exec playerctl play-pause
+  XF86AudioNext exec playerctl next
+  XF86AudioPrev exec playerctl previous
+}
 
-gaps inner 8
-gaps outer 0
+# screenshot everything, region, region+upload
+bindsym {
+  Print exec grim ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
+  $mod+Print exec grim -g "$(slurp)" ~/screenshots/$(date +%Y-%m-%d_%H-%m-%s).jpg
+  $mod+Shift+Print exec slurp | grim -g - - | curl --form 'file=@-' http://0x0.st | wl-copy && swaynag -m "copied to clipboard" -t custom
+}
+
+# float firefox 
+for_window {
+  [title=".*Sharing Indicator$"] floating enable, sticky enable, border none, move position 1200 1400
+  [title="Picture-in-Picture"] floating enable, sticky enable, border none, move position 877 450
+}
+
+# terminal apps
+assign {
+  [app_id="irc"] $ws1
+  [app_id="rss"] $ws2
+  [app_id="ytb"] $ws2
+  [app_id="gmi"] $ws2
+}
 
 # apps
-exec foot --app-id irc --title irc tmux new-session -A -s irc
-exec foot --app-id rss --title rss tmux new-session -A -s rss
-exec foot --app-id ytb --title ytb tmux new-session -A -s ytb
-exec foot --app-id gmi --title gmi tmux new-session -A -s gmi
+exec foot --app-id {
+  irc tmux new-session -A -s irc
+  rss tmux new-session -A -s rss
+  ytb tmux new-session -A -s ytb
+  gmi tmux new-session -A -s gmi
+  todo tmux new-session -A -s todo
+}
+
+for_window [app_id="todo"] move to scratchpad, scratchpad show
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec mako
