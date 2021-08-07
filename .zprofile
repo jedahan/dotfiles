@@ -4,6 +4,13 @@ PATH="/opt/homebrew/bin:$PATH"
 PATH="/opt/homebrew/sbin:$PATH"
 export PATH
 
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+ANDROID_PATH=$ANDROID_HOME/platform-tools
+ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/tools
+ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/tools/bin
+ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_PATH
+
 export NO_UPDATE_NOTIFIER=true
 
 export \
