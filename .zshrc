@@ -5,6 +5,9 @@ setopt no_clobber \
 autoload -U select-word-style
 select-word-style bash
 
+autoload -Uz bracketed-paste-url-magic # quote urls
+zle -N bracketed-paste bracketed-paste-url-magic
+
 # docker completions
 user_completions=$HOME/.local/share/zsh/completions
 echo $fpath | grep -q $user_completions || fpath+=($user_completions)
