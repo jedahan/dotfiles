@@ -11,36 +11,34 @@ local global = vim.g
 local keymap = vim.api.nvim_set_keymap
 
 -- plugins
-cmd 'packadd paq-nvim'              -- load the package manager
-local paq = require('paq-nvim').paq -- shortcut for paq function
-paq { 'savq/paq-nvim', opt = true } -- paq-nvim manages itself
+require 'paq' {
+  'savq/paq-nvim';
 
--- fuzzy finder
-paq 'nvim-lua/popup.nvim'
-paq 'nvim-lua/plenary.nvim'
-paq 'nvim-telescope/telescope.nvim'
+  -- fuzzy finder
+  'nvim-lua/popup.nvim';
+  'nvim-lua/plenary.nvim';
+  'nvim-telescope/telescope.nvim';
 
--- hope the cursor around
-paq 'phaazon/hop.nvim'
+  -- hop the cursor around
+  'phaazon/hop.nvim';
 
--- show context when deeply indented
-paq 'wellle/context.vim'
+  -- envaluate blocks
+  'Olical/conjure';
 
--- envaluate blocks
-paq 'Olical/conjure'
+  -- s-expressions
+  'tpope/vim-sexp-mappings-for-regular-people';
+  'guns/vim-sexp';
+  'tpope/vim-repeat';
+  'tpope/vim-surround';
 
--- sexp
-paq 'tpope/vim-sexp-mappings-for-regular-people'
-paq 'guns/vim-sexp'
-paq 'tpope/vim-repeat'
-paq 'tpope/vim-surround'
-
--- completion - use tab/shift+tab to navigate
-paq 'hrsh7th/nvim-compe'
-paq 'neovim/nvim-lspconfig'
-paq 'prabirshrestha/vim-lsp'
-paq 'mattn/vim-lsp-settings'
-paq 'nvim-treesitter/nvim-treesitter'
+  -- completion - use tab/shift+tab to navigate
+  'hrsh7th/nvim-compe';
+  'neovim/nvim-lspconfig';
+  'prabirshrestha/vim-lsp';
+  'mattn/vim-lsp-settings';
+  'liuchengxu/vim-which-key';
+  { 'nvim-treesitter/nvim-treesitter', run=':TSUpdate' };
+}
 option.completeopt = 'menuone,noinsert,noselect' -- better completion defaults
 require('compe').setup({
   enabled = true;
@@ -82,7 +80,6 @@ buffer.expandtab = true     -- use spaces instead of tabs
 option.smartcase = true     -- search takes casing into account when using Uppercase
 
 -- keybinds - press space to show help for all keybinds
-paq 'liuchengxu/vim-which-key'
 global.which_key_map = {}
 vim.api.nvim_set_keymap('', '<space>', '<leader>', { silent = true })
 vim.api.nvim_set_keymap('', '<leader>', "<cmd>WhichKey '<Space>'<cr>", { silent = true, noremap = true })
