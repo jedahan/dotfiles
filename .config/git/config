@@ -1,0 +1,12 @@
+[user]
+name = Jonathan Dahan
+email = git@jonathan.is
+[pull]
+rebase = true
+twohead = ort
+[init]
+defaultBranch = main
+[diff]
+tool = difftastic
+[difftool "difftastic"]
+cmd = ~/.cargo/bin/difftastic "$LOCAL" "$REMOTE"
