@@ -1,4 +1,4 @@
-[jedahan][]'s dotfiles for [zsh][], [git][], and [neovim][] on [macOS][].
+[jedahan][]'s dotfiles for [zsh][], [tmux][], [git][], and [neovim][] on [macOS][].
 
 Customizations are minimal, understandable, and independent, so newcomers can dive in.
 
@@ -52,6 +52,7 @@ Copy dotfiles from repo back to home
 [jedahan]: http://jonathan.is
 [zsh]: https://zsh.org
 [git]: https://git-scm.com
+[tmux]: https://tmux.github.io
 [neovim]: https://neovim.io
 [macOS]: https://www.apple.com/macos/big-sur
 [jedahan/track]: http://github.com/jedahan/track
