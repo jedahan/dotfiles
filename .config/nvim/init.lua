@@ -7,77 +7,76 @@ local option = vim.o
 local window = vim.wo
 local buffer = vim.bo
 local cmd = vim.cmd
+local fn = vim.fn
 local global = vim.g
 local keymap = vim.api.nvim_set_keymap
 
 -- plugins
+local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', 'https://github.com/savq/paq-nvim', install_path})
+  cmd('PaqInstall')
+end
+
 require 'paq' {
   'savq/paq-nvim';
 
+  -- colors
+  'rktjmp/lush.nvim';
+  'alaric/nortia.nvim';
+  'folke/lsp-colors.nvim';
+
+  -- statusline
+  'itchyny/lightline.vim';
+
   -- fuzzy finder
-  'nvim-lua/popup.nvim';
   'nvim-lua/plenary.nvim';
   'nvim-telescope/telescope.nvim';
 
   -- hop the cursor around
   'phaazon/hop.nvim';
+  'kyazdani42/nvim-web-devicons';
+  'folke/trouble.nvim';
 
-  -- envaluate blocks
-  'Olical/conjure';
+  -- toggle comments
+  'JoosepAlviste/nvim-ts-context-commentstring';
+  'tpope/vim-commentary';
 
-  -- s-expressions
-  'tpope/vim-sexp-mappings-for-regular-people';
-  'guns/vim-sexp';
-  'tpope/vim-repeat';
-  'tpope/vim-surround';
+  -- signature helpers
+  'ray-x/lsp_signature.nvim';
+
+  -- symbol outlines
+  'simrat39/symbols-outline.nvim';
 
   -- completion - use tab/shift+tab to navigate
-  'hrsh7th/nvim-compe';
+  'hrsh7th/nvim-cmp';
+  'hrsh7th/cmp-buffer';
   'neovim/nvim-lspconfig';
-  'prabirshrestha/vim-lsp';
-  'mattn/vim-lsp-settings';
+  'kosayoda/nvim-lightbulb';
   'liuchengxu/vim-which-key';
   { 'nvim-treesitter/nvim-treesitter', run=':TSUpdate' };
 }
-option.completeopt = 'menuone,noinsert,noselect' -- better completion defaults
-require('compe').setup({
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
-
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-    ultisnips = true;
-  };
-})
-
 require('lspconfig').tsserver.setup({})
+require('lsp_signature').setup()
 
--- options
-cmd 'colorscheme new-moon' -- set colorscheme to something appropriate
+global.neovide_cursor_vfx_mode = "pixiedust"
+
+option.termguicolors = true
+global.nortia_bat_light_theme = true
+cmd 'colorscheme nortia-nvim'
 
 option.hidden = true    -- allow switching buffers without saving
 option.timeoutlen = 500 -- wait 500ms for mapped sequences to complete
+
+option.inccommand = 'nosplit'
 
 local indent = 2
 buffer.tabstop = indent     -- columns for tabs
 buffer.shiftwidth = indent  -- columns for shifting text with `>`
 buffer.expandtab = true     -- use spaces instead of tabs
-option.smartcase = true     -- search takes casing into account when using Uppercase
+option.ignorecase = true    -- search takes casing into account when using Uppercase
+option.smartcase = true
 
 -- keybinds - press space to show help for all keybinds
 global.which_key_map = {}
@@ -92,6 +91,7 @@ cmd [[ autocmd FileType which_key set laststatus=0 noshowmode noruler | autocmd 
 global.keymaps = {
   [' '] = { ':set nohlsearch', 'clear-highlight' },
   ['/'] = { ':set nohlsearch', 'clear-highlight' },
+  o = { 'SymbolsOutline', 'outline-symbols'},
   q = { 'q', 'quit' },
   Q = { 'qA!', 'quit-without-saving' },
   h = { '<c-w>h', 'left-window' },
@@ -100,7 +100,8 @@ global.keymaps = {
   l = { '<c-w>l', 'right-window' },
   h = {
     name = '+help',
-    c = { ':help conjure', 'help-conjure' },
+    h = { ':help', 'help' },
+    n = { ':help neovide', 'help' },
   },
   j = {
     name = '+jump',
@@ -126,10 +127,10 @@ global.keymaps = {
   },
   p = {
     name = '+plugins',
+    s = { 'PaqSync', 'plugins-sync' },
     i = { 'PaqInstall', 'plugins-install' },
     u = { 'PaqUpdate', 'plugins-update' },
     c = { 'PaqClean', 'plugins-clean' },
-    l = { 'LspInstallServer', 'language-completion-install' },
   },
   c = {
     name = '+code',
@@ -140,7 +141,46 @@ global.keymaps = {
     name = '+file',
     s = { 'update', 'save-file' },
     f = { ':Telescope find_files', 'find-file' },
+    o = { ':edit', 'open-file' },
     S = { 'write !sudo % > /dev/null', 'save-file-as-root'},
   },
+  x = {
+    name = '+xrouble',
+    x = { 'Trouble', 'toggle-trouble' }
+  }
 }
 vim.fn['which_key#register']('<Space>', 'g:keymaps')
+require('telescope').setup()
+
+local cmp = require 'cmp'
+cmp.setup {
+  mapping = {
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.close(),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      else
+        fallback()
+      end
+    end,
+    ['<S-Tab>'] = function(fallback)
+      if vim.fn.pumvisible() == 1 then
+        vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      else
+        fallback()
+      end
+    end,
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+  },
+}
