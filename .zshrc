@@ -42,6 +42,7 @@ export GEOMETRY_RPROMPT
   ,='exa'
 
 (($+commands[fcp])) && alias cp='fcp'
+(($+commands[dog])) && alias dig='dog'
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
