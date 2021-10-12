@@ -8,14 +8,6 @@ select-word-style bash
 autoload -Uz bracketed-paste-url-magic # quote urls
 zle -N bracketed-paste bracketed-paste-url-magic
 
-# docker completions
-user_completions=$HOME/.local/share/zsh/completions
-echo $fpath | grep -q $user_completions || fpath+=($user_completions)
-test -f $user_completions/_docker || \
-  env DOCKER_CLI_VERSION=$(docker version --format '{{.Client.Version}}') \
-    curl --location --output $user_completions/_docker \
-    https://raw.githubusercontent.com/docker/cli/v${DOCKER_CLI_VERSION}/contrib/completion/zsh/_docker
-
 source <(zr \
   geometry-zsh/geometry \
   aloxaf/fzf-tab \
