@@ -1,0 +1,6 @@
+.DS_Store
+*aab
+*apks
+build-and-install.zsh
+release.keystore
+.vscode
