@@ -65,4 +65,3 @@ chpwd_functions+=(switch_node_lts_current)
 _gh=${XDG_SHARE:-$HOME/.local/share}/zsh/completions/_gh
 (( $+commands[gh] )) && ! test -f $_gh && gh completion -s zsh > $_gh
 
-insights() { smug start insights -f ~/work/reaktor/sony/filtr/rti-scripts/real-time-insights.yml }
