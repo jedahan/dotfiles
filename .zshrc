@@ -17,6 +17,10 @@ source <(zr \
   jedahan/track \
 )
 
+# fzf
+test -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh && source $_
+
+# geometry
 export GEOMETRY_PROMPT=(\
   geometry_newline \
   geometry_path geometry_newline \
@@ -56,6 +60,7 @@ switch_node_lts_current() {
 }
 chpwd_functions+=(switch_node_lts_current)
 
+# gh completions
 _gh=${XDG_SHARE:-$HOME/.local/share}/zsh/completions/_gh
 (( $+commands[gh] )) && ! test -f $_gh && gh completion -s zsh > $_gh
 
