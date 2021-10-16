@@ -60,8 +60,3 @@ switch_node_lts_current() {
   [[ "$want" != "$using" ]] && node@$want
 }
 chpwd_functions+=(switch_node_lts_current)
-
-# gh completions
-_gh=${XDG_SHARE:-$HOME/.local/share}/zsh/completions/_gh
-(( $+commands[gh] )) && ! test -f $_gh && gh completion -s zsh > $_gh
-
