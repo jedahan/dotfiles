@@ -11,6 +11,8 @@ ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/tools/bin
 ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_PATH
 
+export FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
 export NO_UPDATE_NOTIFIER=true
 
 export \
