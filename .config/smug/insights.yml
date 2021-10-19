@@ -1,0 +1,20 @@
+# use with [smug](https://github.com/ivaaaan/smug)
+#   smug start insights
+
+session: insights
+
+root: ~/work/reaktor/sony/filtr
+
+windows:
+  - name: frontend
+    root: ama-frontend
+    commands:
+      - source .env && node@14 && npm run start
+  - name: backend
+    root: ama-backend
+    commands:
+      - source .env && node@14 && npm run watch
+  - name: preferences
+    root: rti-user-preferences-service
+    commands:
+      - source .env && node@14 && npm run watch
