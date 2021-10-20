@@ -9,11 +9,11 @@ windows:
   - name: frontend
     root: ama-frontend
     commands:
-      - source .env && node@14 && npm run start
+      - source .env.local && node@14 && npm run start
   - name: backend
     root: ama-backend
     commands:
-      - source .env && node@14 && npm run watch
+      - source .env.local && node@14 && npm run watch
   - name: preferences
     root: rti-user-preferences-service
     commands:
