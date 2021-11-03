@@ -60,3 +60,4 @@ switch_node_lts_current() {
   [[ "$want" != "$using" ]] && node@$want
 }
 chpwd_functions+=(switch_node_lts_current)
+switch_node_lts_current || true
