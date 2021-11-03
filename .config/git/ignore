@@ -4,3 +4,4 @@
 build-and-install.zsh
 release.keystore
 .vscode
+.env*
