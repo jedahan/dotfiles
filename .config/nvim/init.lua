@@ -59,6 +59,7 @@ require 'paq' {
 }
 require('lspconfig').tsserver.setup({})
 require('lsp_signature').setup()
+require('nortia.theme').set_hour(16)
 
 global.neovide_cursor_vfx_mode = "pixiedust"
 
