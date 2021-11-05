@@ -12,7 +12,7 @@ source <(zr \
   geometry-zsh/geometry \
   aloxaf/fzf-tab \
   zsh-users/zsh-autosuggestions \
-  zdharma/fast-syntax-highlighting \
+  zdharma-continuum/fast-syntax-highlighting \
   jedahan/consistent-git-aliases \
   jedahan/track \
 )
