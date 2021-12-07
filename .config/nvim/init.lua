@@ -52,6 +52,7 @@ require 'paq' {
   -- completion - use tab/shift+tab to navigate
   'hrsh7th/nvim-cmp';
   'hrsh7th/cmp-buffer';
+  'williamboman/nvim-lsp-installer';
   'neovim/nvim-lspconfig';
   'kosayoda/nvim-lightbulb';
   'liuchengxu/vim-which-key';
@@ -133,8 +134,18 @@ global.keymaps = {
     u = { 'PaqUpdate', 'plugins-update' },
     c = { 'PaqClean', 'plugins-clean' },
   },
+  g = {
+    name = '+goto',
+    d = { 'vim.lsp.buf.definition', 'goto-definition' },
+    r = { 'vim.lsp.buf.declaration', 'goto-declaration' },
+    i = { 'vim.lsp.buf.implementation', 'goto-implementation' },
+  },
   c = {
     name = '+code',
+    d = { ':lua vim.lsp.buf.definition()', 'code-definition' },
+    r = { ':lua vim.lsp.buf.declaration()', 'code-declaration' },
+    i = { ':lua vim.lsp.buf.implementation()', 'code-implementation' },
+    h = { ':lua vim.lsp.buf.hover()', 'code-hover' },
     f = { ':Telescope live_grep', 'find-code' },
     b = { ':Telescope buffers', 'find-buffer' },
   },
