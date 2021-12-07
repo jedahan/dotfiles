@@ -43,12 +43,15 @@ export GEOMETRY_RPROMPT
 
 (($+commands[fcp])) && alias cp='fcp'
 (($+commands[dog])) && alias dig='dog'
+(($+commands[codium])) && alias code='codium'
+(($+commands[yt-dlp])) && alias yt='yt-dlp'
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
 # automatically switch to the correct node version in projects
 node@16() { export PATH="/opt/homebrew/opt/node@16/bin:$PATH" }
 node@14() { export PATH="/opt/homebrew/opt/node@14/bin:$PATH" }
+node@14
 
 switch_node_lts_current() {
   (( $+commands[node] )) || return
