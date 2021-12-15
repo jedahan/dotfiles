@@ -7,6 +7,8 @@ session: insights
 root: ~/work/reaktor/sony
 
 windows:
+  - name: git
+    root: ama-frontend
   - name: frontend
     root: ama-frontend
     commands:
@@ -18,6 +20,4 @@ windows:
   - name: preferences
     root: rti-user-preferences-service
     commands:
-      - source .env && node@14 && npm run watch
-  - name: git
-    root: ama-frontend
+      - source .env && node@14 && multipass start && npm run watch
