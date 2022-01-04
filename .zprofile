@@ -5,6 +5,7 @@ PATH="/opt/homebrew/sbin:$PATH"
 export PATH
 
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
 ANDROID_PATH=$ANDROID_HOME/platform-tools
 ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/tools
 ANDROID_PATH=$ANDROID_PATH:$ANDROID_HOME/tools/bin
@@ -18,6 +19,8 @@ export NO_UPDATE_NOTIFIER=true
 export \
   HISTSIZE=1000000 \
   SAVEHIST=1000000
+
+export EDITOR=nvim
 
 setopt \
   HIST_IGNORE_ALL_DUPS \
