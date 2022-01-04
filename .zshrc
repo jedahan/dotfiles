@@ -16,7 +16,7 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
     zdharma-continuum/fast-syntax-highlighting \
     jedahan/consistent-git-aliases \
     jedahan/track \
-    > ~/.config/_zr
+    >! ~/.config/_zr
 fi
 source ~/.config/_zr
 
