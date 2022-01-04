@@ -51,19 +51,3 @@ export GEOMETRY_RPROMPT
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
-# automatically switch to the correct node version in projects
-node@16() { export PATH="/opt/homebrew/opt/node@16/bin:$PATH" }
-node@14() { export PATH="/opt/homebrew/opt/node@14/bin:$PATH" }
-node@14
-
-switch_node_lts_current() {
-  (( $+commands[node] )) || return
-  test -f package.json || return
-  engines=$(jq -r '.engines.node' package.json)
-  [[ "$engines" == "null" ]] && return
-  using=$(node --version | cut -d'v' -f2 | cut -d'.' -f1)
-  echo $engines | rg --quiet '[^.]*(14)' && want=14 || want=16
-  [[ "$want" != "$using" ]] && node@$want
-}
-chpwd_functions+=(switch_node_lts_current)
-switch_node_lts_current || true

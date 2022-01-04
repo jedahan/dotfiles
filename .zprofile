@@ -22,6 +22,8 @@ export \
 
 export EDITOR=nvim
 
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+
 setopt \
   HIST_IGNORE_ALL_DUPS \
   HIST_REDUCE_BLANKS  \
