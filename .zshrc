@@ -8,14 +8,17 @@ select-word-style bash
 autoload -Uz bracketed-paste-url-magic # quote urls
 zle -N bracketed-paste bracketed-paste-url-magic
 
-source <(zr \
-  geometry-zsh/geometry \
-  aloxaf/fzf-tab \
-  zsh-users/zsh-autosuggestions \
-  zdharma-continuum/fast-syntax-highlighting \
-  jedahan/consistent-git-aliases \
-  jedahan/track \
-)
+if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
+  zr \
+    geometry-zsh/geometry \
+    aloxaf/fzf-tab \
+    zsh-users/zsh-autosuggestions \
+    zdharma-continuum/fast-syntax-highlighting \
+    jedahan/consistent-git-aliases \
+    jedahan/track \
+    > ~/.config/_zr
+fi
+source ~/.config/_zr
 
 # fzf
 test -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh && source $_
