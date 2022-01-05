@@ -51,3 +51,4 @@ export GEOMETRY_RPROMPT
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
+zstyle ':completion:*' completer _expand_alias _complete _ignored
