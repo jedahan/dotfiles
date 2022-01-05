@@ -2,9 +2,6 @@ setopt no_clobber \
   interactivecomments \
   autocd autopushd pushd_ignore_dups
 
-autoload -U select-word-style
-select-word-style bash
-
 autoload -Uz bracketed-paste-url-magic # quote urls
 zle -N bracketed-paste bracketed-paste-url-magic
 
@@ -19,9 +16,6 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
-
-# fzf
-test -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh && source $_
 
 # geometry
 export GEOMETRY_PROMPT=(\
