@@ -46,3 +46,7 @@ export GEOMETRY_RPROMPT
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
 zstyle ':completion:*' completer _expand_alias _complete _ignored
+
+set -o emacs # this is needed if 'vi' is found in EDITOR, thanks zsh
+
+# TODO: intercept ctrl-c and yell at myself to use ctrl-u
