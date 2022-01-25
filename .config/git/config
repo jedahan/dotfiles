@@ -5,3 +5,5 @@ email = git@jonathan.is
 rebase = true
 [init]
 defaultBranch = main
+[merge]
+conflictStyle = zdiff3
