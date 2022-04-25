@@ -2,20 +2,23 @@ setopt no_clobber \
   interactivecomments \
   autocd autopushd pushd_ignore_dups
 
-autoload -Uz bracketed-paste-url-magic # quote urls
-zle -N bracketed-paste bracketed-paste-url-magic
+set -o emacs # this is needed if 'vi' is found in EDITOR, thanks zsh
+
+zstyle ':completion:*' completer _expand_alias _complete _ignored
 
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
-    geometry-zsh/geometry \
     aloxaf/fzf-tab \
+    geometry-zsh/geometry \
     zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
     jedahan/consistent-git-aliases \
-    jedahan/track \
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
+
+autoload -Uz bracketed-paste-url-magic # quote urls
+zle -N bracketed-paste bracketed-paste-url-magic
 
 # geometry
 export GEOMETRY_PROMPT=(\
@@ -32,6 +35,8 @@ geometry_node_version() {
 GEOMETRY_RPROMPT+=(geometry_node_version)
 export GEOMETRY_RPROMPT
 
+export PATH=$(brew --prefix --installed node@16)/bin:$PATH
+
 (($+commands[exa])) && alias \
   ls='exa' \
   ll='exa -l' \
@@ -45,8 +50,10 @@ export GEOMETRY_RPROMPT
 
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
-zstyle ':completion:*' completer _expand_alias _complete _ignored
+# Remind self to use meta+u to clear a line instead of SIGINT
+zle-line-init() { trap "zle -M 'use meta+u ya dummy'" INT }
+zle-line-finish() { trap - INT }
+zle -N zle-line-init
+zle -N zle-line-finish
 
-set -o emacs # this is needed if 'vi' is found in EDITOR, thanks zsh
-
-# TODO: intercept ctrl-c and yell at myself to use ctrl-u
+title() { echo -en "\033]0;${*}\a" }
