@@ -124,6 +124,8 @@ global.keymaps = {
     name = '+buffer',
     d = { 'bdelete', 'delete-buffer'},
     n = { 'bnext', 'next-buffer'},
+    N = { 'enew', 'new-buffer'},
+    b = { 'enew', 'new-buffer'},
     p = { 'bprevious', 'previous-buffer'},
     f = { ':Telescope buffers', 'find-buffer' },
   },
