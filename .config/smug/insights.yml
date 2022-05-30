@@ -9,15 +9,19 @@ root: ~/work/reaktor/sony
 windows:
   - name: git
     root: ama-frontend
+    commands:
+      - clear
   - name: frontend
     root: ama-frontend
     commands:
-      - source .env.local && node@16 && npm run start -- --dev-client
+      - source .env.local && npm run start
   - name: backend
     root: ama-backend
     commands:
-      - source .env.local && node@16 && npm run watch; podman rm ama-db
+      - source .env.local && npm run watch
   - name: preferences
     root: rti-user-preferences-service
     commands:
-      - source .env && multipass start && node@16 && npm run watch && multipass stop
+      - test $(podman machine inspect podman-machine-default --format '{{.State}}') = 'running' || podman machine start
+      - podman container exists ama-db && podman rm ama-db
+      - source .env && npm run watch
