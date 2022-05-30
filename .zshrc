@@ -13,9 +13,13 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
     zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
     jedahan/consistent-git-aliases \
+    asdf-vm/asdf \
+    joshskidmore/zsh-fzf-history-search \
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
+# todo: update zr to handle recursive _completion search
+fpath=(${ASDF_DIR}/completions $fpath); compinit
 
 autoload -Uz bracketed-paste-url-magic # quote urls
 zle -N bracketed-paste bracketed-paste-url-magic
