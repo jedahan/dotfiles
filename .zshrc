@@ -61,3 +61,4 @@ zle -N zle-line-init
 zle -N zle-line-finish
 
 title() { echo -en "\033]0;${*}\a" }
+brew-up() { brew upgrade $(brew outdated | cut -f1 | grep -v gcc-arm-embedded | tr '\n' ' ') }
