@@ -5,5 +5,9 @@ email = git@jonathan.is
 rebase = true
 [init]
 defaultBranch = main
-[merge]
-conflictStyle = zdiff3
+[sendemail]
+smtpserver = 127.0.0.1
+smtpencryption = ssl
+smtpserverport = 1025
+smtpsslcertpath =
+confirm = auto
