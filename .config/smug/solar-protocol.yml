@@ -1,0 +1,31 @@
+# use with [smug](https://github.com/ivaaaan/smug)
+#
+#   smug solar-protocol
+
+session: solar-protocol
+
+root: ~/src/solar/solar-protocol
+
+before_start:
+  - if [[ "$(podman machine inspect podman-machine-default --format '{{.State}}')" != 'running' ]]; then podman machine start; fi
+
+stop:
+  - bash dev/stop
+
+windows:
+  - name: git
+    commands:
+      - bash dev/generate
+      - git status
+  - name: code
+    commands:
+      - $EDITOR
+        nvim -c 'Telescope find_files'
+  - name: container
+    layout: main-horizontal
+    commands:
+      - bash dev/watch
+    panes:
+      - type: horizontal
+        commands:
+          - bash dev/start

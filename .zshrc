@@ -18,6 +18,7 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
+eval "$(zoxide init zsh)"
 # todo: update zr to handle recursive _completion search
 fpath=(${ASDF_DIR}/completions $fpath); compinit
 
@@ -39,7 +40,7 @@ geometry_node_version() {
 GEOMETRY_RPROMPT+=(geometry_node_version)
 export GEOMETRY_RPROMPT
 
-export PATH=$(brew --prefix --installed node@16)/bin:$PATH
+export PATH=$(brew --prefix)/opt/node@16/bin:$PATH
 
 (($+commands[exa])) && alias \
   ls='exa' \
@@ -61,7 +62,42 @@ zle -N zle-line-init
 zle -N zle-line-finish
 
 title() { echo -en "\033]0;${*}\a" }
+# workaround brew pin not supporting casks
 brew-upgrade-ignore() {
   outdated=$(brew outdated | cut -f1 | grep -v ${*:-gcc-arm-embedded} | tr '\n' ' ')
   if [ -n "$outdated" ]; then brew upgrade ${=outdated}; fi
+}
+
+stable() {
+	text=$1 
+  test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
+	cd ~/src/stable-diffusion
+  . venv/bin/activate
+  directory=${text// /_} 
+  mkdir -p $directory
+  open $directory
+	times=${2:-9} 
+	repeat $times
+	do
+		seed=$RANDOM 
+    python scripts/txt2img.py \
+      --prompt "$text" \
+      --n_samples 1 --n_iter 1 --plms \
+      --outdir="$directory"
+	done
+}
+
+dalle() {
+	text=$1 
+  test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
+	cd ~/src/min-dalle
+  directory=${text// /_} 
+  mkdir -p $directory
+  open $directory
+	times=${2:-9} 
+	repeat $times
+	do
+		seed=$RANDOM 
+		python3 image_from_text.py --text="$text" --seed=$seed --image_path="${directory}/${seed}.png"
+	done
 }

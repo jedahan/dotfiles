@@ -1,7 +1,12 @@
+# vscode
+.vscode/
+
+# macOS
 .DS_Store
+
+# app binaries
 *aab
 *apks
-build-and-install.zsh
-release.keystore
-.vscode
+
+# environment config
 .env*
