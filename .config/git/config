@@ -5,9 +5,32 @@ email = git@jonathan.is
 rebase = true
 [init]
 defaultBranch = main
+
+# use git send email for patches
 [sendemail]
 smtpserver = 127.0.0.1
 smtpencryption = ssl
+smtpuser = hi@jonathan.is
 smtpserverport = 1025
 smtpsslcertpath =
 confirm = auto
+
+# enable git-lfs
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+
+# use `delta` for better diffs
+[core]
+pager = delta
+[interactive]
+diffFilter = delta --color-only
+[delta]
+navigate = true
+light = false
+[merge]
+conflictstyle = diff3
+[diff]
+colorMoved = default
