@@ -7,10 +7,8 @@ session: solar-protocol
 root: ~/src/solar/solar-protocol
 
 before_start:
-  - if [[ "$(podman machine inspect podman-machine-default --format '{{.State}}')" != 'running' ]]; then podman machine start; fi
-
-stop:
-  - bash dev/stop
+  - podman machine stop
+  - podman machine start
 
 windows:
   - name: git
@@ -19,12 +17,11 @@ windows:
       - git status
   - name: code
     commands:
-      - $EDITOR
-        nvim -c 'Telescope find_files'
+      - nvim -c 'Telescope find_files'
   - name: container
     layout: main-horizontal
     commands:
-      - bash dev/watch
+      - bash dev/build
     panes:
       - type: horizontal
         commands:
