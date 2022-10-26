@@ -4,7 +4,7 @@
 
 session: solar-protocol
 
-root: ~/src/solar/solar-protocol
+root: ~/src/solar-protocol
 
 before_start:
   - podman machine stop
@@ -13,16 +13,11 @@ before_start:
 windows:
   - name: git
     commands:
-      - bash dev/generate
+      - solar-protocol generate
       - git status
   - name: code
     commands:
       - nvim -c 'Telescope find_files'
   - name: container
-    layout: main-horizontal
     commands:
-      - bash dev/build
-    panes:
-      - type: horizontal
-        commands:
-          - bash dev/start
+      - solar-protocol dev
