@@ -19,4 +19,4 @@ windows:
       - nvim -c 'Telescope find_files'
   - name: container
     commands:
-      - solar-protocol dev
+      - solar-protocol up
