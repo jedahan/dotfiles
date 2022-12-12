@@ -54,8 +54,10 @@ require 'paq' {
   'hrsh7th/cmp-buffer';
   'williamboman/nvim-lsp-installer';
   'neovim/nvim-lspconfig';
+  'terrastruct/d2-vim';
   'kosayoda/nvim-lightbulb';
   'liuchengxu/vim-which-key';
+  'gleam-lang/gleam.vim';
   { 'nvim-treesitter/nvim-treesitter', run=':TSUpdate' };
 }
 require('lspconfig').tsserver.setup({})
