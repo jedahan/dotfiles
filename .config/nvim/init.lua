@@ -46,6 +46,10 @@ require 'paq' {
   -- signature helpers
   'ray-x/lsp_signature.nvim';
 
+  -- debugging
+  'mfussenegger/nvim-dap';
+  'rcarriga/nvim-dap-ui';
+
   -- symbol outlines
   'simrat39/symbols-outline.nvim';
 
@@ -63,6 +67,19 @@ require 'paq' {
 require('lspconfig').tsserver.setup({})
 require('lsp_signature').setup()
 require('nortia.theme').set_hour(16)
+
+local dap = require('dap')
+local dapui = require('dapui')
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+dapui.setup()
 
 global.neovide_cursor_vfx_mode = "pixiedust"
 
