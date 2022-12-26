@@ -20,6 +20,7 @@ fi
 source ~/.config/_zr
 eval "$(zoxide init zsh)"
 # todo: update zr to handle recursive _completion search
+fpath=(/Users/micro/src/solar-protocol/dev $fpath)
 fpath=(${ASDF_DIR}/completions $fpath); compinit
 
 autoload -Uz bracketed-paste-url-magic # quote urls
@@ -101,3 +102,27 @@ dalle() {
 		python3 image_from_text.py --text="$text" --seed=$seed --image_path="${directory}/${seed}.png"
 	done
 }
+
+export PATH=$PATH:/Users/micro/src/solar-protocol
+
+solar() { solar-protocol "$@" 2>/dev/null }
+nvim-to-pdf() { nvim +"hardcopy > out.ps" $1 +qall && ps2pdf out.ps ${1/.*/.pdf} && rm out.ps;}
+
+prompt() {
+  read -r "confirm?$* (y/N) " && \
+    [[ $confirm == [yY] || $confirm == [yY][eE][sS ]]
+}
+
+# ssh as root into whatever wired connection you got
+ssh-link-local() {
+   user=${1:-root}
+   interface=${2:-en9}
+   >&2 echo searching for remote link local address for interface $interface
+   local_regex='fe80::[a-z0-9:]+'
+   my_addr=$(ifconfig "$interface" | rg --only-matching "${local_regex}")
+   address=$(ping6 -c2 "ff02::1%${interface}" | grep -v $my_addr | rg --only-matching "${local_regex}")
+   ssh_location="${user}@${address}%${interface}"
+   prompt "ssh $ssh_location" && ssh $ssh_location || true
+}
+
+add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }
