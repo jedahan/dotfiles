@@ -20,6 +20,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require 'paq' {
+  'iamcco/markdown-preview.nvim';
   'savq/paq-nvim';
 
   -- colors
@@ -52,6 +53,10 @@ require 'paq' {
 
   -- symbol outlines
   'simrat39/symbols-outline.nvim';
+
+  -- file browser
+  'nvim-tree/nvim-web-devicons';
+  'nvim-tree/nvim-tree.lua';
 
   -- completion - use tab/shift+tab to navigate
   'hrsh7th/nvim-cmp';
