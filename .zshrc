@@ -105,7 +105,6 @@ dalle() {
 
 export PATH=$PATH:/Users/micro/src/solar-protocol
 
-solar() { solar-protocol "$@" 2>/dev/null }
 nvim-to-pdf() { nvim +"hardcopy > out.ps" $1 +qall && ps2pdf out.ps ${1/.*/.pdf} && rm out.ps;}
 
 prompt() {
