@@ -125,3 +125,9 @@ ssh-link-local() {
 }
 
 add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }
+
+add-zsh-hook -Uz chpwd() {
+  test -f .nvmrc || return
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+}
