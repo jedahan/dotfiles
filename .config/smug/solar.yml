@@ -6,10 +6,6 @@ session: solar-protocol
 
 root: ~/src/solar-protocol
 
-before_start:
-  - podman machine stop
-  - podman machine start
-
 windows:
   - name: git
     commands:
@@ -19,4 +15,4 @@ windows:
       - nvim -c 'Telescope find_files'
   - name: container
     commands:
-      - solar-protocol up
+      - solar-protocol start
