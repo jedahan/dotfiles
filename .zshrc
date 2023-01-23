@@ -114,7 +114,7 @@ prompt() {
 
 # ssh as root into whatever wired connection you got
 ssh-link-local() {
-   user=${1:-root}
+   user=${1:-${USER}}
    interface=${2:-en9}
    >&2 echo searching for remote link local address for interface $interface
    local_regex='fe80::[a-z0-9:]+'
