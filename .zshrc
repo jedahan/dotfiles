@@ -38,7 +38,7 @@ geometry_node_version() {
   test -f package.json || test -f yarn.lock || return 1
   node -v 2>/dev/null
 }
-GEOMETRY_RPROMPT+=(geometry_node_version)
+GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv)
 export GEOMETRY_RPROMPT
 
 export PATH=$(brew --prefix)/opt/node@16/bin:$PATH

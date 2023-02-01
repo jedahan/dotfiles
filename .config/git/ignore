@@ -10,3 +10,6 @@
 
 # environment config
 .env*
+
+# python venv
+.venv
