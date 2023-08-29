@@ -1,27 +1,31 @@
 setopt no_clobber \
   interactivecomments \
+  extendedglob \
   autocd autopushd pushd_ignore_dups
 
 set -o emacs # this is needed if 'vi' is found in EDITOR, thanks zsh
 
+fpath+=~/.zfunc
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
+    Michaelwmx/zsh-ask \
     aloxaf/fzf-tab \
     geometry-zsh/geometry \
     zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
     jedahan/consistent-git-aliases \
-    asdf-vm/asdf \
     joshskidmore/zsh-fzf-history-search \
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
 eval "$(zoxide init zsh)"
+
 # todo: update zr to handle recursive _completion search
 fpath=(/Users/micro/src/solar-protocol/dev $fpath)
-fpath=(${ASDF_DIR}/completions $fpath); compinit
+
+autoload -Uz compinit && compinit
 
 autoload -Uz bracketed-paste-url-magic # quote urls
 zle -N bracketed-paste bracketed-paste-url-magic
@@ -43,11 +47,11 @@ export GEOMETRY_RPROMPT
 
 export PATH=$(brew --prefix)/opt/node@16/bin:$PATH
 
-(($+commands[exa])) && alias \
-  ls='exa' \
-  ll='exa -l' \
-  la='exa -a' \
-  ,='exa'
+(($+commands[eza])) && alias \
+  ls='eza' \
+  ll='eza -l' \
+  la='eza -a' \
+  ,='eza'
 
 (($+commands[fcp])) && alias cp='fcp'
 (($+commands[dog])) && alias dig='dog'
