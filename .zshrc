@@ -55,6 +55,9 @@ fpath+=~/.zfunc
 
 # commands
 
+## pkgx to run software
+source <(pkgx --shellcode)
+
 ## aliases to nicer cli
 (($+commands[eza])) && alias \
   ls='eza' \
