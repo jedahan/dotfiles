@@ -1,16 +1,20 @@
-setopt no_clobber \
+# zsh
+
+## options
+setopt \
+  emacs \
+  no_clobber \
   interactivecomments \
   extendedglob \
   autocd autopushd pushd_ignore_dups
 
-set -o emacs # this is needed if 'vi' is found in EDITOR, thanks zsh
+## when pasting urls with glob characters (?*), surround in quotes
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
 
-fpath+=~/.zfunc
-zstyle ':completion:*' completer _expand_alias _complete _ignored
-
+## prompt theme, and nicer history and tab-completion
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
-    Michaelwmx/zsh-ask \
     aloxaf/fzf-tab \
     geometry-zsh/geometry \
     zsh-users/zsh-autosuggestions \
@@ -20,17 +24,8 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
     >! ~/.config/_zr
 fi
 source ~/.config/_zr
-eval "$(zoxide init zsh)"
 
-# todo: update zr to handle recursive _completion search
-fpath=(/Users/micro/src/solar-protocol/dev $fpath)
-
-autoload -Uz compinit && compinit
-
-autoload -Uz bracketed-paste-url-magic # quote urls
-zle -N bracketed-paste bracketed-paste-url-magic
-
-# geometry
+# theme prompt
 export GEOMETRY_PROMPT=(\
   geometry_newline \
   geometry_path geometry_newline \
@@ -45,34 +40,38 @@ geometry_node_version() {
 GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv)
 export GEOMETRY_RPROMPT
 
-export PATH=$(brew --prefix)/opt/node@16/bin:$PATH
+# completions
+zstyle ':completion:*' completer _expand_alias _complete _ignored
+autoload -Uz compinit && compinit
 
+## bun completions
+[ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
+
+## z completions
+eval "$(zoxide init zsh)"
+
+## cargo and rustup completions
+fpath+=~/.zfunc
+
+# commands
+
+## aliases to nicer cli
 (($+commands[eza])) && alias \
   ls='eza' \
   ll='eza -l' \
   la='eza -a' \
   ,='eza'
 
+(($+commands[z])) && alias cd='z'
 (($+commands[fcp])) && alias cp='fcp'
 (($+commands[dog])) && alias dig='dog'
 (($+commands[codium])) && alias code='codium'
 (($+commands[yt-dlp])) && alias yt='yt-dlp'
 
+## manage dotfiles with plain old git
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
-# Remind self to use meta+u to clear a line instead of SIGINT
-zle-line-init() { trap "zle -M 'use meta+u ya dummy'" INT }
-zle-line-finish() { trap - INT }
-zle -N zle-line-init
-zle -N zle-line-finish
-
-title() { echo -en "\033]0;${*}\a" }
-# workaround brew pin not supporting casks
-brew-upgrade-ignore() {
-  outdated=$(brew outdated | cut -f1 | grep -v ${*:-gcc-arm-embedded} | tr '\n' ' ')
-  if [ -n "$outdated" ]; then brew upgrade ${=outdated}; fi
-}
-
+## stable diffusion cli
 stable() {
 	text=$1 
   test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
@@ -92,6 +91,7 @@ stable() {
 	done
 }
 
+## dalle generative images 
 dalle() {
 	text=$1 
   test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
@@ -107,14 +107,7 @@ dalle() {
 	done
 }
 
-export PATH=$PATH:/Users/micro/src/solar-protocol
-
 nvim-to-pdf() { nvim +"hardcopy > out.ps" $1 +qall && ps2pdf out.ps ${1/.*/.pdf} && rm out.ps;}
-
-prompt() {
-  read -r "confirm?$* (y/N) " && \
-    [[ $confirm == [yY] || $confirm == [yY][eE][sS ]]
-}
 
 # ssh as root into whatever wired connection you got
 ssh-link-local() {
@@ -125,16 +118,22 @@ ssh-link-local() {
    my_addr=$(ifconfig "$interface" | rg --only-matching "${local_regex}")
    address=$(ping6 -c2 "ff02::1%${interface}" | grep -v $my_addr | rg --only-matching "${local_regex}")
    ssh_location="${user}@${address}%${interface}"
-   prompt "ssh $ssh_location" && ssh $ssh_location || true
+
+   read -r "confirm?ssh $ssh_location (y/N) "
+   [[ $confirm == [yY] || $confirm == [yY][eE][sS ]] \
+     && ssh $ssh_location
 }
 
-add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }
+equinox() {
+  tmux new-session -A \
+    -c work/reaktor/equinox \
+    -s equinox -n code \
+    hx WearableData
+}
 
-add-zsh-hook -Uz chpwd() {
-  command -v nvm 2>/dev/null || return
-  test -f .nvmrc || return
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
-  nvm use
-  #nvm use $(npx json -r .engines.node package.json)
+plan() {
+  PLAN=$(mktemp)
+  curl --silent --output $PLAN https://plan.cat/~micro
+  $EDITOR $PLAN
+  curl --silent --user micro --form "plan=<$PLAN" https://plan.cat/stdin
 }
