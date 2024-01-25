@@ -1,6 +1,4 @@
-# zsh
-
-## options
+## zsh options
 setopt \
   emacs \
   no_clobber \
@@ -12,7 +10,7 @@ setopt \
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
 
-## prompt theme, and nicer history and tab-completion
+## geometry prompt theme, improved history and tab-completion
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
     aloxaf/fzf-tab \
@@ -32,6 +30,7 @@ export GEOMETRY_PROMPT=(\
   geometry_status \
 )
 
+# add node version to right prompt
 geometry_node_version() {
   (( $+commands[node] )) || return
   test -f package.json || test -f yarn.lock || return 1
@@ -40,17 +39,13 @@ geometry_node_version() {
 GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv)
 export GEOMETRY_RPROMPT
 
-# completions
+# cache completions
 zstyle ':completion:*' completer _expand_alias _complete _ignored
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+for dump in ~/.zcompdump(N.mh+24); do compinit; done
+compinit -C
 
-## bun completions
-[ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
-
-## z completions
-eval "$(zoxide init zsh)"
-
-## cargo and rustup completions
+## add cargo and rustup completions
 fpath+=~/.zfunc
 
 # commands
@@ -74,44 +69,6 @@ source <(pkgx --shellcode)
 ## manage dotfiles with plain old git
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 
-## stable diffusion cli
-stable() {
-	text=$1 
-  test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
-	cd ~/src/stable-diffusion
-  . venv/bin/activate
-  directory=${text// /_} 
-  mkdir -p $directory
-  open $directory
-	times=${2:-9} 
-	repeat $times
-	do
-		seed=$RANDOM 
-    python scripts/txt2img.py \
-      --prompt "$text" \
-      --n_samples 1 --n_iter 1 --plms \
-      --outdir="$directory"
-	done
-}
-
-## dalle generative images 
-dalle() {
-	text=$1 
-  test -z "$text" && text=$(fortune -s | grep -v ':$' | head -n1)
-	cd ~/src/min-dalle
-  directory=${text// /_} 
-  mkdir -p $directory
-  open $directory
-	times=${2:-9} 
-	repeat $times
-	do
-		seed=$RANDOM 
-		python3 image_from_text.py --text="$text" --seed=$seed --image_path="${directory}/${seed}.png"
-	done
-}
-
-nvim-to-pdf() { nvim +"hardcopy > out.ps" $1 +qall && ps2pdf out.ps ${1/.*/.pdf} && rm out.ps;}
-
 # ssh as root into whatever wired connection you got
 ssh-link-local() {
    user=${1:-${USER}}
@@ -127,16 +84,16 @@ ssh-link-local() {
      && ssh $ssh_location
 }
 
-equinox() {
-  tmux new-session -A \
-    -c work/reaktor/equinox \
-    -s equinox -n code \
-    hx WearableData
-}
-
+# update your plan file
 plan() {
   PLAN=$(mktemp)
   curl --silent --output $PLAN https://plan.cat/~micro
   $EDITOR $PLAN
   curl --silent --user micro --form "plan=<$PLAN" https://plan.cat/stdin
+}
+
+# show local devices
+lookaroundyou() {
+  networkrange=${1:-192.168.1.0/24}
+  sudo nmap -sS -PS -O $networkrange
 }
