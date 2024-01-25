@@ -28,10 +28,21 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # zsh
 export NO_UPDATE_NOTIFIER=true
-export HISTSIZE=1000000 SAVEHIST=1000000
 export EDITOR=hx
+
+# zsh history
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 setopt \
+  HIST_EXPIRE_DUPS_FIRST \
   HIST_IGNORE_ALL_DUPS \
+  HIST_IGNORE_DUPS \
+  HIST_IGNORE_SPACE \
   HIST_REDUCE_BLANKS  \
+  HIST_FIND_NO_DUPS \
+  INC_APPEND_HISTORY \
   INC_APPEND_HISTORY_TIME \
-  EXTENDED_HISTORY
+  EXTENDED_HISTORY \
+
+# Added by OrbStack: command-line tools and integration
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
