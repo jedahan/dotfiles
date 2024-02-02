@@ -1,0 +1,8 @@
+[keys.normal.space.b]
+s = ":write"
+c = ":buffer-close"
+n = ":buffer-next"
+p = ":buffer-previous"
+
+[editor]
+insert-final-newline = false
