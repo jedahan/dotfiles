@@ -93,6 +93,6 @@ plan() {
 
 # show local devices
 lookaroundyou() {
-  networkrange=${1:-192.168.1.0/24}
-  sudo nmap -sS -PS -O $networkrange
+  myip=$(ifconfig en0 | rg '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' --only-matching --max-count=1 | head -n1)
+  sudo nmap -sS -PS -O ${myip}/24
 }
