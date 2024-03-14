@@ -3,6 +3,7 @@ HOMEBREW_PATH="/opt/homebrew/bin"
 HOMEBREW_PATH="/opt/homebrew/sbin:$HOMEBREW_PATH"
 export PATH=$HOMEBREW_PATH:$PATH
 export FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+export HOMEBREW_NO_ENV_HINTS=true
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -44,5 +45,8 @@ setopt \
   INC_APPEND_HISTORY_TIME \
   EXTENDED_HISTORY \
 
-# Added by OrbStack: command-line tools and integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# icons for ls
+EZA_ICONS_AUTO=true
+
+# work qt5
+export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
