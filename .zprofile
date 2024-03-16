@@ -46,7 +46,7 @@ setopt \
   EXTENDED_HISTORY \
 
 # icons for ls
-EZA_ICONS_AUTO=true
+export EZA_ICONS_AUTO=true
 
 # work qt5
 export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
