@@ -1,3 +1,5 @@
+theme = "tokyonight"
+
 [keys.normal.space.b]
 s = ":write"
 c = ":buffer-close"
