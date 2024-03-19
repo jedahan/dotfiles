@@ -7,3 +7,6 @@ auto-format = true
 command = "ruff"
 args = [ "format", "-" ]
 onSave = true
+
+[language-server.lua-language-server.config.Lua]
+workspace.library = ["/Users/micro/.config/wezterm/types/lua"]
