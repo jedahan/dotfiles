@@ -1,4 +1,4 @@
-theme = "tokyonight"
+theme = "new-moon"
 
 [keys.normal.space.b]
 s = ":write"

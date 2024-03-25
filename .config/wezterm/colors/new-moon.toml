@@ -1,0 +1,28 @@
+[metadata]
+name = 'new-moon'
+
+[colors]
+background = "#2d2d2d"
+foreground = "#b3b9c5"
+
+ansi = [
+  "#2D2D2D",
+  "#F2777A",
+  "#92D192",
+  "#FFD479",
+  "#6AB0F3",
+  "#E1A6F2",
+  "#76D4D6",
+  "#B3B9C5",
+]
+
+brights = [
+  "#777C85",
+  "#F2777A",
+  "#76D4D6",
+  "#FFEEA6",
+  "#6AB0F3",
+  "#E1A6F2",
+  "#76D4D6",
+  "#FFFFFF",
+]

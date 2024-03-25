@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
-config.color_scheme = 'tokyonight'
+config.color_scheme = 'new-moon'
 config.audible_bell = 'Disabled'
 config.font_size = 22.0
 
