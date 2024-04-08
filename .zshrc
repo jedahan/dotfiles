@@ -23,7 +23,7 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
 fi
 source ~/.config/_zr
 
-eval "$(zoxide init zsh)"
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
 # theme prompt
 export GEOMETRY_PROMPT=(\
