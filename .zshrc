@@ -96,3 +96,7 @@ lookaroundyou() {
   myip=$(ifconfig en0 | rg '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' --only-matching --max-count=1 | head -n1)
   sudo nmap -sS -PS -O ${myip}/24
 }
+
+# we cannot set these in ~/.zprofile on macOS, because they are overwritten in /etc/zshrc
+export HISTSIZE=1000000
+export SAVEHIST=1000000
