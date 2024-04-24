@@ -43,6 +43,8 @@ setopt \
   INC_APPEND_HISTORY_TIME \
   EXTENDED_HISTORY \
 
+export HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+
 # icons for ls
 export EZA_ICONS_AUTO=true
 
