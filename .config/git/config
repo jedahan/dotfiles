@@ -1,6 +1,7 @@
 [user]
 name = Jonathan Dahan
 email = git@jonathan.is
+
 [pull]
 rebase = true
 [init]
@@ -22,15 +23,8 @@ smudge = git-lfs smudge -- %f
 process = git-lfs filter-process
 required = true
 
-# use `delta` for better diffs
-[core]
-pager = delta
-[interactive]
-diffFilter = delta --color-only
-[delta]
-navigate = true
-light = false
+# use `difft` for better diffs
 [merge]
 conflictstyle = diff3
 [diff]
-colorMoved = default
+external = difft
