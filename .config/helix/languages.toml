@@ -9,4 +9,4 @@ args = [ "format", "-" ]
 onSave = true
 
 [language-server.lua-language-server.config.Lua]
-workspace.library = ["/Users/micro/.config/wezterm/types/lua"]
+workspace.library = ["/Users/micro/.config/wezterm/types/lua", "/Users/micro/.config/helix/lua"]
