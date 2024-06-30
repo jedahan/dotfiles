@@ -41,6 +41,7 @@ if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
     aloxaf/fzf-tab \
     geometry-zsh/geometry \
+    sunlei/zsh-ssh \
     zsh-users/zsh-autosuggestions \
     zdharma-continuum/fast-syntax-highlighting \
     jedahan/consistent-git-aliases \
