@@ -1,6 +1,13 @@
 theme = "new-moon"
 
+[keys.normal]
+"C-d" = "extend_search_next"
+
+[keys.select]
+"C-d" = ["search_selection", "extend_search_next"]
+
 [keys.normal.space.b]
+f = ":format"
 s = ":write"
 c = ":buffer-close"
 n = ":buffer-next"
