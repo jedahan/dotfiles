@@ -119,10 +119,23 @@ plan() {
 
 # show local devices
 lookaroundyou() {
+  (($+commands[nmap])) || die 'missing nmap'
+  (($+commands[rg])) || die 'missing rg'
   myip=$(ifconfig en0 | rg '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}' --only-matching --max-count=1 | head -n1)
   sudo nmap -sS -PS -O ${myip}/24
 }
 
-# we cannot set these in ~/.zprofile on macOS, because they are overwritten in /etc/zshrc
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+# broadcast over udp
+broadcast() {
+  (($+commands[socat])) || die 'missing socat'
+  message=${1:-"hello world"}
+  dstport=${2:-12345}
+  srcport=$(rev <<< "$dstport")
+  echo -ne $message | socat -u - udp-datagram:127.0.0.1:${dstport},sourceport=${srcport},broadcast,reuseaddr
+}
+
+listening() { lsof -iTCP -sTCP:LISTEN -n -P +c 0 }
+
+alias -s json='jid < '
+
+. ~/.config/zsh/work.zsh
