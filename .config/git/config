@@ -23,8 +23,9 @@ smudge = git-lfs smudge -- %f
 process = git-lfs filter-process
 required = true
 
-# use `difft` for better diffs
-[merge]
-conflictstyle = diff3
-[diff]
-external = difft
+[diff "lockb"]
+textconv = bun
+binary = true
+
+[push]
+autoSetupRemote = true
