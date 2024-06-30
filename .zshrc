@@ -4,7 +4,33 @@ setopt \
   no_clobber \
   interactivecomments \
   extendedglob \
+  share_history \
   autocd autopushd pushd_ignore_dups
+
+# set larger shared history in ~/.zshrc because macOS ships broken /etc/zshrc 
+export HISTSIZE=1000000
+export SAVEHIST=1000000
+
+# zsh defaults
+export NO_UPDATE_NOTIFIER=true
+(($+commands[hx])) && export EDITOR=hx
+
+# zsh history
+setopt \
+  HIST_EXPIRE_DUPS_FIRST \
+  HIST_IGNORE_ALL_DUPS \
+  HIST_IGNORE_DUPS \
+  HIST_IGNORE_SPACE \
+  HIST_REDUCE_BLANKS  \
+  HIST_FIND_NO_DUPS \
+  INC_APPEND_HISTORY \
+  INC_APPEND_HISTORY_TIME \
+  EXTENDED_HISTORY \
+
+export HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+
+# icons for ls
+export EZA_ICONS_AUTO=true
 
 ## when pasting urls with glob characters (?*), surround in quotes
 autoload -Uz bracketed-paste-url-magic
