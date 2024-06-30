@@ -1,15 +1,7 @@
-# vscode
-.vscode/
-
-# macOS
+.vscode
 .DS_Store
-
-# app binaries
 *aab
 *apks
-
-# environment config
 .env*
-
-# python venv
 .venv
+.helix
