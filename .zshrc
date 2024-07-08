@@ -79,6 +79,21 @@ fpath+=~/.zfunc
 
 # commands
 
+# open json files with an interactive debugger
+(($+commands[jid])) && alias -s json='jid < '
+
+# sunbeam - terminal launcher
+(($+commands[sunbeam])) && {
+  _sunbeam=/opt/homebrew/share/zsh/site-functions/_sunbeam
+  test -f $_sunbeam || (sunbeam completion zsh > $_sunbeam)
+}
+
+# bun - javascript runtime
+(($+commands[bun])) && {
+  [ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
+  bundev() { export PATH="/opt/homebrew/opt/llvm@16/bin:$PATH" }
+}
+
 ## aliases to nicer cli
 (($+commands[eza])) && alias \
   ls='eza' \
@@ -118,7 +133,7 @@ plan() {
   curl --silent --user micro --form "plan=<$PLAN" https://plan.cat/stdin
 }
 
-# show local devices
+# show local network devices
 lookaroundyou() {
   (($+commands[nmap])) || die 'missing nmap'
   (($+commands[rg])) || die 'missing rg'
@@ -135,8 +150,8 @@ broadcast() {
   echo -ne $message | socat -u - udp-datagram:127.0.0.1:${dstport},sourceport=${srcport},broadcast,reuseaddr
 }
 
+# list local servers that are listening on a port
 listening() { lsof -iTCP -sTCP:LISTEN -n -P +c 0 }
 
-alias -s json='jid < '
-
+# work
 . ~/.config/zsh/work.zsh
