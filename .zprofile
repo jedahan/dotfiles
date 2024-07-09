@@ -20,3 +20,25 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/ruby/lib/pkgconfig"
 
 # put config files in a comfy place
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Keep these in .zprofile on macos because /etc/profile loads after ~/.zshenv and mucks with PATH
+
+# personal
+export PATH="$HOME/bin:$PATH"
+
+# special
+export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.radicle/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# homebrew
+HOMEBREW=/opt/homebrew
+export PATH="$HOMEBREW/bin:$PATH"
+export PATH="$HOMEBREW/sbin:$PATH"
+
+# homebrew apps
+export PATH="$HOMEBREW/opt/ruby/bin:$PATH"
+export PATH="$HOMEBREW/opt/llvm/bin:$PATH"
+export PATH="$HOMEBREW/opt/node@20/bin:$PATH"
+export PATH="$HOMEBREW/opt/postgresql@15/bin:$PATH"
+export PATH="$HOMEBREW/opt/qt@5/bin:$PATH"
