@@ -177,3 +177,14 @@ listening() { lsof -iTCP -sTCP:LISTEN -n -P +c 0 }
 
 # work
 . ~/.config/zsh/work.zsh
+
+bindkey "^[[1;3D" backward-word # Alt + Left
+bindkey "^[[1;3C" forward-word  # Alt + Right
+
+find-unused-port() {
+  port=$((RANDOM % 16384 + 49152))
+  while netstat -an | grep LISTEN | grep -q "\.$port "; do
+    port=$((RANDOM % 16384 + 49152))
+  done
+  echo $port
+}
