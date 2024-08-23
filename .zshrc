@@ -36,6 +36,23 @@ export EZA_ICONS_AUTO=true
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
 
+git_checkout_hook() {
+    local cmd words
+    cmd=$(fc -ln -1)
+    words=(${=cmd}) # Split the command into words
+
+    if [[ ${words[1]} == "git" && ${words[2]} == "checkout" ]]; then
+        if [[ ${#words[@]} -eq 3 ]]; then
+            echo "Hint: You can use 'git switch ${words[3]}' instead of 'git checkout ${words[3]}'."
+        fi
+    fi
+
+    zle -I
+}
+
+zle -N git_checkout_hook
+precmd_functions+=(git_checkout_hook)
+
 ## geometry prompt theme, improved history and tab-completion
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
