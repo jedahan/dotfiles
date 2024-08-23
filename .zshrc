@@ -158,6 +158,11 @@ lookaroundyou() {
   sudo nmap -sS -PS -O ${myip}/24
 }
 
+lookaroundyou6() {
+  (($+commands[ping6])) || die 'missing ping6'
+  ping6 ff02::1%en0
+}
+
 # broadcast over udp
 broadcast() {
   (($+commands[socat])) || die 'missing socat'
