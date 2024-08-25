@@ -1,3 +1,8 @@
+die() {
+  echo "$*" >&2
+  return 1
+}
+
 ## zsh options
 setopt \
   emacs \
@@ -170,4 +175,10 @@ find-unused-port() {
     port=$((RANDOM % 16384 + 49152))
   done
   echo $port
+}
+
+compdef ssh-copy-ghostty-terminfo=ssh
+ssh-copy-ghostty-terminfo() {
+  (( $# == 1 )) || die "usage: $0 <ssh_remote_host>"
+  infocmp -x | ssh ${1} -- tic -x -
 }
