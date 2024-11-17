@@ -82,22 +82,10 @@ compinit -C
 ## add cargo and rustup completions
 fpath+=~/.zfunc
 
+bindkey "^[[1;3D" backward-word # Alt + Left
+bindkey "^[[1;3C" forward-word  # Alt + Right
+
 # commands
-
-# open json files with an interactive debugger
-(($+commands[jid])) && alias -s json='jid < '
-
-# sunbeam - terminal launcher
-(($+commands[sunbeam])) && {
-  _sunbeam=/opt/homebrew/share/zsh/site-functions/_sunbeam
-  test -f $_sunbeam || (sunbeam completion zsh > $_sunbeam)
-}
-
-# bun - javascript runtime
-(($+commands[bun])) && {
-  [ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
-  bundev() { export PATH="/opt/homebrew/opt/llvm@16/bin:$PATH" }
-}
 
 ## aliases to nicer cli
 (($+commands[eza])) && alias \
@@ -106,10 +94,9 @@ fpath+=~/.zfunc
   la='eza -a' \
   ,='eza'
 
-(($+commands[z])) && alias cd='z'
-(($+commands[fcp])) && alias cp='fcp'
+(($+functions[z])) && alias cd='z'
+(($+commands[bat])) && alias cat='bat'
 (($+commands[dog])) && alias dig='dog'
-(($+commands[codium])) && alias code='codium'
 (($+commands[yt-dlp])) && alias yt='yt-dlp'
 
 ## manage dotfiles with plain old git
@@ -163,12 +150,7 @@ broadcast() {
 # list local servers that are listening on a port
 listening() { lsof -iTCP -sTCP:LISTEN -n -P +c 0 }
 
-# work
-. ~/.config/zsh/work.zsh
-
-bindkey "^[[1;3D" backward-word # Alt + Left
-bindkey "^[[1;3C" forward-word  # Alt + Right
-
+# print an unused port
 find-unused-port() {
   port=$((RANDOM % 16384 + 49152))
   while netstat -an | grep LISTEN | grep -q "\.$port "; do
@@ -177,8 +159,12 @@ find-unused-port() {
   echo $port
 }
 
+# ghostty terminfo
 compdef ssh-copy-ghostty-terminfo=ssh
 ssh-copy-ghostty-terminfo() {
   (( $# == 1 )) || die "usage: $0 <ssh_remote_host>"
   infocmp -x | ssh ${1} -- tic -x -
 }
+
+# work
+test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true
