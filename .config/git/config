@@ -4,28 +4,9 @@ email = git@jonathan.is
 
 [pull]
 rebase = true
+
 [init]
 defaultBranch = main
-
-# use git send email for patches
-[sendemail]
-smtpserver = 127.0.0.1
-smtpencryption = ssl
-smtpuser = hi@jonathan.is
-smtpserverport = 1025
-smtpsslcertpath =
-confirm = auto
-
-# enable git-lfs
-[filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
-required = true
-
-[diff "lockb"]
-textconv = bun
-binary = true
 
 [push]
 autoSetupRemote = true
