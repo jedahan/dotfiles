@@ -1,4 +1,4 @@
-[jedahan][]'s dotfiles for [zsh][], [tmux][], [git][], [openssh][], and [neovim][] on [macOS][].
+[jedahan][]'s dotfiles for [ghostty][], [zsh][], [hx][], [jj][], [ssh][], [git][], and [mpv][] on [macOS][].
 
 Customizations are minimal, understandable, and independent, so newcomers can dive in.
 
@@ -20,26 +20,25 @@ Symlink dotfiles to home directory
 
     git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
 
+Setup function for managing dotfiles when in home directory
+
+    git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
+
 ### Usage
 
 Manage changes with `git` in your home directory
 
     git status
 
-To track or untrack new dotfiles easily, install [jedahan/track][]
+Add a config file to git
 
-    git clone https://github.com/jedahan/track && source track/track.zsh
-
-Tracking a new file
-
-    track .config/gh/config.yml
-
-Untracking a file
-
-    untrack .config/gh/config.yml
+    cd
+    mv .config/app.toml .dotfiles/.config/app.toml
+    ln -sf .dotfiles/.config/app.toml ~/.config/app.toml
+    git add .config/app.toml
+    git commit -m 'track app config'
 
 ### Uninstallation
-
 
 Backup existing files
 
@@ -50,10 +49,11 @@ Copy dotfiles from repo back to home
     git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
 
 [jedahan]: http://jonathan.is
-[zsh]: https://zsh.org
+
 [git]: https://git-scm.com
-[tmux]: https://tmux.github.io
+[jj]: https://martinvonz.github.io/jj
+[macOS]: https://www.apple.com/macos/sequoia
+[mpv]: https://mpv.io
+[hx]: https://helix-editor.com
 [openssh]: https://openssh.com
-[neovim]: https://neovim.io
-[macOS]: https://www.apple.com/macos/big-sur
-[jedahan/track]: http://github.com/jedahan/track
+[zsh]: https://zsh.org
