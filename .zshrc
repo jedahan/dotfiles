@@ -101,7 +101,6 @@ bindkey "^[[1;3C" forward-word  # Alt + Right
 (($+commands[yt-dlp])) && alias yt='yt-dlp'
 
 ## manage dotfiles with version control
-git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
 jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }
 
 # ssh as root into whatever wired connection you got
