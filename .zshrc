@@ -3,6 +3,7 @@ die() {
   return 1
 }
 
+
 ## zsh options
 setopt \
   emacs \
@@ -99,8 +100,9 @@ bindkey "^[[1;3C" forward-word  # Alt + Right
 (($+commands[dog])) && alias dig='dog'
 (($+commands[yt-dlp])) && alias yt='yt-dlp'
 
-## manage dotfiles with plain old git
+## manage dotfiles with version control
 git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
+jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }
 
 # ssh as root into whatever wired connection you got
 ssh-link-local() {
@@ -165,6 +167,9 @@ ssh-copy-ghostty-terminfo() {
   (( $# == 1 )) || die "usage: $0 <ssh_remote_host>"
   infocmp -x | ssh ${1} -- tic -x -
 }
+
+# jujutsu
+(( $+commands[jj] )) && source <(jj util completion zsh)
 
 # work
 test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true

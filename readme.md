@@ -1,4 +1,4 @@
-[jedahan][]'s dotfiles for [ghostty][], [zsh][], [hx][], [jj][], [ssh][], [git][], and [mpv][] on [macOS][].
+[jedahan][]'s dotfiles for [ghostty][], [zsh][], [hx][], [jj][], [ssh][], and [mpv][] on [macOS][].
 
 Customizations are minimal, understandable, and independent, so newcomers can dive in.
 
@@ -10,51 +10,49 @@ Customizations are minimal, understandable, and independent, so newcomers can di
 
 Clone this repository
 
-    git clone https://github.com/jedahan/dotfiles.git $HOME/.dotfiles
+    jj git clone https://github.com/jedahan/dotfiles.git ~/.dotfiles
 
 Backup existing files
 
-    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
+    jj --repository ~/.dotfiles file list | xargs -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
 Symlink dotfiles to home directory
 
-    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
+    jj --repository ~/.dotfiles file list | xargs -I _ ln -sf "$HOME/.dotfiles/_" "$HOME/_"
 
 Setup function for managing dotfiles when in home directory
 
-    git() { command git -C ${PWD:/${HOME}/.dotfiles} $* }
+    jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }
 
 ### Usage
 
-Manage changes with `git` in your home directory
+Manage changes with `jj` in your home directory
 
-    git status
+    jj status
 
 Add a config file to git
 
     cd
     mv .config/app.toml .dotfiles/.config/app.toml
     ln -sf .dotfiles/.config/app.toml ~/.config/app.toml
-    git add .config/app.toml
-    git commit -m 'track app config'
+    jj describe --message 'track app config'
 
 ### Uninstallation
 
 Backup existing files
 
-    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
+    jj --repository ~/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
 Copy dotfiles from repo back to home
 
-    git -C $HOME/.dotfiles ls-files -z | xargs -0 -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
+    jj --repository ~/.dotfiles ls-files -z | xargs -0 -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
 
 [jedahan]: http://jonathan.is
 
-[git]: https://git-scm.com
 [ghostty]: https://github.com/ghostty-org/ghostty
+[hx]: https://helix-editor.com
 [jj]: https://martinvonz.github.io/jj
 [macOS]: https://www.apple.com/macos/sequoia
 [mpv]: https://mpv.io
-[hx]: https://helix-editor.com
 [ssh]: https://openssh.com
 [zsh]: https://zsh.org
