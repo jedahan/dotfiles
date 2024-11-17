@@ -51,9 +51,10 @@ Copy dotfiles from repo back to home
 [jedahan]: http://jonathan.is
 
 [git]: https://git-scm.com
+[ghostty]: https://github.com/ghostty-org/ghostty
 [jj]: https://martinvonz.github.io/jj
 [macOS]: https://www.apple.com/macos/sequoia
 [mpv]: https://mpv.io
 [hx]: https://helix-editor.com
-[openssh]: https://openssh.com
+[ssh]: https://openssh.com
 [zsh]: https://zsh.org
