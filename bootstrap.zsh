@@ -73,7 +73,7 @@ log "install shell apps"; {
 }
 
 log "install desktop apps"; {
-  brew install discord firefox protonmail-bridge signal
+  brew install discord firefox protonmail-bridge signal tidal
 }
 
 log "clone dotfiles"; {
