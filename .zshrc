@@ -71,7 +71,16 @@ geometry_node_version() {
   test -f package.json || test -f yarn.lock || return 1
   node -v 2>/dev/null
 }
-GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv)
+
+# add jj revset to right prompt
+geometry_jj() {
+  (( $+commands[jj] )) || return 1
+  jj root --quiet >/dev/null 2>/dev/null || return 2
+
+  jj log --revisions @ --no-graph --limit 1 --template \
+    'change_id.shortest() ++ commit_id.shortest()'
+}
+GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv geometry_jj)
 export GEOMETRY_RPROMPT
 
 # cache completions
@@ -99,6 +108,7 @@ bindkey "^[[1;3C" forward-word  # Alt + Right
 (($+commands[bat])) && alias cat='bat'
 (($+commands[dog])) && alias dig='dog'
 (($+commands[yt-dlp])) && alias yt='yt-dlp'
+(($+commands[podman])) && alias docker='podman'
 
 ## manage dotfiles with version control
 jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }

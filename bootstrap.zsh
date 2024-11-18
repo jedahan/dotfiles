@@ -69,7 +69,7 @@ log "block ad domains in /private/etc/hosts"; {
 
 log "install shell apps"; {
   cargo install zr
-  brew install fd fzf helix mpv node rg tldr zoxide
+  brew install fd fzf helix mpv node podman podman-compose rg tldr zoxide
 }
 
 log "install desktop apps"; {
@@ -78,6 +78,11 @@ log "install desktop apps"; {
 
 log "clone dotfiles"; {
   test -f ~/.dotfiles || git clone https://github.com/jedahan/dotfiles ~/.dotfiles
+}
+
+log "enable containers"; {
+  podman machine init
+  podman machine start
 }
 
 log "disable studentd"; {
