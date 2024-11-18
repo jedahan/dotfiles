@@ -42,11 +42,11 @@ Add a config file to git
 
 Backup existing files
 
-    jj --repository ~/.dotfiles ls-files -z | xargs -0 -I _ mv -vi "$HOME/_" "$HOME/_.backup"
+    jj --repository ~/.dotfiles file list | xargs -I _ mv -vi "$HOME/_" "$HOME/_.backup"
 
 Copy dotfiles from repo back to home
 
-    jj --repository ~/.dotfiles ls-files -z | xargs -0 -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
+    jj --repository ~/.dotfiles file list | xargs -I _ cp -i "$HOME/.dotfiles/_" "$HOME/_"
 
 [jedahan]: http://jonathan.is
 
