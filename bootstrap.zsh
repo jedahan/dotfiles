@@ -70,6 +70,7 @@ log "block ad domains in /private/etc/hosts"; {
 log "install shell apps"; {
   cargo install zr
   brew install fd fzf helix mpv node podman podman-compose rg tldr zoxide
+  brew install typescript-language-server
 }
 
 log "install desktop apps"; {
