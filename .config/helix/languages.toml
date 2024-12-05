@@ -1,0 +1,12 @@
+# todo: remove for helix > 24.7
+[language-server.superhtml-lsp]
+command = "superhtml"
+args = ["lsp"]
+
+# todo: remove for helix > 24.7
+[[language]]
+name = "html"
+scope = "source.html"
+roots = []
+file-types = ["html"]
+language-servers = [ "superhtml-lsp" ]
