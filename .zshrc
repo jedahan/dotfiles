@@ -181,5 +181,23 @@ ssh-copy-ghostty-terminfo() {
 # jujutsu
 (( $+commands[jj] )) && source <(jj util completion zsh)
 
+# artificial intelligence
+ai() {
+  ollama run --model qwen2.5-coder:32b "$*"
+}
+
+ai-uv() {
+  uv run --with mlx-lm \
+  mlx_lm.generate \
+    --model mlx-community/Qwen2.5-Coder-32B-Instruct-8bit \
+    --max-tokens 4000 \
+    --prompt "$*"
+}
+
 # work
 test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true
+
+# bun 
+[ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

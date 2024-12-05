@@ -69,12 +69,14 @@ log "block ad domains in /private/etc/hosts"; {
 
 log "install shell apps"; {
   cargo install zr
-  brew install fd fzf helix daxartio/tap/kdbx mpv node podman podman-compose rg tldr zoxide
-  brew install typescript-language-server
+  brew install fd fzf gh helix daxartio/tap/kdbx monitorcontrol mpv node podman podman-compose rg syncthing tldr zig zoxide
+  brew install aws-cli git-lfs typescript-language-server qt@5 vscode-langservers-extracted
+  git lfs install
 }
 
 log "install desktop apps"; {
   brew install around discord firefox protonmail-bridge signal tidal
+  brew install citrix-workspace
 }
 
 log "clone dotfiles"; {
@@ -84,6 +86,12 @@ log "clone dotfiles"; {
 log "enable containers"; {
   podman machine init
   podman machine start
+}
+
+log "install llms"; {
+  brew install ollama llm
+  ollama pull qwen2.5-coder:32b
+  llm install llm-ollama
 }
 
 log "disable studentd"; {
@@ -143,6 +151,10 @@ log "print manual steps"; {
   - create 'work' user or learn to use spaces
   - symlink dotfiles
   TODO
+}
+
+log "enable services that require manual interaction"; {
+  brew services start syncthing
 }
 
 echo " bye"
