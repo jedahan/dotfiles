@@ -3,7 +3,6 @@ die() {
   return 1
 }
 
-
 ## zsh options
 setopt \
   emacs \
@@ -76,10 +75,11 @@ geometry_node_version() {
 geometry_jj() {
   (( $+commands[jj] )) || return 1
   jj root --quiet >/dev/null 2>/dev/null || return 2
-
-  jj log --revisions @ --no-graph --limit 1 --template \
-    'change_id.shortest() ++ commit_id.shortest()'
+  jj log --quiet --no-pager --no-graph --ignore-working-copy --revisions @ --color never \
+    --template '"%F{5}" ++ change_id.shortest() ++ "%F{4}" ++ commit_id.shortest() ++ "%f%"' \
+    2>/dev/null || true
 }
+
 GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv geometry_jj)
 export GEOMETRY_RPROMPT
 
@@ -88,6 +88,7 @@ zstyle ':completion:*' completer _expand_alias _complete _ignored
 autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do compinit; done
 compinit -C
+(($+commands[podman])) && source <(podman completion zsh)
 
 ## add cargo and rustup completions
 fpath+=~/.zfunc
