@@ -23,7 +23,7 @@ Symlink dotfiles to home directory
 
 Setup function for managing dotfiles when in home directory
 
-    jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }
+    jj() { command jj $([[ "$PWD" == "$HOME" ]] && echo "--repository .dotfiles") "$@"; }
 
 ### Usage
 

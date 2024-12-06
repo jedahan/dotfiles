@@ -41,7 +41,11 @@ export EZA_ICONS_AUTO=true
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
 
-## geometry prompt theme, improved history and tab-completion
+## geometry prompt theme
+export GEOMETRY_PROMPT=(geometry_newline geometry_path geometry_newline geometry_status)
+export GEOMETRY_RPROMPT=(geometry_node_version geometry_virtualenv geometry_jj)
+
+## improved history and tab-completion
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
   zr \
     aloxaf/fzf-tab \
@@ -57,12 +61,6 @@ source ~/.config/_zr
 
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)"
 
-# theme prompt
-export GEOMETRY_PROMPT=(\
-  geometry_newline \
-  geometry_path geometry_newline \
-  geometry_status \
-)
 
 # add node version to right prompt
 geometry_node_version() {
@@ -74,14 +72,12 @@ geometry_node_version() {
 # add jj revset to right prompt
 geometry_jj() {
   (( $+commands[jj] )) || return 1
-  jj root --quiet >/dev/null 2>/dev/null || return 2
+
   jj log --quiet --no-pager --no-graph --ignore-working-copy --revisions @ --color never \
     --template '"%F{5}" ++ change_id.shortest() ++ "%F{4}" ++ commit_id.shortest() ++ "%f%"' \
-    2>/dev/null || true
+    2>/dev/null
 }
 
-GEOMETRY_RPROMPT+=(geometry_node_version geometry_virtualenv geometry_jj)
-export GEOMETRY_RPROMPT
 
 # cache completions
 zstyle ':completion:*' completer _expand_alias _complete _ignored
@@ -112,7 +108,7 @@ bindkey "^[[1;3C" forward-word  # Alt + Right
 (($+commands[podman])) && alias docker='podman'
 
 ## manage dotfiles with version control
-jj() { command jj --repository ${PWD:/${HOME}/.dotfiles} $* }
+jj() { command jj $([[ "$PWD" == "$HOME" ]] && echo "--repository .dotfiles") "$@"; }
 
 # ssh as root into whatever wired connection you got
 ssh-link-local() {
