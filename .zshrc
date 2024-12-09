@@ -179,15 +179,7 @@ ssh-copy-ghostty-terminfo() {
 
 # artificial intelligence
 ai() {
-  ollama run --model qwen2.5-coder:32b "$*"
-}
-
-ai-uv() {
-  uv run --with mlx-lm \
-  mlx_lm.generate \
-    --model mlx-community/Qwen2.5-Coder-32B-Instruct-8bit \
-    --max-tokens 4000 \
-    --prompt "$*"
+  ollama run --model llama3.3 "$*"
 }
 
 # work
