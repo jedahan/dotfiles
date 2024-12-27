@@ -75,7 +75,7 @@ log "install shell apps"; {
 }
 
 log "install desktop apps"; {
-  brew install around discord firefox protonmail-bridge signal tidal
+  brew install around discord firefox ghostty protonmail-bridge signal tidal
   brew install citrix-workspace
 }
 
@@ -146,7 +146,6 @@ log "print manual steps"; {
   echo <<TODO
   - turn on apple private relay
   - login to github
-  - install ghostty
   - transfer ssh keys from old laptop
   - create 'work' user or learn to use spaces
   - symlink dotfiles
