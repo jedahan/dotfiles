@@ -178,9 +178,7 @@ ssh-copy-ghostty-terminfo() {
 (( $+commands[jj] )) && source <(jj util completion zsh)
 
 # artificial intelligence
-ai() {
-  ollama run --model llama3.3 "$*"
-}
+(( $+commands[ollama] )) && alias ai="ollama run llama3.3"
 
 # work
 test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true
