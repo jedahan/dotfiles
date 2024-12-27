@@ -74,7 +74,7 @@ geometry_jj() {
   (( $+commands[jj] )) || return 1
 
   jj log --quiet --no-pager --no-graph --ignore-working-copy --revisions @ --color never \
-    --template '"%F{5}" ++ change_id.shortest() ++ "%F{4}" ++ commit_id.shortest() ++ "%f%"' \
+    --template '"%F{5}" ++ change_id.shortest() ++ "%F{4}" ++ commit_id.shortest() ++ "%f% "' \
     2>/dev/null
 }
 
