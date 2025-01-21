@@ -69,13 +69,13 @@ log "block ad domains in /private/etc/hosts"; {
 
 log "install shell apps"; {
   cargo install zr
-  brew install fd fzf gh helix daxartio/tap/kdbx monitorcontrol mpv node podman podman-compose rg syncthing tldr zig zoxide
-  brew install aws-cli git-lfs typescript-language-server qt@5 vscode-langservers-extracted
+  brew install fd fzf gh helix monitorcontrol mpv node podman podman-compose rg syncthing tldr zig zoxide
+  brew install aws-cli daxartio/tap/kdbx direnv git-lfs typescript-language-server qt@5 vscode-langservers-extracted
   git lfs install
 }
 
 log "install desktop apps"; {
-  brew install around discord firefox ghostty protonmail-bridge signal tidal
+  brew install discord firefox ghostty protonmail-bridge signal tidal
   brew install citrix-workspace
 }
 
