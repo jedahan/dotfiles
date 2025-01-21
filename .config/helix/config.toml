@@ -1,5 +1,8 @@
 theme = "base16_transparent"
 
+[editor]
+bufferline = "always"
+
 [keys.normal.space.b]
 f = ":format"
 s = ":write"
