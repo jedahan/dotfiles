@@ -175,3 +175,9 @@ test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true
 [ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
 BUN_INSTALL="$HOME/.bun"
 PATH="$BUN_INSTALL/bin:$PATH"
+
+# pipx
+PATH="$PATH:/Users/micro/.local/bin"
+
+# direnv
+eval "$(direnv hook zsh)"
