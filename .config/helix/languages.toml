@@ -1,12 +1,7 @@
-# todo: remove for helix > 24.7
-[language-server.superhtml-lsp]
-command = "superhtml"
-args = ["lsp"]
-
-# todo: remove for helix > 24.7
 [[language]]
-name = "html"
-scope = "source.html"
+name = "qml"
+scope = "source.qml"
 roots = []
-file-types = ["html"]
-language-servers = [ "superhtml-lsp" ]
+file-types = ["qml"]
+language-servers = [ "qmlls" ]
+formatter = { command = "/Users/micro/bin/qmlformat-stdin" }
