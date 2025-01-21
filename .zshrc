@@ -67,16 +67,6 @@ geometry_node_version() {
   node -v 2>/dev/null
 }
 
-# add jj revset to right prompt
-geometry_jj() {
-  (( $+commands[jj] )) || return 1
-
-  jj log --quiet --no-pager --no-graph --ignore-working-copy --revisions @ --color never \
-    --template '"%F{5}" ++ change_id.shortest() ++ "%F{4}" ++ commit_id.shortest() ++ "%f% "' \
-    2>/dev/null
-}
-
-
 # cache completions
 zstyle ':completion:*' completer _expand_alias _complete _ignored
 autoload -Uz compinit
