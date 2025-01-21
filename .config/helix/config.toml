@@ -9,3 +9,7 @@ s = ":write"
 c = ":buffer-close"
 n = ":buffer-next"
 p = ":buffer-previous"
+
+[editor.file-picker]
+hidden = false
+
