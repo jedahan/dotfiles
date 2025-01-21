@@ -13,12 +13,10 @@ setopt \
   autocd autopushd pushd_ignore_dups
 
 # set larger shared history in ~/.zshrc because macOS ships broken /etc/zshrc 
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
-# zsh defaults
-export NO_UPDATE_NOTIFIER=true
-(($+commands[hx])) && export EDITOR=hx
+(($+commands[hx])) && EDITOR=hx
 
 # zsh history
 setopt \
@@ -32,18 +30,18 @@ setopt \
   INC_APPEND_HISTORY_TIME \
   EXTENDED_HISTORY \
 
-export HISTORY_IGNORE="(ls|cd|pwd|exit)*"
+HISTORY_IGNORE="(ls|cd|pwd|exit)*"
 
 # icons for ls
-export EZA_ICONS_AUTO=true
+EZA_ICONS_AUTO=true
 
 ## when pasting urls with glob characters (?*), surround in quotes
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
 
 ## geometry prompt theme
-export GEOMETRY_PROMPT=(geometry_newline geometry_path geometry_newline geometry_status)
-export GEOMETRY_RPROMPT=(geometry_node_version geometry_virtualenv geometry_jj)
+GEOMETRY_PROMPT=(geometry_newline geometry_path geometry_newline geometry_status)
+GEOMETRY_RPROMPT=(geometry_node_version geometry_virtualenv geometry_jj geometry_git)
 
 ## improved history and tab-completion
 if [[ ! -f ~/.config/_zr ]] || [[ ~/.zshrc -nt ~/.config/_zr ]]; then
@@ -185,5 +183,5 @@ test -f ~/.config/zsh/work.zsh && . ~/.config/zsh/work.zsh || true
 
 # bun 
 [ -s "/Users/micro/.bun/_bun" ] && source "/Users/micro/.bun/_bun"
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+BUN_INSTALL="$HOME/.bun"
+PATH="$BUN_INSTALL/bin:$PATH"
